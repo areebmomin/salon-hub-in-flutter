@@ -12,4 +12,6 @@ class Strings {
   static const String loginButton = 'LOGIN';
   static const String dontHaveAccount = 'Don’t Have account? ';
   static const String registerNow = 'Register now';
+  static const String otp = 'OTP';
+  static const String getOtp = 'Get OTP';
 }
