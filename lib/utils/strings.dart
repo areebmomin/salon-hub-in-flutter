@@ -23,4 +23,6 @@ class Strings {
   static const String hintEmail = 'stevesmithexaple@gmail.com';
   static const String hintAddress =
       '22\'th Flr Shreya House, Hill Road, Andheri, Mumbai, 400093';
+  static const String uploadProfilePicture = 'Upload Profile Picture';
+  static const String browse = 'Browse';
 }

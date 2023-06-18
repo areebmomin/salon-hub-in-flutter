@@ -25,6 +25,7 @@ class _UserRegistrationWidgetState extends State<UserRegistrationWidget> {
               children: const [
                 CloseButtonWidget(),
                 RegisterNowWidget(),
+                UserPhotoUploadWidget(),
                 NameTextFieldWidget(),
                 RegisterPhoneNumberTextFieldWidget(),
                 EmailTextFieldWidget(),
@@ -81,6 +82,77 @@ class RegisterNowWidget extends StatelessWidget {
   }
 }
 
+class UserPhotoUploadWidget extends StatefulWidget {
+  const UserPhotoUploadWidget({super.key});
+
+  @override
+  State<UserPhotoUploadWidget> createState() => _UserPhotoUploadWidgetState();
+}
+
+class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 17),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const CircleAvatar(
+            backgroundImage: AssetImage(Assets.userProfileDummy),
+            radius: 65,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 19),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const Text(
+                    Strings.uploadProfilePicture,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    softWrap: false,
+                    style: TextStyle(
+                      color: AppColors.headingTextColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      fontFamily: Strings.firaSans,
+                    ),
+                  ),
+                  const SizedBox(height: 16,),
+                  TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      backgroundColor: AppColors.inputFieldBackground,
+                      fixedSize: const Size(138, 45),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.cloud_upload),
+                        SizedBox(width: 8),
+                        Text(
+                          Strings.browse,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class NameTextFieldWidget extends StatefulWidget {
   const NameTextFieldWidget({super.key});
 
@@ -111,7 +183,18 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: InputBorder.none,
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
               hintText: Strings.hintName,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -237,7 +320,18 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: InputBorder.none,
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
               hintText: Strings.hintEmail,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -291,7 +385,18 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: InputBorder.none,
+              border: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
               hintText: Strings.hintAddress,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -385,6 +490,9 @@ class _RegisterNowButtonWidgetState extends State<RegisterNowButtonWidget> {
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
         ),
         child: Text(
           Strings.registerNow.toUpperCase(),
