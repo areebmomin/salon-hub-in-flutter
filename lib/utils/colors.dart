@@ -9,4 +9,5 @@ class AppColors {
   static const Color lightTextColor = Color(0xFF88878F);
   static const Color inputFieldBackground = Color(0xFFF0F0F0);
   static const Color inputText = Color(0xFFA4A1A1);
+  static const Color checkboxActive = Color(0xFF0E9E59);
 }

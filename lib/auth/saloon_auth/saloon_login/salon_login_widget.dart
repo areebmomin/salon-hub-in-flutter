@@ -5,6 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:saloon_hub/auth/saloon_auth/index.dart';
 import 'package:saloon_hub/utils/index.dart';
 
 class SalonLoginWidget extends StatefulWidget {
@@ -81,7 +82,7 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
               border: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
               ),
-              hintText: "8976543210",
+              hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
               hintStyle: TextStyle(
                 color: AppColors.inputText,
@@ -116,7 +117,8 @@ class PasswordTextFieldWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
+          padding:
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
             length: 6,
             fieldWidth: 56,
@@ -132,7 +134,8 @@ class PasswordTextFieldWidget extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
           ),
         ),
         Padding(
@@ -212,7 +215,12 @@ class RegisterNowTextWidget extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Fluttertoast.showToast(msg: 'msg');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SaloonRegistrationWidget(),
+                    ),
+                  );
                 },
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:saloon_hub/auth/user_auth/index.dart';
 
 import '../../../utils/index.dart';
 
@@ -18,14 +19,14 @@ class _UserLoginWidgetState extends State<UserLoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          PhoneNumberTextFieldWidget(),
-          OtpTextFieldWidget(),
-          LoginButtonWidget(),
-          RegisterNowTextWidget(),
-        ],
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: const [
+        PhoneNumberTextFieldWidget(),
+        OtpTextFieldWidget(),
+        LoginButtonWidget(),
+        RegisterNowTextWidget(),
+      ],
     );
   }
 }
@@ -51,7 +52,7 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
         ),
         Padding(
           padding:
-          const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
               print("object");
@@ -81,7 +82,7 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
               border: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
               ),
-              hintText: "8976543210",
+              hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
               hintStyle: TextStyle(
                 color: AppColors.inputText,
@@ -116,7 +117,8 @@ class OtpTextFieldWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
+          padding:
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
             length: 6,
             fieldWidth: 56,
@@ -132,7 +134,8 @@ class OtpTextFieldWidget extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
           ),
         ),
       ],
@@ -194,7 +197,12 @@ class RegisterNowTextWidget extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Fluttertoast.showToast(msg: 'msg');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UserRegistrationWidget(),
+                    ),
+                  );
                 },
             ),
           ],
