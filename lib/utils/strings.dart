@@ -25,4 +25,21 @@ class Strings {
       '22\'th Flr Shreya House, Hill Road, Andheri, Mumbai, 400093';
   static const String uploadProfilePicture = 'Upload Profile Picture';
   static const String browse = 'Browse';
+  static const String businessDetails = 'Business details';
+  static const String uploadSaloonPicture = 'Upload Saloon Picture';
+  static const String businessName = 'Business Name';
+  static const String businessNameHint = 'Beauty salon Shop';
+  static const String businessAddressHint =
+      'Shop no. 2, Dr Anandrao Nair Road, Opp Reserve Bank Of India, Mumbai, 400008';
+  static const String businessLocation = 'Location';
+  static const String services = 'Services';
+  static const String type = 'Type';
+  static const String serviceDays = 'Service day\'s';
+  static const String serviceTime = 'Service Time';
+  static const String name = 'Name';
+  static const String ownerDetails = 'Owner Details:';
+  static const String attendeeDetails = 'Attendee Detail\'s:';
+
+  // lists
+  static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
 }

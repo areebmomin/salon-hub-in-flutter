@@ -24,7 +24,7 @@ class _UserRegistrationWidgetState extends State<UserRegistrationWidget> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
                 CloseButtonWidget(),
-                RegisterNowWidget(),
+                RegisterNowHeadingWidget(),
                 UserPhotoUploadWidget(),
                 NameTextFieldWidget(),
                 RegisterPhoneNumberTextFieldWidget(),
@@ -62,8 +62,8 @@ class CloseButtonWidget extends StatelessWidget {
   }
 }
 
-class RegisterNowWidget extends StatelessWidget {
-  const RegisterNowWidget({super.key});
+class RegisterNowHeadingWidget extends StatelessWidget {
+  const RegisterNowHeadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
