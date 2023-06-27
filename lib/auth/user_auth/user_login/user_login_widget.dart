@@ -5,6 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:saloon_hub/auth/user_auth/index.dart';
+import 'package:saloon_hub/user/user_home_page.dart';
 
 import '../../../utils/index.dart';
 
@@ -16,23 +17,56 @@ class UserLoginWidget extends StatefulWidget {
 }
 
 class _UserLoginWidgetState extends State<UserLoginWidget> {
+  bool _isPhoneNumberValid = false;
+  bool _isOtpValid = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        PhoneNumberTextFieldWidget(),
-        OtpTextFieldWidget(),
-        LoginButtonWidget(),
-        RegisterNowTextWidget(),
+      children: [
+        PhoneNumberTextFieldWidget(_onPhoneNumberValidated),
+        OtpTextFieldWidget(_onOtpValidated),
+        LoginButtonWidget(_onLoginButtonCLicked),
+        const RegisterNowTextWidget(),
       ],
+    );
+  }
+
+  void _onPhoneNumberValidated(bool isValid) {
+    _isPhoneNumberValid = isValid;
+  }
+
+  void _onOtpValidated(isValid) {
+    _isOtpValid = isValid;
+  }
+
+  void _onLoginButtonCLicked() {
+    if (!_isPhoneNumberValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterValidPhoneNumber, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    if (!_isOtpValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterValidOtp, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    // Navigate to Home page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const UserHomePage()),
     );
   }
 }
 
 class PhoneNumberTextFieldWidget extends StatelessWidget {
-  const PhoneNumberTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const PhoneNumberTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +88,9 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
           child: InternationalPhoneNumberInput(
-            onInputChanged: (PhoneNumber number) {
-              print("object");
+            onInputChanged: (PhoneNumber number) {},
+            onInputValidated: (isValid) {
+              onInputValidated(isValid);
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -98,7 +133,10 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
 }
 
 class OtpTextFieldWidget extends StatelessWidget {
-  const OtpTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+  static const int _otpLength = 6;
+
+  const OtpTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +158,11 @@ class OtpTextFieldWidget extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
-            length: 6,
+            length: _otpLength,
             fieldWidth: 56,
             fieldStyle: FieldStyle.box,
             outlineBorderRadius: 5,
+            keyboardType: TextInputType.number,
             otpFieldStyle: OtpFieldStyle(
               backgroundColor: AppColors.inputFieldBackground,
               borderColor: AppColors.inputFieldBackground,
@@ -136,6 +175,9 @@ class OtpTextFieldWidget extends StatelessWidget {
             ),
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+            onChanged: (code) {
+              onInputValidated(code.length == _otpLength);
+            },
           ),
         ),
       ],
@@ -144,14 +186,18 @@ class OtpTextFieldWidget extends StatelessWidget {
 }
 
 class LoginButtonWidget extends StatelessWidget {
-  const LoginButtonWidget({super.key});
+  final Function() onCLicked;
+
+  const LoginButtonWidget(this.onCLicked, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          onCLicked();
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
