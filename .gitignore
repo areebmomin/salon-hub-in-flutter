@@ -42,3 +42,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase configration files
+/Users/areebmomin/Projects/FlutterProjects/saloon_hub/ios/firebase_app_id_file.json
+/Users/areebmomin/Projects/FlutterProjects/saloon_hub/lib/firebase_options.dart
+/Users/areebmomin/Projects/FlutterProjects/saloon_hub/android/app/google-services.json
+/Users/areebmomin/Projects/FlutterProjects/saloon_hub/ios/Runner/GoogleService-Info.plist
