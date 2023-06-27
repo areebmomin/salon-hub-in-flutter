@@ -56,7 +56,7 @@ class _UserLoginWidgetState extends State<UserLoginWidget> {
     }
 
     // Navigate to Home page
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const UserHomePage()),
     );
