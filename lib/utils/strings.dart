@@ -41,6 +41,9 @@ class Strings {
   static const String attendeeDetails = 'Attendee Detail\'s:';
   static const String enterValidPhoneNumber = 'Enter valid phone number';
   static const String enterValidOtp = 'Enter valid OTP';
+  static const String enterName = 'Enter name';
+  static const String enterAddress = 'Enter address';
+  static const String acceptTermsAndCondition = 'Accept terms and conditions';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

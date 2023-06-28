@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
+import '../../../user/user_home_page.dart';
 import '../../../utils/index.dart';
 import '../../index.dart';
 
@@ -12,6 +14,11 @@ class UserRegistrationWidget extends StatefulWidget {
 }
 
 class _UserRegistrationWidgetState extends State<UserRegistrationWidget> {
+  bool _isNameValid = false;
+  bool _isPhoneNumberValid = false;
+  bool _isAddressValid = false;
+  bool _isTermsAndConditionsValid = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +29,71 @@ class _UserRegistrationWidgetState extends State<UserRegistrationWidget> {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                CloseButtonWidget(),
-                RegisterNowHeadingWidget(),
-                UserPhotoUploadWidget(),
-                NameTextFieldWidget(),
-                RegisterPhoneNumberTextFieldWidget(),
-                EmailTextFieldWidget(),
-                AddressTextFieldWidget(),
-                TermsAndConditionCheckboxWidget(),
-                RegisterNowButtonWidget(),
+              children: [
+                const CloseButtonWidget(),
+                const RegisterNowHeadingWidget(),
+                const UserPhotoUploadWidget(),
+                NameTextFieldWidget(_onNameValidated),
+                RegisterPhoneNumberTextFieldWidget(_onPhoneNumberValidated),
+                const EmailTextFieldWidget(),
+                AddressTextFieldWidget(_onAddressValidated),
+                TermsAndConditionCheckboxWidget(_isTermsAndConditionsValidated),
+                RegisterNowButtonWidget(_onRegisterButtonCLicked),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void _onNameValidated(bool isValid) {
+    _isNameValid = isValid;
+  }
+
+  void _onPhoneNumberValidated(bool isValid) {
+    _isPhoneNumberValid = isValid;
+  }
+
+  void _onAddressValidated(bool isValid) {
+    _isAddressValid = isValid;
+  }
+
+  void _isTermsAndConditionsValidated(bool isValid) {
+    _isTermsAndConditionsValid = isValid;
+  }
+
+  void _onRegisterButtonCLicked() {
+    if (!_isNameValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterName, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    if (!_isPhoneNumberValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterValidPhoneNumber, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    if (!_isAddressValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterAddress, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    if (!_isTermsAndConditionsValid) {
+      Fluttertoast.showToast(
+          msg: Strings.acceptTermsAndCondition,
+          toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    // Navigate to Home page
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const UserHomePage()),
+      (route) => false,
     );
   }
 }
@@ -120,7 +177,7 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
                       fontFamily: Strings.firaSans,
                     ),
                   ),
-                  const SizedBox(height: 16,),
+                  const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
@@ -154,7 +211,9 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
 }
 
 class NameTextFieldWidget extends StatefulWidget {
-  const NameTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const NameTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   State<NameTextFieldWidget> createState() => _NameTextFieldWidgetState();
@@ -165,8 +224,8 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.fullName,
@@ -178,9 +237,9 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -205,12 +264,15 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.inputText,
             ),
             keyboardType: TextInputType.name,
+            onChanged: (name) {
+              widget.onInputValidated(name.trim().isNotEmpty);
+            },
           ),
         ),
       ],
@@ -218,16 +280,11 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   }
 }
 
-class RegisterPhoneNumberTextFieldWidget extends StatefulWidget {
-  const RegisterPhoneNumberTextFieldWidget({super.key});
+class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
+  final Function(bool isValid) onInputValidated;
 
-  @override
-  State<RegisterPhoneNumberTextFieldWidget> createState() =>
-      _RegisterPhoneNumberTextFieldWidgetState();
-}
+  const RegisterPhoneNumberTextFieldWidget(this.onInputValidated, {super.key});
 
-class _RegisterPhoneNumberTextFieldWidgetState
-    extends State<RegisterPhoneNumberTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -247,8 +304,9 @@ class _RegisterPhoneNumberTextFieldWidgetState
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
-            onInputChanged: (PhoneNumber number) {
-              print("object");
+            onInputChanged: (PhoneNumber number) {},
+            onInputValidated: (isValid) {
+              onInputValidated(isValid);
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -356,7 +414,9 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
 }
 
 class AddressTextFieldWidget extends StatefulWidget {
-  const AddressTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const AddressTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
@@ -367,8 +427,8 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.address,
@@ -380,9 +440,9 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -407,12 +467,15 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.inputText,
             ),
             keyboardType: TextInputType.streetAddress,
+            onChanged: (name) {
+              widget.onInputValidated(name.trim().isNotEmpty);
+            },
           ),
         ),
       ],
@@ -421,7 +484,9 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
 }
 
 class TermsAndConditionCheckboxWidget extends StatefulWidget {
-  const TermsAndConditionCheckboxWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const TermsAndConditionCheckboxWidget(this.onInputValidated, {super.key});
 
   @override
   State<TermsAndConditionCheckboxWidget> createState() =>
@@ -444,6 +509,7 @@ class _TermsAndConditionCheckboxWidgetState
               setState(() {
                 isChecked = value!;
               });
+              widget.onInputValidated(value ?? false);
             },
             checkColor: Colors.white,
             fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -472,21 +538,19 @@ class _TermsAndConditionCheckboxWidgetState
   }
 }
 
-class RegisterNowButtonWidget extends StatefulWidget {
-  const RegisterNowButtonWidget({super.key});
+class RegisterNowButtonWidget extends StatelessWidget {
+  final Function() onCLicked;
 
-  @override
-  State<RegisterNowButtonWidget> createState() =>
-      _RegisterNowButtonWidgetState();
-}
+  const RegisterNowButtonWidget(this.onCLicked, {super.key});
 
-class _RegisterNowButtonWidgetState extends State<RegisterNowButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          onCLicked();
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
