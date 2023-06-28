@@ -44,6 +44,7 @@ class Strings {
   static const String enterName = 'Enter name';
   static const String enterAddress = 'Enter address';
   static const String acceptTermsAndCondition = 'Accept terms and conditions';
+  static const String enterBusinessName = 'Enter business name';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

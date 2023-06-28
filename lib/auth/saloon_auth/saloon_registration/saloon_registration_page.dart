@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../saloon/saloon_home_page.dart';
 import '../../../utils/index.dart';
 import '../../index.dart';
 
@@ -13,6 +14,9 @@ class SaloonRegistrationWidget extends StatefulWidget {
 }
 
 class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
+  bool _isBusinessNameValid = false;
+  bool _isAddressValid = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,25 +27,54 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                CloseButtonWidget(),
-                BusinessDetailsHeadingWidget(),
-                SaloonPhotoUploadWidget(),
-                BusinessNameTextFieldWidget(),
-                AddressTextFieldWidget(),
-                BusinessLocationTextFieldWidget(),
-                ServicesTextFieldWidget(),
-                SaloonTypeTextFieldWidget(),
-                ServiceDaysTextFieldWidget(),
-                ServiceTimeTextFieldWidget(),
-                OwnerDetailsWidget(),
-                AttendeeDetailsWidget(),
-                RegisterNowButtonWidget(),
+              children: [
+                const CloseButtonWidget(),
+                const BusinessDetailsHeadingWidget(),
+                const SaloonPhotoUploadWidget(),
+                BusinessNameTextFieldWidget(_onBusinessNameValidated),
+                AddressTextFieldWidget(_onAddressValidated),
+                const BusinessLocationTextFieldWidget(),
+                const ServicesTextFieldWidget(),
+                const SaloonTypeTextFieldWidget(),
+                const ServiceDaysTextFieldWidget(),
+                const ServiceTimeTextFieldWidget(),
+                const OwnerDetailsWidget(),
+                const AttendeeDetailsWidget(),
+                RegisterNowButtonWidget(_onRegisterButtonCLicked),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void _onBusinessNameValidated(bool isValid) {
+    _isBusinessNameValid = isValid;
+  }
+
+  void _onAddressValidated(bool isValid) {
+    _isAddressValid = isValid;
+  }
+
+  void _onRegisterButtonCLicked() {
+    if (!_isBusinessNameValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterBusinessName, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    if (!_isAddressValid) {
+      Fluttertoast.showToast(
+          msg: Strings.enterAddress, toastLength: Toast.LENGTH_SHORT);
+      return;
+    }
+
+    // Navigate to Home page
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const SaloonHomePage()),
+          (route) => false,
     );
   }
 }
@@ -162,7 +195,9 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
 }
 
 class BusinessNameTextFieldWidget extends StatefulWidget {
-  const BusinessNameTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const BusinessNameTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   State<BusinessNameTextFieldWidget> createState() =>
@@ -175,8 +210,8 @@ class _BusinessNameTextFieldWidgetState
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.only(top: 24, left: 19),
           child: Text(
             Strings.businessName,
@@ -188,9 +223,9 @@ class _BusinessNameTextFieldWidgetState
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -215,12 +250,15 @@ class _BusinessNameTextFieldWidgetState
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.inputText,
             ),
             keyboardType: TextInputType.name,
+            onChanged: (name) {
+              widget.onInputValidated(name.trim().isNotEmpty);
+            },
           ),
         ),
       ],
@@ -229,7 +267,9 @@ class _BusinessNameTextFieldWidgetState
 }
 
 class AddressTextFieldWidget extends StatefulWidget {
-  const AddressTextFieldWidget({super.key});
+  final Function(bool isValid) onInputValidated;
+
+  const AddressTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
   State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
@@ -240,8 +280,8 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.address,
@@ -253,9 +293,9 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -280,13 +320,16 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.inputText,
             ),
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
+            onChanged: (name) {
+              widget.onInputValidated(name.trim().isNotEmpty);
+            },
           ),
         ),
       ],
@@ -823,21 +866,19 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
   }
 }
 
-class RegisterNowButtonWidget extends StatefulWidget {
-  const RegisterNowButtonWidget({super.key});
+class RegisterNowButtonWidget extends StatelessWidget {
+  final Function() onCLicked;
 
-  @override
-  State<RegisterNowButtonWidget> createState() =>
-      _RegisterNowButtonWidgetState();
-}
+  const RegisterNowButtonWidget(this.onCLicked, {super.key});
 
-class _RegisterNowButtonWidgetState extends State<RegisterNowButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          onCLicked();
+        },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
