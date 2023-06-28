@@ -17,14 +17,26 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 20, left: 19),
-          child: Text(
-            Strings.address,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 19),
+          child: RichText(
+            text: const TextSpan(
+              text: Strings.address,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 17,
+                color: AppColors.headingTextColor,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: Strings.asterisk,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -54,7 +66,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
               ),
               suffixIcon: Icon(Icons.location_on),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,

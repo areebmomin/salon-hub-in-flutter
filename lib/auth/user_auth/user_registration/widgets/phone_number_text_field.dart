@@ -13,14 +13,26 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 19, top: 20),
-          child: Text(
-            Strings.mobileNo,
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: AppColors.headingTextColor,
+         Padding(
+          padding: const EdgeInsets.only(left: 19, top: 20),
+          child: RichText(
+            text: const TextSpan(
+              text: Strings.mobileNo,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 17,
+                color: AppColors.headingTextColor,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: Strings.asterisk,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
