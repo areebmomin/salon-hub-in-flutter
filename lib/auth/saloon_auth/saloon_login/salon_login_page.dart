@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/email_text_field.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/login_button.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/password_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/phone_number_text_field.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/register_now_text.dart';
 import 'package:saloon_hub/saloon/saloon_home_page.dart';
 import 'package:saloon_hub/utils/index.dart';
@@ -15,7 +15,7 @@ class SalonLoginWidget extends StatefulWidget {
 }
 
 class _SalonLoginWidgetState extends State<SalonLoginWidget> {
-  bool _isPhoneNumberValid = false;
+  bool _isEmailValid = false;
   bool _isOtpValid = false;
 
   @override
@@ -24,7 +24,7 @@ class _SalonLoginWidgetState extends State<SalonLoginWidget> {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        PhoneNumberTextFieldWidget(_onPhoneNumberValidated),
+        EmailTextFieldWidget(_onEmailValidated),
         PasswordTextFieldWidget(_onOtpValidated),
         LoginButtonWidget(_onLoginButtonCLicked),
         const RegisterNowTextWidget(),
@@ -32,8 +32,8 @@ class _SalonLoginWidgetState extends State<SalonLoginWidget> {
     );
   }
 
-  void _onPhoneNumberValidated(bool isValid) {
-    _isPhoneNumberValid = isValid;
+  void _onEmailValidated(bool isValid) {
+    _isEmailValid = isValid;
   }
 
   void _onOtpValidated(isValid) {
@@ -41,9 +41,9 @@ class _SalonLoginWidgetState extends State<SalonLoginWidget> {
   }
 
   void _onLoginButtonCLicked() {
-    if (!_isPhoneNumberValid) {
+    if (!_isEmailValid) {
       Fluttertoast.showToast(
-          msg: Strings.enterValidPhoneNumber, toastLength: Toast.LENGTH_SHORT);
+          msg: Strings.enterValidEmail, toastLength: Toast.LENGTH_SHORT);
       return;
     }
 

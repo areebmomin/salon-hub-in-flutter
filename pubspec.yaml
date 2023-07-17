@@ -49,6 +49,7 @@ dependencies:
   flutter_bloc: ^8.1.3
   auth_repository:
     path: packages/auth_repository
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

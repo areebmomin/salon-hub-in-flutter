@@ -46,6 +46,7 @@ class Strings {
   static const String acceptTermsAndCondition = 'Accept terms and conditions';
   static const String enterBusinessName = 'Enter business name';
   static const String asterisk = ' *';
+  static const String enterValidEmail = 'Enter valid email';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
