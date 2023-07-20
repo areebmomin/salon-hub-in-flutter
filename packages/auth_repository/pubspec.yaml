@@ -9,6 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_core: ^2.14.0
+  firebase_auth: ^4.6.3
+  cloud_firestore: ^4.8.2
+  firebase_messaging: ^14.6.4
+  firebase_storage: ^11.2.4
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
