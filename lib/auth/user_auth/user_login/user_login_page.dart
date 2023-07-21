@@ -5,7 +5,6 @@ import 'package:saloon_hub/auth/user_auth/user_login/widgets/otp_text_field.dart
 import 'package:saloon_hub/auth/user_auth/user_login/widgets/phone_number_text_field.dart';
 import 'package:saloon_hub/auth/user_auth/user_login/widgets/register_now_text.dart';
 import 'package:saloon_hub/user/user_home_page.dart';
-
 import '../../../utils/index.dart';
 
 class UserLoginWidget extends StatefulWidget {

@@ -50,6 +50,7 @@ dependencies:
   auth_repository:
     path: packages/auth_repository
   email_validator: ^2.1.17
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
