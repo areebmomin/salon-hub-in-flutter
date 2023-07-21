@@ -1,24 +1,35 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'login_with_email_password_exceptions.dart';
+part 'login_with_email_password_exceptions.dart';
 
-class SaloonLoginRepository {
-  Future<void> loginWithEmailAndPassword(String email, String password) async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      throw LogInWithEmailAndPasswordFailure.fromCode(e.code);
-    } catch (_) {
-      throw const LogInWithEmailAndPasswordFailure();
-    }
+part 'saloon_login_auth_service.dart';
+
+class FirebaseSaloonLoginRepository implements SaloonLoginRepository {
+  SaloonLoginAuthService saloonLoginAuthService =
+      FirebaseSaloonLoginAuthService();
+
+  @override
+  Future<void> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    await saloonLoginAuthService.loginWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
+  @override
   Future<void> logOut() async {
-    try {
-      await FirebaseAuth.instance.signOut();
-    } catch (_) {
-      throw LogOutFailure();
-    }
+    await saloonLoginAuthService.logOut();
   }
+}
+
+abstract class SaloonLoginRepository {
+  Future<void> loginWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
+
+  Future<void> logOut();
 }

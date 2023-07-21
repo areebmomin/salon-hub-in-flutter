@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'user_login_repository.dart';
 
 abstract class VerifyPhoneNumberState extends Equatable {
   const VerifyPhoneNumberState();
@@ -15,7 +15,6 @@ class VerifyPhoneNumberCompleted extends VerifyPhoneNumberState {
 }
 
 class VerifyPhoneNumberFailed extends VerifyPhoneNumberState {
-
   const VerifyPhoneNumberFailed({required this.message, required this.code});
 
   final String message;

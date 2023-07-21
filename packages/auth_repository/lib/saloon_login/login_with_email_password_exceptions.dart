@@ -1,3 +1,5 @@
+part of 'saloon_login_repository.dart';
+
 class LogInWithEmailAndPasswordFailure implements Exception {
   const LogInWithEmailAndPasswordFailure([
     this.message = 'An unknown exception occurred.',

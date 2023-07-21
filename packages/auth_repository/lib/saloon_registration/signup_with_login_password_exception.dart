@@ -1,5 +1,6 @@
-class SignUpWithEmailAndPasswordFailure implements Exception {
+part of 'saloon_registration_repository.dart';
 
+class SignUpWithEmailAndPasswordFailure implements Exception {
   const SignUpWithEmailAndPasswordFailure([
     this.message = 'An unknown exception occurred.',
   ]);
