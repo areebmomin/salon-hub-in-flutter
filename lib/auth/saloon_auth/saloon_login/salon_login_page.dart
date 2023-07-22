@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/email_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/login_button.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/password_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_login/widgets/register_now_text.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
+import 'package:otp_text_field/style.dart';
+import '../saloon_registration/saloon_registration_page.dart';
 import 'package:saloon_hub/saloon/saloon_home_page.dart';
 import 'package:saloon_hub/utils/index.dart';
+import 'package:flutter/gestures.dart';
+
+part 'widgets/email_text_field.dart';
+
+part 'widgets/login_button.dart';
+
+part 'widgets/password_text_field.dart';
+
+part 'widgets/register_now_text.dart';
 
 class SalonLoginWidget extends StatefulWidget {
   const SalonLoginWidget({super.key});

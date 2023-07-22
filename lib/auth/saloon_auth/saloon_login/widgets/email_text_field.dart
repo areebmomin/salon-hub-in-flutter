@@ -1,7 +1,4 @@
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../salon_login_page.dart';
 
 class EmailTextFieldWidget extends StatelessWidget {
   final Function(bool isValid) onInputValidated;
