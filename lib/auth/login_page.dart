@@ -12,11 +12,6 @@ part 'widgets/saloon_hub_toolbar.dart';
 part 'widgets/login_heading.dart';
 part 'widgets/login_tab_layout.dart';
 
-enum TabType {
-  customerTab,
-  salonTab,
-}
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -87,10 +82,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class NoOverscrollBehaviour extends ScrollBehavior {
-  @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
-    return child;
-  }
+enum TabType {
+  customerTab,
+  salonTab,
 }
