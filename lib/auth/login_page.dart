@@ -9,8 +9,12 @@ import 'package:saloon_hub/auth/user_auth/user_login/cubit/user_login_cubit.dart
 import '../utils/index.dart';
 
 part 'widgets/saloon_hub_toolbar.dart';
+
 part 'widgets/login_heading.dart';
+
 part 'widgets/login_tab_layout.dart';
+
+part 'widgets/tab_layout_and_login_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,8 +24,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TabType selectedTab = TabType.customerTab;
-
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -51,17 +53,10 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SaloonHubToolbar(),
-                    const LoginHeading(),
-                    LoginTabLayout((TabType position) {
-                      if (position != selectedTab) {
-                        setState(() {
-                          selectedTab = position;
-                        });
-                      }
-                    }),
-                    getLoginWidget(),
+                  children: const [
+                    SaloonHubToolbar(),
+                    LoginHeading(),
+                    TabLayoutAndLoginWidget(),
                   ],
                 ),
               ),
@@ -71,18 +66,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  Widget getLoginWidget() {
-    switch(selectedTab) {
-      case TabType.customerTab:
-        return const UserLoginWidget();
-      case TabType.salonTab:
-        return const SalonLoginWidget();
-    }
-  }
-}
-
-enum TabType {
-  customerTab,
-  salonTab,
 }
