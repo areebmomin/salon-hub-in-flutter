@@ -7,7 +7,8 @@ part 'verify_phone_number_state.dart';
 part 'user_login_auth_service.dart';
 
 class FirebaseUserLoginRepository implements UserLoginRepository {
-  StreamController<VerifyPhoneNumberState> loginState =
+  @override
+  late StreamController<VerifyPhoneNumberState> loginState =
       StreamController<VerifyPhoneNumberState>();
   late final UserLoginAuthService _userLoginAuthService =
       FirebaseUserLoginAuthService();
@@ -56,6 +57,8 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
 }
 
 abstract class UserLoginRepository {
+  late StreamController<VerifyPhoneNumberState> loginState;
+
   Future<void> verifyPhoneNumber({required String phoneNumber});
 
   Future<void> signInWithCredential({required String smsCode});

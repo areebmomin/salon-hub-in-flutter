@@ -47,6 +47,7 @@ class Strings {
   static const String enterBusinessName = 'Enter business name';
   static const String asterisk = ' *';
   static const String enterValidEmail = 'Enter valid email';
+  static const String verifyOtp = 'Verify OTP';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

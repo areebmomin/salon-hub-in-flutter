@@ -38,7 +38,9 @@ class _LoginPageState extends State<LoginPage> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<UserLoginCubit>(
-            create: (BuildContext context) => UserLoginCubit(),
+            create: (BuildContext context) => UserLoginCubit(
+                RepositoryProvider.of<UserLoginRepository>(context)
+            ),
           ),
           BlocProvider<SaloonLoginCubit>(
             create: (BuildContext context) => SaloonLoginCubit(),
