@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_registration_page.dart';
 
 class RegisterNowHeadingWidget extends StatelessWidget {
   const RegisterNowHeadingWidget({super.key});

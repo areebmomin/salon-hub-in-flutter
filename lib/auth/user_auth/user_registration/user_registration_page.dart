@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/address_text_field.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/close_button.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/email_text_field.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/heading_user_registration.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/name_text_field.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/phone_number_text_field.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/register_now_button.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/terms_and_conditions_checkbox.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/widgets/user_photo_upload.dart';
-
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../../user/user_home_page.dart';
 import '../../../utils/index.dart';
-import '../../index.dart';
+
+part 'widgets/address_text_field.dart';
+
+part 'widgets/close_button.dart';
+
+part 'widgets/email_text_field.dart';
+
+part 'widgets/heading_user_registration.dart';
+
+part 'widgets/name_text_field.dart';
+
+part 'widgets/phone_number_text_field.dart';
+
+part 'widgets/register_now_button.dart';
+
+part 'widgets/terms_and_conditions_checkbox.dart';
+
+part 'widgets/user_photo_upload.dart';
 
 class UserRegistrationWidget extends StatefulWidget {
   const UserRegistrationWidget({super.key});

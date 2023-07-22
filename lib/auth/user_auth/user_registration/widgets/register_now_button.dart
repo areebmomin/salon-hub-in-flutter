@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_registration_page.dart';
 
 class RegisterNowButtonWidget extends StatelessWidget {
   final Function() onCLicked;

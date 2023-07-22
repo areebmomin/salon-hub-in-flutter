@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_registration_page.dart';
 
 class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
   final Function(bool isValid) onInputValidated;
