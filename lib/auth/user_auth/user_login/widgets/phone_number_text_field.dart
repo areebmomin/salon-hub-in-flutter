@@ -35,12 +35,12 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
               setSelectorButtonAsPrefixIcon: true,
             ),
             textStyle: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),
             selectorTextStyle: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),

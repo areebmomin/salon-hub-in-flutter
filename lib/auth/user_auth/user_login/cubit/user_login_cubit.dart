@@ -33,7 +33,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void _verifyPhoneNumber() {
     if (!_isPhoneNumberValid) {
-      emit(const UserLoginShowToast(message: Strings.enterValidPhoneNumber));
+      emit(UserLoginShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
@@ -46,7 +46,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void _verifyOtp() {
     if (_otp.length < 6) {
-      emit(const UserLoginShowToast(message: Strings.enterValidOtp));
+      emit(UserLoginShowToast(message: Strings.enterValidOtp));
       return;
     }
 

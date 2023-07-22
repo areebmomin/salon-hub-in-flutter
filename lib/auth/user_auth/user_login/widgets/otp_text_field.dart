@@ -34,7 +34,7 @@ class OtpTextFieldWidget extends StatelessWidget {
               enabledBorderColor: AppColors.inputFieldBackground,
             ),
             style: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),

@@ -11,12 +11,14 @@ class UserLoginInitial extends UserLoginState {
 
 class UserLoginShowToast extends UserLoginState {
 
+  /// placeholder to distinguish from previous [UserLoginShowToast] state
+  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  const UserLoginShowToast({required this.message});
+  UserLoginShowToast({required this.message});
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, _timeStamp];
 }
 
 class UserLoginLoading extends UserLoginState {

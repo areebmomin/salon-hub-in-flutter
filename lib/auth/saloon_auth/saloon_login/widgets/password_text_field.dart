@@ -12,7 +12,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Padding(
-          padding: EdgeInsets.only(left: 19, top: 8),
+          padding: EdgeInsets.only(left: 19, top: 18),
           child: Text(
             Strings.passcode,
             style: TextStyle(
@@ -36,7 +36,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
               enabledBorderColor: AppColors.inputFieldBackground,
             ),
             style: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),
