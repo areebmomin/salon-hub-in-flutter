@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/address_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/attendee_details_section.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/business_details_heading.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/business_location_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/business_name_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/close_button.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/owner_details_section.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/register_now_button.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/saloon_photo_upload.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/saloon_type_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/service_days_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/service_time_text_field.dart';
-import 'package:saloon_hub/auth/saloon_auth/saloon_registration/widgets/services_text_field.dart';
-
 import '../../../saloon/saloon_home_page.dart';
 import '../../../utils/index.dart';
-import '../../index.dart';
+
+part 'widgets/address_text_field.dart';
+
+part 'widgets/attendee_details_section.dart';
+
+part 'widgets/business_details_heading.dart';
+
+part 'widgets/business_location_text_field.dart';
+
+part 'widgets/business_name_text_field.dart';
+
+part 'widgets/close_button.dart';
+
+part 'widgets/owner_details_section.dart';
+
+part 'widgets/register_now_button.dart';
+
+part 'widgets/saloon_photo_upload.dart';
+
+part 'widgets/saloon_type_text_field.dart';
+
+part 'widgets/service_days_text_field.dart';
+
+part 'widgets/service_time_text_field.dart';
+
+part 'widgets/services_text_field.dart';
 
 class SaloonRegistrationWidget extends StatefulWidget {
   const SaloonRegistrationWidget({super.key});
@@ -87,7 +98,7 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const SaloonHomePage()),
-          (route) => false,
+      (route) => false,
     );
   }
 }

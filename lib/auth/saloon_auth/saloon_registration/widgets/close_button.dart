@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../saloon_registration_page.dart';
 
 class CloseButtonWidget extends StatelessWidget {
   const CloseButtonWidget({super.key});

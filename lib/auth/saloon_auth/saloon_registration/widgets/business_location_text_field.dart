@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../saloon_registration_page.dart';
 
 class BusinessLocationTextFieldWidget extends StatefulWidget {
   const BusinessLocationTextFieldWidget({super.key});

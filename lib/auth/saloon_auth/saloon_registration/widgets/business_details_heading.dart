@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../saloon_registration_page.dart';
 
 class BusinessDetailsHeadingWidget extends StatelessWidget {
   const BusinessDetailsHeadingWidget({super.key});

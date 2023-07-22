@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../../utils/index.dart';
+part of '../saloon_registration_page.dart';
 
 class OwnerDetailsWidget extends StatefulWidget {
   const OwnerDetailsWidget({super.key});
