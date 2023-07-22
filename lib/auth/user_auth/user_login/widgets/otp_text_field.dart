@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/otp_field_style.dart';
-import 'package:otp_text_field/style.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_login_page.dart';
 
 class OtpTextFieldWidget extends StatelessWidget {
   final Function(bool isValid) onInputValidated;

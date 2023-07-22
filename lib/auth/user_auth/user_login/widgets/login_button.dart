@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_login_page.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   final Function() onCLicked;

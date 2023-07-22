@@ -1,8 +1,4 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import '../../../../utils/index.dart';
-import '../../user_registration/user_registration_page.dart';
+part of '../user_login_page.dart';
 
 class RegisterNowTextWidget extends StatelessWidget {
   const RegisterNowTextWidget({super.key});

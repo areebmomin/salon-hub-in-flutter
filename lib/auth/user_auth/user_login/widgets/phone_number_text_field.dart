@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-
-import '../../../../utils/index.dart';
+part of '../user_login_page.dart';
 
 class PhoneNumberTextFieldWidget extends StatelessWidget {
   final Function(bool isValid) onInputValidated;
@@ -26,7 +23,7 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
         ),
         Padding(
           padding:
-          const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {},
             onInputValidated: (isValid) {
