@@ -4,11 +4,6 @@ abstract class VerifyPhoneNumberState extends Equatable {
   const VerifyPhoneNumberState();
 }
 
-class VerifyPhoneNumberLoading extends VerifyPhoneNumberState {
-  @override
-  List<Object> get props => [];
-}
-
 class VerifyPhoneNumberCompleted extends VerifyPhoneNumberState {
   @override
   List<Object> get props => [];

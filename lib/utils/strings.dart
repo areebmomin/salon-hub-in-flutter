@@ -48,6 +48,7 @@ class Strings {
   static const String asterisk = ' *';
   static const String enterValidEmail = 'Enter valid email';
   static const String verifyOtp = 'Verify OTP';
+  static const String otpTimeout = 'OTP timeout';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

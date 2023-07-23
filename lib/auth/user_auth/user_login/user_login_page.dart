@@ -34,6 +34,10 @@ class _UserLoginWidgetState extends State<UserLoginWidget> {
         if (state is UserLoginShowToast) {
           Fluttertoast.showToast(
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
+        } else if (state is UserLoginSuccess) {
+          // Navigate to Home page
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const UserHomePage()));
         }
       },
       child: Column(

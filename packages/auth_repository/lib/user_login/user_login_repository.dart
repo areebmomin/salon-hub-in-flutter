@@ -7,20 +7,19 @@ part 'verify_phone_number_state.dart';
 part 'user_login_auth_service.dart';
 
 class FirebaseUserLoginRepository implements UserLoginRepository {
-  @override
-  late StreamController<VerifyPhoneNumberState> loginState =
-      StreamController<VerifyPhoneNumberState>();
+  late final _loginState = StreamController<VerifyPhoneNumberState>();
   late final UserLoginAuthService _userLoginAuthService =
       FirebaseUserLoginAuthService();
 
   @override
-  Future<void> verifyPhoneNumber({required String phoneNumber}) async {
-    loginState.add(VerifyPhoneNumberLoading());
+  get status => _loginState.stream;
 
+  @override
+  Future<void> verifyPhoneNumber({required String phoneNumber}) async {
     await _userLoginAuthService.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         onVerificationCompleted: () {
-          loginState.add(VerifyPhoneNumberCompleted());
+          _loginState.add(VerifyPhoneNumberCompleted());
         },
         onVerificationFailed: ({
           required String code,
@@ -29,10 +28,10 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
           VerifyPhoneNumberFailed(message: message, code: code);
         },
         onCodeSent: () {
-          loginState.add(VerifyPhoneNumberCodeSent());
+          _loginState.add(VerifyPhoneNumberCodeSent());
         },
         onTimeout: () {
-          loginState.add(VerifyPhoneNumberTimeout());
+          _loginState.add(VerifyPhoneNumberTimeout());
         });
   }
 
@@ -41,11 +40,8 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
   Future<void> signInWithCredential({required String smsCode}) async {
     await _userLoginAuthService.signInWithCredential(
         smsCode: smsCode,
-        onLoading: () {
-          loginState.add(VerifyPhoneNumberLoading());
-        },
         onVerificationCompleted: () {
-          loginState.add(VerifyPhoneNumberCompleted());
+          _loginState.add(VerifyPhoneNumberCompleted());
         },
         onVerificationFailed: ({
           required String code,
@@ -54,12 +50,17 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
           VerifyPhoneNumberFailed(message: message, code: code);
         });
   }
+
+  @override
+  void dispose() => _loginState.close();
 }
 
 abstract class UserLoginRepository {
-  late StreamController<VerifyPhoneNumberState> loginState;
+  Stream<VerifyPhoneNumberState> get status;
 
   Future<void> verifyPhoneNumber({required String phoneNumber});
 
   Future<void> signInWithCredential({required String smsCode});
+
+  void dispose();
 }

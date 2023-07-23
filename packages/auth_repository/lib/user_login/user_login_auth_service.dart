@@ -1,7 +1,7 @@
 part of 'user_login_repository.dart';
 
 class FirebaseUserLoginAuthService implements UserLoginAuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
   String? _verificationCode;
 
   @override
@@ -44,7 +44,6 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
   @override
   Future<void> signInWithCredential({
     required String smsCode,
-    void Function()? onLoading,
     void Function()? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
@@ -53,8 +52,6 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
       onVerificationFailed?.call(message: 'Invalid code', code: '');
       return;
     }
-
-    onLoading?.call();
 
     // Create a PhoneAuthCredential with the code
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -82,7 +79,6 @@ abstract class UserLoginAuthService {
 
   Future<void> signInWithCredential({
     required String smsCode,
-    void Function()? onLoading,
     void Function()? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
