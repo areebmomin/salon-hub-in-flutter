@@ -24,6 +24,8 @@ class UserLoginCubit extends Cubit<UserLoginState> {
       _isPhoneNumberValid = isPhoneNumberValid;
 
   void loginButtonClicked() {
+    if (state is UserLoginLoading) return;
+
     if (_isOtpSent) {
       _verifyOtp();
     } else {
@@ -37,6 +39,8 @@ class UserLoginCubit extends Cubit<UserLoginState> {
       return;
     }
 
+    emit(UserLoginLoading());
+
     // verify phone number and send OTP
     //_userLoginRepository.verifyPhoneNumber(phoneNumber: _phoneNumber);
 
@@ -49,6 +53,8 @@ class UserLoginCubit extends Cubit<UserLoginState> {
       emit(UserLoginShowToast(message: Strings.enterValidOtp));
       return;
     }
+
+    emit(UserLoginLoading());
 
     emit(UserLoginSuccess());
   }

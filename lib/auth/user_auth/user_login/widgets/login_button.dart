@@ -17,20 +17,26 @@ class LoginButtonWidget extends StatelessWidget {
         ),
         child: BlocBuilder<UserLoginCubit, UserLoginState>(
           buildWhen: (previousState, state) {
-            return state is UserLoginOtpSent;
+            return state is UserLoginOtpSent || state is UserLoginLoading;
           },
           builder: (context, state) {
-            return Text(
-              context.read<UserLoginCubit>().isOtpSent
-                  ? Strings.verifyOtp
-                  : Strings.getOtp,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                fontFamily: Strings.firaSans,
+            if(state is UserLoginLoading) {
+              return const CircularProgressIndicator(
                 color: Colors.white,
-              ),
-            );
+              );
+            } else {
+              return Text(
+                context.read<UserLoginCubit>().isOtpSent
+                    ? Strings.verifyOtp
+                    : Strings.getOtp,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: Strings.firaSans,
+                  color: Colors.white,
+                ),
+              );
+            }
           },
         ),
       ),
