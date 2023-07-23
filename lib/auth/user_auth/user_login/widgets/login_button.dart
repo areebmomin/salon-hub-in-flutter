@@ -16,11 +16,8 @@ class LoginButtonWidget extends StatelessWidget {
           backgroundColor: AppColors.primaryButtonBackground,
         ),
         child: BlocBuilder<UserLoginCubit, UserLoginState>(
-          buildWhen: (previousState, state) {
-            return state is UserLoginOtpSent || state is UserLoginLoading;
-          },
           builder: (context, state) {
-            if(state is UserLoginLoading) {
+            if (state is UserLoginLoading) {
               return const CircularProgressIndicator(
                 color: Colors.white,
               );

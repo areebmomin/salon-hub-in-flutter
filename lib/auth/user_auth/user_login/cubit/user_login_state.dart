@@ -35,3 +35,8 @@ class UserLoginOtpSent extends UserLoginState {
   @override
   List<Object> get props => [];
 }
+
+class UserLoginOtpTimeout extends UserLoginState {
+  @override
+  List<Object> get props => [];
+}

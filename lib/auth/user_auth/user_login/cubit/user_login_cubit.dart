@@ -35,6 +35,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
       emit(UserLoginOtpSent());
     } else if (event is VerifyPhoneNumberTimeout) {
       _isOtpSent = false;
+      emit(UserLoginOtpTimeout());
       emit(UserLoginShowToast(message: Strings.otpTimeout));
     }
   }
