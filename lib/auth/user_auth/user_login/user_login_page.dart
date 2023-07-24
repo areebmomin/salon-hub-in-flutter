@@ -19,14 +19,9 @@ part 'widgets/phone_number_text_field.dart';
 
 part 'widgets/register_now_text.dart';
 
-class UserLoginWidget extends StatefulWidget {
+class UserLoginWidget extends StatelessWidget {
   const UserLoginWidget({super.key});
 
-  @override
-  State<UserLoginWidget> createState() => _UserLoginWidgetState();
-}
-
-class _UserLoginWidgetState extends State<UserLoginWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<UserLoginCubit, UserLoginState>(
@@ -40,10 +35,10 @@ class _UserLoginWidgetState extends State<UserLoginWidget> {
               MaterialPageRoute(builder: (context) => const UserHomePage()));
         }
       },
-      child: Column(
+      child: const Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
+        children: [
           PhoneNumberTextFieldWidget(),
           OtpTextFieldWidget(),
           LoginButtonWidget(),

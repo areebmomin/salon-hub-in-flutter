@@ -4,11 +4,14 @@ class TabLayoutAndLoginWidget extends StatefulWidget {
   const TabLayoutAndLoginWidget({super.key});
 
   @override
-  State<TabLayoutAndLoginWidget> createState() => _TabLayoutAndLoginWidgetState();
+  State<TabLayoutAndLoginWidget> createState() =>
+      _TabLayoutAndLoginWidgetState();
 }
 
 class _TabLayoutAndLoginWidgetState extends State<TabLayoutAndLoginWidget> {
   TabType selectedTab = TabType.customerTab;
+  final _userLoginWidget = const UserLoginWidget();
+  final _salonLoginWidget = const SalonLoginWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +30,11 @@ class _TabLayoutAndLoginWidgetState extends State<TabLayoutAndLoginWidget> {
   }
 
   Widget getLoginWidget() {
-    switch(selectedTab) {
+    switch (selectedTab) {
       case TabType.customerTab:
-        return const UserLoginWidget();
+        return _userLoginWidget;
       case TabType.salonTab:
-        return const SalonLoginWidget();
+        return _salonLoginWidget;
     }
   }
 }

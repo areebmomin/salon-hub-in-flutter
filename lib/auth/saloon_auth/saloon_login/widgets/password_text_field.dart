@@ -1,10 +1,7 @@
 part of '../salon_login_page.dart';
 
 class PasswordTextFieldWidget extends StatelessWidget {
-  final Function(bool isValid) onInputValidated;
-  static const int _otpLength = 6;
-
-  const PasswordTextFieldWidget(this.onInputValidated, {super.key});
+  const PasswordTextFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
           padding:
           const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
-            length: _otpLength,
+            length: 6,
             fieldWidth: 56,
             fieldStyle: FieldStyle.box,
             outlineBorderRadius: 5,
@@ -43,7 +40,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
             contentPadding:
             const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              onInputValidated(code.length == _otpLength);
+              context.read<SaloonLoginCubit>().password = code;
             },
           ),
         ),

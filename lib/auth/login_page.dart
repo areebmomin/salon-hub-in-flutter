@@ -16,14 +16,9 @@ part 'widgets/login_tab_layout.dart';
 
 part 'widgets/tab_layout_and_login_widget.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
@@ -39,11 +34,11 @@ class _LoginPageState extends State<LoginPage> {
         providers: [
           BlocProvider<UserLoginCubit>(
             create: (BuildContext context) => UserLoginCubit(
-                RepositoryProvider.of<UserLoginRepository>(context)
-            ),
+                RepositoryProvider.of<UserLoginRepository>(context)),
           ),
           BlocProvider<SaloonLoginCubit>(
-            create: (BuildContext context) => SaloonLoginCubit(),
+            create: (BuildContext context) => SaloonLoginCubit(
+                RepositoryProvider.of<SaloonLoginRepository>(context)),
           ),
         ],
         child: Scaffold(
@@ -51,11 +46,11 @@ class _LoginPageState extends State<LoginPage> {
           body: SafeArea(
             child: ScrollConfiguration(
               behavior: NoOverscrollBehaviour(),
-              child: SingleChildScrollView(
+              child: const SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: const [
+                  children: [
                     SaloonHubToolbar(),
                     LoginHeading(),
                     TabLayoutAndLoginWidget(),

@@ -1,9 +1,7 @@
 part of '../salon_login_page.dart';
 
 class EmailTextFieldWidget extends StatelessWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const EmailTextFieldWidget(this.onInputValidated, {super.key});
+  const EmailTextFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class EmailTextFieldWidget extends StatelessWidget {
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              onInputValidated(EmailValidator.validate(email));
+              context.read<SaloonLoginCubit>().email = email;
             },
           ),
         ),

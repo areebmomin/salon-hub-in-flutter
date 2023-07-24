@@ -49,6 +49,7 @@ class Strings {
   static const String enterValidEmail = 'Enter valid email';
   static const String verifyOtp = 'Verify OTP';
   static const String otpTimeout = 'OTP timeout';
+  static const String enterValidPasscode = 'Enter valid passcode';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
