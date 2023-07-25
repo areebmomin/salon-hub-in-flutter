@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:saloon_hub/auth/user_auth/user_registration/user_registration_otp_page.dart';
 import '../../../user/user_home_page.dart';
 import '../../../utils/index.dart';
 
@@ -105,11 +106,11 @@ class _UserRegistrationWidgetState extends State<UserRegistrationWidget> {
       return;
     }
 
-    // Navigate to Home page
-    Navigator.pushAndRemoveUntil(
+    Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const UserHomePage()),
-      (route) => false,
+      MaterialPageRoute(
+        builder: (context) => const UserRegistrationOtpPage(),
+      ),
     );
   }
 }

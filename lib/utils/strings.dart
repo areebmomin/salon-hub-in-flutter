@@ -50,6 +50,8 @@ class Strings {
   static const String verifyOtp = 'Verify OTP';
   static const String otpTimeout = 'OTP timeout';
   static const String enterValidPasscode = 'Enter valid passcode';
+  static const String submit = 'Submit';
+  static const String enterOtp = 'Enter OTP';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
