@@ -1,9 +1,7 @@
 part of '../user_registration_page.dart';
 
 class TermsAndConditionCheckboxWidget extends StatefulWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const TermsAndConditionCheckboxWidget(this.onInputValidated, {super.key});
+  const TermsAndConditionCheckboxWidget({super.key});
 
   @override
   State<TermsAndConditionCheckboxWidget> createState() =>
@@ -12,24 +10,30 @@ class TermsAndConditionCheckboxWidget extends StatefulWidget {
 
 class _TermsAndConditionCheckboxWidgetState
     extends State<TermsAndConditionCheckboxWidget> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, top: 8),
       child: Row(
         children: [
-          Checkbox(
-            value: isChecked,
-            onChanged: (value) {
-              setState(() {
-                isChecked = value!;
-              });
-              widget.onInputValidated(value ?? false);
+          BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
+            buildWhen: (previousState, state) {
+              return state is UserRegistrationTermsAndCondition;
             },
-            checkColor: Colors.white,
-            fillColor: MaterialStateProperty.resolveWith(getColor),
+            builder: (context, state) {
+              return Checkbox(
+                value: context
+                    .read<UserRegistrationCubit>()
+                    .isTermsAndConditionAccepted,
+                onChanged: (value) {
+                  context
+                      .read<UserRegistrationCubit>()
+                      .isTermsAndConditionAccepted = value ?? false;
+                },
+                checkColor: Colors.white,
+                fillColor: MaterialStateProperty.resolveWith(getColor),
+              );
+            },
           ),
           const Text(
             Strings.agreeTermsAndConditions,

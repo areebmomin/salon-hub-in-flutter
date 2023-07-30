@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:saloon_hub/user/user_home_page.dart';
 import '../../../utils/index.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:flutter/gestures.dart';
-import '../user_registration/user_registration_page.dart';
 import 'cubit/user_login_cubit.dart';
 
 part 'widgets/login_button.dart';
@@ -31,8 +29,7 @@ class UserLoginWidget extends StatelessWidget {
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
         } else if (state is UserLoginSuccess) {
           // Navigate to Home page
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const UserHomePage()));
+          Navigator.pushReplacementNamed(context, Routes.userHomePage);
         }
       },
       child: const Column(

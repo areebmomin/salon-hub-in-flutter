@@ -1,7 +1,9 @@
 part of '../user_registration_page.dart';
 
 class CloseButtonWidget extends StatelessWidget {
-  const CloseButtonWidget({super.key});
+  final Function() onCloseButtonClicked;
+
+  const CloseButtonWidget({super.key, required this.onCloseButtonClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,7 @@ class CloseButtonWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(left: 21, top: 32),
       child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
+        onTap: onCloseButtonClicked,
         child: const Icon(
           Icons.close,
           size: 40,

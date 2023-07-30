@@ -32,10 +32,7 @@ class SalonLoginWidget extends StatelessWidget {
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
         } else if (state is SaloonLoginSuccess) {
           // Navigate to Home page
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const SaloonHomePage()),
-          );
+          Navigator.pushReplacementNamed(context, Routes.saloonHomePage);
         }
       },
       child: const Column(

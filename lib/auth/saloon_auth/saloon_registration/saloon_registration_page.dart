@@ -95,10 +95,7 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
     }
 
     // Navigate to Home page
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const SaloonHomePage()),
-      (route) => false,
-    );
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.saloonHomePage, (route) => false);
   }
 }

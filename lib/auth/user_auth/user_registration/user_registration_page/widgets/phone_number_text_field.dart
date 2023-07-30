@@ -1,16 +1,14 @@
 part of '../user_registration_page.dart';
 
 class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const RegisterPhoneNumberTextFieldWidget(this.onInputValidated, {super.key});
+  const RegisterPhoneNumberTextFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-         Padding(
+        Padding(
           padding: const EdgeInsets.only(left: 19, top: 20),
           child: RichText(
             text: const TextSpan(
@@ -36,9 +34,13 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
-            onInputChanged: (PhoneNumber number) {},
+            onInputChanged: (PhoneNumber number) {
+              context.read<UserRegistrationCubit>().phoneNumber =
+                  number.phoneNumber ?? '';
+            },
             onInputValidated: (isValid) {
-              onInputValidated(isValid);
+              context.read<UserRegistrationCubit>().isPhoneNumberValid =
+                  isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -46,12 +48,12 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
               setSelectorButtonAsPrefixIcon: true,
             ),
             textStyle: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),
             selectorTextStyle: const TextStyle(
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
               fontWeight: FontWeight.w500,
               fontSize: 17,
             ),

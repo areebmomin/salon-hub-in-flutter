@@ -27,12 +27,8 @@ class RegisterNowTextWidget extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const UserRegistrationWidget(),
-                    ),
-                  );
+                  Navigator.pushNamed(
+                      context, Routes.userRegistrationFlowStartPage);
                 },
             ),
           ],

@@ -1,9 +1,7 @@
 part of '../user_registration_page.dart';
 
 class RegisterNowButtonWidget extends StatelessWidget {
-  final Function() onCLicked;
-
-  const RegisterNowButtonWidget(this.onCLicked, {super.key});
+  const RegisterNowButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +9,7 @@ class RegisterNowButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          onCLicked();
+          context.read<UserRegistrationCubit>().onRegisterButtonCLicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),

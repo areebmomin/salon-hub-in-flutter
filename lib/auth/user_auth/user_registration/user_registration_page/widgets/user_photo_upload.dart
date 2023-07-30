@@ -45,10 +45,10 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
                       backgroundColor: AppColors.inputFieldBackground,
                       fixedSize: const Size(138, 45),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(Icons.cloud_upload),
                         SizedBox(width: 8),
                         Text(

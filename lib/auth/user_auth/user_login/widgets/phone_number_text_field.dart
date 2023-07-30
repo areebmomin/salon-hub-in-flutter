@@ -24,7 +24,8 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
               const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              context.read<UserLoginCubit>().phoneNumber = number.phoneNumber ?? '';
+              context.read<UserLoginCubit>().phoneNumber =
+                  number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
               context.read<UserLoginCubit>().isPhoneNumberValid = isValid;

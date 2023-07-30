@@ -12,8 +12,8 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.email,
@@ -25,9 +25,9 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -50,14 +50,17 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
               ),
               suffixIcon: Icon(Icons.email),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.emailAddress,
+            onChanged: (email) {
+              context.read<UserRegistrationCubit>().email = email;
+            },
           ),
         ),
       ],

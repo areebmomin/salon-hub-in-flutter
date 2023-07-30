@@ -1,15 +1,13 @@
 part of '../user_registration_page.dart';
 
-class AddressTextFieldWidget extends StatefulWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const AddressTextFieldWidget(this.onInputValidated, {super.key});
+class NameTextFieldWidget extends StatefulWidget {
+  const NameTextFieldWidget({super.key});
 
   @override
-  State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
+  State<NameTextFieldWidget> createState() => _NameTextFieldWidgetState();
 }
 
-class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
+class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +17,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
           padding: const EdgeInsets.only(top: 20, left: 19),
           child: RichText(
             text: const TextSpan(
-              text: Strings.address,
+              text: Strings.fullName,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
@@ -56,24 +54,24 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              hintText: Strings.hintAddress,
+              hintText: Strings.hintName,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.location_on),
+              suffixIcon: Icon(Icons.person),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
             ),
-            keyboardType: TextInputType.streetAddress,
+            keyboardType: TextInputType.name,
             onChanged: (name) {
-              widget.onInputValidated(name.trim().isNotEmpty);
+              context.read<UserRegistrationCubit>().name = name;
             },
           ),
         ),

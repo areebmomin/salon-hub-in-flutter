@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:saloon_hub/auth/login_page.dart';
+import 'package:saloon_hub/app_routers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app_bloc_observer.dart';
 import 'firebase_options.dart';
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      onGenerateRoute: AppRouters.generateRoute,
     );
   }
 }
