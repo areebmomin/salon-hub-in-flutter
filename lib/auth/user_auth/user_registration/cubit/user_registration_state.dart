@@ -34,3 +34,13 @@ class UserRegistrationTermsAndCondition extends UserRegistrationState {
   @override
   List<Object> get props => [isChecked];
 }
+
+class UserRegistrationOpenOtpPage extends UserRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class UserRegistrationGotoUserHomePage extends UserRegistrationState {
+  @override
+  List<Object> get props => [];
+}

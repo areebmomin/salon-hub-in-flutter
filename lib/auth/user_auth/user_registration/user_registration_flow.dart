@@ -48,15 +48,6 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
     return false;
   }
 
-  void onSubmitBottomClicked() {
-    //Navigate to Home page
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      Routes.userHomePage,
-      (route) => false,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -66,6 +57,15 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
           if (state is UserRegistrationShowToast) {
             Fluttertoast.showToast(
                 msg: state.message, toastLength: Toast.LENGTH_SHORT);
+          } else if (state is UserRegistrationOpenOtpPage) {
+            _navigatorKey.currentState
+                ?.pushNamed(Routes.userRegistrationOtpPage);
+          } else if (state is UserRegistrationGotoUserHomePage) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.userHomePage,
+              (route) => false,
+            );
           }
         },
         child: WillPopScope(
@@ -94,7 +94,6 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
       case Routes.userRegistrationOtpPage:
         _isOtpPageCurrentPage = true;
         page = UserRegistrationOtpPage(
-          onSubmitButtonClicked: onSubmitBottomClicked,
           onCloseButtonClicked: onOtpPageCloseButtonClicked,
         );
         break;

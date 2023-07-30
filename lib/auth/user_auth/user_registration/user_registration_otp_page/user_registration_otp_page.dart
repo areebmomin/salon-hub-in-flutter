@@ -15,12 +15,10 @@ part 'widgets/submit_button.dart';
 part 'widgets/close_button.dart';
 
 class UserRegistrationOtpPage extends StatelessWidget {
-  final Function() onSubmitButtonClicked;
   final Function() onCloseButtonClicked;
 
   const UserRegistrationOtpPage({
     super.key,
-    required this.onSubmitButtonClicked,
     required this.onCloseButtonClicked,
   });
 
@@ -37,14 +35,14 @@ class UserRegistrationOtpPage extends StatelessWidget {
             children: [
               CloseButtonWidget(onCloseButtonClicked: onCloseButtonClicked),
               const HeadingVerifyOtpWidget(),
-              Expanded(
+              const Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const VerifyOtpTextField(),
-                    SubmitButton(onSubmitButtonClicked),
+                    VerifyOtpTextField(),
+                    SubmitButton(),
                   ],
                 ),
               ),

@@ -61,6 +61,15 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
       return;
     }
 
-    //Navigator.pushNamed(context, Routes.userRegistrationOtpPage);
+    emit(UserRegistrationOpenOtpPage());
+  }
+
+  void onSubmitButtonClicked() {
+    if (_otp.length < 6) {
+      emit(UserRegistrationShowToast(message: Strings.enterOtp));
+      return;
+    }
+
+    emit(UserRegistrationGotoUserHomePage());
   }
 }
