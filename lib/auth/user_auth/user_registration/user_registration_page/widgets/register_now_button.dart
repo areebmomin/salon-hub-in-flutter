@@ -18,14 +18,22 @@ class RegisterNowButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        child: Text(
-          Strings.registerNow.toUpperCase(),
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            fontFamily: Strings.firaSans,
-            color: Colors.white,
-          ),
+        child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
+          builder: (context, state) {
+            if (state is UserRegistrationLoading) {
+              return const CircularProgressIndicator(color: Colors.white);
+            } else {
+              return Text(
+                Strings.registerNow.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: Strings.firaSans,
+                  color: Colors.white,
+                ),
+              );
+            }
+          },
         ),
       ),
     );

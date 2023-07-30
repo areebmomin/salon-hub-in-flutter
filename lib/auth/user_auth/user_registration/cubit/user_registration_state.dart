@@ -26,6 +26,11 @@ class UserRegistrationLoading extends UserRegistrationState {
   List<Object> get props => [];
 }
 
+class UserRegistrationOtpLoading extends UserRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
 class UserRegistrationTermsAndCondition extends UserRegistrationState {
   final bool isChecked;
 

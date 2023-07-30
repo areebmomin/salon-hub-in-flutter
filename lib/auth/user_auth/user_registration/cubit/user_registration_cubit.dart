@@ -36,6 +36,8 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   set otp(String otp) => _otp = otp;
 
   void onRegisterButtonCLicked() {
+    if(state is UserRegistrationLoading) return;
+
     if (_name.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterName));
       return;
@@ -61,14 +63,20 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
       return;
     }
 
+    //emit(UserRegistrationLoading());
+
     emit(UserRegistrationOpenOtpPage());
   }
 
   void onSubmitButtonClicked() {
+    if(state is UserRegistrationOtpLoading) return;
+
     if (_otp.length < 6) {
       emit(UserRegistrationShowToast(message: Strings.enterOtp));
       return;
     }
+
+    //emit(UserRegistrationOtpLoading());
 
     emit(UserRegistrationGotoUserHomePage());
   }
