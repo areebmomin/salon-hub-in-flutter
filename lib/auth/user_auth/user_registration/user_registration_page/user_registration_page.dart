@@ -23,9 +23,8 @@ part 'widgets/terms_and_conditions_checkbox.dart';
 part 'widgets/user_photo_upload.dart';
 
 class UserRegistrationPage extends StatelessWidget {
-  final Function() onCloseButtonClicked;
 
-  const UserRegistrationPage({super.key, required this.onCloseButtonClicked});
+  const UserRegistrationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +35,19 @@ class UserRegistrationPage extends StatelessWidget {
         body: SafeArea(
           child: ScrollConfiguration(
             behavior: NoOverscrollBehaviour(),
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CloseButtonWidget(onCloseButtonClicked: onCloseButtonClicked),
-                  const RegisterNowHeadingWidget(),
-                  const UserPhotoUploadWidget(),
-                  const NameTextFieldWidget(),
-                  const RegisterPhoneNumberTextFieldWidget(),
-                  const EmailTextFieldWidget(),
-                  const AddressTextFieldWidget(),
-                  const TermsAndConditionCheckboxWidget(),
-                  const RegisterNowButtonWidget(),
+                  CloseButtonWidget(),
+                  RegisterNowHeadingWidget(),
+                  UserPhotoUploadWidget(),
+                  NameTextFieldWidget(),
+                  RegisterPhoneNumberTextFieldWidget(),
+                  EmailTextFieldWidget(),
+                  AddressTextFieldWidget(),
+                  TermsAndConditionCheckboxWidget(),
+                  RegisterNowButtonWidget(),
                 ],
               ),
             ),

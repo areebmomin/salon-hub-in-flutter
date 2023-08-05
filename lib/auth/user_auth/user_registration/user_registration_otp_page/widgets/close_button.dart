@@ -1,8 +1,7 @@
 part of '../user_registration_otp_page.dart';
 
 class CloseButtonWidget extends StatelessWidget {
-  final Function() onCloseButtonClicked;
-  const CloseButtonWidget({super.key, required this.onCloseButtonClicked});
+  const CloseButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +9,11 @@ class CloseButtonWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(left: 21, top: 32),
       child: GestureDetector(
-        onTap: onCloseButtonClicked,
+        onTap: () {
+          context
+              .read<UserRegistrationCubit>()
+              .userRegistrationOtpPageCloseButtonClicked();
+        },
         child: const Icon(
           Icons.close,
           size: 40,

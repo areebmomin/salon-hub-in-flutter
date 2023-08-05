@@ -15,27 +15,23 @@ part 'widgets/submit_button.dart';
 part 'widgets/close_button.dart';
 
 class UserRegistrationOtpPage extends StatelessWidget {
-  final Function() onCloseButtonClicked;
 
-  const UserRegistrationOtpPage({
-    super.key,
-    required this.onCloseButtonClicked,
-  });
+  const UserRegistrationOtpPage({super.key,});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: BlocProvider.of<UserRegistrationCubit>(context),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
-              CloseButtonWidget(onCloseButtonClicked: onCloseButtonClicked),
-              const HeadingVerifyOtpWidget(),
-              const Expanded(
+              CloseButtonWidget(),
+              HeadingVerifyOtpWidget(),
+              Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,

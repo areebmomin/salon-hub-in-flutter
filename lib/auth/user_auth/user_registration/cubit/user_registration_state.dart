@@ -57,3 +57,13 @@ class UserRegistrationPhotoSelected extends UserRegistrationState {
   @override
   List<Object> get props => [profilePicture];
 }
+
+class UserRegistrationCloseButtonClicked extends UserRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class UserRegistrationOtpCloseButtonClicked extends UserRegistrationState {
+  @override
+  List<Object> get props => [];
+}

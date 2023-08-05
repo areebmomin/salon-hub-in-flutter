@@ -52,6 +52,7 @@ class Strings {
   static const String otpTimeout = 'OTP timeout';
   static const String enterValidPasscode = 'Enter valid passcode';
   static const String submit = 'Submit';
+  static const String submitUpperCase = 'SUBMIT';
   static const String enterOtp = 'Enter OTP';
 
   // lists

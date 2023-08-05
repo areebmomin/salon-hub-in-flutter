@@ -19,11 +19,6 @@ class RegisterNowButtonWidget extends StatelessWidget {
           ),
         ),
         child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
-          buildWhen: (previousState, state) {
-            return state is UserRegistrationLoading ||
-                state is UserRegistrationShowToast ||
-                state is UserRegistrationOpenOtpPage;
-          },
           builder: (context, state) {
             if (state is UserRegistrationLoading) {
               return const CircularProgressIndicator(color: Colors.white);

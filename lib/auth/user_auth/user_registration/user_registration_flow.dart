@@ -1,3 +1,4 @@
+import 'package:auth_repository/user_login/user_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,31 +51,39 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserRegistrationCubit(),
-      child: BlocListener<UserRegistrationCubit, UserRegistrationState>(
-        listener: (context, state) {
-          if (state is UserRegistrationShowToast) {
-            Fluttertoast.showToast(
-                msg: state.message, toastLength: Toast.LENGTH_SHORT);
-          } else if (state is UserRegistrationOpenOtpPage) {
-            _navigatorKey.currentState
-                ?.pushNamed(Routes.userRegistrationOtpPage);
-          } else if (state is UserRegistrationGotoUserHomePage) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              Routes.userHomePage,
-              (route) => false,
-            );
-          }
-        },
-        child: WillPopScope(
-          onWillPop: _isExitDesired,
-          child: Scaffold(
-            body: Navigator(
-              key: _navigatorKey,
-              initialRoute: widget.userRegistrationPageRoute,
-              onGenerateRoute: _onGenerateRoute,
+    return RepositoryProvider<UserLoginRepository>(
+      create: (context) => FirebaseUserLoginRepository(),
+      child: BlocProvider(
+        create: (context) => UserRegistrationCubit(
+            RepositoryProvider.of<UserLoginRepository>(context)),
+        child: BlocListener<UserRegistrationCubit, UserRegistrationState>(
+          listener: (context, state) {
+            if (state is UserRegistrationShowToast) {
+              Fluttertoast.showToast(
+                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
+            } else if (state is UserRegistrationOpenOtpPage) {
+              _navigatorKey.currentState
+                  ?.pushNamed(Routes.userRegistrationOtpPage);
+            } else if (state is UserRegistrationGotoUserHomePage) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                Routes.userHomePage,
+                (route) => false,
+              );
+            } else if (state is UserRegistrationCloseButtonClicked) {
+              onRegistrationPageCloseButtonClicked();
+            } else if (state is UserRegistrationOtpCloseButtonClicked) {
+              onOtpPageCloseButtonClicked();
+            }
+          },
+          child: WillPopScope(
+            onWillPop: _isExitDesired,
+            child: Scaffold(
+              body: Navigator(
+                key: _navigatorKey,
+                initialRoute: widget.userRegistrationPageRoute,
+                onGenerateRoute: _onGenerateRoute,
+              ),
             ),
           ),
         ),
@@ -87,15 +96,11 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
 
     switch (settings.name) {
       case Routes.userRegistration:
-        page = UserRegistrationPage(
-          onCloseButtonClicked: onRegistrationPageCloseButtonClicked,
-        );
+        page = const UserRegistrationPage();
         break;
       case Routes.userRegistrationOtpPage:
         _isOtpPageCurrentPage = true;
-        page = UserRegistrationOtpPage(
-          onCloseButtonClicked: onOtpPageCloseButtonClicked,
-        );
+        page = const UserRegistrationOtpPage();
         break;
     }
 

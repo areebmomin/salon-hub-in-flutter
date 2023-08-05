@@ -23,9 +23,9 @@ class SubmitButton extends StatelessWidget {
             if (state is UserRegistrationOtpLoading) {
               return const CircularProgressIndicator(color: Colors.white);
             } else {
-              return Text(
-                Strings.submit.toUpperCase(),
-                style: const TextStyle(
+              return const Text(
+                Strings.submitUpperCase,
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   fontFamily: Strings.firaSans,
