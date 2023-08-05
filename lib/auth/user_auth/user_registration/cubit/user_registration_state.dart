@@ -10,7 +10,6 @@ class UserRegistrationInitial extends UserRegistrationState {
 }
 
 class UserRegistrationShowToast extends UserRegistrationState {
-
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
@@ -48,4 +47,13 @@ class UserRegistrationOpenOtpPage extends UserRegistrationState {
 class UserRegistrationGotoUserHomePage extends UserRegistrationState {
   @override
   List<Object> get props => [];
+}
+
+class UserRegistrationPhotoSelected extends UserRegistrationState {
+  final File profilePicture;
+
+  const UserRegistrationPhotoSelected({required this.profilePicture});
+
+  @override
+  List<Object> get props => [profilePicture];
 }

@@ -20,9 +20,9 @@ class RegisterNowButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        child: Text(
-          Strings.registerNow.toUpperCase(),
-          style: const TextStyle(
+        child: const Text(
+          Strings.registerNowUpperCase,
+          style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
             fontFamily: Strings.firaSans,

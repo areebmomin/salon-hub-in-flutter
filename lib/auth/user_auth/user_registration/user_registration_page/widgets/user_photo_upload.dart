@@ -15,9 +15,16 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(Assets.userProfileDummy),
-            radius: 65,
+          BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
+            buildWhen: (previousState, state) {
+              return state is UserRegistrationPhotoSelected;
+            },
+            builder: (context, state) {
+              return CircleAvatar(
+                backgroundImage: _getBackgroundImage(state),
+                radius: 65,
+              );
+            },
           ),
           Expanded(
             child: Padding(
@@ -40,7 +47,11 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
                   ),
                   const SizedBox(height: 16),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context
+                          .read<UserRegistrationCubit>()
+                          .getPhotoFromGallery();
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
                       fixedSize: const Size(138, 45),
@@ -68,5 +79,11 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
         ],
       ),
     );
+  }
+
+  ImageProvider<Object>? _getBackgroundImage(UserRegistrationState state) {
+    return state is UserRegistrationPhotoSelected
+        ? FileImage(state.profilePicture) as ImageProvider<Object>?
+        : const AssetImage(Assets.userProfileDummy);
   }
 }

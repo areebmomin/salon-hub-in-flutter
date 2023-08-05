@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../utils/strings.dart';
 
 part 'user_registration_state.dart';
@@ -15,6 +17,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   var _address = '';
   var _isTermsAndConditionAccepted = false;
   var _otp = '';
+  File? imageFile;
 
   set name(String name) => _name = name;
 
@@ -36,7 +39,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   set otp(String otp) => _otp = otp;
 
   void onRegisterButtonCLicked() {
-    if(state is UserRegistrationLoading) return;
+    if (state is UserRegistrationLoading) return;
 
     if (_name.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterName));
@@ -48,7 +51,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
       return;
     }
 
-    if(_email.isNotEmpty && !EmailValidator.validate(_email)) {
+    if (_email.isNotEmpty && !EmailValidator.validate(_email)) {
       emit(UserRegistrationShowToast(message: Strings.enterValidEmail));
       return;
     }
@@ -69,7 +72,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   }
 
   void onSubmitButtonClicked() {
-    if(state is UserRegistrationOtpLoading) return;
+    if (state is UserRegistrationOtpLoading) return;
 
     if (_otp.length < 6) {
       emit(UserRegistrationShowToast(message: Strings.enterOtp));
@@ -79,5 +82,13 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     //emit(UserRegistrationOtpLoading());
 
     emit(UserRegistrationGotoUserHomePage());
+  }
+
+  void getPhotoFromGallery() async {
+    var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      imageFile = File(pickedFile.path);
+      emit(UserRegistrationPhotoSelected(profilePicture: imageFile!));
+    }
   }
 }

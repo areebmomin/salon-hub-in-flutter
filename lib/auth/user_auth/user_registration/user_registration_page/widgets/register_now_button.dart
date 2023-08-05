@@ -19,13 +19,18 @@ class RegisterNowButtonWidget extends StatelessWidget {
           ),
         ),
         child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
+          buildWhen: (previousState, state) {
+            return state is UserRegistrationLoading ||
+                state is UserRegistrationShowToast ||
+                state is UserRegistrationOpenOtpPage;
+          },
           builder: (context, state) {
             if (state is UserRegistrationLoading) {
               return const CircularProgressIndicator(color: Colors.white);
             } else {
-              return Text(
-                Strings.registerNow.toUpperCase(),
-                style: const TextStyle(
+              return const Text(
+                Strings.registerNowUpperCase,
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   fontFamily: Strings.firaSans,
