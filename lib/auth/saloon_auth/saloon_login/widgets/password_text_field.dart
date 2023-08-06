@@ -5,6 +5,9 @@ class PasswordTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var otpBoxWidth = (screenWidth - 19 - 19 - (4 * 5)) / 6;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -24,7 +27,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
           const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
             length: 6,
-            fieldWidth: 56,
+            fieldWidth: otpBoxWidth,
             fieldStyle: FieldStyle.box,
             outlineBorderRadius: 5,
             otpFieldStyle: OtpFieldStyle(
