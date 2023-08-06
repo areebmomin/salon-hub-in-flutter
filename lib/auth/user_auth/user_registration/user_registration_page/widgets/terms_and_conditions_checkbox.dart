@@ -24,6 +24,7 @@ class _TermsAndConditionCheckboxWidgetState
               return Checkbox(
                 value: context
                     .read<UserRegistrationCubit>()
+                    .data
                     .isTermsAndConditionAccepted,
                 onChanged: (value) {
                   context

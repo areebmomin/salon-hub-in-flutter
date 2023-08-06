@@ -35,11 +35,11 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              context.read<UserRegistrationCubit>().phoneNumber =
+              context.read<UserRegistrationCubit>().data.phoneNumber =
                   number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              context.read<UserRegistrationCubit>().isPhoneNumberValid =
+              context.read<UserRegistrationCubit>().data.isPhoneNumberValid =
                   isValid;
             },
             selectorConfig: const SelectorConfig(

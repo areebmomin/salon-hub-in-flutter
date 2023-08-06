@@ -71,7 +71,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
             ),
             keyboardType: TextInputType.streetAddress,
             onChanged: (address) {
-              context.read<UserRegistrationCubit>().address = address;
+              context.read<UserRegistrationCubit>().data.address = address;
             },
           ),
         ),

@@ -71,7 +71,7 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
             ),
             keyboardType: TextInputType.name,
             onChanged: (name) {
-              context.read<UserRegistrationCubit>().name = name;
+              context.read<UserRegistrationCubit>().data.name = name;
             },
           ),
         ),

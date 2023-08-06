@@ -21,40 +21,18 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
 
   final UserLoginRepository _userLoginRepository;
   final UserRegistrationRepository _userRegistrationRepository;
-  final _data = UserRegistrationData();
-  var _otp = '';
+  final data = UserRegistrationData();
+  var otp = '';
   File? _imageFile;
 
-  set name(String name) => _data.name = name;
-
-  set phoneNumber(String phoneNumber) => _data.phoneNumber = phoneNumber;
-
-  set isPhoneNumberValid(bool isValid) => _data.isPhoneNumberValid = isValid;
-
-  set email(String email) => _data.email = email;
-
-  set address(String address) => _data.address = address;
-
-  bool get isTermsAndConditionAccepted => _data.isTermsAndConditionAccepted;
-
   set isTermsAndConditionAccepted(bool status) {
-    _data.isTermsAndConditionAccepted = status;
+    data.isTermsAndConditionAccepted = status;
     emit(UserRegistrationTermsAndCondition(isChecked: status));
   }
 
-  set otp(String otp) => _otp = otp;
-
   void loginStatusListener(VerifyPhoneNumberState event) {
     if (event is VerifyPhoneNumberCompleted) {
-      _userRegistrationRepository
-          .addNewUserDataAndPhoto(_data, event.uid)
-          .listen((dataEvent) {
-        if (dataEvent is UserRegistrationRepositorySuccess) {
-          emit(UserRegistrationGotoUserHomePage());
-        } else if (dataEvent is UserRegistrationRepositoryFailure) {
-          emit(UserRegistrationShowToast(message: dataEvent.message));
-        }
-      });
+      _addDataAndUploadPhoto(event.uid);
     } else if (event is VerifyPhoneNumberFailed) {
       emit(UserRegistrationShowToast(message: event.message));
     } else if (event is VerifyPhoneNumberCodeSent) {
@@ -67,27 +45,27 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   void onRegisterButtonCLicked() {
     if (state is UserRegistrationLoading) return;
 
-    if (_data.name.isEmpty) {
+    if (data.name.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterName));
       return;
     }
 
-    if (!_data.isPhoneNumberValid) {
+    if (!data.isPhoneNumberValid) {
       emit(UserRegistrationShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
-    if (_data.email.isNotEmpty && !EmailValidator.validate(_data.email)) {
+    if (data.email.isNotEmpty && !EmailValidator.validate(data.email)) {
       emit(UserRegistrationShowToast(message: Strings.enterValidEmail));
       return;
     }
 
-    if (_data.address.isEmpty) {
+    if (data.address.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterAddress));
       return;
     }
 
-    if (!_data.isTermsAndConditionAccepted) {
+    if (!data.isTermsAndConditionAccepted) {
       emit(UserRegistrationShowToast(message: Strings.acceptTermsAndCondition));
       return;
     }
@@ -95,13 +73,13 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     emit(UserRegistrationLoading());
 
     // verify phone number and send OTP
-    _userLoginRepository.verifyPhoneNumber(phoneNumber: _data.phoneNumber);
+    _userLoginRepository.verifyPhoneNumber(phoneNumber: data.phoneNumber);
   }
 
   void onSubmitButtonClicked() {
     if (state is UserRegistrationOtpLoading) return;
 
-    if (_otp.length < 6) {
+    if (otp.length < 6) {
       emit(UserRegistrationShowToast(message: Strings.enterOtp));
       return;
     }
@@ -109,7 +87,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     emit(UserRegistrationOtpLoading());
 
     // verify OTP and login user
-    _userLoginRepository.signInWithCredential(smsCode: _otp);
+    _userLoginRepository.signInWithCredential(smsCode: otp);
   }
 
   void getPhotoFromGallery() async {
@@ -126,6 +104,18 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
 
   void userRegistrationOtpPageCloseButtonClicked() {
     emit(UserRegistrationOtpCloseButtonClicked());
+  }
+
+  void _addDataAndUploadPhoto(String uid) {
+    _userRegistrationRepository
+        .addNewUserDataAndPhoto(data, uid, _imageFile)
+        .listen((dataEvent) {
+      if (dataEvent is UserRegistrationRepositorySuccess) {
+        emit(UserRegistrationGotoUserHomePage());
+      } else if (dataEvent is UserRegistrationRepositoryFailure) {
+        emit(UserRegistrationShowToast(message: dataEvent.message));
+      }
+    });
   }
 
   @override
