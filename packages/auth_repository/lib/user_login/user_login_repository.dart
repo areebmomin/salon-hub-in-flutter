@@ -18,14 +18,15 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
   Future<void> verifyPhoneNumber({required String phoneNumber}) async {
     await _userLoginAuthService.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        onVerificationCompleted: () {
-          _loginState.add(VerifyPhoneNumberCompleted());
+        onVerificationCompleted: (uid) {
+          _loginState.add(VerifyPhoneNumberCompleted(uid));
         },
         onVerificationFailed: ({
           required String code,
           required String message,
         }) {
-          VerifyPhoneNumberFailed(message: message, code: code);
+          _loginState
+              .add(VerifyPhoneNumberFailed(message: message, code: code));
         },
         onCodeSent: () {
           _loginState.add(VerifyPhoneNumberCodeSent());
@@ -40,14 +41,15 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
   Future<void> signInWithCredential({required String smsCode}) async {
     await _userLoginAuthService.signInWithCredential(
         smsCode: smsCode,
-        onVerificationCompleted: () {
-          _loginState.add(VerifyPhoneNumberCompleted());
+        onVerificationCompleted: (uid) {
+          _loginState.add(VerifyPhoneNumberCompleted(uid));
         },
         onVerificationFailed: ({
           required String code,
           required String message,
         }) {
-          VerifyPhoneNumberFailed(message: message, code: code);
+          _loginState
+              .add(VerifyPhoneNumberFailed(message: message, code: code));
         });
   }
 

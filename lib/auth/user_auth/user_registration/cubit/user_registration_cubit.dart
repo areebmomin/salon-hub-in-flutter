@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:auth_repository/user_login/user_login_repository.dart';
+import 'package:auth_repository/user_registration/models/user_registration_data.dart';
+import 'package:auth_repository/user_registration/user_registration_repository.dart';
+import 'package:auth_repository/user_registration/user_registration_repository_states.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,34 +12,33 @@ import '../../../../utils/strings.dart';
 part 'user_registration_state.dart';
 
 class UserRegistrationCubit extends Cubit<UserRegistrationState> {
-  UserRegistrationCubit(this._userLoginRepository) : super(UserRegistrationInitial()) {
+  UserRegistrationCubit(
+    this._userLoginRepository,
+    this._userRegistrationRepository,
+  ) : super(UserRegistrationInitial()) {
     _userLoginRepository.status.listen(loginStatusListener);
   }
 
   final UserLoginRepository _userLoginRepository;
-  var _name = '';
-  var _phoneNumber = '';
-  var _isPhoneNumberValid = false;
-  var _email = '';
-  var _address = '';
-  var _isTermsAndConditionAccepted = false;
+  final UserRegistrationRepository _userRegistrationRepository;
+  final _data = UserRegistrationData();
   var _otp = '';
   File? _imageFile;
 
-  set name(String name) => _name = name;
+  set name(String name) => _data.name = name;
 
-  set phoneNumber(String phoneNumber) => _phoneNumber = phoneNumber;
+  set phoneNumber(String phoneNumber) => _data.phoneNumber = phoneNumber;
 
-  set isPhoneNumberValid(bool isValid) => _isPhoneNumberValid = isValid;
+  set isPhoneNumberValid(bool isValid) => _data.isPhoneNumberValid = isValid;
 
-  set email(String email) => _email = email;
+  set email(String email) => _data.email = email;
 
-  set address(String address) => _address = address;
+  set address(String address) => _data.address = address;
 
-  bool get isTermsAndConditionAccepted => _isTermsAndConditionAccepted;
+  bool get isTermsAndConditionAccepted => _data.isTermsAndConditionAccepted;
 
   set isTermsAndConditionAccepted(bool status) {
-    _isTermsAndConditionAccepted = status;
+    _data.isTermsAndConditionAccepted = status;
     emit(UserRegistrationTermsAndCondition(isChecked: status));
   }
 
@@ -44,7 +46,15 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
 
   void loginStatusListener(VerifyPhoneNumberState event) {
     if (event is VerifyPhoneNumberCompleted) {
-      emit(UserRegistrationGotoUserHomePage());
+      _userRegistrationRepository
+          .addNewUserDataAndPhoto(_data, event.uid)
+          .listen((dataEvent) {
+        if (dataEvent is UserRegistrationRepositorySuccess) {
+          emit(UserRegistrationGotoUserHomePage());
+        } else if (dataEvent is UserRegistrationRepositoryFailure) {
+          emit(UserRegistrationShowToast(message: dataEvent.message));
+        }
+      });
     } else if (event is VerifyPhoneNumberFailed) {
       emit(UserRegistrationShowToast(message: event.message));
     } else if (event is VerifyPhoneNumberCodeSent) {
@@ -57,27 +67,27 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
   void onRegisterButtonCLicked() {
     if (state is UserRegistrationLoading) return;
 
-    if (_name.isEmpty) {
+    if (_data.name.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterName));
       return;
     }
 
-    if (!_isPhoneNumberValid) {
+    if (!_data.isPhoneNumberValid) {
       emit(UserRegistrationShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
-    if (_email.isNotEmpty && !EmailValidator.validate(_email)) {
+    if (_data.email.isNotEmpty && !EmailValidator.validate(_data.email)) {
       emit(UserRegistrationShowToast(message: Strings.enterValidEmail));
       return;
     }
 
-    if (_address.isEmpty) {
+    if (_data.address.isEmpty) {
       emit(UserRegistrationShowToast(message: Strings.enterAddress));
       return;
     }
 
-    if (!_isTermsAndConditionAccepted) {
+    if (!_data.isTermsAndConditionAccepted) {
       emit(UserRegistrationShowToast(message: Strings.acceptTermsAndCondition));
       return;
     }
@@ -85,7 +95,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     emit(UserRegistrationLoading());
 
     // verify phone number and send OTP
-    _userLoginRepository.verifyPhoneNumber(phoneNumber: _phoneNumber);
+    _userLoginRepository.verifyPhoneNumber(phoneNumber: _data.phoneNumber);
   }
 
   void onSubmitButtonClicked() {

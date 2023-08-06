@@ -1,4 +1,5 @@
 import 'package:auth_repository/user_login/user_login_repository.dart';
+import 'package:auth_repository/user_registration/user_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -51,11 +52,20 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<UserLoginRepository>(
-      create: (context) => FirebaseUserLoginRepository(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<UserLoginRepository>(
+          create: (context) => FirebaseUserLoginRepository(),
+        ),
+        RepositoryProvider<UserRegistrationRepository>(
+          create: (context) => FirebaseUserRegistrationRepository(),
+        ),
+      ],
       child: BlocProvider(
         create: (context) => UserRegistrationCubit(
-            RepositoryProvider.of<UserLoginRepository>(context)),
+          RepositoryProvider.of<UserLoginRepository>(context),
+          RepositoryProvider.of<UserRegistrationRepository>(context),
+        ),
         child: BlocListener<UserRegistrationCubit, UserRegistrationState>(
           listener: (context, state) {
             if (state is UserRegistrationShowToast) {

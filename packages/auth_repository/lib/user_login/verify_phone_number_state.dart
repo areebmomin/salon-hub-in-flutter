@@ -5,8 +5,12 @@ abstract class VerifyPhoneNumberState extends Equatable {
 }
 
 class VerifyPhoneNumberCompleted extends VerifyPhoneNumberState {
+  final String uid;
+
+  const VerifyPhoneNumberCompleted(this.uid);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [uid];
 }
 
 class VerifyPhoneNumberFailed extends VerifyPhoneNumberState {

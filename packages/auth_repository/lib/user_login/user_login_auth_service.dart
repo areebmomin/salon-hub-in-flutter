@@ -7,7 +7,7 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
   @override
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
-    void Function()? onVerificationCompleted,
+    void Function(String uid)? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
     void Function()? onCodeSent,
@@ -19,8 +19,10 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
         // ANDROID ONLY!
         // Sign the user in (or link) with the auto-generated credential
         try {
-          await _auth.signInWithCredential(credential);
-          onVerificationCompleted?.call();
+          await _auth.signInWithCredential(credential).then((auth) {
+            var uid = auth.user?.uid;
+            if (uid != null) onVerificationCompleted?.call(uid);
+          });
         } catch (e) {
           onVerificationFailed?.call(message: 'Server error', code: '');
         }
@@ -44,7 +46,7 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
   @override
   Future<void> signInWithCredential({
     required String smsCode,
-    void Function()? onVerificationCompleted,
+    void Function(String uid)? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
   }) async {
@@ -59,8 +61,10 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
 
     // Sign the user in (or link) with the credential
     try {
-      await _auth.signInWithCredential(credential);
-      onVerificationCompleted?.call();
+      await _auth.signInWithCredential(credential).then((auth) {
+        var uid = auth.user?.uid;
+        if (uid != null) onVerificationCompleted?.call(uid);
+      });
     } catch (e) {
       onVerificationFailed?.call(message: 'Invalid code', code: '');
     }
@@ -70,7 +74,7 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
 abstract class UserLoginAuthService {
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
-    void Function()? onVerificationCompleted,
+    void Function(String uid)? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
     void Function()? onCodeSent,
@@ -79,7 +83,7 @@ abstract class UserLoginAuthService {
 
   Future<void> signInWithCredential({
     required String smsCode,
-    void Function()? onVerificationCompleted,
+    void Function(String uid)? onVerificationCompleted,
     void Function({required String code, required String message})?
         onVerificationFailed,
   });
