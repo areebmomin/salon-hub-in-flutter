@@ -8,3 +8,28 @@ class SaloonRegistrationInitial extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
+
+class SaloonRegistrationShowToast extends SaloonRegistrationState {
+  /// placeholder to distinguish from previous [UserLoginShowToast] state
+  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
+  final String message;
+
+  SaloonRegistrationShowToast({required this.message});
+
+  @override
+  List<Object> get props => [message, _timeStamp];
+}
+
+class SaloonRegistrationLoading extends SaloonRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SaloonRegistrationPhotoSelected extends SaloonRegistrationState {
+  final File profilePicture;
+
+  const SaloonRegistrationPhotoSelected({required this.profilePicture});
+
+  @override
+  List<Object> get props => [profilePicture];
+}

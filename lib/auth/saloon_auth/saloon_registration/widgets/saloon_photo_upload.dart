@@ -16,9 +16,16 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage(Assets.userProfileDummy),
-            radius: 65,
+          BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+            buildWhen: (previousState, state) {
+              return state is SaloonRegistrationPhotoSelected;
+            },
+            builder: (context, state) {
+              return CircleAvatar(
+                backgroundImage: _getBackgroundImage(state),
+                radius: 65,
+              );
+            },
           ),
           Expanded(
             child: Padding(
@@ -43,15 +50,19 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
                     height: 16,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context
+                          .read<SaloonRegistrationCubit>()
+                          .getPhotoFromGallery();
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
                       fixedSize: const Size(138, 45),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(Icons.cloud_upload),
                         SizedBox(width: 8),
                         Text(
@@ -71,5 +82,11 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
         ],
       ),
     );
+  }
+
+  ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+    return state is SaloonRegistrationPhotoSelected
+        ? FileImage(state.profilePicture) as ImageProvider<Object>?
+        : const AssetImage(Assets.userProfileDummy);
   }
 }

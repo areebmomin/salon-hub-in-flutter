@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../saloon/saloon_home_page.dart';
 import '../../../utils/index.dart';
+import 'cubit/saloon_registration_cubit.dart';
 
 part 'widgets/address_text_field.dart';
 
@@ -43,29 +45,32 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ScrollConfiguration(
-          behavior: NoOverscrollBehaviour(),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const CloseButtonWidget(),
-                const BusinessDetailsHeadingWidget(),
-                const SaloonPhotoUploadWidget(),
-                BusinessNameTextFieldWidget(_onBusinessNameValidated),
-                AddressTextFieldWidget(_onAddressValidated),
-                const BusinessLocationTextFieldWidget(),
-                const ServicesTextFieldWidget(),
-                const SaloonTypeTextFieldWidget(),
-                const ServiceDaysTextFieldWidget(),
-                const ServiceTimeTextFieldWidget(),
-                const OwnerDetailsWidget(),
-                const AttendeeDetailsWidget(),
-                RegisterNowButtonWidget(_onRegisterButtonCLicked),
-              ],
+    return BlocProvider(
+      create: (context) => SaloonRegistrationCubit(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: ScrollConfiguration(
+            behavior: NoOverscrollBehaviour(),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const CloseButtonWidget(),
+                  const BusinessDetailsHeadingWidget(),
+                  const SaloonPhotoUploadWidget(),
+                  BusinessNameTextFieldWidget(_onBusinessNameValidated),
+                  AddressTextFieldWidget(_onAddressValidated),
+                  const BusinessLocationTextFieldWidget(),
+                  const ServicesTextFieldWidget(),
+                  const SaloonTypeTextFieldWidget(),
+                  const ServiceDaysTextFieldWidget(),
+                  const ServiceTimeTextFieldWidget(),
+                  const OwnerDetailsWidget(),
+                  const AttendeeDetailsWidget(),
+                  RegisterNowButtonWidget(_onRegisterButtonCLicked),
+                ],
+              ),
             ),
           ),
         ),
