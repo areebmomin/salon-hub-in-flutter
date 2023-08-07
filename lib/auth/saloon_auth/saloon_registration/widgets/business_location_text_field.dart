@@ -12,9 +12,9 @@ class _BusinessLocationTextFieldWidgetState
     extends State<BusinessLocationTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
+      children: [
         Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
@@ -57,7 +57,7 @@ class _BusinessLocationTextFieldWidgetState
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.streetAddress,
           ),

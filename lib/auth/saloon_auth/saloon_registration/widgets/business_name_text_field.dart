@@ -59,7 +59,7 @@ class _BusinessNameTextFieldWidgetState
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.name,
             onChanged: (name) {

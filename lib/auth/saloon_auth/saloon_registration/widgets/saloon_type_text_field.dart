@@ -67,7 +67,7 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 17,
-                  color: AppColors.inputText,
+                  color: AppColors.headingTextColor,
                 ),
                 decoration: const InputDecoration(
                   border: InputBorder.none,

@@ -57,7 +57,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.inputText,
+              color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,

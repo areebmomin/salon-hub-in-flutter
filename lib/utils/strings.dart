@@ -29,7 +29,7 @@ class Strings {
   static const String businessDetails = 'Business details';
   static const String uploadSaloonPicture = 'Upload Saloon Picture';
   static const String businessName = 'Business Name';
-  static const String businessNameHint = 'Beauty salon Shop';
+  static const String businessNameHint = 'Beauty Salon Shop';
   static const String businessAddressHint =
       'Shop no. 2, Dr Anandrao Nair Road, Opp Reserve Bank Of India, Mumbai, 400008';
   static const String businessLocation = 'Location';
