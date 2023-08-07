@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
+import 'package:otp_text_field/style.dart';
 import '../../../saloon/saloon_home_page.dart';
 import '../../../utils/index.dart';
 import 'cubit/saloon_registration_cubit.dart';
@@ -30,6 +34,12 @@ part 'widgets/service_days_text_field.dart';
 part 'widgets/service_time_text_field.dart';
 
 part 'widgets/services_text_field.dart';
+
+part 'widgets/phone_number_text_field.dart';
+
+part 'widgets/email_text_field.dart';
+
+part 'widgets/password_text_field.dart';
 
 class SaloonRegistrationWidget extends StatefulWidget {
   const SaloonRegistrationWidget({super.key});
@@ -66,6 +76,9 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
                   const SaloonTypeTextFieldWidget(),
                   const ServiceDaysTextFieldWidget(),
                   const ServiceTimeTextFieldWidget(),
+                  const RegisterPhoneNumberTextFieldWidget(),
+                  const RegisterEmailTextFieldWidget(),
+                  const PasswordTextField(),
                   const OwnerDetailsWidget(),
                   const AttendeeDetailsWidget(),
                   RegisterNowButtonWidget(_onRegisterButtonCLicked),
