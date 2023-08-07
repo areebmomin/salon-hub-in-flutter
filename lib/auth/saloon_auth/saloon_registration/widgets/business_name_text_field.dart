@@ -17,14 +17,26 @@ class _BusinessNameTextFieldWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 24, left: 19),
-          child: Text(
-            Strings.businessName,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
+        Padding(
+          padding: const EdgeInsets.only(top: 24, left: 19),
+          child: RichText(
+            text: const TextSpan(
+              text: Strings.businessName,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 17,
+                color: AppColors.headingTextColor,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: Strings.asterisk,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -54,7 +66,7 @@ class _BusinessNameTextFieldWidgetState
               ),
               suffixIcon: Icon(Icons.business),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,

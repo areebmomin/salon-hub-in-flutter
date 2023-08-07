@@ -11,21 +11,33 @@ class ServicesTextFieldWidget extends StatefulWidget {
 class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 20, left: 19),
-          child: Text(
-            Strings.services,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
+          padding: const EdgeInsets.only(top: 20, left: 19),
+          child: RichText(
+            text: const TextSpan(
+              text: Strings.services,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 17,
+                color: AppColors.headingTextColor,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: Strings.asterisk,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
             decoration: InputDecoration(

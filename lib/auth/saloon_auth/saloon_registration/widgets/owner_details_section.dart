@@ -15,12 +15,24 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
         Container(
           width: double.infinity,
           padding: const EdgeInsets.only(left: 20, top: 32),
-          child: const Text(
-            Strings.ownerDetails,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-              color: AppColors.headingTextColor,
+          child: RichText(
+            text: const TextSpan(
+              text: Strings.ownerDetails,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 17,
+                color: AppColors.headingTextColor,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: Strings.asterisk,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 17,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
