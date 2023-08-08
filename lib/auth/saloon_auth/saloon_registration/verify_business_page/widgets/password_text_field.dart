@@ -1,4 +1,4 @@
-part of '../saloon_registration_page.dart';
+part of '../verify_business_page.dart';
 
 class PasswordTextField extends StatelessWidget {
   const PasswordTextField({super.key});

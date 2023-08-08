@@ -1,43 +1,32 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class ServicesTextFieldWidget extends StatefulWidget {
-  const ServicesTextFieldWidget({super.key});
+class BusinessLocationTextFieldWidget extends StatefulWidget {
+  const BusinessLocationTextFieldWidget({super.key});
 
   @override
-  State<ServicesTextFieldWidget> createState() =>
-      _ServicesTextFieldWidgetState();
+  State<BusinessLocationTextFieldWidget> createState() =>
+      _BusinessLocationTextFieldWidgetState();
 }
 
-class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
+class _BusinessLocationTextFieldWidgetState
+    extends State<BusinessLocationTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 19),
-          child: RichText(
-            text: const TextSpan(
-              text: Strings.services,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.headingTextColor,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: Strings.asterisk,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 17,
-                    color: Colors.red,
-                  ),
-                ),
-              ],
+          padding: EdgeInsets.only(top: 20, left: 19),
+          child: Text(
+            Strings.businessLocation,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 17,
+              color: AppColors.headingTextColor,
             ),
           ),
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
             decoration: InputDecoration(
@@ -61,7 +50,7 @@ class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.home_repair_service),
+              suffixIcon: Icon(Icons.add_location_alt),
               contentPadding:
               EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),

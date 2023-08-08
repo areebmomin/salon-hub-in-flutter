@@ -1,15 +1,15 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class ServiceDaysTextFieldWidget extends StatefulWidget {
-  const ServiceDaysTextFieldWidget({super.key});
+class ServiceTimeTextFieldWidget extends StatefulWidget {
+  const ServiceTimeTextFieldWidget({super.key});
 
   @override
-  State<ServiceDaysTextFieldWidget> createState() =>
-      _ServiceDaysTextFieldWidgetState();
+  State<ServiceTimeTextFieldWidget> createState() =>
+      _ServiceTimeTextFieldWidgetState();
 }
 
-class _ServiceDaysTextFieldWidgetState
-    extends State<ServiceDaysTextFieldWidget> {
+class _ServiceTimeTextFieldWidgetState
+    extends State<ServiceTimeTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -18,7 +18,7 @@ class _ServiceDaysTextFieldWidgetState
         Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
-            Strings.serviceDays,
+            Strings.serviceTime,
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
@@ -50,7 +50,7 @@ class _ServiceDaysTextFieldWidgetState
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.calendar_view_week),
+              suffixIcon: Icon(Icons.schedule),
               contentPadding:
               EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),

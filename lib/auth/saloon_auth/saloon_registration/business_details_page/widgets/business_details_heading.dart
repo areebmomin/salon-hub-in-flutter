@@ -1,4 +1,4 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
 class BusinessDetailsHeadingWidget extends StatelessWidget {
   const BusinessDetailsHeadingWidget({super.key});

@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:otp_text_field/otp_field_style.dart';
-import 'package:otp_text_field/style.dart';
-import '../../../saloon/saloon_home_page.dart';
-import '../../../utils/index.dart';
-import 'cubit/saloon_registration_cubit.dart';
+import '../../../../utils/index.dart';
+import '../cubit/saloon_registration_cubit.dart';
 
 part 'widgets/address_text_field.dart';
 
@@ -23,7 +19,7 @@ part 'widgets/close_button.dart';
 
 part 'widgets/owner_details_section.dart';
 
-part 'widgets/register_now_button.dart';
+part 'widgets/save_details_button.dart';
 
 part 'widgets/saloon_photo_upload.dart';
 
@@ -37,19 +33,15 @@ part 'widgets/services_text_field.dart';
 
 part 'widgets/phone_number_text_field.dart';
 
-part 'widgets/email_text_field.dart';
-
-part 'widgets/password_text_field.dart';
-
-class SaloonRegistrationWidget extends StatefulWidget {
-  const SaloonRegistrationWidget({super.key});
+class BusinessDetailsPageWidget extends StatefulWidget {
+  const BusinessDetailsPageWidget({super.key});
 
   @override
-  State<SaloonRegistrationWidget> createState() =>
-      _SaloonRegistrationWidgetState();
+  State<BusinessDetailsPageWidget> createState() =>
+      _BusinessDetailsPageWidgetState();
 }
 
-class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
+class _BusinessDetailsPageWidgetState extends State<BusinessDetailsPageWidget> {
   bool _isBusinessNameValid = false;
   bool _isAddressValid = false;
 
@@ -70,18 +62,16 @@ class _SaloonRegistrationWidgetState extends State<SaloonRegistrationWidget> {
                   const BusinessDetailsHeadingWidget(),
                   const SaloonPhotoUploadWidget(),
                   BusinessNameTextFieldWidget(_onBusinessNameValidated),
+                  const RegisterPhoneNumberTextFieldWidget(),
                   AddressTextFieldWidget(_onAddressValidated),
                   const BusinessLocationTextFieldWidget(),
                   const ServicesTextFieldWidget(),
                   const SaloonTypeTextFieldWidget(),
                   const ServiceDaysTextFieldWidget(),
                   const ServiceTimeTextFieldWidget(),
-                  const RegisterPhoneNumberTextFieldWidget(),
-                  const RegisterEmailTextFieldWidget(),
-                  const PasswordTextField(),
                   const OwnerDetailsWidget(),
                   const AttendeeDetailsWidget(),
-                  RegisterNowButtonWidget(_onRegisterButtonCLicked),
+                  SaveDetailsButtonWidget(_onRegisterButtonCLicked),
                 ],
               ),
             ),

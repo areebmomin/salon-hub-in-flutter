@@ -1,25 +1,27 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class RegisterEmailTextFieldWidget extends StatefulWidget {
-  const RegisterEmailTextFieldWidget({super.key});
+class BusinessNameTextFieldWidget extends StatefulWidget {
+  final Function(bool isValid) onInputValidated;
+
+  const BusinessNameTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
-  State<RegisterEmailTextFieldWidget> createState() =>
-      _RegisterEmailTextFieldWidgetState();
+  State<BusinessNameTextFieldWidget> createState() =>
+      _BusinessNameTextFieldWidgetState();
 }
 
-class _RegisterEmailTextFieldWidgetState
-    extends State<RegisterEmailTextFieldWidget> {
+class _BusinessNameTextFieldWidgetState
+    extends State<BusinessNameTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 19),
+          padding: const EdgeInsets.only(top: 24, left: 19),
           child: RichText(
             text: const TextSpan(
-              text: Strings.email,
+              text: Strings.businessName,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
@@ -56,13 +58,13 @@ class _RegisterEmailTextFieldWidgetState
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              hintText: Strings.hintEmail,
+              hintText: Strings.businessNameHint,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.email),
+              suffixIcon: Icon(Icons.business),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
@@ -71,9 +73,9 @@ class _RegisterEmailTextFieldWidgetState
               fontSize: 17,
               color: AppColors.headingTextColor,
             ),
-            keyboardType: TextInputType.emailAddress,
-            onChanged: (email) {
-              // context.read<SaloonRegistrationCubit>().data.email = email;
+            keyboardType: TextInputType.name,
+            onChanged: (name) {
+              widget.onInputValidated(name.trim().isNotEmpty);
             },
           ),
         ),

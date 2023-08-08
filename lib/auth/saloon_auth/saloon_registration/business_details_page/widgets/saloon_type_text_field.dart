@@ -1,15 +1,16 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class AddressTextFieldWidget extends StatefulWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const AddressTextFieldWidget(this.onInputValidated, {super.key});
+class SaloonTypeTextFieldWidget extends StatefulWidget {
+  const SaloonTypeTextFieldWidget({super.key});
 
   @override
-  State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
+  State<SaloonTypeTextFieldWidget> createState() =>
+      _SaloonTypeTextFieldWidgetState();
 }
 
-class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
+class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
+  String? selectedValue = Strings.saloonTypes.first;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +20,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
           padding: const EdgeInsets.only(top: 20, left: 19),
           child: RichText(
             text: const TextSpan(
-              text: Strings.address,
+              text: Strings.type,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
@@ -41,41 +42,60 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: UnderlineInputBorder(
+              border: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              enabledBorder: UnderlineInputBorder(
+              enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               hintText: Strings.businessAddressHint,
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.location_on),
+              suffixIcon: DropdownButtonFormField(
+                value: selectedValue,
+                onChanged: (newValue) {
+                  setState(() {
+                    selectedValue = newValue;
+                  });
+                },
+                items: Strings.saloonTypes.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                  color: AppColors.headingTextColor,
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                ),
+                icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              ),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
-              color: AppColors.headingTextColor,
+              color: AppColors.inputText,
             ),
             keyboardType: TextInputType.streetAddress,
-            maxLines: 3,
-            onChanged: (name) {
-              widget.onInputValidated(name.trim().isNotEmpty);
-            },
           ),
         ),
       ],

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
-import '../saloon_registration/saloon_registration_page.dart';
-import 'package:saloon_hub/saloon/saloon_home_page.dart';
 import 'package:saloon_hub/utils/index.dart';
 import 'package:flutter/gestures.dart';
 

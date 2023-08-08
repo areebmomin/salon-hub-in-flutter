@@ -1,9 +1,9 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class RegisterNowButtonWidget extends StatelessWidget {
+class SaveDetailsButtonWidget extends StatelessWidget {
   final Function() onCLicked;
 
-  const RegisterNowButtonWidget(this.onCLicked, {super.key});
+  const SaveDetailsButtonWidget(this.onCLicked, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class RegisterNowButtonWidget extends StatelessWidget {
           ),
         ),
         child: const Text(
-          Strings.registerNowUpperCase,
+          Strings.saveDetailsUpperCase,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,

@@ -1,27 +1,25 @@
-part of '../saloon_registration_page.dart';
+part of '../business_details_page.dart';
 
-class BusinessNameTextFieldWidget extends StatefulWidget {
+class AddressTextFieldWidget extends StatefulWidget {
   final Function(bool isValid) onInputValidated;
 
-  const BusinessNameTextFieldWidget(this.onInputValidated, {super.key});
+  const AddressTextFieldWidget(this.onInputValidated, {super.key});
 
   @override
-  State<BusinessNameTextFieldWidget> createState() =>
-      _BusinessNameTextFieldWidgetState();
+  State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
 }
 
-class _BusinessNameTextFieldWidgetState
-    extends State<BusinessNameTextFieldWidget> {
+class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 24, left: 19),
+         Padding(
+          padding: const EdgeInsets.only(top: 20, left: 19),
           child: RichText(
             text: const TextSpan(
-              text: Strings.businessName,
+              text: Strings.address,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
@@ -58,22 +56,23 @@ class _BusinessNameTextFieldWidgetState
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              hintText: Strings.businessNameHint,
+              hintText: Strings.businessAddressHint,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 17,
                 color: AppColors.inputText,
               ),
-              suffixIcon: Icon(Icons.business),
+              suffixIcon: Icon(Icons.location_on),
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.headingTextColor,
             ),
-            keyboardType: TextInputType.name,
+            keyboardType: TextInputType.streetAddress,
+            maxLines: 3,
             onChanged: (name) {
               widget.onInputValidated(name.trim().isNotEmpty);
             },
