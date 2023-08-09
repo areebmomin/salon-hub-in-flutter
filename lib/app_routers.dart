@@ -3,6 +3,7 @@ import 'package:saloon_hub/auth/user_auth/user_registration/user_registration_fl
 import 'package:saloon_hub/utils/index.dart';
 import 'auth/login_page.dart';
 import 'auth/saloon_auth/saloon_registration/business_details_page/business_details_page.dart';
+import 'auth/saloon_auth/saloon_registration/saloon_registration_flow.dart';
 import 'saloon/saloon_home_page.dart';
 import 'user/user_home_page.dart';
 import 'utils/routes.dart';
@@ -19,8 +20,11 @@ class AppRouters {
       page = UserRegistrationFlow(
         userRegistrationPageRoute: subRoute,
       );
-    } else if (name == Routes.saloonRegistration) {
-      page = const BusinessDetailsPageWidget();
+    } else if (name.startsWith(Routes.saloonRegistrationFlow)) {
+      final subRoute = name.substring(Routes.saloonRegistrationFlow.length);
+      page = SaloonRegistrationFlow(
+        saloonRegistrationPageRoute: subRoute,
+      );
     } else if (name == Routes.userHomePage) {
       page = const UserHomePage();
     } else if (name == Routes.saloonHomePage) {

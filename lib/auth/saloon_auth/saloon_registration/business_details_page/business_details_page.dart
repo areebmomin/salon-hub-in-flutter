@@ -47,8 +47,8 @@ class _BusinessDetailsPageWidgetState extends State<BusinessDetailsPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SaloonRegistrationCubit(),
+    return BlocProvider.value(
+      value: BlocProvider.of<SaloonRegistrationCubit>(context),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
