@@ -61,7 +61,7 @@ class _BusinessLocationTextFieldWidgetState
             ),
             keyboardType: TextInputType.streetAddress,
             onChanged: (location) {
-              context.read<SaloonRegistrationCubit>().data.location = location;
+              context.read<SaloonRegistrationCubit>().data.location = location.trim();
             },
           ),
         ),

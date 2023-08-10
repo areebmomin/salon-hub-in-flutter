@@ -4,6 +4,7 @@ import 'package:auth_repository/saloon_registration/saloon_registration_reposito
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../utils/index.dart';
 
 part 'saloon_registration_state.dart';
 
@@ -14,8 +15,34 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
   final SaloonRegistrationRepository saloonRegistrationRepository;
   File? _imageFile;
   final data = SaloonRegistrationData();
+  var isPhoneNumberValid = false;
 
   void saveDetailsButtonClicked() {
+    if (data.businessName.isEmpty) {
+      emit(SaloonRegistrationShowToast(message: Strings.enterBusinessName));
+      return;
+    }
+
+    if (!isPhoneNumberValid) {
+      emit(SaloonRegistrationShowToast(message: Strings.enterValidPhoneNumber));
+      return;
+    }
+
+    if (data.address.isEmpty) {
+      emit(SaloonRegistrationShowToast(message: Strings.enterAddress));
+      return;
+    }
+
+    if (data.services.isEmpty) {
+      emit(SaloonRegistrationShowToast(message: Strings.addServices));
+      return;
+    }
+
+    if (data.ownerDetailsList.isEmpty) {
+      emit(SaloonRegistrationShowToast(message: Strings.addOwnerDetails));
+      return;
+    }
+
     emit(SaloonRegistrationOpenVerifyPage());
   }
 

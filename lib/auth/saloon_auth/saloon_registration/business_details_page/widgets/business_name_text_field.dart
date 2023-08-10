@@ -73,7 +73,7 @@ class _BusinessNameTextFieldWidgetState
             ),
             keyboardType: TextInputType.name,
             onChanged: (name) {
-              context.read<SaloonRegistrationCubit>().data.businessName = name;
+              context.read<SaloonRegistrationCubit>().data.businessName = name.trim();
             },
           ),
         ),

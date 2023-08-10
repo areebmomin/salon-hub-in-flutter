@@ -35,12 +35,12 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              // context.read<SaloonRegistrationCubit>().data.phoneNumber =
-              //     number.phoneNumber ?? '';
+              context.read<SaloonRegistrationCubit>().data.phoneNumber =
+                  number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              // context.read<SaloonRegistrationCubit>().data.isPhoneNumberValid =
-              //     isValid;
+              context.read<SaloonRegistrationCubit>().isPhoneNumberValid =
+                  isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -81,4 +81,3 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
     );
   }
 }
-

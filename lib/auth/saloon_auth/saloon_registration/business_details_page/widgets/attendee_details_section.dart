@@ -66,7 +66,7 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                       hintText: Strings.name,
                     ),
                     onChanged: (name) {
-                      //context.read<SaloonRegistrationCubit>().data.address = address;
+                      //context.read<SaloonRegistrationCubit>().data.address = name.trim();
                     },
                   ),
                 ),

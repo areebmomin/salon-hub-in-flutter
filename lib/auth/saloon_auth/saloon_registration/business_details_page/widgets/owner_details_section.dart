@@ -76,7 +76,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    //context.read<SaloonRegistrationCubit>().data.address = address;
+                    //context.read<SaloonRegistrationCubit>().data.address = name.trim();
                   },
                 ),
               ),

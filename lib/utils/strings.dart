@@ -55,6 +55,8 @@ class Strings {
   static const String submit = 'Submit';
   static const String submitUpperCase = 'SUBMIT';
   static const String enterOtp = 'Enter OTP';
+  static const String addServices = 'Add services';
+  static const String addOwnerDetails = 'Add owner details';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

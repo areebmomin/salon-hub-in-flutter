@@ -67,7 +67,7 @@ class AddressTextFieldWidget extends StatelessWidget {
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
             onChanged: (address) {
-              context.read<SaloonRegistrationCubit>().data.address = address;
+              context.read<SaloonRegistrationCubit>().data.address = address.trim();
             },
           ),
         ),

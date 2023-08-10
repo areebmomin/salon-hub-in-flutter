@@ -59,7 +59,7 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              context.read<UserRegistrationCubit>().data.email = email;
+              context.read<UserRegistrationCubit>().data.email = email.trim();
             },
           ),
         ),
