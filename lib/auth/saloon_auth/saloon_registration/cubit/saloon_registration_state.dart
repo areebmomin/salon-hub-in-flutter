@@ -39,7 +39,8 @@ class SaloonRegistrationCloseButtonClicked extends SaloonRegistrationState {
   List<Object> get props => [];
 }
 
-class SaloonRegistrationVerifyCloseButtonClicked extends SaloonRegistrationState {
+class SaloonRegistrationVerifyCloseButtonClicked
+    extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
@@ -52,4 +53,12 @@ class SaloonRegistrationOpenVerifyPage extends SaloonRegistrationState {
 class SaloonRegistrationGotoSaloonHomePage extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
+}
+
+class SaloonRegistrationServicesUpdated extends SaloonRegistrationState {
+  /// placeholder to distinguish from previous [UserLoginShowToast] state
+  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
+
+  @override
+  List<Object> get props => [_timeStamp];
 }

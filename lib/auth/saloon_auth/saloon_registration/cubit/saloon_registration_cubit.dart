@@ -46,6 +46,19 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     emit(SaloonRegistrationOpenVerifyPage());
   }
 
+  void addService(String service) {
+    String text = service.substring(0, service.length - 1).trim();
+    if (text.isNotEmpty) {
+      data.services.add(text);
+      emit(SaloonRegistrationServicesUpdated());
+    }
+  }
+
+  void removeService(String service) {
+    data.services.remove(service);
+    emit(SaloonRegistrationServicesUpdated());
+  }
+
   void registerNowButtonClicked() {
     emit(SaloonRegistrationGotoSaloonHomePage());
   }

@@ -57,6 +57,7 @@ class Strings {
   static const String enterOtp = 'Enter OTP';
   static const String addServices = 'Add services';
   static const String addOwnerDetails = 'Add owner details';
+  static const String enterCommaSeparatedServices = 'Enter comma separated services';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
