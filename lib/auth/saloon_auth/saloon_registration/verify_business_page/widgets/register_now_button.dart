@@ -9,7 +9,7 @@ class RegisterNowButton extends StatelessWidget {
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-//context.read<SaloonRegistrationCubit>().data.address = address;
+          context.read<SaloonRegistrationCubit>().registerNowButtonClicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),

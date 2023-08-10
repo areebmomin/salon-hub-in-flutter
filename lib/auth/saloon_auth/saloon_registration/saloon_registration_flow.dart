@@ -1,6 +1,7 @@
 import 'package:auth_repository/saloon_registration/saloon_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_registration/verify_business_page/verify_business_page.dart';
 import '../../../utils/index.dart';
 import 'business_details_page/business_details_page.dart';
@@ -58,7 +59,25 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
             RepositoryProvider.of<SaloonRegistrationRepository>(context)
         ),
         child: BlocListener<SaloonRegistrationCubit, SaloonRegistrationState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is SaloonRegistrationShowToast) {
+              Fluttertoast.showToast(
+                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
+            } else if (state is SaloonRegistrationOpenVerifyPage) {
+              _navigatorKey.currentState
+                  ?.pushNamed(Routes.saloonRegistrationVerifyPage);
+            } else if (state is SaloonRegistrationGotoSaloonHomePage) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                Routes.saloonHomePage,
+                    (route) => false,
+              );
+            } else if (state is SaloonRegistrationCloseButtonClicked) {
+              onRegistrationPageCloseButtonClicked();
+            } else if (state is SaloonRegistrationVerifyCloseButtonClicked) {
+              onVerifyPageCloseButtonClicked();
+            }
+          },
           child: WillPopScope(
             onWillPop: _isExitDesired,
             child: Scaffold(

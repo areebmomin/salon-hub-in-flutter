@@ -15,11 +15,27 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
   File? _imageFile;
   final data = SaloonRegistrationData();
 
+  void saveDetailsButtonClicked() {
+    emit(SaloonRegistrationOpenVerifyPage());
+  }
+
+  void registerNowButtonClicked() {
+    emit(SaloonRegistrationGotoSaloonHomePage());
+  }
+
   void getPhotoFromGallery() async {
     var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       _imageFile = File(pickedFile.path);
       emit(SaloonRegistrationPhotoSelected(profilePicture: _imageFile!));
     }
+  }
+
+  void saloonRegistrationPageCloseButtonClicked() {
+    emit(SaloonRegistrationCloseButtonClicked());
+  }
+
+  void saloonRegistrationVerifyPageCloseButtonClicked() {
+    emit(SaloonRegistrationVerifyCloseButtonClicked());
   }
 }

@@ -33,3 +33,23 @@ class SaloonRegistrationPhotoSelected extends SaloonRegistrationState {
   @override
   List<Object> get props => [profilePicture];
 }
+
+class SaloonRegistrationCloseButtonClicked extends SaloonRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SaloonRegistrationVerifyCloseButtonClicked extends SaloonRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SaloonRegistrationOpenVerifyPage extends SaloonRegistrationState {
+  @override
+  List<Object> get props => [];
+}
+
+class SaloonRegistrationGotoSaloonHomePage extends SaloonRegistrationState {
+  @override
+  List<Object> get props => [];
+}
