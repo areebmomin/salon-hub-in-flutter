@@ -63,6 +63,7 @@ class _BusinessLocationTextFieldWidgetState
             onChanged: (location) {
               context.read<SaloonRegistrationCubit>().data.location = location.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

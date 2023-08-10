@@ -73,6 +73,7 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
             onChanged: (name) {
               context.read<UserRegistrationCubit>().data.name = name.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

@@ -72,6 +72,7 @@ class _BusinessNameTextFieldWidgetState
               color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.name,
+            textInputAction: TextInputAction.next,
             onChanged: (name) {
               context.read<SaloonRegistrationCubit>().data.businessName = name.trim();
             },

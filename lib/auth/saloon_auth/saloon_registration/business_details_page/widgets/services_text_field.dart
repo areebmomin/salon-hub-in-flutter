@@ -68,6 +68,7 @@ class ServicesTextFieldWidget extends StatelessWidget {
             onChanged: (services) {
               //context.read<SaloonRegistrationCubit>().data.services = address;
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

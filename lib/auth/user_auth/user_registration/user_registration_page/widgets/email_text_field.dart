@@ -61,6 +61,7 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
             onChanged: (email) {
               context.read<UserRegistrationCubit>().data.email = email.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

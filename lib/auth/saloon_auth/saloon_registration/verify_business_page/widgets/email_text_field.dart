@@ -75,6 +75,7 @@ class _RegisterEmailTextFieldWidgetState
             onChanged: (email) {
               context.read<SaloonRegistrationCubit>().data.email = email.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

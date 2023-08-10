@@ -56,6 +56,7 @@ class EmailTextFieldWidget extends StatelessWidget {
             onChanged: (email) {
               context.read<SaloonLoginCubit>().email = email;
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

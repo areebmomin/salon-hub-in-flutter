@@ -75,6 +75,7 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
                 fontSize: 17,
               ),
             ),
+            keyboardAction: TextInputAction.next,
           ),
         ),
       ],

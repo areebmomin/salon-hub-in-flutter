@@ -97,6 +97,7 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
               color: AppColors.inputText,
             ),
             keyboardType: TextInputType.streetAddress,
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

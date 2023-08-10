@@ -56,6 +56,7 @@ class ServiceTimeTextFieldWidget extends StatelessWidget {
             onChanged: (time) {
               //context.read<SaloonRegistrationCubit>().data.serviceTimes = address;
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

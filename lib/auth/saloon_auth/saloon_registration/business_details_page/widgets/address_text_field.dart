@@ -69,6 +69,7 @@ class AddressTextFieldWidget extends StatelessWidget {
             onChanged: (address) {
               context.read<SaloonRegistrationCubit>().data.address = address.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

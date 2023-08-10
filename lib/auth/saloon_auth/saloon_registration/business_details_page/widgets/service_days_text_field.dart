@@ -56,6 +56,7 @@ class ServiceDaysTextFieldWidget extends StatelessWidget {
             onChanged: (days) {
               //context.read<SaloonRegistrationCubit>().data.serviceDays = address;
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],
