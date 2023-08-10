@@ -56,7 +56,7 @@ class PasswordTextField extends StatelessWidget {
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              context.read<SaloonRegistrationCubit>().data.password = code;
+              context.read<SaloonRegistrationCubit>().data.password = code.trim();
             },
           ),
         ),

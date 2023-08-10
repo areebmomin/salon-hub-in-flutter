@@ -73,7 +73,7 @@ class _RegisterEmailTextFieldWidgetState
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              context.read<SaloonRegistrationCubit>().data.email = email;
+              context.read<SaloonRegistrationCubit>().data.email = email.trim();
             },
           ),
         ),

@@ -44,7 +44,7 @@ class OtpTextFieldWidget extends StatelessWidget {
             contentPadding:
             const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              context.read<UserLoginCubit>().otp = code;
+              context.read<UserLoginCubit>().otp = code.trim();
             },
           ),
         ),
