@@ -10,6 +10,7 @@ class SaloonRegistrationData {
   List<OwnerDetail> ownerDetailsList;
   List<AttendeeDetail> attendeeDetailList;
   String email;
+  String password;
 
   SaloonRegistrationData({
     this.businessName = '',
@@ -23,6 +24,7 @@ class SaloonRegistrationData {
     List<OwnerDetail>? ownerDetailsList,
     List<AttendeeDetail>? attendeeDetailList,
     this.email = '',
+    this.password = '',
   })
       : services = services ?? [],
         serviceDays = serviceDays ?? [],

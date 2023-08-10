@@ -1,21 +1,14 @@
 part of '../business_details_page.dart';
 
-class ServiceTimeTextFieldWidget extends StatefulWidget {
+class ServiceTimeTextFieldWidget extends StatelessWidget {
   const ServiceTimeTextFieldWidget({super.key});
 
   @override
-  State<ServiceTimeTextFieldWidget> createState() =>
-      _ServiceTimeTextFieldWidgetState();
-}
-
-class _ServiceTimeTextFieldWidgetState
-    extends State<ServiceTimeTextFieldWidget> {
-  @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.serviceTime,
@@ -27,9 +20,9 @@ class _ServiceTimeTextFieldWidgetState
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -52,14 +45,17 @@ class _ServiceTimeTextFieldWidgetState
               ),
               suffixIcon: Icon(Icons.schedule),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.streetAddress,
+            onChanged: (time) {
+              //context.read<SaloonRegistrationCubit>().data.serviceTimes = address;
+            },
           ),
         ),
       ],

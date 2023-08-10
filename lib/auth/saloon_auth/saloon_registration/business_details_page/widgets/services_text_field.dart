@@ -1,14 +1,8 @@
 part of '../business_details_page.dart';
 
-class ServicesTextFieldWidget extends StatefulWidget {
+class ServicesTextFieldWidget extends StatelessWidget {
   const ServicesTextFieldWidget({super.key});
 
-  @override
-  State<ServicesTextFieldWidget> createState() =>
-      _ServicesTextFieldWidgetState();
-}
-
-class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,10 +31,10 @@ class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 19, right: 20, top: 9),
+        Padding(
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
               border: UnderlineInputBorder(
@@ -63,14 +57,17 @@ class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
               ),
               suffixIcon: Icon(Icons.home_repair_service),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 17,
               color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.streetAddress,
+            onChanged: (services) {
+              //context.read<SaloonRegistrationCubit>().data.services = address;
+            },
           ),
         ),
       ],

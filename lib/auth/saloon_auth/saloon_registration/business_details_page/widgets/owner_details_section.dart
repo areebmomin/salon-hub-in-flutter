@@ -54,7 +54,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                     left: 67,
                     child: GestureDetector(
                       onTap: () {
-                        Fluttertoast.showToast(msg: 'msg');
+                        //context.read<SaloonRegistrationCubit>().data.address = address;
                       },
                       child: const Icon(
                         Icons.add_a_photo,
@@ -65,9 +65,9 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                 ],
               ),
               const SizedBox(width: 16),
-              const Expanded(
+              Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
@@ -75,13 +75,18 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                     ),
                     hintText: Strings.name,
                   ),
+                  onChanged: (name) {
+                    //context.read<SaloonRegistrationCubit>().data.address = address;
+                  },
                 ),
               ),
             ],
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            //context.read<SaloonRegistrationCubit>().data.address = address;
+          },
           style: TextButton.styleFrom(
             backgroundColor: AppColors.inputFieldBackground,
             fixedSize: const Size(42, 46),

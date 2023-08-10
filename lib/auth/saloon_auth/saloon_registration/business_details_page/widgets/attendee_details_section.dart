@@ -44,7 +44,7 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                       left: 67,
                       child: GestureDetector(
                         onTap: () {
-                          Fluttertoast.showToast(msg: 'msg');
+                          //context.read<SaloonRegistrationCubit>().data.address = address;
                         },
                         child: const Icon(
                           Icons.add_a_photo,
@@ -55,9 +55,9 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                   ],
                 ),
                 const SizedBox(width: 16),
-                const Expanded(
+                 Expanded(
                   child: TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintStyle: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 17,
@@ -65,13 +65,18 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                       ),
                       hintText: Strings.name,
                     ),
+                    onChanged: (name) {
+                      //context.read<SaloonRegistrationCubit>().data.address = address;
+                    },
                   ),
                 ),
               ],
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              //context.read<SaloonRegistrationCubit>().data.address = address;
+            },
             style: TextButton.styleFrom(
               backgroundColor: AppColors.inputFieldBackground,
               fixedSize: const Size(42, 46),

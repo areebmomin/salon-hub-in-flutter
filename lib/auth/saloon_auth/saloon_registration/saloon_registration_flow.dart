@@ -79,7 +79,7 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
 
     switch (settings.name) {
       case Routes.saloonRegistration:
-        page = const BusinessDetailsPageWidget();
+        page = const BusinessDetailsPage();
         break;
       case Routes.saloonRegistrationVerifyPage:
         _isVerifyPageCurrentPage = true;

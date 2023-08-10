@@ -1,9 +1,7 @@
 part of '../business_details_page.dart';
 
 class BusinessNameTextFieldWidget extends StatefulWidget {
-  final Function(bool isValid) onInputValidated;
-
-  const BusinessNameTextFieldWidget(this.onInputValidated, {super.key});
+  const BusinessNameTextFieldWidget({super.key});
 
   @override
   State<BusinessNameTextFieldWidget> createState() =>
@@ -75,7 +73,7 @@ class _BusinessNameTextFieldWidgetState
             ),
             keyboardType: TextInputType.name,
             onChanged: (name) {
-              widget.onInputValidated(name.trim().isNotEmpty);
+              context.read<SaloonRegistrationCubit>().data.businessName = name;
             },
           ),
         ),

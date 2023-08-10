@@ -1,21 +1,14 @@
 part of '../business_details_page.dart';
 
-class AddressTextFieldWidget extends StatefulWidget {
-  final Function(bool isValid) onInputValidated;
+class AddressTextFieldWidget extends StatelessWidget {
+  const AddressTextFieldWidget({super.key});
 
-  const AddressTextFieldWidget(this.onInputValidated, {super.key});
-
-  @override
-  State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
-}
-
-class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-         Padding(
+        Padding(
           padding: const EdgeInsets.only(top: 20, left: 19),
           child: RichText(
             text: const TextSpan(
@@ -64,7 +57,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
               ),
               suffixIcon: Icon(Icons.location_on),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
@@ -73,8 +66,8 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
             ),
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
-            onChanged: (name) {
-              widget.onInputValidated(name.trim().isNotEmpty);
+            onChanged: (address) {
+              context.read<SaloonRegistrationCubit>().data.address = address;
             },
           ),
         ),

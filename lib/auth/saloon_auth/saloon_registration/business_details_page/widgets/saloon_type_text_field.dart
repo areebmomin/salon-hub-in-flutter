@@ -66,6 +66,7 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
+                  context.read<SaloonRegistrationCubit>().data.type = newValue ?? '';
                   setState(() {
                     selectedValue = newValue;
                   });

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:auth_repository/saloon_registration/models/saloon_registration_data.dart';
 import 'package:auth_repository/saloon_registration/saloon_registration_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
 
   final SaloonRegistrationRepository saloonRegistrationRepository;
   File? _imageFile;
+  final data = SaloonRegistrationData();
 
   void getPhotoFromGallery() async {
     var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);

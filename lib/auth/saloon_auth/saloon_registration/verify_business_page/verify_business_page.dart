@@ -14,7 +14,7 @@ part 'widgets/email_text_field.dart';
 
 part 'widgets/password_text_field.dart';
 
-part 'widgets/save_details_button.dart';
+part 'widgets/register_now_button.dart';
 
 class VerifyBusinessPage extends StatelessWidget {
   const VerifyBusinessPage({super.key});
@@ -36,7 +36,7 @@ class VerifyBusinessPage extends StatelessWidget {
                   BusinessDetailsHeadingWidget(),
                   RegisterEmailTextFieldWidget(),
                   PasswordTextField(),
-                  SaveDetailsButtonWidget(),
+                  RegisterNowButton(),
                 ],
               ),
             ),

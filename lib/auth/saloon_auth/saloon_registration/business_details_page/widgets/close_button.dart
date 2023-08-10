@@ -10,7 +10,7 @@ class CloseButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 21, top: 32),
       child: GestureDetector(
         onTap: () {
-          Navigator.pop(context);
+          //context.read<SaloonRegistrationCubit>().data.address = address;
         },
         child: const Icon(
           Icons.close,

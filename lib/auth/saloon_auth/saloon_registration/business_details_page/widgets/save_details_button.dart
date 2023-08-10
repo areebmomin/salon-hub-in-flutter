@@ -1,9 +1,7 @@
 part of '../business_details_page.dart';
 
 class SaveDetailsButtonWidget extends StatelessWidget {
-  final Function() onCLicked;
-
-  const SaveDetailsButtonWidget(this.onCLicked, {super.key});
+  const SaveDetailsButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +9,7 @@ class SaveDetailsButtonWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          onCLicked();
+          //context.read<SaloonRegistrationCubit>().data.address = address;
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),

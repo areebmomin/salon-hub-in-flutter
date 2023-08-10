@@ -33,17 +33,15 @@ part 'widgets/services_text_field.dart';
 
 part 'widgets/phone_number_text_field.dart';
 
-class BusinessDetailsPageWidget extends StatefulWidget {
-  const BusinessDetailsPageWidget({super.key});
+class BusinessDetailsPage extends StatefulWidget {
+  const BusinessDetailsPage({super.key});
 
   @override
-  State<BusinessDetailsPageWidget> createState() =>
-      _BusinessDetailsPageWidgetState();
+  State<BusinessDetailsPage> createState() =>
+      _BusinessDetailsPageState();
 }
 
-class _BusinessDetailsPageWidgetState extends State<BusinessDetailsPageWidget> {
-  bool _isBusinessNameValid = false;
-  bool _isAddressValid = false;
+class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +52,24 @@ class _BusinessDetailsPageWidgetState extends State<BusinessDetailsPageWidget> {
         body: SafeArea(
           child: ScrollConfiguration(
             behavior: NoOverscrollBehaviour(),
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const CloseButtonWidget(),
-                  const BusinessDetailsHeadingWidget(),
-                  const SaloonPhotoUploadWidget(),
-                  BusinessNameTextFieldWidget(_onBusinessNameValidated),
-                  const RegisterPhoneNumberTextFieldWidget(),
-                  AddressTextFieldWidget(_onAddressValidated),
-                  const BusinessLocationTextFieldWidget(),
-                  const ServicesTextFieldWidget(),
-                  const SaloonTypeTextFieldWidget(),
-                  const ServiceDaysTextFieldWidget(),
-                  const ServiceTimeTextFieldWidget(),
-                  const OwnerDetailsWidget(),
-                  const AttendeeDetailsWidget(),
-                  SaveDetailsButtonWidget(_onRegisterButtonCLicked),
+                  CloseButtonWidget(),
+                  BusinessDetailsHeadingWidget(),
+                  SaloonPhotoUploadWidget(),
+                  BusinessNameTextFieldWidget(),
+                  RegisterPhoneNumberTextFieldWidget(),
+                  AddressTextFieldWidget(),
+                  BusinessLocationTextFieldWidget(),
+                  ServicesTextFieldWidget(),
+                  SaloonTypeTextFieldWidget(),
+                  ServiceDaysTextFieldWidget(),
+                  ServiceTimeTextFieldWidget(),
+                  OwnerDetailsWidget(),
+                  AttendeeDetailsWidget(),
+                  SaveDetailsButtonWidget(),
                 ],
               ),
             ),
@@ -79,31 +77,5 @@ class _BusinessDetailsPageWidgetState extends State<BusinessDetailsPageWidget> {
         ),
       ),
     );
-  }
-
-  void _onBusinessNameValidated(bool isValid) {
-    _isBusinessNameValid = isValid;
-  }
-
-  void _onAddressValidated(bool isValid) {
-    _isAddressValid = isValid;
-  }
-
-  void _onRegisterButtonCLicked() {
-    if (!_isBusinessNameValid) {
-      Fluttertoast.showToast(
-          msg: Strings.enterBusinessName, toastLength: Toast.LENGTH_SHORT);
-      return;
-    }
-
-    if (!_isAddressValid) {
-      Fluttertoast.showToast(
-          msg: Strings.enterAddress, toastLength: Toast.LENGTH_SHORT);
-      return;
-    }
-
-    // Navigate to Home page
-    Navigator.pushNamedAndRemoveUntil(
-        context, Routes.saloonHomePage, (route) => false);
   }
 }
