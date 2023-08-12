@@ -1,10 +1,20 @@
 part of '../business_details_page.dart';
 
-class ServiceDaysTextFieldWidget extends StatelessWidget {
+class ServiceDaysTextFieldWidget extends StatefulWidget {
   const ServiceDaysTextFieldWidget({super.key});
 
   @override
+  State<ServiceDaysTextFieldWidget> createState() =>
+      _ServiceDaysTextFieldWidgetState();
+}
+
+class _ServiceDaysTextFieldWidgetState
+    extends State<ServiceDaysTextFieldWidget> {
+  @override
   Widget build(BuildContext context) {
+    var serviceDaysList =
+        context.read<SaloonRegistrationCubit>().data.serviceDays;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -21,42 +31,29 @@ class ServiceDaysTextFieldWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
-          child: TextField(
-            decoration: const InputDecoration(
-              filled: true,
-              fillColor: AppColors.inputFieldBackground,
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              hintText: Strings.businessAddressHint,
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.inputText,
-              ),
-              suffixIcon: Icon(Icons.calendar_view_week),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-            ),
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
-            ),
-            keyboardType: TextInputType.streetAddress,
-            onChanged: (days) {
-              //context.read<SaloonRegistrationCubit>().data.serviceDays = address;
+          child: WeekdaySelector(
+            onChanged: (int day) {
+              setState(() {
+                // Use module % 7 as Sunday's index in the array is 0 and
+                // DateTime.sunday constant integer value is 7.
+                final index = day % 7;
+                // We "flip" the value in this example, but you may also
+                // perform validation, a DB write, an HTTP call or anything
+                // else before you actually flip the value,
+                // it's up to your app's needs.
+                serviceDaysList[index] = !serviceDaysList[index];
+              });
             },
-            textInputAction: TextInputAction.next,
+            values: serviceDaysList,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+              color: AppColors.inputText,
+            ),
+            selectedTextStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
           ),
         ),
       ],

@@ -5,7 +5,7 @@ class SaloonRegistrationData {
   String location;
   List<String> services;
   String type;
-  List<String> serviceDays;
+  List<bool> serviceDays;
   List<String> serviceTimes;
   List<OwnerDetail> ownerDetailsList;
   List<AttendeeDetail> attendeeDetailList;
@@ -19,15 +19,15 @@ class SaloonRegistrationData {
     this.location = '',
     List<String>? services,
     this.type = '',
-    List<String>? serviceDays,
+    List<bool>? serviceDays,
     List<String>? serviceTimes,
     List<OwnerDetail>? ownerDetailsList,
     List<AttendeeDetail>? attendeeDetailList,
     this.email = '',
     this.password = '',
-  })
-      : services = services ?? [],
-        serviceDays = serviceDays ?? [],
+  })  : services = services ?? [],
+        serviceDays =
+            serviceDays ?? [false, true, true, true, true, true, true],
         serviceTimes = serviceTimes ?? [],
         ownerDetailsList = ownerDetailsList ?? [],
         attendeeDetailList = attendeeDetailList ?? [];

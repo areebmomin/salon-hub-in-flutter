@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:weekday_selector/weekday_selector.dart';
 import '../../../../utils/index.dart';
 import '../cubit/saloon_registration_cubit.dart';
 
