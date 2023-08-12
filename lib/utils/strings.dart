@@ -57,8 +57,21 @@ class Strings {
   static const String enterOtp = 'Enter OTP';
   static const String addServices = 'Add services';
   static const String addOwnerDetails = 'Add owner details';
-  static const String enterCommaSeparatedServices = 'Enter comma separated services';
+  static const String enterCommaSeparatedServices =
+      'Enter comma separated services';
+  static const String open = 'Open';
+  static const String close = 'Close';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
+  static const List<String> clockHours = <String>[
+    '12 AM',
+    '3 AM',
+    '6 AM',
+    '9 AM',
+    '12 PM',
+    '3 PM',
+    '6 PM',
+    '9 PM',
+  ];
 }

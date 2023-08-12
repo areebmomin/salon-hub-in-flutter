@@ -6,7 +6,7 @@ class SaloonRegistrationData {
   List<String> services;
   String type;
   List<bool> serviceDays;
-  List<String> serviceTimes;
+  ServiceTime serviceTimes;
   List<OwnerDetail> ownerDetailsList;
   List<AttendeeDetail> attendeeDetailList;
   String email;
@@ -20,7 +20,7 @@ class SaloonRegistrationData {
     List<String>? services,
     this.type = '',
     List<bool>? serviceDays,
-    List<String>? serviceTimes,
+    ServiceTime? serviceTimes,
     List<OwnerDetail>? ownerDetailsList,
     List<AttendeeDetail>? attendeeDetailList,
     this.email = '',
@@ -28,9 +28,9 @@ class SaloonRegistrationData {
   })  : services = services ?? [],
         serviceDays =
             serviceDays ?? [false, true, true, true, true, true, true],
-        serviceTimes = serviceTimes ?? [],
-        ownerDetailsList = ownerDetailsList ?? [],
-        attendeeDetailList = attendeeDetailList ?? [];
+        serviceTimes = serviceTimes ?? ServiceTime(),
+        ownerDetailsList = ownerDetailsList ?? [OwnerDetail()],
+        attendeeDetailList = attendeeDetailList ?? [AttendeeDetail()];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -46,6 +46,29 @@ class SaloonRegistrationData {
       'attendee_detail_list': attendeeDetailList,
       'email': email,
     };
+  }
+}
+
+class ServiceTime {
+  Time startTime;
+  Time endTime;
+
+  ServiceTime({Time? startTime, Time? endTime})
+      : startTime = startTime ?? Time(hours: '10', minute: '00', period: 'AM'),
+        endTime = endTime ?? Time(hours: '20', minute: '00', period: 'PM');
+}
+
+class Time {
+  String hours;
+  String minute;
+  String period;
+
+  Time({required this.hours, required this.minute, required this.period});
+
+  void updateTime(String hours, String minute, String period) {
+    this.hours = hours;
+    this.minute = minute;
+    this.period = period;
   }
 }
 

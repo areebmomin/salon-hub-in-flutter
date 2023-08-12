@@ -38,7 +38,7 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
       return;
     }
 
-    if (data.ownerDetailsList.isEmpty) {
+    if (data.ownerDetailsList.first.name.isEmpty) {
       emit(SaloonRegistrationShowToast(message: Strings.addOwnerDetails));
       return;
     }

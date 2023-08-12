@@ -1,6 +1,8 @@
+import 'package:auth_repository/saloon_registration/models/saloon_registration_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:time_range_picker/time_range_picker.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../../../utils/index.dart';
 import '../cubit/saloon_registration_cubit.dart';
