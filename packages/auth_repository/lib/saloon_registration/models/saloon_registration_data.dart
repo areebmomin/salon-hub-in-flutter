@@ -54,21 +54,32 @@ class ServiceTime {
   Time endTime;
 
   ServiceTime({Time? startTime, Time? endTime})
-      : startTime = startTime ?? Time(hours: '10', minute: '00', period: 'AM'),
-        endTime = endTime ?? Time(hours: '20', minute: '00', period: 'PM');
+      : startTime = startTime ?? Time(hour: 10, minute: 0),
+        endTime = endTime ?? Time(hour: 20, minute: 0);
 }
 
 class Time {
-  String hours;
-  String minute;
-  String period;
+  int hour;
+  int minute;
 
-  Time({required this.hours, required this.minute, required this.period});
+  String get period => hour < 12 ? 'AM' : 'PM';
 
-  void updateTime(String hours, String minute, String period) {
-    this.hours = hours;
-    this.minute = minute;
-    this.period = period;
+  int get hourOfPeriod => hour == 0 || hour == 12 ? 12 : hour - periodOffset;
+
+  int get periodOffset => period == 'AM' ? 0 : 12;
+
+  Time({required this.hour, required this.minute});
+
+  @override
+  String toString() {
+    String addLeadingZeroIfNeeded(int value) {
+      return value < 10 ? '0$value' : value.toString();
+    }
+
+    final String hourLabel = addLeadingZeroIfNeeded(hourOfPeriod);
+    final String minuteLabel = addLeadingZeroIfNeeded(minute);
+
+    return '$hourLabel:$minuteLabel $period';
   }
 }
 
