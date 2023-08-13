@@ -86,7 +86,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                               hintText: Strings.name,
                             ),
                             onChanged: (name) {
-                              //context.read<SaloonRegistrationCubit>().data.address = name.trim();
+                              cubit.data.ownerDetailsList[e.key].name = name;
                             },
                           ),
                           SizedBox(
@@ -95,7 +95,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                               alignment: Alignment.topRight,
                               child: GestureDetector(
                                 onTap: () {
-                                  //context.read<SaloonRegistrationCubit>().data.address = address;
+                                  cubit.data.ownerDetailsList.removeAt(e.key);
                                 },
                                 child: Icon(
                                   Icons.close_rounded,
@@ -116,7 +116,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
         ),
         TextButton(
           onPressed: () {
-            //context.read<SaloonRegistrationCubit>().data.address = address;
+            cubit.data.ownerDetailsList.add(OwnerDetail());
           },
           style: TextButton.styleFrom(
             backgroundColor: AppColors.inputFieldBackground,

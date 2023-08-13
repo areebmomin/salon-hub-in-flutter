@@ -1,4 +1,7 @@
+import 'dart:io';
+
 class SaloonRegistrationData {
+  File? profilePicture;
   String businessName;
   String phoneNumber;
   String address;
@@ -13,6 +16,7 @@ class SaloonRegistrationData {
   String password;
 
   SaloonRegistrationData({
+    this.profilePicture,
     this.businessName = '',
     this.phoneNumber = '',
     this.address = '',
@@ -85,14 +89,14 @@ class Time {
 
 class OwnerDetail {
   String name;
-  String photo;
+  File? profilePicture;
 
-  OwnerDetail({this.name = '', this.photo = ''});
+  OwnerDetail({this.name = '', this.profilePicture});
 }
 
 class AttendeeDetail {
   String name;
-  String photo;
+  File? profilePicture;
 
-  AttendeeDetail({this.name = '', this.photo = ''});
+  AttendeeDetail({this.name = '', this.profilePicture});
 }

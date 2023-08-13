@@ -13,7 +13,6 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
       : super(SaloonRegistrationInitial());
 
   final SaloonRegistrationRepository saloonRegistrationRepository;
-  File? _imageFile;
   final data = SaloonRegistrationData();
   var isPhoneNumberValid = false;
 
@@ -66,8 +65,8 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
   void getPhotoFromGallery() async {
     var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      _imageFile = File(pickedFile.path);
-      emit(SaloonRegistrationPhotoSelected(profilePicture: _imageFile!));
+      data.profilePicture = File(pickedFile.path);
+      emit(SaloonRegistrationPhotoSelected(profilePicture: data.profilePicture!));
     }
   }
 
