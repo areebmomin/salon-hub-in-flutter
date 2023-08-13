@@ -10,6 +10,8 @@ class OwnerDetailsWidget extends StatefulWidget {
 class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
   @override
   Widget build(BuildContext context) {
+    SaloonRegistrationCubit cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       children: [
         Container(
@@ -36,52 +38,81 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 12),
-          child: Row(
-            children: [
-              Stack(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(Assets.userProfileDummy),
-                      radius: 40,
+        Column(
+          children: cubit.data.ownerDetailsList.asMap().entries.map(
+            (e) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 12, bottom: 12),
+                child: Row(
+                  children: [
+                    Stack(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: CircleAvatar(
+                            backgroundImage:
+                                AssetImage(Assets.userProfileDummy),
+                            radius: 40,
+                          ),
+                        ),
+                        Positioned(
+                          top: 70,
+                          left: 67,
+                          child: GestureDetector(
+                            onTap: () {
+                              //context.read<SaloonRegistrationCubit>().data.address = address;
+                            },
+                            child: const Icon(
+                              Icons.add_a_photo,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Positioned(
-                    top: 70,
-                    left: 67,
-                    child: GestureDetector(
-                      onTap: () {
-                        //context.read<SaloonRegistrationCubit>().data.address = address;
-                      },
-                      child: const Icon(
-                        Icons.add_a_photo,
-                        size: 24,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          TextField(
+                            decoration: const InputDecoration(
+                              hintStyle: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
+                                color: AppColors.inputText,
+                              ),
+                              hintText: Strings.name,
+                            ),
+                            onChanged: (name) {
+                              //context.read<SaloonRegistrationCubit>().data.address = name.trim();
+                            },
+                          ),
+                          SizedBox(
+                            height: 108,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  //context.read<SaloonRegistrationCubit>().data.address = address;
+                                },
+                                child: Icon(
+                                  Icons.close_rounded,
+                                  size: 22,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: TextField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17,
-                      color: AppColors.inputText,
-                    ),
-                    hintText: Strings.name,
-                  ),
-                  onChanged: (name) {
-                    //context.read<SaloonRegistrationCubit>().data.address = name.trim();
-                  },
+                  ],
                 ),
-              ),
-            ],
-          ),
+              );
+            },
+          ).toList(),
         ),
         TextButton(
           onPressed: () {
