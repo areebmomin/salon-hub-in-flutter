@@ -38,85 +38,78 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
             ),
           ),
         ),
-        Column(
-          children: cubit.data.ownerDetailsList.asMap().entries.map(
-            (e) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 12, bottom: 12),
-                child: Row(
-                  children: [
-                    Stack(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: CircleAvatar(
-                            backgroundImage:
-                                AssetImage(Assets.userProfileDummy),
-                            radius: 40,
-                          ),
-                        ),
-                        Positioned(
-                          top: 70,
-                          left: 67,
-                          child: GestureDetector(
-                            onTap: () {
-                              //context.read<SaloonRegistrationCubit>().data.address = address;
-                            },
-                            child: const Icon(
-                              Icons.add_a_photo,
-                              size: 24,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Stack(
-                        alignment: Alignment.center,
+        BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+          buildWhen: (previousState, state) {
+            return state is SaloonRegistrationOwnerDetailsListUpdated;
+          },
+          builder: (context, state) {
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: cubit.data.ownerDetailsList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 12, bottom: 12),
+                  child: Row(
+                    children: [
+                      Stack(
                         children: [
-                          TextField(
-                            decoration: const InputDecoration(
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 17,
-                                color: AppColors.inputText,
-                              ),
-                              hintText: Strings.name,
+                          const Padding(
+                            padding: EdgeInsets.all(8),
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage(Assets.userProfileDummy),
+                              radius: 40,
                             ),
-                            onChanged: (name) {
-                              cubit.data.ownerDetailsList[e.key].name = name;
-                            },
                           ),
-                          SizedBox(
-                            height: 108,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: GestureDetector(
-                                onTap: () {
-                                  cubit.data.ownerDetailsList.removeAt(e.key);
-                                },
-                                child: Icon(
-                                  Icons.close_rounded,
-                                  size: 22,
-                                  color: Colors.grey.shade600,
-                                ),
+                          Positioned(
+                            top: 70,
+                            left: 67,
+                            child: GestureDetector(
+                              onTap: () {
+                                //context.read<SaloonRegistrationCubit>().data.address = address;
+                              },
+                              child: const Icon(
+                                Icons.add_a_photo,
+                                size: 24,
                               ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ).toList(),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            TextField(
+                              decoration: const InputDecoration(
+                                hintStyle: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 17,
+                                  color: AppColors.inputText,
+                                ),
+                                hintText: Strings.name,
+                              ),
+                              onChanged: (name) {
+                                //cubit.data.ownerDetailsList[e.key].name = name;
+                              },
+                            ),
+                            if (index > 0) _getCloseButton(cubit, index),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
         ),
         TextButton(
           onPressed: () {
-            cubit.data.ownerDetailsList.add(OwnerDetail());
+            cubit.addNewOwner();
           },
           style: TextButton.styleFrom(
             backgroundColor: AppColors.inputFieldBackground,
@@ -128,6 +121,25 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _getCloseButton(SaloonRegistrationCubit cubit, int index) {
+    return SizedBox(
+      height: 108,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: GestureDetector(
+          onTap: () {
+            cubit.removeOwner(index);
+          },
+          child: Icon(
+            Icons.close_rounded,
+            size: 22,
+            color: Colors.grey.shade600,
+          ),
+        ),
+      ),
     );
   }
 }

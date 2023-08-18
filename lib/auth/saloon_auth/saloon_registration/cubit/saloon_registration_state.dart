@@ -62,3 +62,12 @@ class SaloonRegistrationServicesUpdated extends SaloonRegistrationState {
   @override
   List<Object> get props => [_timeStamp];
 }
+
+class SaloonRegistrationOwnerDetailsListUpdated
+    extends SaloonRegistrationState {
+  /// placeholder to distinguish from previous [UserLoginShowToast] state
+  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
+
+  @override
+  List<Object> get props => [_timeStamp];
+}

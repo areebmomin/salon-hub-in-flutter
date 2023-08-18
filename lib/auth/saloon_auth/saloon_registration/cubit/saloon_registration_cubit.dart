@@ -66,7 +66,8 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       data.profilePicture = File(pickedFile.path);
-      emit(SaloonRegistrationPhotoSelected(profilePicture: data.profilePicture!));
+      emit(SaloonRegistrationPhotoSelected(
+          profilePicture: data.profilePicture!));
     }
   }
 
@@ -76,5 +77,20 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
 
   void saloonRegistrationVerifyPageCloseButtonClicked() {
     emit(SaloonRegistrationVerifyCloseButtonClicked());
+  }
+
+  void addNewOwner() {
+    if (data.ownerDetailsList.length == 10) {
+      emit(SaloonRegistrationShowToast(message: Strings.notMoreThan10Owners));
+      return;
+    }
+
+    data.ownerDetailsList.add(OwnerDetail());
+    emit(SaloonRegistrationOwnerDetailsListUpdated());
+  }
+
+  void removeOwner(int index) {
+    data.ownerDetailsList.removeAt(index);
+    emit(SaloonRegistrationOwnerDetailsListUpdated());
   }
 }

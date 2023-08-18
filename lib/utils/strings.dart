@@ -61,6 +61,7 @@ class Strings {
       'Enter comma separated services';
   static const String open = 'Open';
   static const String close = 'Close';
+  static const String notMoreThan10Owners = 'Cannot add more than 10 owners';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
