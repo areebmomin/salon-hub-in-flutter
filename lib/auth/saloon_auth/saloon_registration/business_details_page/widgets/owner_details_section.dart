@@ -93,7 +93,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                                 hintText: Strings.name,
                               ),
                               onChanged: (name) {
-                                //cubit.data.ownerDetailsList[e.key].name = name;
+                                cubit.data.ownerDetailsList[index].name = name;
                               },
                             ),
                             if (index > 0) _getCloseButton(cubit, index),

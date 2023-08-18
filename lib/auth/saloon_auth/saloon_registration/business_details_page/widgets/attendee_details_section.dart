@@ -28,85 +28,78 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
               ),
             ),
           ),
-          Column(
-            children: cubit.data.attendeeDetailList.asMap().entries.map(
-              (e) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 12, bottom: 12),
-                  child: Row(
-                    children: [
-                      Stack(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8),
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage(Assets.userProfileDummy),
-                              radius: 40,
-                            ),
-                          ),
-                          Positioned(
-                            top: 70,
-                            left: 67,
-                            child: GestureDetector(
-                              onTap: () {
-                                //context.read<SaloonRegistrationCubit>().data.address = address;
-                              },
-                              child: const Icon(
-                                Icons.add_a_photo,
-                                size: 24,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Stack(
-                          alignment: Alignment.center,
+          BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+            buildWhen: (previousState, state) {
+              return state is SaloonRegistrationAttendeeDetailsListUpdated;
+            },
+            builder: (context, state) {
+              return ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: cubit.data.attendeeDetailList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 12, bottom: 12),
+                    child: Row(
+                      children: [
+                        Stack(
                           children: [
-                            TextField(
-                              decoration: const InputDecoration(
-                                hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 17,
-                                  color: AppColors.inputText,
-                                ),
-                                hintText: Strings.name,
+                            const Padding(
+                              padding: EdgeInsets.all(8),
+                              child: CircleAvatar(
+                                backgroundImage:
+                                    AssetImage(Assets.userProfileDummy),
+                                radius: 40,
                               ),
-                              onChanged: (name) {
-                                //context.read<SaloonRegistrationCubit>().data.address = name.trim();
-                              },
                             ),
-                            SizedBox(
-                              height: 108,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    //context.read<SaloonRegistrationCubit>().data.address = address;
-                                  },
-                                  child: Icon(
-                                    Icons.close_rounded,
-                                    size: 22,
-                                    color: Colors.grey.shade600,
-                                  ),
+                            Positioned(
+                              top: 70,
+                              left: 67,
+                              child: GestureDetector(
+                                onTap: () {
+                                  //context.read<SaloonRegistrationCubit>().data.address = address;
+                                },
+                                child: const Icon(
+                                  Icons.add_a_photo,
+                                  size: 24,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ).toList(),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              TextField(
+                                decoration: const InputDecoration(
+                                  hintStyle: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 17,
+                                    color: AppColors.inputText,
+                                  ),
+                                  hintText: Strings.name,
+                                ),
+                                onChanged: (name) {
+                                  cubit.data.attendeeDetailList[index].name = name;
+                                },
+                              ),
+                              if (index > 0) _getCloseButton(cubit, index),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
           TextButton(
             onPressed: () {
-              //context.read<SaloonRegistrationCubit>().data.address = address;
+              cubit.addNewAttendee();
             },
             style: TextButton.styleFrom(
               backgroundColor: AppColors.inputFieldBackground,
@@ -118,6 +111,25 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _getCloseButton(SaloonRegistrationCubit cubit, int index) {
+    return SizedBox(
+      height: 108,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: GestureDetector(
+          onTap: () {
+            cubit.removeAttendee(index);
+          },
+          child: Icon(
+            Icons.close_rounded,
+            size: 22,
+            color: Colors.grey.shade600,
+          ),
+        ),
       ),
     );
   }

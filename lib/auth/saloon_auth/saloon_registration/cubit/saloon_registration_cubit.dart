@@ -93,4 +93,19 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     data.ownerDetailsList.removeAt(index);
     emit(SaloonRegistrationOwnerDetailsListUpdated());
   }
+
+  void addNewAttendee() {
+    if (data.attendeeDetailList.length == 20) {
+      emit(SaloonRegistrationShowToast(message: Strings.notMoreThan20Attendee));
+      return;
+    }
+
+    data.attendeeDetailList.add(AttendeeDetail());
+    emit(SaloonRegistrationAttendeeDetailsListUpdated());
+  }
+
+  void removeAttendee(int index) {
+    data.attendeeDetailList.removeAt(index);
+    emit(SaloonRegistrationAttendeeDetailsListUpdated());
+  }
 }
