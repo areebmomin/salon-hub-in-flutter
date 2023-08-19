@@ -63,6 +63,7 @@ class Strings {
   static const String close = 'Close';
   static const String notMoreThan10Owners = 'Cannot add more than 10 owners';
   static const String notMoreThan20Attendee = 'Cannot add more than 20 attendees';
+  static const String verifyBusiness = 'Verify Business';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

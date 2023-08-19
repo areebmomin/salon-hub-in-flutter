@@ -12,7 +12,7 @@ class PasswordTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 19, top: 8),
+          padding: const EdgeInsets.only(left: 19, top: 16),
           child: RichText(
             text: const TextSpan(
               text: Strings.passcode,
@@ -56,7 +56,8 @@ class PasswordTextField extends StatelessWidget {
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              context.read<SaloonRegistrationCubit>().data.password = code.trim();
+              context.read<SaloonRegistrationCubit>().data.password =
+                  code.trim();
             },
           ),
         ),

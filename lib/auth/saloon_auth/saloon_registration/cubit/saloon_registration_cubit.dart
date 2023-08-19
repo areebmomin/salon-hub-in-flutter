@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:auth_repository/saloon_registration/models/saloon_registration_data.dart';
 import 'package:auth_repository/saloon_registration/saloon_registration_repository.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -59,6 +60,16 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
   }
 
   void registerNowButtonClicked() {
+    if (!EmailValidator.validate(data.email)) {
+      emit(SaloonRegistrationShowToast(message: Strings.enterValidEmail));
+      return;
+    }
+
+    if (data.password.length < 6) {
+      emit(SaloonRegistrationShowToast(message: Strings.enterValidPasscode));
+      return;
+    }
+
     emit(SaloonRegistrationGotoSaloonHomePage());
   }
 

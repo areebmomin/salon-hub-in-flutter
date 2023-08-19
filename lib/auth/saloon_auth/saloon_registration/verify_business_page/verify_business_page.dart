@@ -8,7 +8,7 @@ import '../cubit/saloon_registration_cubit.dart';
 
 part 'widgets/close_button.dart';
 
-part 'widgets/business_details_heading.dart';
+part 'widgets/verify_business_heading.dart';
 
 part 'widgets/email_text_field.dart';
 
@@ -28,17 +28,24 @@ class VerifyBusinessPage extends StatelessWidget {
         body: SafeArea(
           child: ScrollConfiguration(
             behavior: NoOverscrollBehaviour(),
-            child: const SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  CloseButtonWidget(),
-                  BusinessDetailsHeadingWidget(),
-                  RegisterEmailTextFieldWidget(),
-                  PasswordTextField(),
-                  RegisterNowButton(),
-                ],
-              ),
+            child: const Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CloseButtonWidget(),
+                VerifyBusinessHeadingWidget(),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      RegisterEmailTextFieldWidget(),
+                      PasswordTextField(),
+                      RegisterNowButton(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
