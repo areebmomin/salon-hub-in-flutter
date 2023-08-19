@@ -1,13 +1,8 @@
 part of '../business_details_page.dart';
 
-class OwnerDetailsWidget extends StatefulWidget {
+class OwnerDetailsWidget extends StatelessWidget {
   const OwnerDetailsWidget({super.key});
 
-  @override
-  State<OwnerDetailsWidget> createState() => _OwnerDetailsWidgetState();
-}
-
-class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     SaloonRegistrationCubit cubit = context.read<SaloonRegistrationCubit>();
@@ -55,12 +50,21 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                     children: [
                       Stack(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8),
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage(Assets.userProfileDummy),
-                              radius: 40,
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: BlocBuilder<SaloonRegistrationCubit,
+                                SaloonRegistrationState>(
+                              buildWhen: (previousState, state) {
+                                return state
+                                        is SaloonRegistrationOwnerPhotoSelected &&
+                                    state.index == index;
+                              },
+                              builder: (context, state) {
+                                return CircleAvatar(
+                                  backgroundImage: _getBackgroundImage(state),
+                                  radius: 40,
+                                );
+                              },
                             ),
                           ),
                           Positioned(
@@ -68,7 +72,7 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
                             left: 67,
                             child: GestureDetector(
                               onTap: () {
-                                //context.read<SaloonRegistrationCubit>().data.address = address;
+                                cubit.setOwnerPhoto(index);
                               },
                               child: const Icon(
                                 Icons.add_a_photo,
@@ -141,5 +145,11 @@ class _OwnerDetailsWidgetState extends State<OwnerDetailsWidget> {
         ),
       ),
     );
+  }
+
+  ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+    return state is SaloonRegistrationOwnerPhotoSelected
+        ? FileImage(state.profilePicture) as ImageProvider<Object>?
+        : const AssetImage(Assets.userProfileDummy);
   }
 }

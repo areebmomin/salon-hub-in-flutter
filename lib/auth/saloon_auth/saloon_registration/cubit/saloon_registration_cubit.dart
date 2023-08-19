@@ -62,14 +62,39 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     emit(SaloonRegistrationGotoSaloonHomePage());
   }
 
-  void getPhotoFromGallery() async {
-    var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  void setSaloonPhoto() async {
+    var pickedFile = await getPhotoFromGallery();
     if (pickedFile != null) {
       data.profilePicture = File(pickedFile.path);
       emit(SaloonRegistrationPhotoSelected(
           profilePicture: data.profilePicture!));
     }
   }
+
+  void setOwnerPhoto(int index) async {
+    var pickedFile = await getPhotoFromGallery();
+    if (pickedFile != null) {
+      data.ownerDetailsList[index].profilePicture = File(pickedFile.path);
+      emit(SaloonRegistrationOwnerPhotoSelected(
+        index: index,
+        profilePicture: data.ownerDetailsList[index].profilePicture!,
+      ));
+    }
+  }
+
+  void setAttendeePhoto(int index) async {
+    var pickedFile = await getPhotoFromGallery();
+    if (pickedFile != null) {
+      data.attendeeDetailList[index].profilePicture = File(pickedFile.path);
+      emit(SaloonRegistrationAttendeePhotoSelected(
+        index: index,
+        profilePicture: data.attendeeDetailList[index].profilePicture!,
+      ));
+    }
+  }
+
+  Future<XFile?> getPhotoFromGallery() =>
+      ImagePicker().pickImage(source: ImageSource.gallery);
 
   void saloonRegistrationPageCloseButtonClicked() {
     emit(SaloonRegistrationCloseButtonClicked());

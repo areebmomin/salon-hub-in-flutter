@@ -1,13 +1,8 @@
 part of '../business_details_page.dart';
 
-class AttendeeDetailsWidget extends StatefulWidget {
+class AttendeeDetailsWidget extends StatelessWidget {
   const AttendeeDetailsWidget({super.key});
 
-  @override
-  State<AttendeeDetailsWidget> createState() => _AttendeeDetailsWidgetState();
-}
-
-class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     SaloonRegistrationCubit cubit = context.read<SaloonRegistrationCubit>();
@@ -45,12 +40,21 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                       children: [
                         Stack(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8),
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage(Assets.userProfileDummy),
-                                radius: 40,
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: BlocBuilder<SaloonRegistrationCubit,
+                                  SaloonRegistrationState>(
+                                buildWhen: (previousState, state) {
+                                  return state
+                                          is SaloonRegistrationAttendeePhotoSelected &&
+                                      state.index == index;
+                                },
+                                builder: (context, state) {
+                                  return CircleAvatar(
+                                    backgroundImage: _getBackgroundImage(state),
+                                    radius: 40,
+                                  );
+                                },
                               ),
                             ),
                             Positioned(
@@ -58,7 +62,7 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                               left: 67,
                               child: GestureDetector(
                                 onTap: () {
-                                  //context.read<SaloonRegistrationCubit>().data.address = address;
+                                  cubit.setAttendeePhoto(index);
                                 },
                                 child: const Icon(
                                   Icons.add_a_photo,
@@ -83,7 +87,8 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
                                   hintText: Strings.name,
                                 ),
                                 onChanged: (name) {
-                                  cubit.data.attendeeDetailList[index].name = name;
+                                  cubit.data.attendeeDetailList[index].name =
+                                      name;
                                 },
                               ),
                               if (index > 0) _getCloseButton(cubit, index),
@@ -132,5 +137,11 @@ class _AttendeeDetailsWidgetState extends State<AttendeeDetailsWidget> {
         ),
       ),
     );
+  }
+
+  ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+    return state is SaloonRegistrationAttendeePhotoSelected
+        ? FileImage(state.profilePicture) as ImageProvider<Object>?
+        : const AssetImage(Assets.userProfileDummy);
   }
 }

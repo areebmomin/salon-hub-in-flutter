@@ -51,9 +51,7 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context
-                          .read<SaloonRegistrationCubit>()
-                          .getPhotoFromGallery();
+                      context.read<SaloonRegistrationCubit>().setSaloonPhoto();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,

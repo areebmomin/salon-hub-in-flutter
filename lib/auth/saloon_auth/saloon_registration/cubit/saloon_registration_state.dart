@@ -34,6 +34,32 @@ class SaloonRegistrationPhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
+class SaloonRegistrationOwnerPhotoSelected extends SaloonRegistrationState {
+  final File profilePicture;
+  final int index;
+
+  const SaloonRegistrationOwnerPhotoSelected({
+    required this.index,
+    required this.profilePicture,
+  });
+
+  @override
+  List<Object> get props => [profilePicture];
+}
+
+class SaloonRegistrationAttendeePhotoSelected extends SaloonRegistrationState {
+  final File profilePicture;
+  final int index;
+
+  const SaloonRegistrationAttendeePhotoSelected({
+    required this.index,
+    required this.profilePicture,
+  });
+
+  @override
+  List<Object> get props => [profilePicture];
+}
+
 class SaloonRegistrationCloseButtonClicked extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
