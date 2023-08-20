@@ -15,7 +15,7 @@ class _ServiceTimeTextFieldWidgetState
   @override
   Widget build(BuildContext context) {
     ServiceTime serviceTime =
-        context.read<SaloonRegistrationCubit>().data.serviceTimes;
+        context.read<SaloonRegistrationCubit>().data.serviceTime;
 
     _updateTextFieldText(serviceTime);
 

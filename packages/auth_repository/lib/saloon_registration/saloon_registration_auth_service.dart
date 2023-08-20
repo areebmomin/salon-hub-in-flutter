@@ -3,12 +3,12 @@ part of 'saloon_registration_repository.dart';
 class FirebaseSaloonRegistrationAuthService
     implements SaloonRegistrationAuthService {
   @override
-  Future<void> registerUserWithEmailAndPassword({
+  Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      return await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -21,7 +21,7 @@ class FirebaseSaloonRegistrationAuthService
 }
 
 abstract class SaloonRegistrationAuthService {
-  Future<void> registerUserWithEmailAndPassword({
+  Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
     required String password,
   });

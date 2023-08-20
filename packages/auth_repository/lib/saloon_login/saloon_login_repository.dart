@@ -5,7 +5,8 @@ part 'login_with_email_password_exceptions.dart';
 part 'saloon_login_auth_service.dart';
 
 class FirebaseSaloonLoginRepository implements SaloonLoginRepository {
-  var saloonLoginAuthService = FirebaseSaloonLoginAuthService();
+  late final SaloonLoginAuthService saloonLoginAuthService =
+      FirebaseSaloonLoginAuthService();
 
   @override
   Future<void> loginWithEmailAndPassword({

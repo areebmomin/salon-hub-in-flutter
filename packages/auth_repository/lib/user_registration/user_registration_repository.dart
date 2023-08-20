@@ -19,7 +19,7 @@ class FirebaseUserRegistrationRepository implements UserRegistrationRepository {
   ) async* {
     try {
       await _databaseService.addNewUserData(data, uid);
-      if(imageFile != null) {
+      if (imageFile != null) {
         await _storageService.uploadUserProfilePicture(imageFile, uid);
       }
       yield UserRegistrationRepositorySuccess();
