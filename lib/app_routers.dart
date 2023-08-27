@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:saloon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
 import 'package:saloon_hub/utils/index.dart';
 import 'auth/login_page.dart';
-import 'auth/saloon_auth/saloon_registration/business_details_page/business_details_page.dart';
 import 'auth/saloon_auth/saloon_registration/saloon_registration_flow.dart';
 import 'saloon/saloon_home_page.dart';
 import 'user/user_home_page.dart';

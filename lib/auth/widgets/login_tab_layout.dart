@@ -70,19 +70,19 @@ class LoginTab extends StatelessWidget {
               height: 68,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: getBackgroundColor(),
+                color: _getBackgroundColor(),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(getCustomerTabRadius()),
-                  topRight: Radius.circular(getSalonTabRadius()),
-                  bottomLeft: Radius.circular(getCustomerTabRadius()),
-                  bottomRight: Radius.circular(getSalonTabRadius()),
+                  topLeft: Radius.circular(_getCustomerTabRadius()),
+                  topRight: Radius.circular(_getSalonTabRadius()),
+                  bottomLeft: Radius.circular(_getCustomerTabRadius()),
+                  bottomRight: Radius.circular(_getSalonTabRadius()),
                 ),
               ),
               child: Center(
                 child: Text(
-                  getTabText(),
+                  _getTabText(),
                   style: TextStyle(
-                    color: getTextColor(),
+                    color: _getTextColor(),
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -93,7 +93,7 @@ class LoginTab extends StatelessWidget {
           Center(
             child: CustomPaint(
               painter: TrianglePainter(
-                strokeColor: getTriangleColor(),
+                strokeColor: _getTriangleColor(),
                 strokeWidth: 10,
                 paintingStyle: PaintingStyle.fill,
               ),
@@ -108,21 +108,21 @@ class LoginTab extends StatelessWidget {
     );
   }
 
-  Color getBackgroundColor() {
+  Color _getBackgroundColor() {
     return isSelected
         ? AppColors.headingTextColor
         : AppColors.unSelectedTabBackground;
   }
 
-  double getCustomerTabRadius() {
+  double _getCustomerTabRadius() {
     return tabType == TabType.customerTab ? 10 : 0;
   }
 
-  double getSalonTabRadius() {
+  double _getSalonTabRadius() {
     return tabType == TabType.salonTab ? 10 : 0;
   }
 
-  String getTabText() {
+  String _getTabText() {
     switch (tabType) {
       case TabType.customerTab:
         return Strings.iAmCustomer;
@@ -131,11 +131,11 @@ class LoginTab extends StatelessWidget {
     }
   }
 
-  Color getTextColor() {
+  Color _getTextColor() {
     return isSelected ? Colors.white : AppColors.headingTextColor;
   }
 
-  Color getTriangleColor() {
+  Color _getTriangleColor() {
     return isSelected ? AppColors.headingTextColor : Colors.transparent;
   }
 }
@@ -157,10 +157,10 @@ class TrianglePainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = paintingStyle;
 
-    canvas.drawPath(getTrianglePath(size.width, size.height), paint);
+    canvas.drawPath(_getTrianglePath(size.width, size.height), paint);
   }
 
-  Path getTrianglePath(double x, double y) {
+  Path _getTrianglePath(double x, double y) {
     return Path()
       ..moveTo(0, 0)
       ..lineTo(x, 0)
