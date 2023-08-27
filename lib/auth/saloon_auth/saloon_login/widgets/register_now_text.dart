@@ -1,7 +1,7 @@
 part of '../salon_login_page.dart';
 
-class RegisterNowTextWidget extends StatelessWidget {
-  const RegisterNowTextWidget({super.key});
+class RegisterNowText extends StatelessWidget {
+  const RegisterNowText({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,8 @@ class RegisterNowTextWidget extends StatelessWidget {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.pushNamed(context, Routes.saloonRegistrationFlowStartPage);
+                  Navigator.pushNamed(
+                      context, Routes.saloonRegistrationFlowStartPage);
                 },
             ),
           ],

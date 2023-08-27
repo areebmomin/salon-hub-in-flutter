@@ -1,10 +1,11 @@
 part of '../salon_login_page.dart';
 
-class PasswordTextFieldWidget extends StatelessWidget {
-  const PasswordTextFieldWidget({super.key});
+class PasswordTextField extends StatelessWidget {
+  const PasswordTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<SaloonLoginCubit>();
     var screenWidth = MediaQuery.of(context).size.width;
     var otpBoxWidth = (screenWidth - 19 - 19 - (4 * 5)) / 6;
 
@@ -24,7 +25,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
         ),
         Padding(
           padding:
-          const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
           child: OTPTextField(
             length: 6,
             fieldWidth: otpBoxWidth,
@@ -41,9 +42,9 @@ class PasswordTextFieldWidget extends StatelessWidget {
               fontSize: 17,
             ),
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              context.read<SaloonLoginCubit>().password = code.trim();
+              cubit.password = code.trim();
             },
           ),
         ),
@@ -51,7 +52,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.only(right: 18),
           child: GestureDetector(
             onTap: () {
-              context.read<SaloonLoginCubit>().forgotPasscodeButtonClicked();
+              cubit.forgotPasscodeButtonClicked();
             },
             child: const Text(
               Strings.forgotPasscode,

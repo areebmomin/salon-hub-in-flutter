@@ -4,33 +4,32 @@ abstract class SaloonLoginState extends Equatable {
   const SaloonLoginState();
 }
 
-class SaloonLoginInitial extends SaloonLoginState {
+class Initial extends SaloonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonLoginLoading extends SaloonLoginState {
+class Loading extends SaloonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonLoginSuccess extends SaloonLoginState {
+class Success extends SaloonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonLoginFailure extends SaloonLoginState {
+class Failure extends SaloonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonLoginShowToast extends SaloonLoginState {
-
+class ShowToast extends SaloonLoginState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  SaloonLoginShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, _timeStamp];

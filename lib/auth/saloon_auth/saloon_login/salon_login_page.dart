@@ -6,7 +6,6 @@ import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:saloon_hub/utils/index.dart';
 import 'package:flutter/gestures.dart';
-
 import 'cubit/saloon_login_cubit.dart';
 
 part 'widgets/email_text_field.dart';
@@ -24,10 +23,10 @@ class SalonLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SaloonLoginCubit, SaloonLoginState>(
       listener: (context, state) {
-        if (state is SaloonLoginShowToast) {
+        if (state is ShowToast) {
           Fluttertoast.showToast(
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
-        } else if (state is SaloonLoginSuccess) {
+        } else if (state is Success) {
           // Navigate to Home page
           Navigator.pushReplacementNamed(context, Routes.saloonHomePage);
         }
@@ -36,10 +35,10 @@ class SalonLoginWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          EmailTextFieldWidget(),
-          PasswordTextFieldWidget(),
-          LoginButtonWidget(),
-          RegisterNowTextWidget(),
+          EmailTextField(),
+          PasswordTextField(),
+          LoginButton(),
+          RegisterNowText(),
         ],
       ),
     );

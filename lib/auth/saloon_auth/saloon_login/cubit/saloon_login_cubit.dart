@@ -7,7 +7,7 @@ import '../../../../utils/strings.dart';
 part 'saloon_login_state.dart';
 
 class SaloonLoginCubit extends Cubit<SaloonLoginState> {
-  SaloonLoginCubit(this._saloonLoginRepository) : super(SaloonLoginInitial());
+  SaloonLoginCubit(this._saloonLoginRepository) : super(Initial());
 
   final SaloonLoginRepository _saloonLoginRepository;
   var _email = '';
@@ -18,43 +18,43 @@ class SaloonLoginCubit extends Cubit<SaloonLoginState> {
   set password(String password) => _password = password;
 
   Future<void> loginButtonClicked() async {
-    if (state is SaloonLoginLoading) return;
+    if (state is Loading) return;
 
     if (!EmailValidator.validate(_email)) {
-      emit(SaloonLoginShowToast(message: Strings.enterValidEmail));
+      emit(ShowToast(message: Strings.enterValidEmail));
       return;
     }
 
     if (_password.length < 6) {
-      emit(SaloonLoginShowToast(message: Strings.enterValidPasscode));
+      emit(ShowToast(message: Strings.enterValidPasscode));
       return;
     }
 
-    emit(SaloonLoginLoading());
+    emit(Loading());
 
     try {
       await _saloonLoginRepository.loginWithEmailAndPassword(
         email: _email,
         password: _password,
       );
-      emit(SaloonLoginSuccess());
+      emit(Success());
     } on LogInWithEmailAndPasswordFailure catch (e) {
-      emit(SaloonLoginFailure());
-      emit(SaloonLoginShowToast(message: e.message));
+      emit(Failure());
+      emit(ShowToast(message: e.message));
     }
   }
 
   void forgotPasscodeButtonClicked() async {
     if (!EmailValidator.validate(_email)) {
-      emit(SaloonLoginShowToast(message: Strings.enterValidEmail));
+      emit(ShowToast(message: Strings.enterValidEmail));
       return;
     }
 
     try {
       await _saloonLoginRepository.sendPasswordResetEmail(email: _email);
-      emit(SaloonLoginShowToast(message: Strings.resetEmailLinkSent));
+      emit(ShowToast(message: Strings.resetEmailLinkSent));
     } catch (e) {
-      emit(SaloonLoginShowToast(message: e.toString()));
+      emit(ShowToast(message: e.toString()));
     }
   }
 }

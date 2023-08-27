@@ -1,10 +1,12 @@
 part of '../salon_login_page.dart';
 
-class EmailTextFieldWidget extends StatelessWidget {
-  const EmailTextFieldWidget({super.key});
+class EmailTextField extends StatelessWidget {
+  const EmailTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<SaloonLoginCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -45,7 +47,7 @@ class EmailTextFieldWidget extends StatelessWidget {
               ),
               suffixIcon: Icon(Icons.email),
               contentPadding:
-              EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
@@ -54,7 +56,7 @@ class EmailTextFieldWidget extends StatelessWidget {
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              context.read<SaloonLoginCubit>().email = email;
+              cubit.email = email;
             },
             textInputAction: TextInputAction.next,
           ),
