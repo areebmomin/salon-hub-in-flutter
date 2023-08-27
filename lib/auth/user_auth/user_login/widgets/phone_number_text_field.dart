@@ -1,10 +1,12 @@
 part of '../user_login_page.dart';
 
-class PhoneNumberTextFieldWidget extends StatelessWidget {
-  const PhoneNumberTextFieldWidget({super.key});
+class PhoneNumberTextField extends StatelessWidget {
+  const PhoneNumberTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserLoginCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -24,11 +26,10 @@ class PhoneNumberTextFieldWidget extends StatelessWidget {
               const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              context.read<UserLoginCubit>().phoneNumber =
-                  number.phoneNumber ?? '';
+              cubit.phoneNumber = number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              context.read<UserLoginCubit>().isPhoneNumberValid = isValid;
+              cubit.isPhoneNumberValid = isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,

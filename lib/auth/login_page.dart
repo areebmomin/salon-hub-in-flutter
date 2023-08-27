@@ -3,10 +3,10 @@ import 'package:auth_repository/user_login/user_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_login/cubit/saloon_login_cubit.dart';
-import 'package:saloon_hub/auth/user_auth/index.dart';
 import 'package:saloon_hub/auth/user_auth/user_login/cubit/user_login_cubit.dart';
 import '../utils/index.dart';
 import 'saloon_auth/saloon_login/salon_login_page.dart';
+import 'user_auth/user_login/user_login_page.dart';
 
 part 'widgets/saloon_hub_toolbar.dart';
 
@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     SaloonHubToolbar(),
                     LoginHeading(),
-                    TabLayoutAndLoginWidget(),
+                    TabLayoutAndLogin(),
                   ],
                 ),
               ),

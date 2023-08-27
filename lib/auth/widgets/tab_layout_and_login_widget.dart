@@ -1,14 +1,13 @@
 part of '../login_page.dart';
 
-class TabLayoutAndLoginWidget extends StatefulWidget {
-  const TabLayoutAndLoginWidget({super.key});
+class TabLayoutAndLogin extends StatefulWidget {
+  const TabLayoutAndLogin({super.key});
 
   @override
-  State<TabLayoutAndLoginWidget> createState() =>
-      _TabLayoutAndLoginWidgetState();
+  State<TabLayoutAndLogin> createState() => _TabLayoutAndLoginState();
 }
 
-class _TabLayoutAndLoginWidgetState extends State<TabLayoutAndLoginWidget> {
+class _TabLayoutAndLoginState extends State<TabLayoutAndLogin> {
   TabType selectedTab = TabType.customerTab;
   final _userLoginWidget = const UserLoginWidget();
   final _salonLoginWidget = const SalonLoginWidget();

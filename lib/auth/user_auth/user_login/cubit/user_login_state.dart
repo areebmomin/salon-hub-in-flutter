@@ -4,39 +4,38 @@ abstract class UserLoginState extends Equatable {
   const UserLoginState();
 }
 
-class UserLoginInitial extends UserLoginState {
+class Initial extends UserLoginState {
   @override
   List<Object> get props => [];
 }
 
-class UserLoginShowToast extends UserLoginState {
-
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
+class ShowToast extends UserLoginState {
+  /// placeholder to distinguish from previous [ShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  UserLoginShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, _timeStamp];
 }
 
-class UserLoginLoading extends UserLoginState {
+class Loading extends UserLoginState {
   @override
   List<Object> get props => [];
 }
 
-class UserLoginSuccess extends UserLoginState {
+class Success extends UserLoginState {
   @override
   List<Object> get props => [];
 }
 
-class UserLoginOtpSent extends UserLoginState {
+class OtpSent extends UserLoginState {
   @override
   List<Object> get props => [];
 }
 
-class UserLoginOtpTimeout extends UserLoginState {
+class OtpTimeout extends UserLoginState {
   @override
   List<Object> get props => [];
 }

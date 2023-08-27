@@ -24,10 +24,10 @@ class UserLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<UserLoginCubit, UserLoginState>(
       listener: (context, state) {
-        if (state is UserLoginShowToast) {
+        if (state is ShowToast) {
           Fluttertoast.showToast(
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
-        } else if (state is UserLoginSuccess) {
+        } else if (state is Success) {
           // Navigate to Home page
           Navigator.pushReplacementNamed(context, Routes.userHomePage);
         }
@@ -36,10 +36,10 @@ class UserLoginWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          PhoneNumberTextFieldWidget(),
-          OtpTextFieldWidget(),
-          LoginButtonWidget(),
-          RegisterNowTextWidget(),
+          PhoneNumberTextField(),
+          OtpTextField(),
+          LoginButton(),
+          RegisterNowText(),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 part of '../user_login_page.dart';
 
-class RegisterNowTextWidget extends StatelessWidget {
-  const RegisterNowTextWidget({super.key});
+class RegisterNowText extends StatelessWidget {
+  const RegisterNowText({super.key});
 
   @override
   Widget build(BuildContext context) {

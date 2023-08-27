@@ -6,7 +6,7 @@ import '../../../../utils/strings.dart';
 part 'user_login_state.dart';
 
 class UserLoginCubit extends Cubit<UserLoginState> {
-  UserLoginCubit(this._userLoginRepository) : super(UserLoginInitial()) {
+  UserLoginCubit(this._userLoginRepository) : super(Initial()) {
     _userLoginRepository.status.listen(loginStatusListener);
   }
 
@@ -27,21 +27,21 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void loginStatusListener(VerifyPhoneNumberState event) {
     if (event is VerifyPhoneNumberCompleted) {
-      emit(UserLoginSuccess());
+      emit(Success());
     } else if (event is VerifyPhoneNumberFailed) {
-      emit(UserLoginShowToast(message: event.message));
+      emit(ShowToast(message: event.message));
     } else if (event is VerifyPhoneNumberCodeSent) {
       _isOtpSent = true;
-      emit(UserLoginOtpSent());
+      emit(OtpSent());
     } else if (event is VerifyPhoneNumberTimeout) {
       _isOtpSent = false;
-      emit(UserLoginOtpTimeout());
-      emit(UserLoginShowToast(message: Strings.otpTimeout));
+      emit(OtpTimeout());
+      emit(ShowToast(message: Strings.otpTimeout));
     }
   }
 
   void loginButtonClicked() {
-    if (state is UserLoginLoading) return;
+    if (state is Loading) return;
 
     if (_isOtpSent) {
       _verifyOtp();
@@ -52,11 +52,11 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void _verifyPhoneNumber() {
     if (!_isPhoneNumberValid) {
-      emit(UserLoginShowToast(message: Strings.enterValidPhoneNumber));
+      emit(ShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
-    emit(UserLoginLoading());
+    emit(Loading());
 
     // verify phone number and send OTP
     _userLoginRepository.verifyPhoneNumber(phoneNumber: _phoneNumber);
@@ -64,11 +64,11 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void _verifyOtp() {
     if (_otp.length < 6) {
-      emit(UserLoginShowToast(message: Strings.enterValidOtp));
+      emit(ShowToast(message: Strings.enterValidOtp));
       return;
     }
 
-    emit(UserLoginLoading());
+    emit(Loading());
 
     // verify OTP and login user
     _userLoginRepository.signInWithCredential(smsCode: _otp);

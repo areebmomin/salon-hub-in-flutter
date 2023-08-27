@@ -1,15 +1,17 @@
 part of '../user_login_page.dart';
 
-class LoginButtonWidget extends StatelessWidget {
-  const LoginButtonWidget({super.key});
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserLoginCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          context.read<UserLoginCubit>().loginButtonClicked();
+          cubit.loginButtonClicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
@@ -17,13 +19,11 @@ class LoginButtonWidget extends StatelessWidget {
         ),
         child: BlocBuilder<UserLoginCubit, UserLoginState>(
           builder: (context, state) {
-            if (state is UserLoginLoading) {
+            if (state is Loading) {
               return const CircularProgressIndicator(color: Colors.white);
             } else {
               return Text(
-                context.read<UserLoginCubit>().isOtpSent
-                    ? Strings.verifyOtp
-                    : Strings.getOtp,
+                cubit.isOtpSent ? Strings.verifyOtp : Strings.getOtp,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
