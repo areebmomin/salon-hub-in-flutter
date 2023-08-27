@@ -4,66 +4,66 @@ abstract class UserRegistrationState extends Equatable {
   const UserRegistrationState();
 }
 
-class UserRegistrationInitial extends UserRegistrationState {
+class Initial extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationShowToast extends UserRegistrationState {
+class ShowToast extends UserRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  UserRegistrationShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, _timeStamp];
 }
 
-class UserRegistrationLoading extends UserRegistrationState {
+class Loading extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationOtpLoading extends UserRegistrationState {
+class OtpLoading extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationTermsAndCondition extends UserRegistrationState {
+class TermsAndCondition extends UserRegistrationState {
   final bool isChecked;
 
-  const UserRegistrationTermsAndCondition({required this.isChecked});
+  const TermsAndCondition({required this.isChecked});
 
   @override
   List<Object> get props => [isChecked];
 }
 
-class UserRegistrationOpenOtpPage extends UserRegistrationState {
+class OpenOtpPage extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationGotoUserHomePage extends UserRegistrationState {
+class GotoUserHomePage extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationPhotoSelected extends UserRegistrationState {
+class PhotoSelected extends UserRegistrationState {
   final File profilePicture;
 
-  const UserRegistrationPhotoSelected({required this.profilePicture});
+  const PhotoSelected({required this.profilePicture});
 
   @override
   List<Object> get props => [profilePicture];
 }
 
-class UserRegistrationCloseButtonClicked extends UserRegistrationState {
+class CloseButtonClicked extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class UserRegistrationOtpCloseButtonClicked extends UserRegistrationState {
+class OtpCloseButtonClicked extends UserRegistrationState {
   @override
   List<Object> get props => [];
 }

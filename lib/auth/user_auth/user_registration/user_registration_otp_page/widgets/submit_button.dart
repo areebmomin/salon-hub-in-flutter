@@ -5,11 +5,13 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          context.read<UserRegistrationCubit>().onSubmitButtonClicked();
+          cubit.onSubmitButtonClicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
@@ -20,7 +22,7 @@ class SubmitButton extends StatelessWidget {
         ),
         child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
           builder: (context, state) {
-            if (state is UserRegistrationOtpLoading) {
+            if (state is OtpLoading) {
               return const CircularProgressIndicator(color: Colors.white);
             } else {
               return const Text(

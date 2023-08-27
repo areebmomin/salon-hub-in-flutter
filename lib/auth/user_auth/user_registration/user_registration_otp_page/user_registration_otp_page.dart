@@ -15,8 +15,7 @@ part 'widgets/submit_button.dart';
 part 'widgets/close_button.dart';
 
 class UserRegistrationOtpPage extends StatelessWidget {
-
-  const UserRegistrationOtpPage({super.key,});
+  const UserRegistrationOtpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +28,8 @@ class UserRegistrationOtpPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
-              CloseButtonWidget(),
-              HeadingVerifyOtpWidget(),
+              CloseButton(),
+              HeadingVerifyOtp(),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

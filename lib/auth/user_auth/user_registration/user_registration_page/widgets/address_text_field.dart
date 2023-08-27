@@ -1,15 +1,12 @@
 part of '../user_registration_page.dart';
 
-class AddressTextFieldWidget extends StatefulWidget {
-  const AddressTextFieldWidget({super.key});
+class AddressTextField extends StatelessWidget {
+  const AddressTextField({super.key});
 
-  @override
-  State<AddressTextFieldWidget> createState() => _AddressTextFieldWidgetState();
-}
-
-class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -71,8 +68,7 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
             ),
             keyboardType: TextInputType.streetAddress,
             onChanged: (address) {
-              context.read<UserRegistrationCubit>().data.address =
-                  address.trim();
+              cubit.data.address = address.trim();
             },
           ),
         ),

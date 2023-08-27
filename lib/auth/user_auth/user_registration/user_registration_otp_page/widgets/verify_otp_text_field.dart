@@ -5,6 +5,7 @@ class VerifyOtpTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
     var screenWidth = MediaQuery.of(context).size.width;
     var otpBoxWidth = (screenWidth - 19 - 19 - (4 * 5)) / 6;
 
@@ -24,7 +25,7 @@ class VerifyOtpTextField extends StatelessWidget {
         ),
         Padding(
           padding:
-          const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 20),
+              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 20),
           child: OTPTextField(
             length: 6,
             fieldWidth: otpBoxWidth,
@@ -42,9 +43,9 @@ class VerifyOtpTextField extends StatelessWidget {
               fontSize: 17,
             ),
             contentPadding:
-            const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+                const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {
-              context.read<UserRegistrationCubit>().otp = code.trim();
+              cubit.otp = code.trim();
             },
           ),
         ),

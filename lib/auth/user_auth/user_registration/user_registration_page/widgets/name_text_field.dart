@@ -1,15 +1,12 @@
 part of '../user_registration_page.dart';
 
-class NameTextFieldWidget extends StatefulWidget {
-  const NameTextFieldWidget({super.key});
+class NameTextField extends StatelessWidget {
+  const NameTextField({super.key});
 
-  @override
-  State<NameTextFieldWidget> createState() => _NameTextFieldWidgetState();
-}
-
-class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -71,7 +68,7 @@ class _NameTextFieldWidgetState extends State<NameTextFieldWidget> {
             ),
             keyboardType: TextInputType.name,
             onChanged: (name) {
-              context.read<UserRegistrationCubit>().data.name = name.trim();
+              cubit.data.name = name.trim();
             },
             textInputAction: TextInputAction.next,
           ),

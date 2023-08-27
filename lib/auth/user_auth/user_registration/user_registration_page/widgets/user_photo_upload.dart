@@ -1,15 +1,12 @@
 part of '../user_registration_page.dart';
 
-class UserPhotoUploadWidget extends StatefulWidget {
-  const UserPhotoUploadWidget({super.key});
+class UserPhotoUpload extends StatelessWidget {
+  const UserPhotoUpload({super.key});
 
-  @override
-  State<UserPhotoUploadWidget> createState() => _UserPhotoUploadWidgetState();
-}
-
-class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
@@ -17,7 +14,7 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
         children: [
           BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
             buildWhen: (previousState, state) {
-              return state is UserRegistrationPhotoSelected;
+              return state is PhotoSelected;
             },
             builder: (context, state) {
               return CircleAvatar(
@@ -48,9 +45,7 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
                   const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {
-                      context
-                          .read<UserRegistrationCubit>()
-                          .getPhotoFromGallery();
+                      cubit.getPhotoFromGallery();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
@@ -82,7 +77,7 @@ class _UserPhotoUploadWidgetState extends State<UserPhotoUploadWidget> {
   }
 
   ImageProvider<Object>? _getBackgroundImage(UserRegistrationState state) {
-    return state is UserRegistrationPhotoSelected
+    return state is PhotoSelected
         ? FileImage(state.profilePicture) as ImageProvider<Object>?
         : const AssetImage(Assets.userProfileDummy);
   }

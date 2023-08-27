@@ -68,21 +68,21 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
         ),
         child: BlocListener<UserRegistrationCubit, UserRegistrationState>(
           listener: (context, state) {
-            if (state is UserRegistrationShowToast) {
+            if (state is ShowToast) {
               Fluttertoast.showToast(
                   msg: state.message, toastLength: Toast.LENGTH_SHORT);
-            } else if (state is UserRegistrationOpenOtpPage) {
+            } else if (state is OpenOtpPage) {
               _navigatorKey.currentState
                   ?.pushNamed(Routes.userRegistrationOtpPage);
-            } else if (state is UserRegistrationGotoUserHomePage) {
+            } else if (state is GotoUserHomePage) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 Routes.userHomePage,
                 (route) => false,
               );
-            } else if (state is UserRegistrationCloseButtonClicked) {
+            } else if (state is CloseButtonClicked) {
               onRegistrationPageCloseButtonClicked();
-            } else if (state is UserRegistrationOtpCloseButtonClicked) {
+            } else if (state is OtpCloseButtonClicked) {
               onOtpPageCloseButtonClicked();
             }
           },

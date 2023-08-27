@@ -23,7 +23,6 @@ part 'widgets/terms_and_conditions_checkbox.dart';
 part 'widgets/user_photo_upload.dart';
 
 class UserRegistrationPage extends StatelessWidget {
-
   const UserRegistrationPage({super.key});
 
   @override
@@ -39,15 +38,15 @@ class UserRegistrationPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CloseButtonWidget(),
-                  RegisterNowHeadingWidget(),
-                  UserPhotoUploadWidget(),
-                  NameTextFieldWidget(),
-                  RegisterPhoneNumberTextFieldWidget(),
-                  EmailTextFieldWidget(),
-                  AddressTextFieldWidget(),
-                  TermsAndConditionCheckboxWidget(),
-                  RegisterNowButtonWidget(),
+                  CloseButton(),
+                  RegisterNowHeading(),
+                  UserPhotoUpload(),
+                  NameTextField(),
+                  RegisterPhoneNumberTextField(),
+                  EmailTextField(),
+                  AddressTextField(),
+                  TermsAndConditionCheckbox(),
+                  RegisterNowButton(),
                 ],
               ),
             ),
@@ -57,6 +56,3 @@ class UserRegistrationPage extends StatelessWidget {
     );
   }
 }
-
-// Navigator.pushNamed(
-// context, Routes.userRegistrationOtpPage);

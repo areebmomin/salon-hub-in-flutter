@@ -1,7 +1,7 @@
 part of '../user_registration_page.dart';
 
-class RegisterNowHeadingWidget extends StatelessWidget {
-  const RegisterNowHeadingWidget({super.key});
+class RegisterNowHeading extends StatelessWidget {
+  const RegisterNowHeading({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,17 @@
 part of '../user_registration_page.dart';
 
-class RegisterNowButtonWidget extends StatelessWidget {
-  const RegisterNowButtonWidget({super.key});
+class RegisterNowButton extends StatelessWidget {
+  const RegisterNowButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          context.read<UserRegistrationCubit>().onRegisterButtonCLicked();
+          cubit.onRegisterButtonCLicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
@@ -20,7 +22,7 @@ class RegisterNowButtonWidget extends StatelessWidget {
         ),
         child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
           builder: (context, state) {
-            if (state is UserRegistrationLoading) {
+            if (state is Loading) {
               return const CircularProgressIndicator(color: Colors.white);
             } else {
               return const Text(

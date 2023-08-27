@@ -1,15 +1,12 @@
 part of '../user_registration_page.dart';
 
-class EmailTextFieldWidget extends StatefulWidget {
-  const EmailTextFieldWidget({super.key});
+class EmailTextField extends StatelessWidget {
+  const EmailTextField({super.key});
 
-  @override
-  State<EmailTextFieldWidget> createState() => _EmailTextFieldWidgetState();
-}
-
-class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -59,7 +56,7 @@ class _EmailTextFieldWidgetState extends State<EmailTextFieldWidget> {
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              context.read<UserRegistrationCubit>().data.email = email.trim();
+              cubit.data.email = email.trim();
             },
             textInputAction: TextInputAction.next,
           ),

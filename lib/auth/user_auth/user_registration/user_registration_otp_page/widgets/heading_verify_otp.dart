@@ -1,7 +1,7 @@
 part of '../user_registration_otp_page.dart';
 
-class HeadingVerifyOtpWidget extends StatelessWidget {
-  const HeadingVerifyOtpWidget({super.key});
+class HeadingVerifyOtp extends StatelessWidget {
+  const HeadingVerifyOtp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,38 +1,28 @@
 part of '../user_registration_page.dart';
 
-class TermsAndConditionCheckboxWidget extends StatefulWidget {
-  const TermsAndConditionCheckboxWidget({super.key});
+class TermsAndConditionCheckbox extends StatelessWidget {
+  const TermsAndConditionCheckbox({super.key});
 
-  @override
-  State<TermsAndConditionCheckboxWidget> createState() =>
-      _TermsAndConditionCheckboxWidgetState();
-}
-
-class _TermsAndConditionCheckboxWidgetState
-    extends State<TermsAndConditionCheckboxWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserRegistrationCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 10, top: 8),
       child: Row(
         children: [
           BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
             buildWhen: (previousState, state) {
-              return state is UserRegistrationTermsAndCondition;
+              return state is TermsAndCondition;
             },
             builder: (context, state) {
               return Checkbox(
-                value: context
-                    .read<UserRegistrationCubit>()
-                    .data
-                    .isTermsAndConditionAccepted,
+                value: cubit.data.isTermsAndConditionAccepted,
                 onChanged: (value) {
-                  context
-                      .read<UserRegistrationCubit>()
-                      .isTermsAndConditionAccepted = value ?? false;
+                  cubit.isTermsAndConditionAccepted = value ?? false;
                 },
                 checkColor: Colors.white,
-                fillColor: MaterialStateProperty.resolveWith(getColor),
+                fillColor: MaterialStateProperty.resolveWith(_getColor),
               );
             },
           ),
@@ -49,7 +39,7 @@ class _TermsAndConditionCheckboxWidgetState
     );
   }
 
-  Color getColor(Set<MaterialState> states) {
+  Color _getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.selected
     };
