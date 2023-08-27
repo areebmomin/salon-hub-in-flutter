@@ -51,7 +51,7 @@ class PasswordTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.only(right: 18),
           child: GestureDetector(
             onTap: () {
-              Fluttertoast.showToast(msg: 'msg');
+              context.read<SaloonLoginCubit>().forgotPasscodeButtonClicked();
             },
             child: const Text(
               Strings.forgotPasscode,

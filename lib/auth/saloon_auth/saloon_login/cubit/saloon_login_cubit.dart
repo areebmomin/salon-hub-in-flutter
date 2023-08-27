@@ -43,4 +43,18 @@ class SaloonLoginCubit extends Cubit<SaloonLoginState> {
       emit(SaloonLoginShowToast(message: e.message));
     }
   }
+
+  void forgotPasscodeButtonClicked() async {
+    if (!EmailValidator.validate(_email)) {
+      emit(SaloonLoginShowToast(message: Strings.enterValidEmail));
+      return;
+    }
+
+    try {
+      await _saloonLoginRepository.sendPasswordResetEmail(email: _email);
+      emit(SaloonLoginShowToast(message: Strings.resetEmailLinkSent));
+    } catch (e) {
+      emit(SaloonLoginShowToast(message: e.toString()));
+    }
+  }
 }

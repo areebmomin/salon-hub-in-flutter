@@ -24,6 +24,15 @@ class FirebaseSaloonLoginAuthService implements SaloonLoginAuthService {
       throw LogOutFailure();
     }
   }
+
+  @override
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
 abstract class SaloonLoginAuthService {
@@ -31,6 +40,8 @@ abstract class SaloonLoginAuthService {
     required String email,
     required String password,
   });
+
+  Future<void> sendPasswordResetEmail({required String email});
 
   Future<void> logOut();
 }
