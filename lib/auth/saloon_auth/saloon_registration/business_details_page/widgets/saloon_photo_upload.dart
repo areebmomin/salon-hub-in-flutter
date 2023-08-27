@@ -1,16 +1,12 @@
 part of '../business_details_page.dart';
 
-class SaloonPhotoUploadWidget extends StatefulWidget {
-  const SaloonPhotoUploadWidget({super.key});
+class SaloonPhotoUpload extends StatelessWidget {
+  const SaloonPhotoUpload({super.key});
 
-  @override
-  State<SaloonPhotoUploadWidget> createState() =>
-      _SaloonPhotoUploadWidgetState();
-}
-
-class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
@@ -18,7 +14,7 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
         children: [
           BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
             buildWhen: (previousState, state) {
-              return state is SaloonRegistrationPhotoSelected;
+              return state is PhotoSelected;
             },
             builder: (context, state) {
               return CircleAvatar(
@@ -51,7 +47,7 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.read<SaloonRegistrationCubit>().setSaloonPhoto();
+                      cubit.setSaloonPhoto();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
@@ -83,7 +79,7 @@ class _SaloonPhotoUploadWidgetState extends State<SaloonPhotoUploadWidget> {
   }
 
   ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
-    return state is SaloonRegistrationPhotoSelected
+    return state is PhotoSelected
         ? FileImage(state.profilePicture) as ImageProvider<Object>?
         : const AssetImage(Assets.userProfileDummy);
   }

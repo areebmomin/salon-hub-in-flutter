@@ -35,15 +35,8 @@ part 'widgets/services_text_field.dart';
 
 part 'widgets/phone_number_text_field.dart';
 
-class BusinessDetailsPage extends StatefulWidget {
+class BusinessDetailsPage extends StatelessWidget {
   const BusinessDetailsPage({super.key});
-
-  @override
-  State<BusinessDetailsPage> createState() =>
-      _BusinessDetailsPageState();
-}
-
-class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -58,20 +51,20 @@ class _BusinessDetailsPageState extends State<BusinessDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CloseButtonWidget(),
-                  BusinessDetailsHeadingWidget(),
-                  SaloonPhotoUploadWidget(),
-                  BusinessNameTextFieldWidget(),
-                  RegisterPhoneNumberTextFieldWidget(),
-                  AddressTextFieldWidget(),
-                  BusinessLocationTextFieldWidget(),
-                  ServicesTextFieldWidget(),
-                  SaloonTypeTextFieldWidget(),
-                  ServiceDaysTextFieldWidget(),
-                  ServiceTimeTextFieldWidget(),
-                  OwnerDetailsWidget(),
-                  AttendeeDetailsWidget(),
-                  SaveDetailsButtonWidget(),
+                  CloseButton(),
+                  BusinessDetailsHeading(),
+                  SaloonPhotoUpload(),
+                  BusinessNameTextField(),
+                  RegisterPhoneNumberTextField(),
+                  AddressTextField(),
+                  BusinessLocationTextField(),
+                  ServicesTextField(),
+                  SaloonTypeTextField(),
+                  ServiceDaysTextField(),
+                  ServiceTimeTextField(),
+                  OwnerDetails(),
+                  AttendeeDetails(),
+                  SaveDetailsButton(),
                 ],
               ),
             ),

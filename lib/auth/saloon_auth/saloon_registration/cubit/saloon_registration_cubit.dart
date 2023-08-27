@@ -11,8 +11,7 @@ import '../../../../utils/index.dart';
 part 'saloon_registration_state.dart';
 
 class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
-  SaloonRegistrationCubit(this.saloonRegistrationRepository)
-      : super(SaloonRegistrationInitial());
+  SaloonRegistrationCubit(this.saloonRegistrationRepository) : super(Initial());
 
   final SaloonRegistrationRepository saloonRegistrationRepository;
   final data = SaloonRegistrationData();
@@ -20,66 +19,66 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
 
   void saveDetailsButtonClicked() {
     if (data.businessName.isEmpty) {
-      emit(SaloonRegistrationShowToast(message: Strings.enterBusinessName));
+      emit(ShowToast(message: Strings.enterBusinessName));
       return;
     }
 
     if (!isPhoneNumberValid) {
-      emit(SaloonRegistrationShowToast(message: Strings.enterValidPhoneNumber));
+      emit(ShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
     if (data.address.isEmpty) {
-      emit(SaloonRegistrationShowToast(message: Strings.enterAddress));
+      emit(ShowToast(message: Strings.enterAddress));
       return;
     }
 
     if (data.services.isEmpty) {
-      emit(SaloonRegistrationShowToast(message: Strings.addServices));
+      emit(ShowToast(message: Strings.addServices));
       return;
     }
 
     if (data.ownerDetailsList.first.name.isEmpty) {
-      emit(SaloonRegistrationShowToast(message: Strings.addOwnerDetails));
+      emit(ShowToast(message: Strings.addOwnerDetails));
       return;
     }
 
-    emit(SaloonRegistrationOpenVerifyPage());
+    emit(OpenVerifyPage());
   }
 
   void addService(String service) {
     String text = service.substring(0, service.length - 1).trim();
     if (text.isNotEmpty) {
       data.services.add(text);
-      emit(SaloonRegistrationServicesUpdated());
+      emit(ServicesUpdated());
     }
   }
 
   void removeService(String service) {
     data.services.remove(service);
-    emit(SaloonRegistrationServicesUpdated());
+    emit(ServicesUpdated());
   }
 
   void registerNowButtonClicked() {
-    if (state is SaloonRegistrationLoading) return;
+    if (state is Loading) return;
 
     if (!EmailValidator.validate(data.email)) {
-      emit(SaloonRegistrationShowToast(message: Strings.enterValidEmail));
+      emit(ShowToast(message: Strings.enterValidEmail));
       return;
     }
 
     if (data.password.length < 6) {
-      emit(SaloonRegistrationShowToast(message: Strings.enterValidPasscode));
+      emit(ShowToast(message: Strings.enterValidPasscode));
       return;
     }
 
-    emit(SaloonRegistrationLoading());
+    emit(Loading());
 
     saloonRegistrationRepository.registerSaloon(data: data).listen((event) {
       if (event is Success) {
-        emit(SaloonRegistrationGotoSaloonHomePage());
+        emit(GotoSaloonHomePage());
       } else if (event is Failure) {
-        emit(SaloonRegistrationShowToast(message: event.message));
+        emit(ShowToast(message: event.message));
       }
     });
   }
@@ -88,8 +87,7 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     var pickedFile = await getPhotoFromGallery();
     if (pickedFile != null) {
       data.profilePicture = File(pickedFile.path);
-      emit(SaloonRegistrationPhotoSelected(
-          profilePicture: data.profilePicture!));
+      emit(PhotoSelected(profilePicture: data.profilePicture!));
     }
   }
 
@@ -97,7 +95,7 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     var pickedFile = await getPhotoFromGallery();
     if (pickedFile != null) {
       data.ownerDetailsList[index].profilePicture = File(pickedFile.path);
-      emit(SaloonRegistrationOwnerPhotoSelected(
+      emit(OwnerPhotoSelected(
         index: index,
         profilePicture: data.ownerDetailsList[index].profilePicture!,
       ));
@@ -108,7 +106,7 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
     var pickedFile = await getPhotoFromGallery();
     if (pickedFile != null) {
       data.attendeeDetailList[index].profilePicture = File(pickedFile.path);
-      emit(SaloonRegistrationAttendeePhotoSelected(
+      emit(AttendeePhotoSelected(
         index: index,
         profilePicture: data.attendeeDetailList[index].profilePicture!,
       ));
@@ -118,41 +116,41 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
   Future<XFile?> getPhotoFromGallery() =>
       ImagePicker().pickImage(source: ImageSource.gallery);
 
-  void saloonRegistrationPageCloseButtonClicked() {
-    emit(SaloonRegistrationCloseButtonClicked());
+  void closeButtonClicked() {
+    emit(CloseButtonClicked());
   }
 
-  void saloonRegistrationVerifyPageCloseButtonClicked() {
-    emit(SaloonRegistrationVerifyCloseButtonClicked());
+  void verifyPageCloseButtonClicked() {
+    emit(VerifyCloseButtonClicked());
   }
 
   void addNewOwner() {
     if (data.ownerDetailsList.length == 10) {
-      emit(SaloonRegistrationShowToast(message: Strings.notMoreThan10Owners));
+      emit(ShowToast(message: Strings.notMoreThan10Owners));
       return;
     }
 
     data.ownerDetailsList.add(OwnerDetail());
-    emit(SaloonRegistrationOwnerDetailsListUpdated());
+    emit(OwnerDetailsListUpdated());
   }
 
   void removeOwner(int index) {
     data.ownerDetailsList.removeAt(index);
-    emit(SaloonRegistrationOwnerDetailsListUpdated());
+    emit(OwnerDetailsListUpdated());
   }
 
   void addNewAttendee() {
     if (data.attendeeDetailList.length == 20) {
-      emit(SaloonRegistrationShowToast(message: Strings.notMoreThan20Attendee));
+      emit(ShowToast(message: Strings.notMoreThan20Attendee));
       return;
     }
 
     data.attendeeDetailList.add(AttendeeDetail());
-    emit(SaloonRegistrationAttendeeDetailsListUpdated());
+    emit(AttendeeDetailsListUpdated());
   }
 
   void removeAttendee(int index) {
     data.attendeeDetailList.removeAt(index);
-    emit(SaloonRegistrationAttendeeDetailsListUpdated());
+    emit(AttendeeDetailsListUpdated());
   }
 }

@@ -1,10 +1,12 @@
 part of '../business_details_page.dart';
 
-class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
-  const RegisterPhoneNumberTextFieldWidget({super.key});
+class RegisterPhoneNumberTextField extends StatelessWidget {
+  const RegisterPhoneNumberTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -35,12 +37,10 @@ class RegisterPhoneNumberTextFieldWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              context.read<SaloonRegistrationCubit>().data.phoneNumber =
-                  number.phoneNumber ?? '';
+              cubit.data.phoneNumber = number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              context.read<SaloonRegistrationCubit>().isPhoneNumberValid =
-                  isValid;
+              cubit.isPhoneNumberValid = isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,

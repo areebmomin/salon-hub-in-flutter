@@ -4,41 +4,41 @@ abstract class SaloonRegistrationState extends Equatable {
   const SaloonRegistrationState();
 }
 
-class SaloonRegistrationInitial extends SaloonRegistrationState {
+class Initial extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationShowToast extends SaloonRegistrationState {
+class ShowToast extends SaloonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  SaloonRegistrationShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, _timeStamp];
 }
 
-class SaloonRegistrationLoading extends SaloonRegistrationState {
+class Loading extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationPhotoSelected extends SaloonRegistrationState {
+class PhotoSelected extends SaloonRegistrationState {
   final File profilePicture;
 
-  const SaloonRegistrationPhotoSelected({required this.profilePicture});
+  const PhotoSelected({required this.profilePicture});
 
   @override
   List<Object> get props => [profilePicture];
 }
 
-class SaloonRegistrationOwnerPhotoSelected extends SaloonRegistrationState {
+class OwnerPhotoSelected extends SaloonRegistrationState {
   final File profilePicture;
   final int index;
 
-  const SaloonRegistrationOwnerPhotoSelected({
+  const OwnerPhotoSelected({
     required this.index,
     required this.profilePicture,
   });
@@ -47,11 +47,11 @@ class SaloonRegistrationOwnerPhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
-class SaloonRegistrationAttendeePhotoSelected extends SaloonRegistrationState {
+class AttendeePhotoSelected extends SaloonRegistrationState {
   final File profilePicture;
   final int index;
 
-  const SaloonRegistrationAttendeePhotoSelected({
+  const AttendeePhotoSelected({
     required this.index,
     required this.profilePicture,
   });
@@ -60,28 +60,27 @@ class SaloonRegistrationAttendeePhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
-class SaloonRegistrationCloseButtonClicked extends SaloonRegistrationState {
+class CloseButtonClicked extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationVerifyCloseButtonClicked
-    extends SaloonRegistrationState {
+class VerifyCloseButtonClicked extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationOpenVerifyPage extends SaloonRegistrationState {
+class OpenVerifyPage extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationGotoSaloonHomePage extends SaloonRegistrationState {
+class GotoSaloonHomePage extends SaloonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class SaloonRegistrationServicesUpdated extends SaloonRegistrationState {
+class ServicesUpdated extends SaloonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 
@@ -89,8 +88,7 @@ class SaloonRegistrationServicesUpdated extends SaloonRegistrationState {
   List<Object> get props => [_timeStamp];
 }
 
-class SaloonRegistrationOwnerDetailsListUpdated
-    extends SaloonRegistrationState {
+class OwnerDetailsListUpdated extends SaloonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 
@@ -98,8 +96,7 @@ class SaloonRegistrationOwnerDetailsListUpdated
   List<Object> get props => [_timeStamp];
 }
 
-class SaloonRegistrationAttendeeDetailsListUpdated
-    extends SaloonRegistrationState {
+class AttendeeDetailsListUpdated extends SaloonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 

@@ -1,11 +1,11 @@
 part of '../business_details_page.dart';
 
-class OwnerDetailsWidget extends StatelessWidget {
-  const OwnerDetailsWidget({super.key});
+class OwnerDetails extends StatelessWidget {
+  const OwnerDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SaloonRegistrationCubit cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SaloonRegistrationCubit>();
 
     return Column(
       children: [
@@ -35,7 +35,7 @@ class OwnerDetailsWidget extends StatelessWidget {
         ),
         BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
           buildWhen: (previousState, state) {
-            return state is SaloonRegistrationOwnerDetailsListUpdated;
+            return state is OwnerDetailsListUpdated;
           },
           builder: (context, state) {
             return ListView.builder(
@@ -55,8 +55,7 @@ class OwnerDetailsWidget extends StatelessWidget {
                             child: BlocBuilder<SaloonRegistrationCubit,
                                 SaloonRegistrationState>(
                               buildWhen: (previousState, state) {
-                                return state
-                                        is SaloonRegistrationOwnerPhotoSelected &&
+                                return state is OwnerPhotoSelected &&
                                     state.index == index;
                               },
                               builder: (context, state) {
@@ -148,7 +147,7 @@ class OwnerDetailsWidget extends StatelessWidget {
   }
 
   ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
-    return state is SaloonRegistrationOwnerPhotoSelected
+    return state is OwnerPhotoSelected
         ? FileImage(state.profilePicture) as ImageProvider<Object>?
         : const AssetImage(Assets.userProfileDummy);
   }

@@ -1,18 +1,16 @@
 part of '../business_details_page.dart';
 
-class ServiceDaysTextFieldWidget extends StatefulWidget {
-  const ServiceDaysTextFieldWidget({super.key});
+class ServiceDaysTextField extends StatefulWidget {
+  const ServiceDaysTextField({super.key});
 
   @override
-  State<ServiceDaysTextFieldWidget> createState() =>
-      _ServiceDaysTextFieldWidgetState();
+  State<ServiceDaysTextField> createState() => _ServiceDaysTextFieldState();
 }
 
-class _ServiceDaysTextFieldWidgetState
-    extends State<ServiceDaysTextFieldWidget> {
+class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
   @override
   Widget build(BuildContext context) {
-    var serviceDaysList =
+    late var serviceDaysList =
         context.read<SaloonRegistrationCubit>().data.serviceDays;
 
     return Column(

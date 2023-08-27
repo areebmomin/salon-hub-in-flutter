@@ -1,19 +1,18 @@
 part of '../business_details_page.dart';
 
-class ServicesTextFieldWidget extends StatefulWidget {
-  const ServicesTextFieldWidget({super.key});
+class ServicesTextField extends StatefulWidget {
+  const ServicesTextField({super.key});
 
   @override
-  State<ServicesTextFieldWidget> createState() =>
-      _ServicesTextFieldWidgetState();
+  State<ServicesTextField> createState() => _ServicesTextFieldState();
 }
 
-class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
+class _ServicesTextFieldState extends State<ServicesTextField> {
   final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SaloonRegistrationCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,7 +88,7 @@ class _ServicesTextFieldWidgetState extends State<ServicesTextFieldWidget> {
           padding: const EdgeInsets.only(left: 19, right: 20, top: 4),
           child: BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
             buildWhen: (previousState, state) {
-              return state is SaloonRegistrationServicesUpdated;
+              return state is ServicesUpdated;
             },
             builder: (context, state) {
               return Wrap(

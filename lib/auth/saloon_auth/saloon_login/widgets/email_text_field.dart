@@ -5,7 +5,7 @@ class EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = context.read<SaloonLoginCubit>();
+    late var cubit = context.read<SaloonLoginCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

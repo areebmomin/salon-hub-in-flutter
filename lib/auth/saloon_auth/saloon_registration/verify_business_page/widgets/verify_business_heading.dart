@@ -1,7 +1,7 @@
 part of '../verify_business_page.dart';
 
-class VerifyBusinessHeadingWidget extends StatelessWidget {
-  const VerifyBusinessHeadingWidget({super.key});
+class VerifyBusinessHeading extends StatelessWidget {
+  const VerifyBusinessHeading({super.key});
 
   @override
   Widget build(BuildContext context) {

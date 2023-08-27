@@ -20,8 +20,7 @@ class SaloonRegistrationFlow extends StatefulWidget {
   final String saloonRegistrationPageRoute;
 
   @override
-  State<SaloonRegistrationFlow> createState() =>
-      SaloonRegistrationFlowState();
+  State<SaloonRegistrationFlow> createState() => SaloonRegistrationFlowState();
 }
 
 class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
@@ -35,16 +34,16 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
 
   Future<bool> _isExitDesired() async {
     return _isVerifyPageCurrentPage
-        ? onVerifyPageCloseButtonClicked()
-        : onRegistrationPageCloseButtonClicked();
+        ? _onVerifyPageCloseButtonClicked()
+        : _onRegistrationPageCloseButtonClicked();
   }
 
-  bool onRegistrationPageCloseButtonClicked() {
+  bool _onRegistrationPageCloseButtonClicked() {
     Navigator.of(context).pop(true);
     return true;
   }
 
-  bool onVerifyPageCloseButtonClicked() {
+  bool _onVerifyPageCloseButtonClicked() {
     _isVerifyPageCurrentPage = false;
     _navigatorKey.currentState?.pop(true);
     return false;
@@ -56,26 +55,25 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
       create: (context) => FirebaseSaloonRegistrationRepository(),
       child: BlocProvider(
         create: (context) => SaloonRegistrationCubit(
-            RepositoryProvider.of<SaloonRegistrationRepository>(context)
-        ),
+            RepositoryProvider.of<SaloonRegistrationRepository>(context)),
         child: BlocListener<SaloonRegistrationCubit, SaloonRegistrationState>(
           listener: (context, state) {
-            if (state is SaloonRegistrationShowToast) {
+            if (state is ShowToast) {
               Fluttertoast.showToast(
                   msg: state.message, toastLength: Toast.LENGTH_SHORT);
-            } else if (state is SaloonRegistrationOpenVerifyPage) {
+            } else if (state is OpenVerifyPage) {
               _navigatorKey.currentState
                   ?.pushNamed(Routes.saloonRegistrationVerifyPage);
-            } else if (state is SaloonRegistrationGotoSaloonHomePage) {
+            } else if (state is GotoSaloonHomePage) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 Routes.saloonHomePage,
-                    (route) => false,
+                (route) => false,
               );
-            } else if (state is SaloonRegistrationCloseButtonClicked) {
-              onRegistrationPageCloseButtonClicked();
-            } else if (state is SaloonRegistrationVerifyCloseButtonClicked) {
-              onVerifyPageCloseButtonClicked();
+            } else if (state is CloseButtonClicked) {
+              _onRegistrationPageCloseButtonClicked();
+            } else if (state is VerifyCloseButtonClicked) {
+              _onVerifyPageCloseButtonClicked();
             }
           },
           child: WillPopScope(
@@ -114,4 +112,3 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
     );
   }
 }
-

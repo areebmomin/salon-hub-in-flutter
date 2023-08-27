@@ -1,20 +1,18 @@
 part of '../business_details_page.dart';
 
-class ServiceTimeTextFieldWidget extends StatefulWidget {
-  const ServiceTimeTextFieldWidget({super.key});
+class ServiceTimeTextField extends StatefulWidget {
+  const ServiceTimeTextField({super.key});
 
   @override
-  State<ServiceTimeTextFieldWidget> createState() =>
-      _ServiceTimeTextFieldWidgetState();
+  State<ServiceTimeTextField> createState() => _ServiceTimeTextFieldState();
 }
 
-class _ServiceTimeTextFieldWidgetState
-    extends State<ServiceTimeTextFieldWidget> {
-  final TextEditingController _controller = TextEditingController();
+class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
+  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    ServiceTime serviceTime =
+    late var serviceTime =
         context.read<SaloonRegistrationCubit>().data.serviceTime;
 
     _updateTextFieldText(serviceTime);
@@ -62,9 +60,6 @@ class _ServiceTimeTextFieldWidgetState
               color: AppColors.headingTextColor,
             ),
             keyboardType: TextInputType.streetAddress,
-            onChanged: (time) {
-              //context.read<SaloonRegistrationCubit>().data.serviceTimes = address;
-            },
             textInputAction: TextInputAction.next,
             readOnly: true,
             onTap: () async {
@@ -87,8 +82,8 @@ class _ServiceTimeTextFieldWidgetState
   Future<TimeRange?> _openTimeRangePicker(ServiceTime serviceTime) async {
     return await showTimeRangePicker(
       context: context,
-      start: timeToTimeOfDay(serviceTime.startTime),
-      end: timeToTimeOfDay(serviceTime.endTime),
+      start: _timeToTimeOfDay(serviceTime.startTime),
+      end: _timeToTimeOfDay(serviceTime.endTime),
       interval: const Duration(minutes: 30),
       use24HourFormat: false,
       disabledTime: TimeRange(
@@ -134,7 +129,7 @@ class _ServiceTimeTextFieldWidgetState
         '${serviceTime.startTime.toString()} - ${serviceTime.endTime.toString()}';
   }
 
-  TimeOfDay timeToTimeOfDay(Time time) =>
+  TimeOfDay _timeToTimeOfDay(Time time) =>
       TimeOfDay(hour: time.hour, minute: time.minute);
 }
 

@@ -1,17 +1,12 @@
 part of '../business_details_page.dart';
 
-class BusinessNameTextFieldWidget extends StatefulWidget {
-  const BusinessNameTextFieldWidget({super.key});
+class BusinessNameTextField extends StatelessWidget {
+  const BusinessNameTextField({super.key});
 
-  @override
-  State<BusinessNameTextFieldWidget> createState() =>
-      _BusinessNameTextFieldWidgetState();
-}
-
-class _BusinessNameTextFieldWidgetState
-    extends State<BusinessNameTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -74,7 +69,7 @@ class _BusinessNameTextFieldWidgetState
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             onChanged: (name) {
-              context.read<SaloonRegistrationCubit>().data.businessName = name.trim();
+              cubit.data.businessName = name.trim();
             },
           ),
         ),

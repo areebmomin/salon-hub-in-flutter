@@ -1,14 +1,14 @@
 part of '../business_details_page.dart';
 
-class SaloonTypeTextFieldWidget extends StatefulWidget {
-  const SaloonTypeTextFieldWidget({super.key});
+class SaloonTypeTextField extends StatefulWidget {
+  const SaloonTypeTextField({super.key});
 
   @override
-  State<SaloonTypeTextFieldWidget> createState() =>
-      _SaloonTypeTextFieldWidgetState();
+  State<SaloonTypeTextField> createState() => _SaloonTypeTextFieldState();
 }
 
-class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
+class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
+  late var cubit = context.read<SaloonRegistrationCubit>();
   String? selectedValue = Strings.saloonTypes.first;
 
   @override
@@ -16,7 +16,7 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-         Padding(
+        Padding(
           padding: const EdgeInsets.only(top: 20, left: 19),
           child: RichText(
             text: const TextSpan(
@@ -66,12 +66,13 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
-                  context.read<SaloonRegistrationCubit>().data.type = newValue ?? '';
+                  cubit.data.type = newValue ?? '';
                   setState(() {
                     selectedValue = newValue;
                   });
                 },
-                items: Strings.saloonTypes.map<DropdownMenuItem<String>>((String value) {
+                items: Strings.saloonTypes
+                    .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -89,7 +90,7 @@ class _SaloonTypeTextFieldWidgetState extends State<SaloonTypeTextFieldWidget> {
                 icon: const Icon(Icons.keyboard_arrow_down_outlined),
               ),
               contentPadding:
-              const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
             style: const TextStyle(
               fontWeight: FontWeight.w500,

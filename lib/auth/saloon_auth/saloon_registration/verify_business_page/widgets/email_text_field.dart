@@ -1,17 +1,12 @@
 part of '../verify_business_page.dart';
 
-class RegisterEmailTextFieldWidget extends StatefulWidget {
-  const RegisterEmailTextFieldWidget({super.key});
+class RegisterEmailTextField extends StatelessWidget {
+  const RegisterEmailTextField({super.key});
 
-  @override
-  State<RegisterEmailTextFieldWidget> createState() =>
-      _RegisterEmailTextFieldWidgetState();
-}
-
-class _RegisterEmailTextFieldWidgetState
-    extends State<RegisterEmailTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -73,7 +68,7 @@ class _RegisterEmailTextFieldWidgetState
             ),
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              context.read<SaloonRegistrationCubit>().data.email = email.trim();
+              cubit.data.email = email.trim();
             },
             textInputAction: TextInputAction.next,
           ),

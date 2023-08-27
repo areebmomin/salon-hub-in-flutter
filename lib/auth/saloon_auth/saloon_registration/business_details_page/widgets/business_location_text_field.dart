@@ -1,17 +1,12 @@
 part of '../business_details_page.dart';
 
-class BusinessLocationTextFieldWidget extends StatefulWidget {
-  const BusinessLocationTextFieldWidget({super.key});
+class BusinessLocationTextField extends StatelessWidget {
+  const BusinessLocationTextField({super.key});
 
-  @override
-  State<BusinessLocationTextFieldWidget> createState() =>
-      _BusinessLocationTextFieldWidgetState();
-}
-
-class _BusinessLocationTextFieldWidgetState
-    extends State<BusinessLocationTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -61,7 +56,7 @@ class _BusinessLocationTextFieldWidgetState
             ),
             keyboardType: TextInputType.streetAddress,
             onChanged: (location) {
-              context.read<SaloonRegistrationCubit>().data.location = location.trim();
+              cubit.data.location = location.trim();
             },
             textInputAction: TextInputAction.next,
           ),

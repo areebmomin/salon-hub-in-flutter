@@ -1,10 +1,12 @@
 part of '../business_details_page.dart';
 
-class AddressTextFieldWidget extends StatelessWidget {
-  const AddressTextFieldWidget({super.key});
+class AddressTextField extends StatelessWidget {
+  const AddressTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -67,7 +69,7 @@ class AddressTextFieldWidget extends StatelessWidget {
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
             onChanged: (address) {
-              context.read<SaloonRegistrationCubit>().data.address = address.trim();
+              cubit.data.address = address.trim();
             },
             textInputAction: TextInputAction.next,
           ),

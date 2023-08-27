@@ -1,18 +1,18 @@
 part of '../business_details_page.dart';
 
-class CloseButtonWidget extends StatelessWidget {
-  const CloseButtonWidget({super.key});
+class CloseButton extends StatelessWidget {
+  const CloseButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SaloonRegistrationCubit>();
+
     return Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(left: 21, top: 32),
       child: GestureDetector(
         onTap: () {
-          context
-              .read<SaloonRegistrationCubit>()
-              .saloonRegistrationPageCloseButtonClicked();
+          cubit.closeButtonClicked();
         },
         child: const Icon(
           Icons.close,

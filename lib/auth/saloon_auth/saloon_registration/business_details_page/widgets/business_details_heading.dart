@@ -1,7 +1,7 @@
 part of '../business_details_page.dart';
 
-class BusinessDetailsHeadingWidget extends StatelessWidget {
-  const BusinessDetailsHeadingWidget({super.key});
+class BusinessDetailsHeading extends StatelessWidget {
+  const BusinessDetailsHeading({super.key});
 
   @override
   Widget build(BuildContext context) {

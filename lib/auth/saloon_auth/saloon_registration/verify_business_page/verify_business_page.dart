@@ -32,14 +32,14 @@ class VerifyBusinessPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                CloseButtonWidget(),
-                VerifyBusinessHeadingWidget(),
+                CloseButton(),
+                VerifyBusinessHeading(),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      RegisterEmailTextFieldWidget(),
+                      RegisterEmailTextField(),
                       PasswordTextField(),
                       RegisterNowButton(),
                     ],
