@@ -9,11 +9,7 @@ class LoginHeading extends StatelessWidget {
       padding: EdgeInsets.only(left: 16, top: 24),
       child: Text(
         Strings.login,
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.w700,
-          color: AppColors.headingTextColor,
-        ),
+        style: TextStyleConstants.pageHeading,
       ),
     );
   }

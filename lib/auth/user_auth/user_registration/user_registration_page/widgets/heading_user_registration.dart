@@ -9,12 +9,7 @@ class RegisterNowHeading extends StatelessWidget {
       padding: EdgeInsets.only(top: 21, left: 18),
       child: Text(
         Strings.registerNow,
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 30,
-          color: AppColors.headingTextColor,
-          fontFamily: Strings.firaSans,
-        ),
+        style: TextStyleConstants.pageHeading,
       ),
     );
   }

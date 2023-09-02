@@ -56,4 +56,11 @@ class TextStyleConstants {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+
+  static const pageHeading = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 30,
+    color: AppColors.headingTextColor,
+    fontFamily: Strings.firaSans,
+  );
 }
