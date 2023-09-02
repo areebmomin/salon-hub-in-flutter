@@ -51,11 +51,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.enterCommaSeparatedServices,
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.inputText,
-              ),
+              hintStyle: TextStyleConstants.textFieldHintStyle,
               suffixIcon: Icon(Icons.home_repair_service),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),

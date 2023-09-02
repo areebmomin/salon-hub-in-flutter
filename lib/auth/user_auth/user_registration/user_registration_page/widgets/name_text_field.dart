@@ -43,11 +43,7 @@ class NameTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.hintName,
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.inputText,
-              ),
+              hintStyle: TextStyleConstants.textFieldHintStyle,
               suffixIcon: Icon(Icons.person),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),

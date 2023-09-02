@@ -43,11 +43,7 @@ class AddressTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.hintAddress,
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.inputText,
-              ),
+              hintStyle: TextStyleConstants.textFieldHintStyle,
               suffixIcon: Icon(Icons.location_on),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),

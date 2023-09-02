@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'index.dart';
 
 class NoOverscrollBehaviour extends ScrollBehavior {
   @override
@@ -16,5 +17,13 @@ class TextFieldConstants {
 
   static const transparentInputBorder = UnderlineInputBorder(
     borderSide: BorderSide(color: Colors.transparent),
+  );
+}
+
+class TextStyleConstants {
+  static const textFieldHintStyle = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 17,
+    color: AppColors.inputText,
   );
 }

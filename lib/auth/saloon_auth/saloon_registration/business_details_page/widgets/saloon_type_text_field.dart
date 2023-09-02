@@ -49,11 +49,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessAddressHint,
-              hintStyle: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.inputText,
-              ),
+              hintStyle: TextStyleConstants.textFieldHintStyle,
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
