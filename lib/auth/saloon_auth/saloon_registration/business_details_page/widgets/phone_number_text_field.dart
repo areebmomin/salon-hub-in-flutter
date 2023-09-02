@@ -47,16 +47,8 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
               leadingPadding: 20,
               setSelectorButtonAsPrefixIcon: true,
             ),
-            textStyle: const TextStyle(
-              color: AppColors.headingTextColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-            ),
-            selectorTextStyle: const TextStyle(
-              color: AppColors.headingTextColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-            ),
+            textStyle: TextStyleConstants.textFieldTextStyle,
+            selectorTextStyle: TextStyleConstants.textFieldTextStyle,
             inputDecoration: const InputDecoration(
               enabledBorder: TextFieldConstants.transparentInputBorder,
               focusedBorder: TextFieldConstants.transparentInputBorder,
