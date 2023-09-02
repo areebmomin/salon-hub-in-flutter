@@ -40,11 +40,7 @@ class PhoneNumberTextField extends StatelessWidget {
               border: TextFieldConstants.transparentInputBorder,
               hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
-              hintStyle: TextStyle(
-                color: AppColors.inputText,
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-              ),
+              hintStyle: TextStyleConstants.textFieldHintStyle,
             ),
           ),
         ),

@@ -71,11 +71,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.inputText,
-            ),
+            style: TextStyleConstants.textFieldHintStyle,
             keyboardType: TextInputType.streetAddress,
             textInputAction: TextInputAction.next,
           ),
