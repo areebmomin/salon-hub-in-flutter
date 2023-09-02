@@ -50,4 +50,10 @@ class TextStyleConstants {
     fontWeight: FontWeight.w500,
     fontSize: 16,
   );
+
+  static const registerNow = TextStyle(
+    color: AppColors.headingTextColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 }

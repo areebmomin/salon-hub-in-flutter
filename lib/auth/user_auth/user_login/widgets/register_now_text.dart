@@ -20,11 +20,7 @@ class RegisterNowText extends StatelessWidget {
           children: [
             TextSpan(
               text: Strings.registerNow,
-              style: const TextStyle(
-                color: AppColors.headingTextColor,
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyleConstants.registerNow,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   Navigator.pushNamed(
