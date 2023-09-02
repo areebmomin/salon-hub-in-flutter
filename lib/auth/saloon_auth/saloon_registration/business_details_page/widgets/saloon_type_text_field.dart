@@ -57,11 +57,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
                     child: Text(value),
                   );
                 }).toList(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 17,
-                  color: AppColors.headingTextColor,
-                ),
+                style: TextStyleConstants.textFieldTextStyle,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(horizontal: 16),
