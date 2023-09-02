@@ -63,4 +63,11 @@ class TextStyleConstants {
     color: AppColors.headingTextColor,
     fontFamily: Strings.firaSans,
   );
+
+  static const lightSubHeading = TextStyle(
+    fontSize: 20,
+    fontFamily: Strings.firaSans,
+    color: AppColors.lightTextColor,
+    fontWeight: FontWeight.w500,
+  );
 }

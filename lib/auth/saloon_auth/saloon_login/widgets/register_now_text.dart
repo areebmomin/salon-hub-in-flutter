@@ -11,12 +11,7 @@ class RegisterNowText extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
           text: Strings.dontHaveAccount,
-          style: const TextStyle(
-            fontSize: 20,
-            fontFamily: Strings.firaSans,
-            color: AppColors.lightTextColor,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyleConstants.lightSubHeading,
           children: [
             TextSpan(
               text: Strings.registerNow,
