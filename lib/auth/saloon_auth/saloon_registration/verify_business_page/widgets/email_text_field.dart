@@ -15,11 +15,7 @@ class RegisterEmailTextField extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.email,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 17,
-                color: AppColors.headingTextColor,
-              ),
+              style: TextStyleConstants.textFieldTextStyle,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
