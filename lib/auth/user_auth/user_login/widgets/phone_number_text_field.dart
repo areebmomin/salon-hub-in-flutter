@@ -14,11 +14,7 @@ class PhoneNumberTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 19, top: 21),
           child: Text(
             Strings.mobileNo,
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
           ),
         ),
         Padding(

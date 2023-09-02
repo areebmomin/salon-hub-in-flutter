@@ -16,11 +16,7 @@ class PasswordTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 19, top: 18),
           child: Text(
             Strings.passcode,
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
           ),
         ),
         Padding(

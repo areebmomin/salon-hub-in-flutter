@@ -16,11 +16,7 @@ class OtpTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 19, top: 8),
           child: Text(
             Strings.otp,
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
           ),
         ),
         Padding(
