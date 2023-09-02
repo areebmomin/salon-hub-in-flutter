@@ -59,10 +59,7 @@ class UserPhotoUpload extends StatelessWidget {
                         SizedBox(width: 8),
                         Text(
                           Strings.browse,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
+                          style: TextStyleConstants.browseButton,
                         ),
                       ],
                     ),

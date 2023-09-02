@@ -45,4 +45,9 @@ class TextStyleConstants {
     fontSize: 17,
     color: Colors.red,
   );
+
+  static const browseButton = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+  );
 }
