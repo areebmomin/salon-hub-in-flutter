@@ -15,11 +15,11 @@ class BusinessNameTextField extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.businessName,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -35,12 +35,12 @@ class BusinessNameTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessNameHint,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.business),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             onChanged: (name) {

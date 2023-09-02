@@ -24,7 +24,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.serviceTime,
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -41,7 +41,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,
             textInputAction: TextInputAction.next,
             readOnly: true,

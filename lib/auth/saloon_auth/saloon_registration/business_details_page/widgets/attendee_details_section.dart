@@ -78,7 +78,7 @@ class AttendeeDetails extends StatelessWidget {
                             children: [
                               TextField(
                                 decoration: const InputDecoration(
-                                  hintStyle: TextStyleConstants.textFieldHintStyle,
+                                  hintStyle: TextStyleConstants.textFieldHint,
                                   hintText: Strings.name,
                                 ),
                                 onChanged: (name) {

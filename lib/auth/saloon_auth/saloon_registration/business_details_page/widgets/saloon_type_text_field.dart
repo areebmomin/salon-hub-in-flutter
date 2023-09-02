@@ -21,11 +21,11 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
           child: RichText(
             text: const TextSpan(
               text: Strings.type,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -41,7 +41,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessAddressHint,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
@@ -57,7 +57,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
                     child: Text(value),
                   );
                 }).toList(),
-                style: TextStyleConstants.textFieldTextStyle,
+                style: TextStyleConstants.textField,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(horizontal: 16),
@@ -67,7 +67,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldHintStyle,
+            style: TextStyleConstants.textFieldHint,
             keyboardType: TextInputType.streetAddress,
             textInputAction: TextInputAction.next,
           ),

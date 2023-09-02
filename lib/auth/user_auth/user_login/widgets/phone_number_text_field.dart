@@ -14,7 +14,7 @@ class PhoneNumberTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 19, top: 21),
           child: Text(
             Strings.mobileNo,
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -32,15 +32,15 @@ class PhoneNumberTextField extends StatelessWidget {
               leadingPadding: 20,
               setSelectorButtonAsPrefixIcon: true,
             ),
-            textStyle: TextStyleConstants.textFieldTextStyle,
-            selectorTextStyle: TextStyleConstants.textFieldTextStyle,
+            textStyle: TextStyleConstants.textField,
+            selectorTextStyle: TextStyleConstants.textField,
             inputDecoration: const InputDecoration(
               enabledBorder: TextFieldConstants.transparentInputBorder,
               focusedBorder: TextFieldConstants.transparentInputBorder,
               border: TextFieldConstants.transparentInputBorder,
               hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
             ),
           ),
         ),

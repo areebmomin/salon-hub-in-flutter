@@ -24,7 +24,7 @@ class LoginButton extends StatelessWidget {
             } else {
               return Text(
                 cubit.isOtpSent ? Strings.verifyOtp : Strings.getOtp,
-                style: TextStyleConstants.buttonTextStyle,
+                style: TextStyleConstants.button,
               );
             }
           },

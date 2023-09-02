@@ -22,11 +22,11 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
           child: RichText(
             text: const TextSpan(
               text: Strings.services,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -43,12 +43,12 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.enterCommaSeparatedServices,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.home_repair_service),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,
             onChanged: (service) {
               if (service.contains(',')) {

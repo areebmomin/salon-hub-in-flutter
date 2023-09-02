@@ -21,26 +21,26 @@ class TextFieldConstants {
 }
 
 class TextStyleConstants {
-  static const textFieldHintStyle = TextStyle(
+  static const textFieldHint = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 17,
     color: AppColors.inputText,
   );
 
-  static const textFieldTextStyle = TextStyle(
+  static const textField = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 17,
     color: AppColors.headingTextColor,
   );
 
-  static const buttonTextStyle = TextStyle(
+  static const button = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w700,
     fontFamily: Strings.firaSans,
     color: Colors.white,
   );
 
-  static const asteriskTextStyle = TextStyle(
+  static const asterisk = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 17,
     color: Colors.red,

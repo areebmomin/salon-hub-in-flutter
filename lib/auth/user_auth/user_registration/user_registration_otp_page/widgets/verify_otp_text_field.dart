@@ -16,7 +16,7 @@ class VerifyOtpTextField extends StatelessWidget {
           padding: EdgeInsets.only(left: 19, top: 8),
           child: Text(
             Strings.enterOtp,
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -33,7 +33,7 @@ class VerifyOtpTextField extends StatelessWidget {
               borderColor: AppColors.inputFieldBackground,
               enabledBorderColor: AppColors.inputFieldBackground,
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {

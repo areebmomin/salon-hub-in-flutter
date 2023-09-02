@@ -15,11 +15,11 @@ class AddressTextField extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.address,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -35,12 +35,12 @@ class AddressTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.hintAddress,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.location_on),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,
             onChanged: (address) {
               cubit.data.address = address.trim();

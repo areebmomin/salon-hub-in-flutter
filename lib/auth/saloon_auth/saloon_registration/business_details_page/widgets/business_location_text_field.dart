@@ -14,7 +14,7 @@ class BusinessLocationTextField extends StatelessWidget {
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.businessLocation,
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -27,12 +27,12 @@ class BusinessLocationTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessAddressHint,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.add_location_alt),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,
             onChanged: (location) {
               cubit.data.location = location.trim();

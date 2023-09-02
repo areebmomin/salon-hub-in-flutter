@@ -24,7 +24,7 @@ class LoginButton extends StatelessWidget {
             } else {
               return const Text(
                 Strings.loginButton,
-                style: TextStyleConstants.buttonTextStyle,
+                style: TextStyleConstants.button,
               );
             }
           },

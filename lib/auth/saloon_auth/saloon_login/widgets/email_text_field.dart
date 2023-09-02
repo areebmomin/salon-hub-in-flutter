@@ -14,7 +14,7 @@ class EmailTextField extends StatelessWidget {
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.email,
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -27,12 +27,12 @@ class EmailTextField extends StatelessWidget {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.hintEmail,
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.email),
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
               cubit.email = email;

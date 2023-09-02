@@ -15,11 +15,11 @@ class OwnerDetails extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.ownerDetails,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -80,7 +80,7 @@ class OwnerDetails extends StatelessWidget {
                           children: [
                             TextField(
                               decoration: const InputDecoration(
-                                hintStyle: TextStyleConstants.textFieldHintStyle,
+                                hintStyle: TextStyleConstants.textFieldHint,
                                 hintText: Strings.name,
                               ),
                               onChanged: (name) {

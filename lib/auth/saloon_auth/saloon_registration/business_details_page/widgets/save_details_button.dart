@@ -22,7 +22,7 @@ class SaveDetailsButton extends StatelessWidget {
         ),
         child: const Text(
           Strings.saveDetailsUpperCase,
-          style: TextStyleConstants.buttonTextStyle,
+          style: TextStyleConstants.button,
         ),
       ),
     );

@@ -17,11 +17,11 @@ class PasswordTextField extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.passcode,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -41,7 +41,7 @@ class PasswordTextField extends StatelessWidget {
               borderColor: AppColors.inputFieldBackground,
               enabledBorderColor: AppColors.inputFieldBackground,
             ),
-            style: TextStyleConstants.textFieldTextStyle,
+            style: TextStyleConstants.textField,
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
             onChanged: (code) {

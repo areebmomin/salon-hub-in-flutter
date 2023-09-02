@@ -15,11 +15,11 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: Strings.mobileNo,
-              style: TextStyleConstants.textFieldTextStyle,
+              style: TextStyleConstants.textField,
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyleConstants.asteriskTextStyle,
+                  style: TextStyleConstants.asterisk,
                 ),
               ],
             ),
@@ -39,15 +39,15 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
               leadingPadding: 20,
               setSelectorButtonAsPrefixIcon: true,
             ),
-            textStyle: TextStyleConstants.textFieldTextStyle,
-            selectorTextStyle: TextStyleConstants.textFieldTextStyle,
+            textStyle: TextStyleConstants.textField,
+            selectorTextStyle: TextStyleConstants.textField,
             inputDecoration: const InputDecoration(
               enabledBorder: TextFieldConstants.transparentInputBorder,
               focusedBorder: TextFieldConstants.transparentInputBorder,
               border: TextFieldConstants.transparentInputBorder,
               hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
-              hintStyle: TextStyleConstants.textFieldHintStyle,
+              hintStyle: TextStyleConstants.textFieldHint,
             ),
             keyboardAction: TextInputAction.next,
           ),
