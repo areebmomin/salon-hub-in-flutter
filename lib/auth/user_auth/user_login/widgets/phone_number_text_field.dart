@@ -18,8 +18,12 @@ class PhoneNumberTextField extends StatelessWidget {
           ),
         ),
         Padding(
-          padding:
-              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 11),
+          padding: const EdgeInsets.only(
+            left: 19,
+            right: 19,
+            top: 9,
+            bottom: 11,
+          ),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
               cubit.phoneNumber = number.phoneNumber ?? '';

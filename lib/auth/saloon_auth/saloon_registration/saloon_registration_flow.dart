@@ -60,7 +60,9 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
           listener: (context, state) {
             if (state is ShowToast) {
               Fluttertoast.showToast(
-                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
+                msg: state.message,
+                toastLength: Toast.LENGTH_SHORT,
+              );
             } else if (state is OpenVerifyPage) {
               _navigatorKey.currentState
                   ?.pushNamed(Routes.saloonRegistrationVerifyPage);

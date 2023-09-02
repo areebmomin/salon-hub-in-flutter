@@ -37,8 +37,10 @@ class RegisterEmailTextField extends StatelessWidget {
               hintText: Strings.hintEmail,
               hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.email),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.emailAddress,

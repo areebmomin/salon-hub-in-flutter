@@ -64,8 +64,10 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
                 ),
                 icon: const Icon(Icons.keyboard_arrow_down_outlined),
               ),
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textFieldHint,
             keyboardType: TextInputType.streetAddress,

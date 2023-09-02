@@ -20,8 +20,12 @@ class OtpTextField extends StatelessWidget {
           ),
         ),
         Padding(
-          padding:
-              const EdgeInsets.only(left: 19, right: 19, top: 9, bottom: 12),
+          padding: const EdgeInsets.only(
+            left: 19,
+            right: 19,
+            top: 9,
+            bottom: 12,
+          ),
           child: OTPTextField(
             length: 6,
             fieldWidth: otpBoxWidth,
@@ -34,8 +38,10 @@ class OtpTextField extends StatelessWidget {
               enabledBorderColor: AppColors.inputFieldBackground,
             ),
             style: TextStyleConstants.textField,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 4,
+            ),
             onChanged: (code) {
               cubit.otp = code.trim();
             },

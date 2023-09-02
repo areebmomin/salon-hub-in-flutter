@@ -29,8 +29,10 @@ class BusinessLocationTextField extends StatelessWidget {
               hintText: Strings.businessAddressHint,
               hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.add_location_alt),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,

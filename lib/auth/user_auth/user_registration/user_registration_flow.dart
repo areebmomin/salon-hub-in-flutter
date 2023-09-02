@@ -70,7 +70,9 @@ class UserRegistrationFlowState extends State<UserRegistrationFlow> {
           listener: (context, state) {
             if (state is ShowToast) {
               Fluttertoast.showToast(
-                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
+                msg: state.message,
+                toastLength: Toast.LENGTH_SHORT,
+              );
             } else if (state is OpenOtpPage) {
               _navigatorKey.currentState
                   ?.pushNamed(Routes.userRegistrationOtpPage);

@@ -38,8 +38,10 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               suffixIcon: Icon(Icons.schedule),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,

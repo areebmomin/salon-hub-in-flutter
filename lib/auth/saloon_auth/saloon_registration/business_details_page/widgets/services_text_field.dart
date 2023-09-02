@@ -45,8 +45,10 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
               hintText: Strings.enterCommaSeparatedServices,
               hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.home_repair_service),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,

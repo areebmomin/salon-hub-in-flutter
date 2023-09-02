@@ -26,7 +26,9 @@ class UserLoginWidget extends StatelessWidget {
       listener: (context, state) {
         if (state is ShowToast) {
           Fluttertoast.showToast(
-              msg: state.message, toastLength: Toast.LENGTH_SHORT);
+            msg: state.message,
+            toastLength: Toast.LENGTH_SHORT,
+          );
         } else if (state is Success) {
           // Navigate to Home page
           Navigator.pushReplacementNamed(context, Routes.userHomePage);

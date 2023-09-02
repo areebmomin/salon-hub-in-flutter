@@ -37,8 +37,10 @@ class AddressTextField extends StatelessWidget {
               hintText: Strings.hintAddress,
               hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.location_on),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              contentPadding: EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 16,
+              ),
             ),
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,

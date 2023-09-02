@@ -35,7 +35,11 @@ class AttendeeDetails extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 12, bottom: 12),
+                      left: 20,
+                      right: 20,
+                      top: 12,
+                      bottom: 12,
+                    ),
                     child: Row(
                       children: [
                         Stack(
