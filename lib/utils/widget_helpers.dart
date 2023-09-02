@@ -13,4 +13,8 @@ class TextFieldConstants {
     borderSide: BorderSide(color: Colors.transparent),
     borderRadius: BorderRadius.all(Radius.circular(5)),
   );
+
+  static const transparentInputBorder = UnderlineInputBorder(
+    borderSide: BorderSide(color: Colors.transparent),
+  );
 }

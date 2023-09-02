@@ -58,15 +58,9 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
               fontSize: 17,
             ),
             inputDecoration: const InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
+              enabledBorder: TextFieldConstants.transparentInputBorder,
+              focusedBorder: TextFieldConstants.transparentInputBorder,
+              border: TextFieldConstants.transparentInputBorder,
               hintText: Strings.hintPhoneNumber,
               suffixIcon: Icon(Icons.phone),
               hintStyle: TextStyle(
