@@ -24,12 +24,7 @@ class LoginButton extends StatelessWidget {
             } else {
               return Text(
                 cubit.isOtpSent ? Strings.verifyOtp : Strings.getOtp,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: Strings.firaSans,
-                  color: Colors.white,
-                ),
+                style: TextStyleConstants.buttonTextStyle,
               );
             }
           },

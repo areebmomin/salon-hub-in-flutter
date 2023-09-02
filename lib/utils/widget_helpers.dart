@@ -32,4 +32,11 @@ class TextStyleConstants {
     fontSize: 17,
     color: AppColors.headingTextColor,
   );
+
+  static const buttonTextStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    fontFamily: Strings.firaSans,
+    color: Colors.white,
+  );
 }

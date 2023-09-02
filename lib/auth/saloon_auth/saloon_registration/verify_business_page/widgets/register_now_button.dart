@@ -27,12 +27,7 @@ class RegisterNowButton extends StatelessWidget {
             } else {
               return const Text(
                 Strings.registerNowUpperCase,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: Strings.firaSans,
-                  color: Colors.white,
-                ),
+                style: TextStyleConstants.buttonTextStyle,
               );
             }
           },
