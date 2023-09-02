@@ -70,4 +70,11 @@ class TextStyleConstants {
     color: AppColors.lightTextColor,
     fontWeight: FontWeight.w500,
   );
+
+  static const uploadHeading = TextStyle(
+    color: AppColors.headingTextColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    fontFamily: Strings.firaSans,
+  );
 }

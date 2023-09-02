@@ -35,12 +35,7 @@ class UserPhotoUpload extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: false,
-                    style: TextStyle(
-                      color: AppColors.headingTextColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                      fontFamily: Strings.firaSans,
-                    ),
+                    style: TextStyleConstants.uploadHeading,
                   ),
                   const SizedBox(height: 16),
                   TextButton(
