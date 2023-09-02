@@ -7,3 +7,10 @@ class NoOverscrollBehaviour extends ScrollBehavior {
     return child;
   }
 }
+
+class TextFieldConstants {
+  static const curvedUnderlineInputBorder = UnderlineInputBorder(
+    borderSide: BorderSide(color: Colors.transparent),
+    borderRadius: BorderRadius.all(Radius.circular(5)),
+  );
+}

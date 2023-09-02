@@ -27,18 +27,9 @@ class BusinessLocationTextField extends StatelessWidget {
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
+              border: TextFieldConstants.curvedUnderlineInputBorder,
+              enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
+              focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessAddressHint,
               hintStyle: TextStyle(
                 fontWeight: FontWeight.w500,

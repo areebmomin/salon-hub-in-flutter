@@ -45,18 +45,9 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
+              border: TextFieldConstants.curvedUnderlineInputBorder,
+              enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
+              focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               hintText: Strings.businessAddressHint,
               hintStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
