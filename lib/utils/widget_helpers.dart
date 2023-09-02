@@ -39,4 +39,10 @@ class TextStyleConstants {
     fontFamily: Strings.firaSans,
     color: Colors.white,
   );
+
+  static const asteriskTextStyle = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 17,
+    color: Colors.red,
+  );
 }

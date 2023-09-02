@@ -26,11 +26,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
               children: <TextSpan>[
                 TextSpan(
                   text: Strings.asterisk,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 17,
-                    color: Colors.red,
-                  ),
+                  style: TextStyleConstants.asteriskTextStyle,
                 ),
               ],
             ),
