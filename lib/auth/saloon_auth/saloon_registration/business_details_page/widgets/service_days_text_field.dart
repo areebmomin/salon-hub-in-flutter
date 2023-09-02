@@ -20,11 +20,7 @@ class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
             Strings.serviceDays,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
           ),
         ),
         Padding(

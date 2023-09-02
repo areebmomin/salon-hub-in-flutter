@@ -28,11 +28,7 @@ class TermsAndConditionCheckbox extends StatelessWidget {
           ),
           const Text(
             Strings.agreeTermsAndConditions,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
           ),
         ],
       ),

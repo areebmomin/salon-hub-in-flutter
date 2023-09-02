@@ -48,11 +48,7 @@ class AddressTextField extends StatelessWidget {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
             onChanged: (address) {

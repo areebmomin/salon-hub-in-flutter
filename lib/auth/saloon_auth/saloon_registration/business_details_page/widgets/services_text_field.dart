@@ -56,11 +56,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
               contentPadding:
                   EdgeInsets.symmetric(vertical: 20, horizontal: 16),
             ),
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 17,
-              color: AppColors.headingTextColor,
-            ),
+            style: TextStyleConstants.textFieldTextStyle,
             keyboardType: TextInputType.streetAddress,
             onChanged: (service) {
               if (service.contains(',')) {
