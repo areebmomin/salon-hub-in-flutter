@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../utils/index.dart';
+
+part 'widgets/saloon_hub_toolbar.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
