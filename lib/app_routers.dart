@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saloon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
+import 'package:saloon_hub/user/profile_page/profile_page.dart';
 import 'package:saloon_hub/utils/index.dart';
 import 'auth/login_page.dart';
 import 'auth/saloon_auth/saloon_registration/saloon_registration_flow.dart';
@@ -45,6 +46,8 @@ class AppRouters {
       page = const UserHomePage();
     } else if (name == Routes.saloonHomePage) {
       page = const SaloonHomePage();
+    } else if (name == Routes.userProfilePage) {
+      page = const ProfilePage();
     } else {
       page = Scaffold(body: Center(child: Text('No route defined for $name')));
     }

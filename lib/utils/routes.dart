@@ -13,4 +13,5 @@ class Routes {
       'saloon_registration_verify_page';
   static const String userHomePage = '/user_home_page';
   static const String saloonHomePage = '/saloon_home_page';
+  static const String userProfilePage = '/user_profile_page';
 }

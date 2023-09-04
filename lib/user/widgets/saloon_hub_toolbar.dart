@@ -28,8 +28,29 @@ class SaloonHubToolbar extends StatelessWidget {
               ),
             ),
           ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.userProfilePage);
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 16,
+                child: _getBackgroundImages(null),
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Widget _getBackgroundImages(File? imageView) {
+    var image = imageView != null
+        ? FileImage(imageView) as ImageProvider<Object>
+        : const AssetImage(Assets.profilePic);
+    return Image(image: image);
   }
 }
