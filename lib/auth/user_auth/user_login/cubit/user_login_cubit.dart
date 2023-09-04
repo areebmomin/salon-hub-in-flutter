@@ -1,4 +1,4 @@
-import 'package:auth_repository/user_login/user_login_repository.dart';
+import 'package:repository/user_login/user_login_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../utils/strings.dart';

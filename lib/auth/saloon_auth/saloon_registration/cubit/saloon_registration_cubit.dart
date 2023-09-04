@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:auth_repository/saloon_registration/models/saloon_registration_data.dart';
-import 'package:auth_repository/saloon_registration/saloon_registration_repository.dart';
-import 'package:auth_repository/saloon_registration/saloon_registration_states.dart';
+import 'package:repository/saloon_registration/models/saloon_registration_data.dart';
+import 'package:repository/saloon_registration/saloon_registration_repository.dart';
+import 'package:repository/saloon_registration/saloon_registration_states.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

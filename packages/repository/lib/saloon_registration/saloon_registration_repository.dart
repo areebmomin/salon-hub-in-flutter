@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:auth_repository/saloon_registration/models/saloon_registration_data.dart';
-import 'package:auth_repository/saloon_registration/saloon_registration_database_service.dart';
+import 'package:repository/saloon_registration/models/saloon_registration_data.dart';
+import 'package:repository/saloon_registration/saloon_registration_database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'saloon_registration_states.dart';
 import 'saloon_registration_storage_service.dart';

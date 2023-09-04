@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:auth_repository/user_login/user_login_repository.dart';
-import 'package:auth_repository/user_registration/models/user_registration_data.dart';
-import 'package:auth_repository/user_registration/user_registration_repository.dart';
-import 'package:auth_repository/user_registration/user_registration_repository_states.dart';
+import 'package:repository/user_login/user_login_repository.dart';
+import 'package:repository/user_registration/models/user_registration_data.dart';
+import 'package:repository/user_registration/user_registration_repository.dart';
+import 'package:repository/user_registration/user_registration_repository_states.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

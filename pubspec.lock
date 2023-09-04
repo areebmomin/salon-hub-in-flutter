@@ -17,13 +17,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  auth_repository:
-    dependency: "direct main"
-    description:
-      path: "packages/auth_repository"
-      relative: true
-    source: path
-    version: "0.0.1"
   bloc:
     dependency: transitive
     description:
@@ -503,6 +496,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  repository:
+    dependency: "direct main"
+    description:
+      path: "packages/repository"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

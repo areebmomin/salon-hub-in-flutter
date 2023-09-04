@@ -1,5 +1,5 @@
-import 'package:auth_repository/saloon_login/saloon_login_repository.dart';
-import 'package:auth_repository/user_login/user_login_repository.dart';
+import 'package:repository/saloon_login/saloon_login_repository.dart';
+import 'package:repository/user_login/user_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:saloon_hub/auth/saloon_auth/saloon_login/cubit/saloon_login_cubit.dart';

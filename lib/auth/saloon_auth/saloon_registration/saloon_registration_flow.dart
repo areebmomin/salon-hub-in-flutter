@@ -1,4 +1,4 @@
-import 'package:auth_repository/saloon_registration/saloon_registration_repository.dart';
+import 'package:repository/saloon_registration/saloon_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';

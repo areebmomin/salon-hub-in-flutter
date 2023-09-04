@@ -1,4 +1,4 @@
-import 'package:auth_repository/saloon_login/saloon_login_repository.dart';
+import 'package:repository/saloon_login/saloon_login_repository.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

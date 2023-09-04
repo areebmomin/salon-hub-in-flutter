@@ -1,5 +1,5 @@
-import 'package:auth_repository/user_login/user_login_repository.dart';
-import 'package:auth_repository/user_registration/user_registration_repository.dart';
+import 'package:repository/user_login/user_login_repository.dart';
+import 'package:repository/user_registration/user_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
