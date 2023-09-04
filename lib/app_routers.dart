@@ -6,14 +6,31 @@ import 'auth/saloon_auth/saloon_registration/saloon_registration_flow.dart';
 import 'saloon/saloon_home_page.dart';
 import 'user/user_home_page.dart';
 import 'utils/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AppRouters {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    Widget getLandingPage() {
+      var currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        switch (currentUser.providerData.firstOrNull?.providerId) {
+          case 'password':
+            return const SaloonHomePage();
+          case 'phone':
+            return const UserHomePage();
+          default:
+            return const LoginPage();
+        }
+      } else {
+        return const LoginPage();
+      }
+    }
+
     late Widget page;
     var name = settings.name;
 
     if (name == Routes.root) {
-      page = const LoginPage();
+      page = getLandingPage();
     } else if (name!.startsWith(Routes.userRegistrationFlow)) {
       final subRoute = name.substring(Routes.userRegistrationFlow.length);
       page = UserRegistrationFlow(
