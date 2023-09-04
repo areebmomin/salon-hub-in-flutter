@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:repository/saloon_login/saloon_login_repository.dart';
 import 'package:repository/user_login/user_login_repository.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +10,13 @@ import '../utils/index.dart';
 import 'saloon_auth/saloon_login/salon_login_page.dart';
 import 'user_auth/user_login/user_login_page.dart';
 
-part 'widgets/saloon_hub_toolbar.dart';
-
 part 'widgets/login_heading.dart';
 
 part 'widgets/login_tab_layout.dart';
 
 part 'widgets/tab_layout_and_login_widget.dart';
+
+part 'widgets/close_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SaloonHubToolbar(),
+                    CloseButton(),
                     LoginHeading(),
                     TabLayoutAndLogin(),
                   ],

@@ -6,20 +6,30 @@ class SaloonHubToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[100],
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 2.0,
+            spreadRadius: 0.0,
+            offset: const Offset(2.0, 2.0),
+          )
+        ],
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-            child: Image.asset(
-              Assets.appLogo,
-              width: 40,
-              height: 40,
+          const Padding(
+            padding: EdgeInsets.only(left: 16, top: 12, bottom: 12),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage(Assets.appLogo),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 8, top: 16, bottom: 16),
+            padding: EdgeInsets.only(left: 8, top: 12, bottom: 12),
             child: Text(
               Strings.appName,
               style: TextStyle(
@@ -37,8 +47,8 @@ class SaloonHubToolbar extends StatelessWidget {
               },
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
+                backgroundImage: _getBackgroundImages(null),
                 radius: 16,
-                child: _getBackgroundImages(null),
               ),
             ),
           ),
@@ -47,10 +57,9 @@ class SaloonHubToolbar extends StatelessWidget {
     );
   }
 
-  Widget _getBackgroundImages(File? imageView) {
-    var image = imageView != null
+  ImageProvider<Object> _getBackgroundImages(File? imageView) {
+    return imageView != null
         ? FileImage(imageView) as ImageProvider<Object>
         : const AssetImage(Assets.profilePic);
-    return Image(image: image);
   }
 }

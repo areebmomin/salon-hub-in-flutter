@@ -4,6 +4,10 @@ import '../utils/index.dart';
 
 part 'widgets/saloon_hub_toolbar.dart';
 
+part 'widgets/filter_bottom_sheet.dart';
+
+part 'widgets/filter_floating_action_button.dart';
+
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
 
@@ -11,7 +15,7 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: const SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -20,6 +24,7 @@ class UserHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: getFilterFloatingButton(context),
     );
   }
 }
