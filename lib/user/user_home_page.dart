@@ -8,6 +8,8 @@ part 'widgets/filter_bottom_sheet.dart';
 
 part 'widgets/filter_floating_action_button.dart';
 
+part 'widgets/saloon_list_view.dart';
+
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
 
@@ -21,6 +23,7 @@ class UserHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SaloonHubToolbar(),
+            Expanded(child: SaloonListView()),
           ],
         ),
       ),

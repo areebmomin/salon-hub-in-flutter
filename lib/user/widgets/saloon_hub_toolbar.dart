@@ -31,7 +31,7 @@ class SaloonHubToolbar extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 8, top: 12, bottom: 12),
             child: Text(
-              Strings.appName,
+              Strings.appNameToolbar,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w500,

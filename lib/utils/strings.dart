@@ -2,6 +2,7 @@ class Strings {
   Strings._();
 
   static const String appName = 'Saloon Hub';
+  static const String appNameToolbar = 'SaloonHub';
   static const String login = 'Login';
   static const String iAmCustomer = 'I Am Customer';
   static const String salon = 'Salon';
