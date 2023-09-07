@@ -40,8 +40,6 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
               border: TextFieldConstants.curvedUnderlineInputBorder,
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
-              hintText: Strings.businessAddressHint,
-              hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
@@ -69,8 +67,6 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
                 horizontal: 16,
               ),
             ),
-            style: TextStyleConstants.textFieldHint,
-            keyboardType: TextInputType.streetAddress,
             textInputAction: TextInputAction.next,
           ),
         ),
