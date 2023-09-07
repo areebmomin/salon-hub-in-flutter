@@ -4,6 +4,8 @@ getFilterFloatingButton(BuildContext context) => FloatingActionButton(
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,
+          useSafeArea: true,
+          isScrollControlled: true,
           builder: (BuildContext context) {
             return const FilterBottomSheet();
           },

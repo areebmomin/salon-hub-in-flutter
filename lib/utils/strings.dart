@@ -67,6 +67,9 @@ class Strings {
       'Cannot add more than 20 attendees';
   static const String verifyBusiness = 'Verify Business';
   static const String resetEmailLinkSent = 'Password reset email link sent';
+  static const String filterByHeading = 'Filter by:';
+  static const String saloonName = 'Saloon Name';
+  static const String saloonAddress = 'Saloon Address';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
@@ -79,5 +82,10 @@ class Strings {
     '3 PM',
     '6 PM',
     '9 PM',
+  ];
+  static const List<String> saloonAvailability = <String>[
+    'Open/Close',
+    'Open',
+    'Close'
   ];
 }
