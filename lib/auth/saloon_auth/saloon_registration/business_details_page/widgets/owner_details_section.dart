@@ -33,71 +33,10 @@ class OwnerDetails extends StatelessWidget {
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
+              prototypeItem: OwnerDetailsListItem(cubit, 0),
               itemCount: cubit.data.ownerDetailsList.length,
               itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 12,
-                    bottom: 12,
-                  ),
-                  child: Row(
-                    children: [
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: BlocBuilder<SaloonRegistrationCubit,
-                                SaloonRegistrationState>(
-                              buildWhen: (previousState, state) {
-                                return state is OwnerPhotoSelected &&
-                                    state.index == index;
-                              },
-                              builder: (context, state) {
-                                return CircleAvatar(
-                                  backgroundImage: _getBackgroundImage(state),
-                                  radius: 40,
-                                );
-                              },
-                            ),
-                          ),
-                          Positioned(
-                            top: 70,
-                            left: 67,
-                            child: GestureDetector(
-                              onTap: () {
-                                cubit.setOwnerPhoto(index);
-                              },
-                              child: const Icon(
-                                Icons.add_a_photo,
-                                size: 24,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            TextField(
-                              decoration: const InputDecoration(
-                                hintStyle: TextStyleConstants.textFieldHint,
-                                hintText: Strings.name,
-                              ),
-                              onChanged: (name) {
-                                cubit.data.ownerDetailsList[index].name = name;
-                              },
-                            ),
-                            if (index > 0) _getCloseButton(cubit, index),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+                return OwnerDetailsListItem(cubit, index);
               },
             );
           },
@@ -116,6 +55,79 @@ class OwnerDetails extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class OwnerDetailsListItem extends StatelessWidget {
+  final SaloonRegistrationCubit cubit;
+  final int index;
+
+  const OwnerDetailsListItem(this.cubit, this.index, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 12,
+        bottom: 12,
+      ),
+      child: Row(
+        children: [
+          Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: BlocBuilder<SaloonRegistrationCubit,
+                    SaloonRegistrationState>(
+                  buildWhen: (previousState, state) {
+                    return state is OwnerPhotoSelected && state.index == index;
+                  },
+                  builder: (context, state) {
+                    return CircleAvatar(
+                      backgroundImage: _getBackgroundImage(state),
+                      radius: 40,
+                    );
+                  },
+                ),
+              ),
+              Positioned(
+                top: 70,
+                left: 67,
+                child: GestureDetector(
+                  onTap: () {
+                    cubit.setOwnerPhoto(index);
+                  },
+                  child: const Icon(
+                    Icons.add_a_photo,
+                    size: 24,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                TextField(
+                  decoration: const InputDecoration(
+                    hintStyle: TextStyleConstants.textFieldHint,
+                    hintText: Strings.name,
+                  ),
+                  onChanged: (name) {
+                    cubit.data.ownerDetailsList[index].name = name;
+                  },
+                ),
+                if (index > 0) _getCloseButton(cubit, index),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
