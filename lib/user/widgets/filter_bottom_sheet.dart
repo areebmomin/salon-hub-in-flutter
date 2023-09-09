@@ -185,7 +185,7 @@ class AddressTextField extends StatelessWidget {
         onChanged: (address) {
           //cubit.data.address = address.trim();
         },
-        textInputAction: TextInputAction.next,
+        textInputAction: TextInputAction.done,
       ),
     );
   }
@@ -201,7 +201,9 @@ class FilterButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 32, top: 40, right: 16),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             padding: const EdgeInsets.all(8),
