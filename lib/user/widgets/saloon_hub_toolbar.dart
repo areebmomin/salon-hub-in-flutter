@@ -21,26 +21,26 @@ class SaloonHubToolbar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 16, top: 12, bottom: 12),
+            padding: EdgeInsets.only(left: 16, top: 10, bottom: 10),
             child: CircleAvatar(
-              radius: 20,
+              radius: 17,
               backgroundColor: Colors.white,
               backgroundImage: AssetImage(Assets.appLogo),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 8, top: 12, bottom: 12),
+            padding: EdgeInsets.only(left: 8, top: 10, bottom: 10),
             child: Text(
               Strings.appNameToolbar,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 19,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               onTap: () {
                 Navigator.pushNamed(context, Routes.userProfilePage);
@@ -48,7 +48,7 @@ class SaloonHubToolbar extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
                 backgroundImage: _getBackgroundImages(null),
-                radius: 16,
+                radius: 12,
               ),
             ),
           ),

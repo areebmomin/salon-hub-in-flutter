@@ -8,6 +8,7 @@ class SaloonListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 2),
       child: ListView.builder(
+        padding: const EdgeInsets.only(top: 8, bottom: 8),
         itemCount: 5,
         prototypeItem: const SaloonListViewItem(),
         itemBuilder: (context, index) {
@@ -24,7 +25,7 @@ class SaloonListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
       child: Card(
         color: AppColors.cardBackground,
         shape: RoundedRectangleBorder(
@@ -63,12 +64,12 @@ class SaloonListViewItem extends StatelessWidget {
                             textAlign: TextAlign.start,
                             maxLines: 2,
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 18,
                               fontFamily: Strings.firaSans,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 8),
                           RichText(
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.start,
@@ -85,7 +86,7 @@ class SaloonListViewItem extends StatelessWidget {
                                 const TextSpan(
                                   text: ' ${Strings.businessAddressHint}',
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.lightTextColor,
                                   ),
@@ -93,7 +94,7 @@ class SaloonListViewItem extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 8),
                           RichText(
                             textAlign: TextAlign.center,
                             text: const TextSpan(
