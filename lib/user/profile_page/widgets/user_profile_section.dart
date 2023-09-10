@@ -131,18 +131,18 @@ class UserProfileSection extends StatelessWidget {
         ? Image.network(
             imageUrl,
             fit: BoxFit.fill,
-            height: 72,
-            width: 72,
+            height: 80,
+            width: 80,
           )
         : Image.asset(
             Assets.profilePic,
             fit: BoxFit.fill,
-            height: 72,
-            width: 72,
+            height: 80,
+            width: 80,
           );
 
     return CircleAvatar(
-      radius: 40,
+      radius: 44,
       backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(4),
