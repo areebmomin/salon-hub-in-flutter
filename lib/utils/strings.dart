@@ -70,6 +70,7 @@ class Strings {
   static const String filterByHeading = 'Filter by:';
   static const String saloonName = 'Saloon Name';
   static const String saloonAddress = 'Saloon Address';
+  static const String profile = 'Profile';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

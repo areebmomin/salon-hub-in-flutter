@@ -5,16 +5,13 @@ class SaloonListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 2),
-      child: ListView.builder(
-        padding: const EdgeInsets.only(top: 8, bottom: 8),
-        itemCount: 5,
-        prototypeItem: const SaloonListViewItem(),
-        itemBuilder: (context, index) {
-          return const SaloonListViewItem();
-        },
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.only(top: 8, bottom: 8),
+      itemCount: 5,
+      prototypeItem: const SaloonListViewItem(),
+      itemBuilder: (context, index) {
+        return const SaloonListViewItem();
+      },
     );
   }
 }

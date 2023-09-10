@@ -1,26 +1,9 @@
 part of '../user_home_page.dart';
 
-class SaloonHubToolbar extends StatelessWidget {
-  const SaloonHubToolbar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 2.0,
-            spreadRadius: 0.0,
-            offset: const Offset(2.0, 2.0),
-          )
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+AppBar appBar(BuildContext context, String? imageUrl) => AppBar(
+      title: const Row(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 16, top: 10, bottom: 10),
             child: CircleAvatar(
               radius: 17,
@@ -28,38 +11,48 @@ class SaloonHubToolbar extends StatelessWidget {
               backgroundImage: AssetImage(Assets.appLogo),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 8, top: 10, bottom: 10),
             child: Text(
               Strings.appNameToolbar,
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.userProfilePage);
-              },
-              child: CircleAvatar(
-                backgroundColor: Colors.transparent,
-                backgroundImage: _getBackgroundImages(null),
-                radius: 12,
+                color: AppColors.headingTextColor,
               ),
             ),
           ),
         ],
       ),
+      titleSpacing: 0,
+      backgroundColor: Colors.white,
+      elevation: 3,
+      shadowColor: Colors.grey.shade200,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.userProfilePage);
+            },
+            child: _getProfileImageOrIcon(context, null),
+          ),
+        ),
+      ],
     );
-  }
 
-  ImageProvider<Object> _getBackgroundImages(File? imageView) {
-    return imageView != null
-        ? FileImage(imageView) as ImageProvider<Object>
-        : const AssetImage(Assets.profilePic);
+Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
+  if (imageUrl != null) {
+    return CircleAvatar(
+      backgroundColor: Colors.transparent,
+      backgroundImage: NetworkImage(imageUrl),
+      radius: 14,
+    );
+  } else {
+    return const Image(
+      image: AssetImage(Assets.profilePic),
+      width: 28,
+      height: 28,
+    );
   }
 }

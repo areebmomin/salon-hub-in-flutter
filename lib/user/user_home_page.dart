@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 
@@ -17,13 +16,15 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: appBar(context, null),
       body: const SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SaloonHubToolbar(),
-            Expanded(child: SaloonListView()),
+            Expanded(
+              child: SaloonListView(),
+            ),
           ],
         ),
       ),
