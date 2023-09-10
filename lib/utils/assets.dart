@@ -5,4 +5,6 @@ class Assets {
   static const String userProfileDummy =
       'assets/images/user_profile_dummy.webp';
   static const String profilePic = 'assets/images/profile_pic.png';
+  static const String userProfileBanner =
+      'assets/images/user_profile_banner.png';
 }

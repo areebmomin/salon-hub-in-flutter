@@ -77,4 +77,24 @@ class TextStyleConstants {
     fontSize: 18,
     fontFamily: Strings.firaSans,
   );
+
+  static const logoutButton = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: Strings.firaSans,
+    color: Colors.white,
+  );
+
+  static const profileSmallLight = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.lightTextColor,
+  );
+
+  static const profileName = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+    fontFamily: Strings.firaSans,
+  );
 }

@@ -71,6 +71,8 @@ class Strings {
   static const String saloonName = 'Saloon Name';
   static const String saloonAddress = 'Saloon Address';
   static const String profile = 'Profile';
+  static const String logout = 'Logout';
+  static const String editProfile = 'Edit Profile';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

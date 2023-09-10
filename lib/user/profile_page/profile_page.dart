@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../utils/index.dart';
 
+part 'widgets/user_profile_section.dart';
+
+part 'widgets/booking_history_section.dart';
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -10,10 +14,17 @@ class ProfilePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: _appBar,
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [],
+        child: ScrollConfiguration(
+          behavior: NoOverscrollBehaviour(),
+          child: const SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                UserProfileSection(),
+                BookingHistorySection(),
+              ],
+            ),
+          ),
         ),
       ),
     );
