@@ -74,6 +74,8 @@ class Strings {
   static const String logout = 'Logout';
   static const String editProfile = 'Edit Profile';
   static const String bookingHistory = 'Booking History';
+  static const String editProfileHeading = 'Edit Profile';
+  static const String saveUpperCase = 'SAVE';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

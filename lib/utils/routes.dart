@@ -14,4 +14,5 @@ class Routes {
   static const String userHomePage = '/user_home_page';
   static const String saloonHomePage = '/saloon_home_page';
   static const String userProfilePage = '/user_profile_page';
+  static const String editUserProfile = '/edit_user_profile';
 }

@@ -70,7 +70,7 @@ class UserProfileSection extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      //cubit.saveDetailsButtonClicked();
+                      Navigator.pushNamed(context, Routes.editUserProfile);
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(0, 56),

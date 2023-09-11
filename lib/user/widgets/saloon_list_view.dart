@@ -28,7 +28,7 @@ class SaloonListViewItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5),
         ),
-        elevation: 3,
+        elevation: 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

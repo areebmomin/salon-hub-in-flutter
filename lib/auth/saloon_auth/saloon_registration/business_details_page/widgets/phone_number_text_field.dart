@@ -39,6 +39,7 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
               leadingPadding: 20,
               setSelectorButtonAsPrefixIcon: true,
             ),
+            initialValue: PhoneNumber(isoCode: 'IN'),
             textStyle: TextStyleConstants.textField,
             selectorTextStyle: TextStyleConstants.textField,
             inputDecoration: const InputDecoration(

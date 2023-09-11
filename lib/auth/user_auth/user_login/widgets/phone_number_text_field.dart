@@ -31,6 +31,7 @@ class PhoneNumberTextField extends StatelessWidget {
             onInputValidated: (isValid) {
               cubit.isPhoneNumberValid = isValid;
             },
+            initialValue: PhoneNumber(isoCode: 'IN'),
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
               leadingPadding: 20,

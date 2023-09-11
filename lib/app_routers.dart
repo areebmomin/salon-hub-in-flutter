@@ -5,6 +5,7 @@ import 'package:saloon_hub/utils/index.dart';
 import 'auth/login_page.dart';
 import 'auth/saloon_auth/saloon_registration/saloon_registration_flow.dart';
 import 'saloon/saloon_home_page.dart';
+import 'user/edit_profile_page/edit_profile_page.dart';
 import 'user/user_home_page.dart';
 import 'utils/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -48,6 +49,8 @@ class AppRouters {
       page = const SaloonHomePage();
     } else if (name == Routes.userProfilePage) {
       page = const ProfilePage();
+    } else if (name == Routes.editUserProfile) {
+      page = const EditProfilePage();
     } else {
       page = Scaffold(body: Center(child: Text('No route defined for $name')));
     }
