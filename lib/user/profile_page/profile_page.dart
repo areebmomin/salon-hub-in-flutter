@@ -13,17 +13,14 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar,
-      body: SafeArea(
-        child: ScrollConfiguration(
-          behavior: NoOverscrollBehaviour(),
-          child: const SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                UserProfileSection(),
-                BookingHistorySection(),
-              ],
-            ),
+      body: const SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              UserProfileSection(),
+              BookingHistorySection(),
+            ],
           ),
         ),
       ),

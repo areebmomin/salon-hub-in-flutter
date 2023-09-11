@@ -64,6 +64,7 @@ class SaloonListViewItem extends StatelessWidget {
                               fontSize: 18,
                               fontFamily: Strings.firaSans,
                               fontWeight: FontWeight.w600,
+                              color: AppColors.headingTextColor,
                             ),
                           ),
                           const SizedBox(height: 8),

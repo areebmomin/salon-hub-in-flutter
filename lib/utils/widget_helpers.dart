@@ -104,4 +104,31 @@ class TextStyleConstants {
     color: Colors.black,
     fontFamily: Strings.firaSans,
   );
+
+  static const bookingHistorySaloonHeading = TextStyle(
+    color: AppColors.lightTextColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    fontFamily: Strings.firaSans,
+  );
+
+  static const bookingHistoryStatus = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.inputText,
+  );
+
+  static const bookingHistoryListTitle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.headingTextColor,
+    fontFamily: Strings.firaSans,
+  );
+
+  static const bookingHistoryListValue = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.lightTextColor,
+    fontFamily: Strings.firaSans,
+  );
 }
