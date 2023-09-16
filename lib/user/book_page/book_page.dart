@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
 
 part 'widgets/toolbar.dart';
+
+part 'widgets/select_date.dart';
+
+part 'widgets/select_time.dart';
+
+part 'widgets/select_services.dart';
+
+part 'widgets/add_note.dart';
+
+part 'widgets/book_button.dart';
 
 class BookPage extends StatelessWidget {
   const BookPage({super.key});
@@ -16,7 +28,25 @@ class BookPage extends StatelessWidget {
           child: const SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [],
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 16, top: 24, bottom: 24),
+                      child: Text(
+                        Strings.bookSlot,
+                        style: TextStyleConstants.bookSlotHeading,
+                      ),
+                    ),
+                    SelectDate(),
+                    SelectTime(),
+                    SelectServices(),
+                    AddNote(),
+                    BookButton(),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

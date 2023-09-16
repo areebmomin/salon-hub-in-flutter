@@ -76,6 +76,14 @@ class Strings {
   static const String bookingHistory = 'Booking History';
   static const String editProfileHeading = 'Edit Profile';
   static const String saveUpperCase = 'SAVE';
+  static const String bookSlot = 'Book Slot';
+  static const String book = 'Book';
+  static const String date = 'Date';
+  static const String time = 'Time';
+  static const String service = 'Service';
+  static const String note = 'Note';
+  static const String selectUpperCase = 'SELECT';
+  static const String colon = ':';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

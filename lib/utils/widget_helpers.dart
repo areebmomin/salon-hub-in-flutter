@@ -131,4 +131,31 @@ class TextStyleConstants {
     color: AppColors.lightTextColor,
     fontFamily: Strings.firaSans,
   );
+
+  static const bookSlotHeading = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    fontFamily: Strings.firaSans,
+    color: AppColors.headingTextColor,
+  );
+
+  static const bookSlotSubHeading = TextStyle(
+    fontSize: 16,
+    color: AppColors.headingTextColor,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const serviceChipSelected = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  static const serviceChipUnselected = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.lightTextColor,
+  );
+
+  static const timeColon = TextStyle(fontSize: 18, fontWeight: FontWeight.w700);
 }
