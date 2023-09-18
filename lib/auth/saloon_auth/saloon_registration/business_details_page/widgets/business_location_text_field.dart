@@ -13,7 +13,7 @@ class BusinessLocationTextField extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
           child: Text(
-            Strings.businessLocation,
+            Strings.location,
             style: TextStyleConstants.textField,
           ),
         ),

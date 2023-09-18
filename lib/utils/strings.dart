@@ -34,7 +34,7 @@ class Strings {
   static const String businessNameHint = 'Beauty Salon Shop';
   static const String businessAddressHint =
       'Shop no. 2, Dr Anandrao Nair Road, Opp Reserve Bank Of India, Mumbai, 400008';
-  static const String businessLocation = 'Location';
+  static const String location = 'Location';
   static const String services = 'Services';
   static const String type = 'Type';
   static const String serviceDays = 'Service day\'s';
@@ -80,10 +80,15 @@ class Strings {
   static const String book = 'Book';
   static const String date = 'Date';
   static const String time = 'Time';
-  static const String service = 'Service';
   static const String note = 'Note';
   static const String selectUpperCase = 'SELECT';
   static const String colon = ':';
+  static const String salonInfo = 'Salon Info';
+  static const String basics = 'Basics';
+  static const String availability = 'Availability';
+  static const String days = 'Day\'s:';
+  static const String owners = 'Owner\'s';
+  static const String attendees = 'Attendee\'s';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

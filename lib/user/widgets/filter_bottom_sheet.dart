@@ -138,7 +138,7 @@ class NearMeTextField extends StatelessWidget {
           border: TextFieldConstants.curvedUnderlineInputBorder,
           enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
           focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
-          hintText: Strings.businessLocation,
+          hintText: Strings.location,
           hintStyle: TextStyleConstants.textFieldHint,
           suffixIcon: Icon(Icons.add_location_alt),
           contentPadding: EdgeInsets.symmetric(

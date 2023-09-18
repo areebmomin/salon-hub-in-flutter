@@ -20,6 +20,15 @@ class TextFieldConstants {
   );
 }
 
+class Dividers {
+  static const lightDivider = Divider(
+    thickness: 1,
+    indent: 16,
+    endIndent: 16,
+    height: 40,
+  );
+}
+
 class TextStyleConstants {
   static const textFieldHint = TextStyle(
     fontWeight: FontWeight.w500,
@@ -158,4 +167,18 @@ class TextStyleConstants {
   );
 
   static const timeColon = TextStyle(fontSize: 18, fontWeight: FontWeight.w700);
+
+  static const salonNameHeading = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.w700,
+    fontFamily: Strings.firaSans,
+    color: AppColors.headingTextColor,
+  );
+
+  static const salonInfoCardHeading = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.w700,
+    fontFamily: Strings.firaSans,
+    color: AppColors.headingTextColor,
+  );
 }
