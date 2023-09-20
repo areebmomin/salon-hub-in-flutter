@@ -10,13 +10,12 @@ class SaloonHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: appBar(context, null),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SaloonHubToolbar(),
-          ],
+          children: [],
         ),
       ),
     );

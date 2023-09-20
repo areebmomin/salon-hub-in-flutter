@@ -1,35 +1,58 @@
 part of '../saloon_home_page.dart';
 
-class SaloonHubToolbar extends StatelessWidget {
-  const SaloonHubToolbar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[100],
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-            child: Image.asset(
-              Assets.appLogo,
-              width: 40,
-              height: 40,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 8, top: 16, bottom: 16),
-            child: Text(
-              Strings.appName,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
+AppBar appBar(BuildContext context, String? imageUrl) => AppBar(
+  title: const Row(
+    children: [
+      Padding(
+        padding: EdgeInsets.only(left: 16, top: 10, bottom: 10),
+        child: CircleAvatar(
+          radius: 17,
+          backgroundColor: Colors.white,
+          backgroundImage: AssetImage(Assets.appLogo),
+        ),
       ),
+      Padding(
+        padding: EdgeInsets.only(left: 8, top: 10, bottom: 10),
+        child: Text(
+          Strings.appNameToolbar,
+          style: TextStyle(
+            fontSize: 19,
+            fontWeight: FontWeight.w500,
+            color: AppColors.headingTextColor,
+          ),
+        ),
+      ),
+    ],
+  ),
+  titleSpacing: 0,
+  backgroundColor: Colors.white,
+  elevation: 3,
+  shadowColor: Colors.grey.shade200,
+  actions: [
+    Padding(
+      padding: const EdgeInsets.only(right: 16),
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, Routes.salonProfilePage);
+        },
+        child: _getProfileImageOrIcon(context, null),
+      ),
+    ),
+  ],
+);
+
+Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
+  if (imageUrl != null) {
+    return CircleAvatar(
+      backgroundColor: Colors.transparent,
+      backgroundImage: NetworkImage(imageUrl),
+      radius: 14,
+    );
+  } else {
+    return const Image(
+      image: AssetImage(Assets.profilePic),
+      width: 28,
+      height: 28,
     );
   }
 }

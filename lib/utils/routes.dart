@@ -17,4 +17,7 @@ class Routes {
   static const String editUserProfile = '/edit_user_profile';
   static const String bookPage = '/book_page';
   static const String aboutSaloonPage = '/about_saloon_page';
+  static const String bookingDetailsPage = '/booking_details_page';
+  static const String salonProfilePage = '/salon_profile_page';
+  static const String salonEditProfilePage = '/salon_edit_profile_page';
 }

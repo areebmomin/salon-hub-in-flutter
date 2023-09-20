@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:saloon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
+import 'package:saloon_hub/saloon/booking_details_page/booking_details_page.dart';
+import 'package:saloon_hub/saloon/salon_edit_profile_page/salon_edit_profile_page.dart';
+import 'package:saloon_hub/saloon/salon_profile_page/salon_profile_page.dart';
 import 'package:saloon_hub/user/about_saloon_page/about_saloon_page.dart';
 import 'package:saloon_hub/user/book_page/book_page.dart';
 import 'package:saloon_hub/user/profile_page/profile_page.dart';
@@ -57,6 +60,12 @@ class AppRouters {
       page = const BookPage();
     } else if (name == Routes.aboutSaloonPage) {
       page = const AboutSaloonPage();
+    } else if (name == Routes.bookingDetailsPage) {
+      page = const BookingDetailsPage();
+    } else if (name == Routes.salonProfilePage) {
+      page = const SalonProfilePage();
+    } else if (name == Routes.salonEditProfilePage) {
+      page = const SalonEditProfilePage();
     } else {
       page = Scaffold(body: Center(child: Text('No route defined for $name')));
     }
