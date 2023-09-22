@@ -89,6 +89,8 @@ class Strings {
   static const String days = 'Day\'s:';
   static const String owners = 'Owner\'s';
   static const String attendees = 'Attendee\'s';
+  static const String schedule = 'Schedule';
+  static const String requests = 'Requests';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
