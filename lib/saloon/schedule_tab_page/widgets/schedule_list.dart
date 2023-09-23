@@ -45,30 +45,29 @@ class ScheduleList extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              RichText(
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.start,
-                                maxLines: 1,
-                                text: TextSpan(
-                                  children: [
-                                    const TextSpan(
-                                      text: '8149311487 ',
-                                      style: TextStyleConstants
-                                          .phoneNumberScheduleCard,
-                                    ),
-                                    WidgetSpan(
-                                      child: InkWell(
-                                        onTap: () {
-                                          _launchUrl('8149311487');
-                                        },
-                                        child: const Icon(
+                              InkWell(
+                                onTap: () {
+                                  _launchUrl('8149311487');
+                                },
+                                child: RichText(
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.start,
+                                  maxLines: 1,
+                                  text: const TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Icon(
                                           Icons.phone,
                                           size: 16,
                                           color: AppColors.inputText,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      TextSpan(
+                                        text: ' +91 8149311487',
+                                        style: TextStyleConstants.phoneNumberScheduleCard,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
