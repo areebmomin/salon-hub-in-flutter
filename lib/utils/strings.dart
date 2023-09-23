@@ -97,6 +97,9 @@ class Strings {
   static const String noteColon = 'Note:';
   static const String yourReplyColon = 'Your reply:';
   static const String okay = 'Okay';
+  static const String dateColon = 'Date:';
+  static const String decline = 'Decline';
+  static const String accept = 'Accept';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];

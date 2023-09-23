@@ -184,7 +184,7 @@ class TextStyleConstants {
 
   static const userNameScheduleCard = TextStyle(
     color: AppColors.headingTextColor,
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: Strings.firaSans,
     fontWeight: FontWeight.w600,
   );
@@ -223,5 +223,12 @@ class TextStyleConstants {
     fontWeight: FontWeight.w500,
     fontSize: 14,
     color: AppColors.headingTextColor,
+  );
+
+  static const requestActionButton = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontFamily: Strings.firaSans,
+    color: Colors.white,
   );
 }
