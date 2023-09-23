@@ -181,4 +181,41 @@ class TextStyleConstants {
     fontFamily: Strings.firaSans,
     color: AppColors.headingTextColor,
   );
+
+  static const userNameScheduleCard = TextStyle(
+    color: AppColors.headingTextColor,
+    fontSize: 20,
+    fontFamily: Strings.firaSans,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const phoneNumberScheduleCard = TextStyle(
+    color: AppColors.lightTextColor,
+    fontSize: 14,
+    fontFamily: Strings.firaSans,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.16,
+  );
+
+  static const subHeadingScheduleCard = TextStyle(
+    color: AppColors.headingTextColor,
+    fontSize: 16,
+    fontFamily: Strings.firaSans,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const chipTextScheduleCard = TextStyle(
+    color: AppColors.lightTextColor,
+    fontSize: 15,
+    fontFamily: Strings.firaSans,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.15,
+  );
+
+  static const valueTextScheduleCard = TextStyle(
+    color: AppColors.lightTextColor,
+    fontSize: 17,
+    fontFamily: Strings.firaSans,
+    fontWeight: FontWeight.w500,
+  );
 }

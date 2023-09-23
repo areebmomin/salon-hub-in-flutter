@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:saloon_hub/saloon/request_tab_page/request_tab_page.dart';
-import 'package:saloon_hub/saloon/schedule_tab_page/schedule_tab_page.dart';
+import 'package:saloon_hub/saloon/request_tab_page/request_tab_view.dart';
+import 'package:saloon_hub/saloon/schedule_tab_page/schedule_tab_view.dart';
 import '../utils/index.dart';
 
 part 'widgets/saloon_hub_toolbar.dart';
@@ -27,9 +27,10 @@ class _SaloonHomePageState extends State<SaloonHomePage> {
         ][currentPageIndex],
       ),
       bottomNavigationBar: NavigationBar(
-        height: 72,
+        height: 64,
         backgroundColor: AppColors.inputFieldBackground,
-        elevation: 2,
+        elevation: 3,
+        shadowColor: Colors.grey.shade200,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;

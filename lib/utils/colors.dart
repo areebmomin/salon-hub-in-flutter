@@ -12,4 +12,6 @@ class AppColors {
   static const Color checkboxActive = Color(0xFF0E9E59);
   static const Color cardBackground = Color(0xFFF8F8F8);
   static const Color headingBackground = Color(0xFFF8F8F8);
+  static const Color primaryBackground = Color(0xFFFDF6EE);
+  static const Color optionColor = Color(0xFF999999);
 }
