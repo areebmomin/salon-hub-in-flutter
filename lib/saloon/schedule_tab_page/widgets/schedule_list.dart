@@ -121,7 +121,9 @@ class ScheduleList extends StatelessWidget {
                   onSelected: (item) {
                     switch (item) {
                       case ScheduleOption.notes:
-                        {}
+                        {
+                          _notesDialogBuilder(context);
+                        }
                     }
                   },
                   itemBuilder: (BuildContext context) =>
@@ -171,6 +173,62 @@ class ScheduleList extends StatelessWidget {
       Fluttertoast.showToast(
           msg: Strings.couldNotLaunch, toastLength: Toast.LENGTH_SHORT);
     }
+  }
+
+  Future<void> _notesDialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8, right: 8, top: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      Strings.noteColon,
+                      style: TextStyleConstants.subHeadingScheduleCard,
+                    ),
+                    Text(
+                      'data',
+                      style: TextStyleConstants.valueTextScheduleCard,
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      Strings.yourReplyColon,
+                      style: TextStyleConstants.subHeadingScheduleCard,
+                    ),
+                    Text(
+                      'data',
+                      style: TextStyleConstants.valueTextScheduleCard,
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4, top: 2),
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      Strings.okay,
+                      style: TextStyleConstants.dialogButton,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

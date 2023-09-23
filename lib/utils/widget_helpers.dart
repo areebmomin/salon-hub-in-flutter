@@ -218,4 +218,10 @@ class TextStyleConstants {
     fontFamily: Strings.firaSans,
     fontWeight: FontWeight.w500,
   );
+
+  static const dialogButton = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    color: AppColors.headingTextColor,
+  );
 }

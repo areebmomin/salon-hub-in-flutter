@@ -94,6 +94,9 @@ class Strings {
   static const String timeColon = 'Time:';
   static const String notes = 'Notes';
   static const String couldNotLaunch = 'Could not launch';
+  static const String noteColon = 'Note:';
+  static const String yourReplyColon = 'Your reply:';
+  static const String okay = 'Okay';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
