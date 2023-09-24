@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:repository/saloon_registration/models/saloon_registration_data.dart';
+import 'package:repository/salon_registration/models/salon_registration_data.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
@@ -21,9 +21,9 @@ part 'widgets/owner_details_section.dart';
 
 part 'widgets/save_details_button.dart';
 
-part 'widgets/saloon_photo_upload.dart';
+part 'widgets/salon_photo_upload.dart';
 
-part 'widgets/saloon_type_text_field.dart';
+part 'widgets/salon_type_text_field.dart';
 
 part 'widgets/service_days_text_field.dart';
 

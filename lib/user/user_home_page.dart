@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../utils/index.dart';
 
-part 'widgets/saloon_hub_toolbar.dart';
+part 'widgets/salon_hub_toolbar.dart';
 
 part 'widgets/filter_bottom_sheet.dart';
 
 part 'widgets/filter_floating_action_button.dart';
 
-part 'widgets/saloon_list_view.dart';
+part 'widgets/salon_list_view.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});

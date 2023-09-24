@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:saloon_hub/auth/user_auth/user_registration/cubit/user_registration_cubit.dart';
+import 'package:salon_hub/auth/user_auth/user_registration/cubit/user_registration_cubit.dart';
 import '../../../../utils/index.dart';
 
 part 'widgets/address_text_field.dart';
