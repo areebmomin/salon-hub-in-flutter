@@ -100,6 +100,7 @@ class Strings {
   static const String dateColon = 'Date:';
   static const String decline = 'Decline';
   static const String accept = 'Accept';
+  static const String editBusinessDetails = 'Edit Business details';
 
   // lists
   static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
