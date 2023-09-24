@@ -1,4 +1,4 @@
-# saloon_hub
+# salon_hub
 
 FLutter project that shows all the saloon in a city.
 
