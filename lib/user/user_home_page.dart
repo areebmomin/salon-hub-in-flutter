@@ -23,7 +23,7 @@ class UserHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: SaloonListView(),
+              child: SalonListView(),
             ),
           ],
         ),

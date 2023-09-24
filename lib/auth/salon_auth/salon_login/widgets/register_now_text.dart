@@ -20,7 +20,7 @@ class RegisterNowText extends StatelessWidget {
                 ..onTap = () {
                   Navigator.pushNamed(
                     context,
-                    Routes.saloonRegistrationFlowStartPage,
+                    Routes.salonRegistrationFlowStartPage,
                   );
                 },
             ),

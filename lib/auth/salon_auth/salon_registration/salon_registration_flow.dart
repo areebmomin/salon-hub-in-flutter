@@ -7,23 +7,23 @@ import '../../../utils/index.dart';
 import 'business_details_page/business_details_page.dart';
 import 'cubit/salon_registration_cubit.dart';
 
-class SaloonRegistrationFlow extends StatefulWidget {
-  static SaloonRegistrationFlowState of(BuildContext context) {
-    return context.findAncestorStateOfType<SaloonRegistrationFlowState>()!;
+class SalonRegistrationFlow extends StatefulWidget {
+  static SalonRegistrationFlowState of(BuildContext context) {
+    return context.findAncestorStateOfType<SalonRegistrationFlowState>()!;
   }
 
-  const SaloonRegistrationFlow({
+  const SalonRegistrationFlow({
     super.key,
-    required this.saloonRegistrationPageRoute,
+    required this.salonRegistrationPageRoute,
   });
 
-  final String saloonRegistrationPageRoute;
+  final String salonRegistrationPageRoute;
 
   @override
-  State<SaloonRegistrationFlow> createState() => SaloonRegistrationFlowState();
+  State<SalonRegistrationFlow> createState() => SalonRegistrationFlowState();
 }
 
-class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
+class SalonRegistrationFlowState extends State<SalonRegistrationFlow> {
   final _navigatorKey = GlobalKey<NavigatorState>();
   var _isVerifyPageCurrentPage = false;
 
@@ -51,12 +51,12 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<SaloonRegistrationRepository>(
-      create: (context) => FirebaseSaloonRegistrationRepository(),
+    return RepositoryProvider<SalonRegistrationRepository>(
+      create: (context) => FirebaseSalonRegistrationRepository(),
       child: BlocProvider(
-        create: (context) => SaloonRegistrationCubit(
-            RepositoryProvider.of<SaloonRegistrationRepository>(context)),
-        child: BlocListener<SaloonRegistrationCubit, SaloonRegistrationState>(
+        create: (context) => SalonRegistrationCubit(
+            RepositoryProvider.of<SalonRegistrationRepository>(context)),
+        child: BlocListener<SalonRegistrationCubit, SalonRegistrationState>(
           listener: (context, state) {
             if (state is ShowToast) {
               Fluttertoast.showToast(
@@ -65,11 +65,11 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
               );
             } else if (state is OpenVerifyPage) {
               _navigatorKey.currentState
-                  ?.pushNamed(Routes.saloonRegistrationVerifyPage);
-            } else if (state is GotoSaloonHomePage) {
+                  ?.pushNamed(Routes.salonRegistrationVerifyPage);
+            } else if (state is GotoSalonHomePage) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                Routes.saloonHomePage,
+                Routes.salonHomePage,
                 (route) => false,
               );
             } else if (state is CloseButtonClicked) {
@@ -83,7 +83,7 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
             child: Scaffold(
               body: Navigator(
                 key: _navigatorKey,
-                initialRoute: widget.saloonRegistrationPageRoute,
+                initialRoute: widget.salonRegistrationPageRoute,
                 onGenerateRoute: _onGenerateRoute,
               ),
             ),
@@ -97,10 +97,10 @@ class SaloonRegistrationFlowState extends State<SaloonRegistrationFlow> {
     late Widget page;
 
     switch (settings.name) {
-      case Routes.saloonRegistration:
+      case Routes.salonRegistration:
         page = const BusinessDetailsPage();
         break;
-      case Routes.saloonRegistrationVerifyPage:
+      case Routes.salonRegistrationVerifyPage:
         _isVerifyPageCurrentPage = true;
         page = const VerifyBusinessPage();
         break;

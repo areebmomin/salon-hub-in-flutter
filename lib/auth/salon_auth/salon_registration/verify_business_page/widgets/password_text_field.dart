@@ -5,7 +5,7 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SalonRegistrationCubit>();
     var screenWidth = MediaQuery.of(context).size.width;
     var otpBoxWidth = (screenWidth - 19 - 19 - (4 * 5)) / 6;
 

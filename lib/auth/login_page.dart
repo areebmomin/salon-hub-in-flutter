@@ -28,8 +28,8 @@ class LoginPage extends StatelessWidget {
         RepositoryProvider<UserLoginRepository>(
           create: (context) => FirebaseUserLoginRepository(),
         ),
-        RepositoryProvider<SaloonLoginRepository>(
-          create: (context) => FirebaseSaloonLoginRepository(),
+        RepositoryProvider<SalonLoginRepository>(
+          create: (context) => FirebaseSalonLoginRepository(),
         ),
       ],
       child: MultiBlocProvider(
@@ -38,9 +38,9 @@ class LoginPage extends StatelessWidget {
             create: (BuildContext context) => UserLoginCubit(
                 RepositoryProvider.of<UserLoginRepository>(context)),
           ),
-          BlocProvider<SaloonLoginCubit>(
-            create: (BuildContext context) => SaloonLoginCubit(
-                RepositoryProvider.of<SaloonLoginRepository>(context)),
+          BlocProvider<SalonLoginCubit>(
+            create: (BuildContext context) => SalonLoginCubit(
+                RepositoryProvider.of<SalonLoginRepository>(context)),
           ),
         ],
         child: Scaffold(

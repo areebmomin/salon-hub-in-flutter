@@ -19,7 +19,7 @@ class SalonOverview extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(Strings.saloonName,
+          const Text(Strings.salonName,
               style: TextStyleConstants.salonNameHeading),
           const SizedBox(height: 8),
           Padding(

@@ -1,30 +1,30 @@
 part of 'salon_login_cubit.dart';
 
-abstract class SaloonLoginState extends Equatable {
-  const SaloonLoginState();
+abstract class SalonLoginState extends Equatable {
+  const SalonLoginState();
 }
 
-class Initial extends SaloonLoginState {
+class Initial extends SalonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class Loading extends SaloonLoginState {
+class Loading extends SalonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class Success extends SaloonLoginState {
+class Success extends SalonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class Failure extends SaloonLoginState {
+class Failure extends SalonLoginState {
   @override
   List<Object> get props => [];
 }
 
-class ShowToast extends SaloonLoginState {
+class ShowToast extends SalonLoginState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;

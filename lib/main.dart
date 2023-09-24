@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salon_hub/app_routers.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:salon_hub/utils/index.dart';
 import 'app_bloc_observer.dart';
 import 'firebase_options.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Saloon Hub',
+      title: Strings.appName,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

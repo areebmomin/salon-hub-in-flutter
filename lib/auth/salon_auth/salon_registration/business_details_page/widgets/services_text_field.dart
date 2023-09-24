@@ -12,7 +12,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SalonRegistrationCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,7 +63,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 4),
-          child: BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+          child: BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
             buildWhen: (previousState, state) {
               return state is ServicesUpdated;
             },

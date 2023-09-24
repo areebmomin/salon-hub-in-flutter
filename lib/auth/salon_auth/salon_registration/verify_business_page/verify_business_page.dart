@@ -22,7 +22,7 @@ class VerifyBusinessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SaloonRegistrationCubit>(context),
+      value: BlocProvider.of<SalonRegistrationCubit>(context),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

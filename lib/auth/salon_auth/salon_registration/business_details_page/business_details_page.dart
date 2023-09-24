@@ -41,7 +41,7 @@ class BusinessDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SaloonRegistrationCubit>(context),
+      value: BlocProvider.of<SalonRegistrationCubit>(context),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -53,13 +53,13 @@ class BusinessDetailsPage extends StatelessWidget {
                 children: [
                   CloseButton(),
                   BusinessDetailsHeading(),
-                  SaloonPhotoUpload(),
+                  SalonPhotoUpload(),
                   BusinessNameTextField(),
                   RegisterPhoneNumberTextField(),
                   AddressTextField(),
                   BusinessLocationTextField(),
                   ServicesTextField(),
-                  SaloonTypeTextField(),
+                  SalonTypeTextField(),
                   ServiceDaysTextField(),
                   ServiceTimeTextField(),
                   OwnerDetails(),

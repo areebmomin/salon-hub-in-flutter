@@ -13,7 +13,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   @override
   Widget build(BuildContext context) {
     late var serviceTime =
-        context.read<SaloonRegistrationCubit>().data.serviceTime;
+        context.read<SalonRegistrationCubit>().data.serviceTime;
 
     _updateTextFieldText(serviceTime);
 

@@ -2,7 +2,7 @@ import 'dart:io';
 
 part 'extension_helpers.dart';
 
-class SaloonRegistrationData {
+class SalonRegistrationData {
   File? profilePicture;
   String businessName;
   String phoneNumber;
@@ -17,7 +17,7 @@ class SaloonRegistrationData {
   String email;
   String password;
 
-  SaloonRegistrationData({
+  SalonRegistrationData({
     this.profilePicture,
     this.businessName = '',
     this.phoneNumber = '',

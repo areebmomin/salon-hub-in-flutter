@@ -19,8 +19,8 @@ part 'widgets/owner_details_list.dart';
 
 part 'widgets/attendee_details_list.dart';
 
-class AboutSaloonPage extends StatelessWidget {
-  const AboutSaloonPage({super.key});
+class AboutSalonPage extends StatelessWidget {
+  const AboutSalonPage({super.key});
 
   @override
   Widget build(BuildContext context) {

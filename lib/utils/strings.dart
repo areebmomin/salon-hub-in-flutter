@@ -1,8 +1,8 @@
 class Strings {
   Strings._();
 
-  static const String appName = 'Saloon Hub';
-  static const String appNameToolbar = 'SaloonHub';
+  static const String appName = 'Salon Hub';
+  static const String appNameToolbar = 'SalonHub';
   static const String login = 'Login';
   static const String iAmCustomer = 'I Am Customer';
   static const String salon = 'Salon';
@@ -29,7 +29,7 @@ class Strings {
   static const String uploadProfilePicture = 'Upload Profile Picture';
   static const String browse = 'Browse';
   static const String businessDetails = 'Business details';
-  static const String uploadSaloonPicture = 'Upload Saloon Picture';
+  static const String uploadSalonPicture = 'Upload Salon Picture';
   static const String businessName = 'Business Name';
   static const String businessNameHint = 'Beauty Salon Shop';
   static const String businessAddressHint =
@@ -68,8 +68,8 @@ class Strings {
   static const String verifyBusiness = 'Verify Business';
   static const String resetEmailLinkSent = 'Password reset email link sent';
   static const String filterByHeading = 'Filter by:';
-  static const String saloonName = 'Saloon Name';
-  static const String saloonAddress = 'Saloon Address';
+  static const String salonName = 'Salon Name';
+  static const String salonAddress = 'Salon Address';
   static const String profile = 'Profile';
   static const String logout = 'Logout';
   static const String editProfile = 'Edit Profile';
@@ -103,7 +103,7 @@ class Strings {
   static const String editBusinessDetails = 'Edit Business details';
 
   // lists
-  static const List<String> saloonTypes = <String>['Male', 'Female', 'Unisex'];
+  static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];
   static const List<String> clockHours = <String>[
     '12 AM',
     '3 AM',
@@ -114,7 +114,7 @@ class Strings {
     '6 PM',
     '9 PM',
   ];
-  static const List<String> saloonAvailability = <String>[
+  static const List<String> salonAvailability = <String>[
     'Open/Close',
     'Open',
     'Close'

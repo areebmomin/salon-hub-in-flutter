@@ -5,7 +5,7 @@ class RegisterNowButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SalonRegistrationCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
@@ -20,7 +20,7 @@ class RegisterNowButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        child: BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+        child: BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
           builder: (context, state) {
             if (state is Loading) {
               return const CircularProgressIndicator(color: Colors.white);

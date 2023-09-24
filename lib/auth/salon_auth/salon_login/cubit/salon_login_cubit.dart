@@ -6,10 +6,10 @@ import '../../../../utils/strings.dart';
 
 part 'salon_login_state.dart';
 
-class SaloonLoginCubit extends Cubit<SaloonLoginState> {
-  SaloonLoginCubit(this._saloonLoginRepository) : super(Initial());
+class SalonLoginCubit extends Cubit<SalonLoginState> {
+  SalonLoginCubit(this._salonLoginRepository) : super(Initial());
 
-  final SaloonLoginRepository _saloonLoginRepository;
+  final SalonLoginRepository _salonLoginRepository;
   var _email = '';
   var _password = '';
 
@@ -33,7 +33,7 @@ class SaloonLoginCubit extends Cubit<SaloonLoginState> {
     emit(Loading());
 
     try {
-      await _saloonLoginRepository.loginWithEmailAndPassword(
+      await _salonLoginRepository.loginWithEmailAndPassword(
         email: _email,
         password: _password,
       );
@@ -51,7 +51,7 @@ class SaloonLoginCubit extends Cubit<SaloonLoginState> {
     }
 
     try {
-      await _saloonLoginRepository.sendPasswordResetEmail(email: _email);
+      await _salonLoginRepository.sendPasswordResetEmail(email: _email);
       emit(ShowToast(message: Strings.resetEmailLinkSent));
     } catch (e) {
       emit(ShowToast(message: e.toString()));

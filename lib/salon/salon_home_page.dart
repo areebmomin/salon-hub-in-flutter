@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:salon_hub/saloon/request_tab_page/request_tab_view.dart';
-import 'package:salon_hub/saloon/schedule_tab_page/schedule_tab_view.dart';
+import 'package:salon_hub/salon/request_tab_page/request_tab_view.dart';
+import 'package:salon_hub/salon/schedule_tab_page/schedule_tab_view.dart';
 import '../utils/index.dart';
 
 part 'widgets/salon_hub_toolbar.dart';
 
-class SaloonHomePage extends StatefulWidget {
-  const SaloonHomePage({super.key});
+class SalonHomePage extends StatefulWidget {
+  const SalonHomePage({super.key});
 
   @override
-  State<SaloonHomePage> createState() => _SaloonHomePageState();
+  State<SalonHomePage> createState() => _SalonHomePageState();
 }
 
-class _SaloonHomePageState extends State<SaloonHomePage> {
+class _SalonHomePageState extends State<SalonHomePage> {
   int currentPageIndex = 0;
 
   @override

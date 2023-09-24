@@ -5,7 +5,7 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SalonRegistrationCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

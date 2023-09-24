@@ -1,16 +1,16 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class FirebaseSaloonRegistrationStorageService
-    implements SaloonRegistrationStorageService {
+class FirebaseSalonRegistrationStorageService
+    implements SalonRegistrationStorageService {
   final _storage = FirebaseStorage.instance;
 
   @override
-  Future<void> uploadSaloonProfilePicture(File imageFile, String uid) async {
+  Future<void> uploadSalonProfilePicture(File imageFile, String uid) async {
     var extension = imageFile.path.split('.').last;
     await _storage
         .ref()
-        .child("saloons/$uid/$uid.$extension")
+        .child("salons/$uid/$uid.$extension")
         .putFile(imageFile);
   }
 
@@ -27,7 +27,7 @@ class FirebaseSaloonRegistrationStorageService
         var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child("saloons/$uid/attendees/$index.$extension")
+            .child("salons/$uid/attendees/$index.$extension")
             .putFile(imageFile);
       }
     }
@@ -43,15 +43,15 @@ class FirebaseSaloonRegistrationStorageService
         var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child("saloons/$uid/owners/$index.$extension")
+            .child("salons/$uid/owners/$index.$extension")
             .putFile(imageFile);
       }
     }
   }
 }
 
-abstract class SaloonRegistrationStorageService {
-  Future<void> uploadSaloonProfilePicture(File imageFile, String uid);
+abstract class SalonRegistrationStorageService {
+  Future<void> uploadSalonProfilePicture(File imageFile, String uid);
 
   Future<void> uploadOwnersProfilePicture(
     List<File?> list,

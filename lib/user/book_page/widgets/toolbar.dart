@@ -14,7 +14,7 @@ AppBar _appBar(BuildContext context) => AppBar(
           Padding(
             padding: EdgeInsets.only(left: 8, top: 10, bottom: 10),
             child: Text(
-              Strings.saloonName,
+              Strings.salonName,
               style: TextStyle(
                 fontSize: 19,
                 fontWeight: FontWeight.w500,
@@ -41,7 +41,7 @@ AppBar _appBar(BuildContext context) => AppBar(
           padding: const EdgeInsets.only(right: 16),
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, Routes.aboutSaloonPage);
+              Navigator.pushNamed(context, Routes.aboutSalonPage);
             },
             child: const Icon(Icons.info_outline_rounded, size: 24),
           ),

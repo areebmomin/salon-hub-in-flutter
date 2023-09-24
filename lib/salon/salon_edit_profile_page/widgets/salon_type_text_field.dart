@@ -1,15 +1,15 @@
 part of '../salon_edit_profile_page.dart';
 
-class SaloonTypeTextField extends StatefulWidget {
-  const SaloonTypeTextField({super.key});
+class SalonTypeTextField extends StatefulWidget {
+  const SalonTypeTextField({super.key});
 
   @override
-  State<SaloonTypeTextField> createState() => _SaloonTypeTextFieldState();
+  State<SalonTypeTextField> createState() => _SalonTypeTextFieldState();
 }
 
-class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
-  //late var cubit = context.read<SaloonRegistrationCubit>();
-  String? selectedValue = Strings.saloonTypes.first;
+class _SalonTypeTextFieldState extends State<SalonTypeTextField> {
+  //late var cubit = context.read<SalonRegistrationCubit>();
+  String? selectedValue = Strings.salonTypes.first;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _SaloonTypeTextFieldState extends State<SaloonTypeTextField> {
                     selectedValue = newValue;
                   });
                 },
-                items: Strings.saloonTypes
+                items: Strings.salonTypes
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

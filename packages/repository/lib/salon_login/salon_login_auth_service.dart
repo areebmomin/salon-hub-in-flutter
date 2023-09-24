@@ -1,6 +1,6 @@
 part of 'salon_login_repository.dart';
 
-class FirebaseSaloonLoginAuthService implements SaloonLoginAuthService {
+class FirebaseSalonLoginAuthService implements SalonLoginAuthService {
   @override
   Future<void> loginWithEmailAndPassword({
     required String email,
@@ -35,7 +35,7 @@ class FirebaseSaloonLoginAuthService implements SaloonLoginAuthService {
   }
 }
 
-abstract class SaloonLoginAuthService {
+abstract class SalonLoginAuthService {
   Future<void> loginWithEmailAndPassword({
     required String email,
     required String password,

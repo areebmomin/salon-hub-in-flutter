@@ -5,7 +5,7 @@ class OwnerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonRegistrationCubit>();
+    late var cubit = context.read<SalonRegistrationCubit>();
 
     return Column(
       children: [
@@ -25,7 +25,7 @@ class OwnerDetails extends StatelessWidget {
             ),
           ),
         ),
-        BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+        BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
           buildWhen: (previousState, state) {
             return state is OwnerDetailsListUpdated;
           },
@@ -60,7 +60,7 @@ class OwnerDetails extends StatelessWidget {
 }
 
 class OwnerDetailsListItem extends StatelessWidget {
-  final SaloonRegistrationCubit cubit;
+  final SalonRegistrationCubit cubit;
   final int index;
 
   const OwnerDetailsListItem(this.cubit, this.index, {super.key});
@@ -80,8 +80,8 @@ class OwnerDetailsListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: BlocBuilder<SaloonRegistrationCubit,
-                    SaloonRegistrationState>(
+                child: BlocBuilder<SalonRegistrationCubit,
+                    SalonRegistrationState>(
                   buildWhen: (previousState, state) {
                     return state is OwnerPhotoSelected && state.index == index;
                   },
@@ -131,7 +131,7 @@ class OwnerDetailsListItem extends StatelessWidget {
     );
   }
 
-  Widget _getCloseButton(SaloonRegistrationCubit cubit, int index) {
+  Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
     return SizedBox(
       height: 108,
       child: Align(
@@ -150,7 +150,7 @@ class OwnerDetailsListItem extends StatelessWidget {
     );
   }
 
-  ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+  ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
     return state is OwnerPhotoSelected
         ? FileImage(state.profilePicture) as ImageProvider<Object>?
         : const AssetImage(Assets.userProfileDummy);

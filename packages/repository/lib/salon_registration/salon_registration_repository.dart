@@ -10,32 +10,32 @@ part 'signup_with_login_password_exception.dart';
 
 part 'salon_registration_auth_service.dart';
 
-class FirebaseSaloonRegistrationRepository
-    implements SaloonRegistrationRepository {
-  late final SaloonRegistrationAuthService _authService =
-      FirebaseSaloonRegistrationAuthService();
-  late final SaloonRegistrationDatabaseService _databaseService =
-      FirebaseSaloonRegistrationDatabaseService();
-  late final SaloonRegistrationStorageService _storageService =
-      FirebaseSaloonRegistrationStorageService();
+class FirebaseSalonRegistrationRepository
+    implements SalonRegistrationRepository {
+  late final SalonRegistrationAuthService _authService =
+      FirebaseSalonRegistrationAuthService();
+  late final SalonRegistrationDatabaseService _databaseService =
+      FirebaseSalonRegistrationDatabaseService();
+  late final SalonRegistrationStorageService _storageService =
+      FirebaseSalonRegistrationStorageService();
 
   @override
-  Stream<SaloonRegistrationRepositoryState> registerSaloon(
-      {required SaloonRegistrationData data}) async* {
+  Stream<SalonRegistrationRepositoryState> registerSalon(
+      {required SalonRegistrationData data}) async* {
     try {
-      // register new saloon
+      // register new salon
       var credential = await _authService.registerUserWithEmailAndPassword(
         email: data.email,
         password: data.password,
       );
 
-      // add saloon data to database
+      // add salon data to database
       var uid = credential.user?.uid ?? '';
-      await _databaseService.addNewSaloonData(data, uid);
+      await _databaseService.addNewSalonData(data, uid);
 
-      // upload saloon photo to storage
+      // upload salon photo to storage
       if (data.profilePicture != null) {
-        await _storageService.uploadSaloonProfilePicture(
+        await _storageService.uploadSalonProfilePicture(
             data.profilePicture!, uid);
       }
 
@@ -66,7 +66,7 @@ extension on List<AttendeeDetail> {
   }
 }
 
-abstract class SaloonRegistrationRepository {
-  Stream<SaloonRegistrationRepositoryState> registerSaloon(
-      {required SaloonRegistrationData data});
+abstract class SalonRegistrationRepository {
+  Stream<SalonRegistrationRepositoryState> registerSalon(
+      {required SalonRegistrationData data});
 }

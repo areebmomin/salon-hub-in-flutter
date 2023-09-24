@@ -5,7 +5,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SaloonLoginCubit>();
+    late var cubit = context.read<SalonLoginCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 18, bottom: 23),
@@ -17,7 +17,7 @@ class LoginButton extends StatelessWidget {
           minimumSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
         ),
-        child: BlocBuilder<SaloonLoginCubit, SaloonLoginState>(
+        child: BlocBuilder<SalonLoginCubit, SalonLoginState>(
           builder: (context, state) {
             if (state is Loading) {
               return const CircularProgressIndicator(color: Colors.white);

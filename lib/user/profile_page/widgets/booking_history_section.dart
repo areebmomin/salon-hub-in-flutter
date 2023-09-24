@@ -65,10 +65,10 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
     return ExpansionTile(
       leading: Image.asset(Assets.profilePic, width: 40, height: 40),
       title: const Text(
-        'Saloon Name',
+        'Salon Name',
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        style: TextStyleConstants.bookingHistorySaloonHeading,
+        style: TextStyleConstants.bookingHistorySalonHeading,
       ),
       tilePadding: const EdgeInsets.only(left: 12),
       subtitle: const Text(

@@ -1,23 +1,23 @@
 part of '../user_home_page.dart';
 
-class SaloonListView extends StatelessWidget {
-  const SaloonListView({super.key});
+class SalonListView extends StatelessWidget {
+  const SalonListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8, bottom: 8),
       itemCount: 5,
-      prototypeItem: const SaloonListViewItem(),
+      prototypeItem: const SalonListViewItem(),
       itemBuilder: (context, index) {
-        return const SaloonListViewItem();
+        return const SalonListViewItem();
       },
     );
   }
 }
 
-class SaloonListViewItem extends StatelessWidget {
-  const SaloonListViewItem({super.key});
+class SalonListViewItem extends StatelessWidget {
+  const SalonListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {

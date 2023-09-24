@@ -1,18 +1,18 @@
 part of '../salon_edit_profile_page.dart';
 
-class SaloonPhotoUpload extends StatelessWidget {
-  const SaloonPhotoUpload({super.key});
+class SalonPhotoUpload extends StatelessWidget {
+  const SalonPhotoUpload({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SaloonRegistrationCubit>();
+    //late var cubit = context.read<SalonRegistrationCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          // BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+          // BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
           //   buildWhen: (previousState, state) {
           //     return state is PhotoSelected;
           //   },
@@ -31,7 +31,7 @@ class SaloonPhotoUpload extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const Text(
-                    Strings.uploadSaloonPicture,
+                    Strings.uploadSalonPicture,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: false,
@@ -42,7 +42,7 @@ class SaloonPhotoUpload extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      //cubit.setSaloonPhoto();
+                      //cubit.setSalonPhoto();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
@@ -70,7 +70,7 @@ class SaloonPhotoUpload extends StatelessWidget {
     );
   }
 
-  // ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+  // ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
   //   return state is PhotoSelected
   //       ? FileImage(state.profilePicture) as ImageProvider<Object>?
   //       : const AssetImage(Assets.userProfileDummy);

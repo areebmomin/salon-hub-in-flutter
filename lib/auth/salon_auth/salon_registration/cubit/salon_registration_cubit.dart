@@ -10,11 +10,11 @@ import '../../../../utils/index.dart';
 
 part 'salon_registration_state.dart';
 
-class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
-  SaloonRegistrationCubit(this.saloonRegistrationRepository) : super(Initial());
+class SalonRegistrationCubit extends Cubit<SalonRegistrationState> {
+  SalonRegistrationCubit(this.salonRegistrationRepository) : super(Initial());
 
-  final SaloonRegistrationRepository saloonRegistrationRepository;
-  final data = SaloonRegistrationData();
+  final SalonRegistrationRepository salonRegistrationRepository;
+  final data = SalonRegistrationData();
   var isPhoneNumberValid = false;
 
   void saveDetailsButtonClicked() {
@@ -74,16 +74,16 @@ class SaloonRegistrationCubit extends Cubit<SaloonRegistrationState> {
 
     emit(Loading());
 
-    saloonRegistrationRepository.registerSaloon(data: data).listen((event) {
+    salonRegistrationRepository.registerSalon(data: data).listen((event) {
       if (event is Success) {
-        emit(GotoSaloonHomePage());
+        emit(GotoSalonHomePage());
       } else if (event is Failure) {
         emit(ShowToast(message: event.message));
       }
     });
   }
 
-  void setSaloonPhoto() async {
+  void setSalonPhoto() async {
     var pickedFile = await getPhotoFromGallery();
     if (pickedFile != null) {
       data.profilePicture = File(pickedFile.path);

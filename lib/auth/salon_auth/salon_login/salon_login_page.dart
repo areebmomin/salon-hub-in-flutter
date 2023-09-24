@@ -21,14 +21,14 @@ class SalonLoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SaloonLoginCubit, SaloonLoginState>(
+    return BlocListener<SalonLoginCubit, SalonLoginState>(
       listener: (context, state) {
         if (state is ShowToast) {
           Fluttertoast.showToast(
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
         } else if (state is Success) {
           // Navigate to Home page
-          Navigator.pushReplacementNamed(context, Routes.saloonHomePage);
+          Navigator.pushReplacementNamed(context, Routes.salonHomePage);
         }
       },
       child: const Column(

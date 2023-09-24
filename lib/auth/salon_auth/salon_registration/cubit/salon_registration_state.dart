@@ -1,15 +1,15 @@
 part of 'salon_registration_cubit.dart';
 
-abstract class SaloonRegistrationState extends Equatable {
-  const SaloonRegistrationState();
+abstract class SalonRegistrationState extends Equatable {
+  const SalonRegistrationState();
 }
 
-class Initial extends SaloonRegistrationState {
+class Initial extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class ShowToast extends SaloonRegistrationState {
+class ShowToast extends SalonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
@@ -20,12 +20,12 @@ class ShowToast extends SaloonRegistrationState {
   List<Object> get props => [message, _timeStamp];
 }
 
-class Loading extends SaloonRegistrationState {
+class Loading extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class PhotoSelected extends SaloonRegistrationState {
+class PhotoSelected extends SalonRegistrationState {
   final File profilePicture;
 
   const PhotoSelected({required this.profilePicture});
@@ -34,7 +34,7 @@ class PhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
-class OwnerPhotoSelected extends SaloonRegistrationState {
+class OwnerPhotoSelected extends SalonRegistrationState {
   final File profilePicture;
   final int index;
 
@@ -47,7 +47,7 @@ class OwnerPhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
-class AttendeePhotoSelected extends SaloonRegistrationState {
+class AttendeePhotoSelected extends SalonRegistrationState {
   final File profilePicture;
   final int index;
 
@@ -60,27 +60,27 @@ class AttendeePhotoSelected extends SaloonRegistrationState {
   List<Object> get props => [profilePicture];
 }
 
-class CloseButtonClicked extends SaloonRegistrationState {
+class CloseButtonClicked extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class VerifyCloseButtonClicked extends SaloonRegistrationState {
+class VerifyCloseButtonClicked extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class OpenVerifyPage extends SaloonRegistrationState {
+class OpenVerifyPage extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class GotoSaloonHomePage extends SaloonRegistrationState {
+class GotoSalonHomePage extends SalonRegistrationState {
   @override
   List<Object> get props => [];
 }
 
-class ServicesUpdated extends SaloonRegistrationState {
+class ServicesUpdated extends SalonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 
@@ -88,7 +88,7 @@ class ServicesUpdated extends SaloonRegistrationState {
   List<Object> get props => [_timeStamp];
 }
 
-class OwnerDetailsListUpdated extends SaloonRegistrationState {
+class OwnerDetailsListUpdated extends SalonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 
@@ -96,7 +96,7 @@ class OwnerDetailsListUpdated extends SaloonRegistrationState {
   List<Object> get props => [_timeStamp];
 }
 
-class AttendeeDetailsListUpdated extends SaloonRegistrationState {
+class AttendeeDetailsListUpdated extends SalonRegistrationState {
   /// placeholder to distinguish from previous [UserLoginShowToast] state
   final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
 

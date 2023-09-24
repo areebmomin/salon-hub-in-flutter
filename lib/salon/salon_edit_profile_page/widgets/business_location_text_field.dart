@@ -1,28 +1,20 @@
 part of '../salon_edit_profile_page.dart';
 
-class BusinessNameTextField extends StatelessWidget {
-  const BusinessNameTextField({super.key});
+class BusinessLocationTextField extends StatelessWidget {
+  const BusinessLocationTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SaloonRegistrationCubit>();
+    //late var cubit = context.read<SalonRegistrationCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 24, left: 19),
-          child: RichText(
-            text: const TextSpan(
-              text: Strings.businessName,
-              style: TextStyleConstants.textField,
-              children: <TextSpan>[
-                TextSpan(
-                  text: Strings.asterisk,
-                  style: TextStyleConstants.asterisk,
-                ),
-              ],
-            ),
+        const Padding(
+          padding: EdgeInsets.only(top: 20, left: 19),
+          child: Text(
+            Strings.location,
+            style: TextStyleConstants.textField,
           ),
         ),
         Padding(
@@ -34,20 +26,20 @@ class BusinessNameTextField extends StatelessWidget {
               border: TextFieldConstants.curvedUnderlineInputBorder,
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
-              hintText: Strings.businessNameHint,
+              hintText: Strings.businessAddressHint,
               hintStyle: TextStyleConstants.textFieldHint,
-              suffixIcon: Icon(Icons.business),
+              suffixIcon: Icon(Icons.add_location_alt),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 20,
                 horizontal: 16,
               ),
             ),
             style: TextStyleConstants.textField,
-            keyboardType: TextInputType.name,
-            textInputAction: TextInputAction.next,
-            onChanged: (name) {
-              //cubit.data.businessName = name.trim();
+            keyboardType: TextInputType.streetAddress,
+            onChanged: (location) {
+              //cubit.data.location = location.trim();
             },
+            textInputAction: TextInputAction.next,
           ),
         ),
       ],

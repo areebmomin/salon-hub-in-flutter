@@ -114,7 +114,7 @@ class TextStyleConstants {
     fontFamily: Strings.firaSans,
   );
 
-  static const bookingHistorySaloonHeading = TextStyle(
+  static const bookingHistorySalonHeading = TextStyle(
     color: AppColors.lightTextColor,
     fontWeight: FontWeight.w500,
     fontSize: 16,

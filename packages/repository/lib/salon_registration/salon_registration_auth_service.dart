@@ -1,7 +1,7 @@
 part of 'salon_registration_repository.dart';
 
-class FirebaseSaloonRegistrationAuthService
-    implements SaloonRegistrationAuthService {
+class FirebaseSalonRegistrationAuthService
+    implements SalonRegistrationAuthService {
   @override
   Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
@@ -20,7 +20,7 @@ class FirebaseSaloonRegistrationAuthService
   }
 }
 
-abstract class SaloonRegistrationAuthService {
+abstract class SalonRegistrationAuthService {
   Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
     required String password,

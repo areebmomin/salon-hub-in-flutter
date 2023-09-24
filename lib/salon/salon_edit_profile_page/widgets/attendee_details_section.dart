@@ -5,7 +5,7 @@ class AttendeeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SaloonRegistrationCubit>();
+    //late var cubit = context.read<SalonRegistrationCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
@@ -23,7 +23,7 @@ class AttendeeDetails extends StatelessWidget {
               ),
             ),
           ),
-          // BlocBuilder<SaloonRegistrationCubit, SaloonRegistrationState>(
+          // BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
           //   buildWhen: (previousState, state) {
           //     return state is AttendeeDetailsListUpdated;
           //   },
@@ -59,7 +59,7 @@ class AttendeeDetails extends StatelessWidget {
 }
 
 class AttendeeDetailsListItem extends StatelessWidget {
-  //final SaloonRegistrationCubit cubit;
+  //final SalonRegistrationCubit cubit;
   //final int index;
 
   //const AttendeeDetailsListItem(this.cubit, this.index, {super.key});
@@ -79,8 +79,8 @@ class AttendeeDetailsListItem extends StatelessWidget {
             children: [
               // Padding(
               //   padding: const EdgeInsets.all(8),
-              //   child: BlocBuilder<SaloonRegistrationCubit,
-              //       SaloonRegistrationState>(
+              //   child: BlocBuilder<SalonRegistrationCubit,
+              //       SalonRegistrationState>(
               //     buildWhen: (previousState, state) {
               //       return state is AttendeePhotoSelected &&
               //           state.index == index;
@@ -131,13 +131,13 @@ class AttendeeDetailsListItem extends StatelessWidget {
     );
   }
 
-  // ImageProvider<Object>? _getBackgroundImage(SaloonRegistrationState state) {
+  // ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
   //   return state is AttendeePhotoSelected
   //       ? FileImage(state.profilePicture) as ImageProvider<Object>?
   //       : const AssetImage(Assets.userProfileDummy);
   // }
   //
-  // Widget _getCloseButton(SaloonRegistrationCubit cubit, int index) {
+  // Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
   //   return SizedBox(
   //     height: 108,
   //     child: Align(

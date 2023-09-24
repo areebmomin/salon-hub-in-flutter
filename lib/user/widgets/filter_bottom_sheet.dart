@@ -22,7 +22,7 @@ class FilterBottomSheet extends StatelessWidget {
             ),
           ),
         ),
-        SaloonNameTextField(),
+        SalonNameTextField(),
         AvailabilityDropDown(),
         NearMeTextField(),
         AddressTextField(),
@@ -32,8 +32,8 @@ class FilterBottomSheet extends StatelessWidget {
   }
 }
 
-class SaloonNameTextField extends StatelessWidget {
-  const SaloonNameTextField({super.key});
+class SalonNameTextField extends StatelessWidget {
+  const SalonNameTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SaloonNameTextField extends StatelessWidget {
               border: TextFieldConstants.curvedUnderlineInputBorder,
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
-              hintText: Strings.saloonName,
+              hintText: Strings.salonName,
               hintStyle: TextStyleConstants.textFieldHint,
               suffixIcon: Icon(Icons.business),
               contentPadding: EdgeInsets.symmetric(
@@ -78,7 +78,7 @@ class AvailabilityDropDown extends StatefulWidget {
 }
 
 class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
-  String? selectedValue = Strings.saloonAvailability.first;
+  String? selectedValue = Strings.salonAvailability.first;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
                 selectedValue = newValue;
               });
             },
-            items: Strings.saloonAvailability
+            items: Strings.salonAvailability
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
