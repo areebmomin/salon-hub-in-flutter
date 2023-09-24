@@ -1,6 +1,6 @@
 # salon_hub
 
-FLutter project that shows all the saloon in a city.
+FLutter project that shows all the salon in a city.
 
 ## Getting Started
 
