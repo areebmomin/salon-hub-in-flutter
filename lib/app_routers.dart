@@ -16,43 +16,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AppRouters {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    Widget getLandingPage() {
-      var currentUser = FirebaseAuth.instance.currentUser;
-      if (currentUser != null) {
-        switch (currentUser.providerData.firstOrNull?.providerId) {
-          case 'password':
-            return const SalonHomePage();
-          case 'phone':
-            return const UserHomePage();
-          default:
-            return const LoginPage();
-        }
-      } else {
-        return const LoginPage();
-      }
-    }
-
     late Widget page;
     var name = settings.name;
 
     if (name == Routes.root) {
-      page = getLandingPage();
+      page = _getLandingPage();
     } else if (name!.startsWith(Routes.userRegistrationFlow)) {
       final subRoute = name.substring(Routes.userRegistrationFlow.length);
-      page = UserRegistrationFlow(
-        userRegistrationPageRoute: subRoute,
-      );
+      page = UserRegistrationFlow(userRegistrationPageRoute: subRoute);
+      return _bottomToTopTransitionRoute(settings, page);
     } else if (name.startsWith(Routes.salonRegistrationFlow)) {
       final subRoute = name.substring(Routes.salonRegistrationFlow.length);
-      page = SalonRegistrationFlow(
-        salonRegistrationPageRoute: subRoute,
-      );
+      page = SalonRegistrationFlow(salonRegistrationPageRoute: subRoute);
+      return _bottomToTopTransitionRoute(settings, page);
     } else if (name == Routes.userHomePage) {
       page = const UserHomePage();
+      return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.salonHomePage) {
       page = const SalonHomePage();
+      return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.userProfilePage) {
       page = const ProfilePage();
+      return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.editUserProfile) {
       page = const EditProfilePage();
     } else if (name == Routes.bookPage) {
@@ -61,6 +46,7 @@ class AppRouters {
       page = const AboutSalonPage();
     } else if (name == Routes.salonProfilePage) {
       page = const SalonProfilePage();
+      return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.salonEditProfilePage) {
       page = const SalonEditProfilePage();
     } else {
@@ -68,5 +54,51 @@ class AppRouters {
     }
 
     return MaterialPageRoute(builder: (context) => page);
+  }
+
+  static Widget _getLandingPage() {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      switch (currentUser.providerData.firstOrNull?.providerId) {
+        case 'password':
+          return const SalonHomePage();
+        case 'phone':
+          return const UserHomePage();
+        default:
+          return const LoginPage();
+      }
+    } else {
+      return const LoginPage();
+    }
+  }
+
+  static PageRouteBuilder<dynamic> _bottomToTopTransitionRoute(
+    RouteSettings settings,
+    Widget page,
+  ) {
+    return PageRouteBuilder(
+      settings: settings,
+      pageBuilder: (_, __, ___) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var tween = Tween(begin: const Offset(0.0, 1.0), end: Offset.zero)
+            .chain(CurveTween(curve: Curves.ease));
+        return SlideTransition(position: animation.drive(tween), child: child);
+      },
+    );
+  }
+
+  static PageRouteBuilder<dynamic> _rightToLeftTransitionRoute(
+    RouteSettings settings,
+    Widget page,
+  ) {
+    return PageRouteBuilder(
+      settings: settings,
+      pageBuilder: (_, __, ___) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var tween = Tween(begin: const Offset(1.0, 0.0), end: Offset.zero)
+            .chain(CurveTween(curve: Curves.ease));
+        return SlideTransition(position: animation.drive(tween), child: child);
+      },
+    );
   }
 }
