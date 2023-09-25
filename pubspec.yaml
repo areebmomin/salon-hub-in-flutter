@@ -121,5 +121,10 @@ flutter:
         - asset: assets/fonts/FiraSans-Thin.ttf
           weight: 100
 
+    - family: Playball
+      fonts:
+        - asset: assets/fonts/Playball-Regular.ttf
+          weight: 400
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

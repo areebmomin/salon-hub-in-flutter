@@ -16,7 +16,8 @@ AppBar appBar(BuildContext context, String? imageUrl) => AppBar(
             child: Text(
               Strings.appNameToolbar,
               style: TextStyle(
-                fontSize: 19,
+                fontSize: 28,
+                fontFamily: Strings.playBall,
                 fontWeight: FontWeight.w500,
                 color: AppColors.headingTextColor,
               ),
