@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:salon_hub/salon/request_tab_page/request_tab_view.dart';
-import 'package:salon_hub/salon/schedule_tab_page/schedule_tab_view.dart';
+import 'package:salon_hub/salon/request_tab_view/request_tab_view.dart';
+import 'package:salon_hub/salon/schedule_tab_view/schedule_tab_view.dart';
 import '../utils/index.dart';
 
 part 'widgets/salon_hub_toolbar.dart';
