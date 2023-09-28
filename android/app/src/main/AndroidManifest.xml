@@ -2,7 +2,7 @@
     package="com.areeb.saloonhub.saloon_hub">
    <application
        android:requestLegacyExternalStorage="true"
-       android:label="Saloon Hub"
+       android:label="Salon Hub"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

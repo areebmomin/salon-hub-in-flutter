@@ -1,8 +1,8 @@
-import 'package:repository/salon_login/salon_login_repository.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../utils/strings.dart';
+import 'package:repository/auth/salon_auth/salon_login/salon_login_repository.dart';
 
 part 'salon_login_state.dart';
 

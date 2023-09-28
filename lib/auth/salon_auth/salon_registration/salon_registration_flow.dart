@@ -1,7 +1,7 @@
-import 'package:repository/salon_registration/salon_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:repository/auth/salon_auth/salon_registration/salon_registration_repository.dart';
 import 'package:salon_hub/auth/salon_auth/salon_registration/verify_business_page/verify_business_page.dart';
 import '../../../utils/index.dart';
 import 'business_details_page/business_details_page.dart';

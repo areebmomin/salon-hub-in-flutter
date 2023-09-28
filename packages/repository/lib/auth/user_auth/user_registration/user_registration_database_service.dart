@@ -1,5 +1,5 @@
-import 'package:repository/user_registration/models/user_registration_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'models/user_registration_data.dart';
 
 class FireStoreUserRegistrationDatabaseService
     implements UserRegistrationDatabaseService {

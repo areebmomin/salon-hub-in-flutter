@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:repository/salon_registration/models/salon_registration_data.dart';
-import 'package:repository/salon_registration/salon_registration_database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:repository/auth/salon_auth/salon_registration/salon_registration_database_service.dart';
+import 'models/salon_registration_data.dart';
 import 'salon_registration_states.dart';
 import 'salon_registration_storage_service.dart';
 

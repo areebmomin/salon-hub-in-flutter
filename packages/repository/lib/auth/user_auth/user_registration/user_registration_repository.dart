@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:repository/user_registration/models/user_registration_data.dart';
-import 'package:repository/user_registration/user_registration_database_service.dart';
-import 'package:repository/user_registration/user_registration_repository_states.dart';
-import 'package:repository/user_registration/user_registration_storage_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:repository/auth/user_auth/user_registration/user_registration_database_service.dart';
+import 'package:repository/auth/user_auth/user_registration/user_registration_repository_states.dart';
+import 'package:repository/auth/user_auth/user_registration/user_registration_storage_service.dart';
+import 'models/user_registration_data.dart';
 
 class FirebaseUserRegistrationRepository implements UserRegistrationRepository {
   late final UserRegistrationDatabaseService _databaseService =

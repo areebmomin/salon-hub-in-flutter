@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:repository/salon_login/salon_login_repository.dart';
-import 'package:repository/user_login/user_login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repository/auth/salon_auth/salon_login/salon_login_repository.dart';
+import 'package:repository/auth/user_auth/user_login/user_login_repository.dart';
 import 'package:salon_hub/auth/salon_auth/salon_login/cubit/salon_login_cubit.dart';
 import 'package:salon_hub/auth/user_auth/user_login/cubit/user_login_cubit.dart';
 import '../utils/index.dart';

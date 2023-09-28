@@ -1,8 +1,8 @@
-import 'package:repository/user_login/user_login_repository.dart';
-import 'package:repository/user_registration/user_registration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:repository/auth/user_auth/user_login/user_login_repository.dart';
+import 'package:repository/auth/user_auth/user_registration/user_registration_repository.dart';
 import 'package:salon_hub/auth/user_auth/user_registration/user_registration_otp_page/user_registration_otp_page.dart';
 import 'package:salon_hub/auth/user_auth/user_registration/user_registration_page/user_registration_page.dart';
 import '../../../utils/routes.dart';

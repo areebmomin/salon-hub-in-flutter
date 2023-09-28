@@ -1,4 +1,4 @@
-import 'package:repository/salon_registration/models/salon_registration_data.dart';
+import 'package:repository/auth/salon_auth/salon_registration/models/salon_registration_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
