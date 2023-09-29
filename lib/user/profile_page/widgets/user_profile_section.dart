@@ -5,6 +5,8 @@ class UserProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserProfilePageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
@@ -70,7 +72,7 @@ class UserProfileSection extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.editUserProfile);
+                      cubit.gotoUserProfilePage();
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(0, 56),
@@ -96,7 +98,7 @@ class UserProfileSection extends StatelessWidget {
                 const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () {
-                    //cubit.saveDetailsButtonClicked();
+                    cubit.logout();
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(0, 56),

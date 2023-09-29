@@ -29,7 +29,7 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
       },
       verificationFailed: (FirebaseAuthException e) {
         onVerificationFailed?.call(
-          message: e.message ?? "Server error",
+          message: e.message ?? 'Server error',
           code: e.code,
         );
       },

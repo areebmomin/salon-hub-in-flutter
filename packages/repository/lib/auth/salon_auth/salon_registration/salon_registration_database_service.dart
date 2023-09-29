@@ -7,7 +7,7 @@ class FirebaseSalonRegistrationDatabaseService implements
 
   @override
   Future<void> addNewSalonData(SalonRegistrationData data, String uid) async {
-    await _db.collection("salons").doc(uid).set(data.toMap());
+    await _db.collection('salons').doc(uid).set(data.toMap());
   }
 }
 

@@ -5,7 +5,7 @@ part 'login_with_email_password_exceptions.dart';
 part 'salon_login_auth_service.dart';
 
 class FirebaseSalonLoginRepository implements SalonLoginRepository {
-  late final SalonLoginAuthService salonLoginAuthService =
+  late final SalonLoginAuthService _authService =
       FirebaseSalonLoginAuthService();
 
   @override
@@ -13,7 +13,7 @@ class FirebaseSalonLoginRepository implements SalonLoginRepository {
     required String email,
     required String password,
   }) async {
-    await salonLoginAuthService.loginWithEmailAndPassword(
+    await _authService.loginWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -21,12 +21,12 @@ class FirebaseSalonLoginRepository implements SalonLoginRepository {
 
   @override
   Future<void> logOut() async {
-    await salonLoginAuthService.logOut();
+    await _authService.logOut();
   }
 
   @override
   Future<void> sendPasswordResetEmail({required String email}) async {
-    await salonLoginAuthService.sendPasswordResetEmail(email: email);
+    await _authService.sendPasswordResetEmail(email: email);
   }
 }
 

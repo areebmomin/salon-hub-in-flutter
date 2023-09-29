@@ -24,7 +24,7 @@ class FirebaseUserRegistrationRepository implements UserRegistrationRepository {
       }
       yield UserRegistrationRepositorySuccess();
     } on FirebaseException catch (e) {
-      yield UserRegistrationRepositoryFailure(e.message ?? "Server error");
+      yield UserRegistrationRepositoryFailure(e.message ?? 'Server error');
     }
   }
 }

@@ -49,7 +49,7 @@ class FirebaseSalonRegistrationRepository
 
       yield Success();
     } on FirebaseException catch (e) {
-      yield Failure(e.message ?? "Server error");
+      yield Failure(e.message ?? 'Server error');
     }
   }
 }

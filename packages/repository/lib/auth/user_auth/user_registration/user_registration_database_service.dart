@@ -7,7 +7,7 @@ class FireStoreUserRegistrationDatabaseService
 
   @override
   Future<void> addNewUserData(UserRegistrationData data, String uid) async {
-    await _db.collection("users").doc(uid).set(data.toMap());
+    await _db.collection('users').doc(uid).set(data.toMap());
   }
 }
 

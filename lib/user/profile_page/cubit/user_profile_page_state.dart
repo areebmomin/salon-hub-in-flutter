@@ -8,3 +8,13 @@ class Initial extends UserProfilePageState {
   @override
   List<Object> get props => [];
 }
+
+class GotoLoginPage extends UserProfilePageState {
+  @override
+  List<Object> get props => [];
+}
+
+class GotoEditProfilePage extends UserProfilePageState {
+  @override
+  List<Object> get props => [];
+}

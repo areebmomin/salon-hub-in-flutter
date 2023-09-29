@@ -2,13 +2,16 @@ part of 'salon_registration_repository.dart';
 
 class FirebaseSalonRegistrationAuthService
     implements SalonRegistrationAuthService {
+
+  final _auth = FirebaseAuth.instance;
+
   @override
   Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      return await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      return await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );

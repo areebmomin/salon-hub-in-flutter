@@ -8,7 +8,7 @@ part 'user_login_auth_service.dart';
 
 class FirebaseUserLoginRepository implements UserLoginRepository {
   late final _loginState = StreamController<VerifyPhoneNumberState>();
-  late final UserLoginAuthService _userLoginAuthService =
+  late final UserLoginAuthService _authService =
       FirebaseUserLoginAuthService();
 
   @override
@@ -16,7 +16,7 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
 
   @override
   Future<void> verifyPhoneNumber({required String phoneNumber}) async {
-    await _userLoginAuthService.verifyPhoneNumber(
+    await _authService.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         onVerificationCompleted: (uid) {
           _loginState.add(VerifyPhoneNumberCompleted(uid));
@@ -39,7 +39,7 @@ class FirebaseUserLoginRepository implements UserLoginRepository {
   /// Call when user enter code manually
   @override
   Future<void> signInWithCredential({required String smsCode}) async {
-    await _userLoginAuthService.signInWithCredential(
+    await _authService.signInWithCredential(
         smsCode: smsCode,
         onVerificationCompleted: (uid) {
           _loginState.add(VerifyPhoneNumberCompleted(uid));

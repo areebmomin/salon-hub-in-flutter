@@ -10,7 +10,7 @@ class FirebaseSalonRegistrationStorageService
     var extension = imageFile.path.split('.').last;
     await _storage
         .ref()
-        .child("salons/$uid/$uid.$extension")
+        .child('salons/$uid/$uid.$extension')
         .putFile(imageFile);
   }
 
@@ -27,7 +27,7 @@ class FirebaseSalonRegistrationStorageService
         var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child("salons/$uid/attendees/$index.$extension")
+            .child('salons/$uid/attendees/$index.$extension')
             .putFile(imageFile);
       }
     }
@@ -43,7 +43,7 @@ class FirebaseSalonRegistrationStorageService
         var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child("salons/$uid/owners/$index.$extension")
+            .child('salons/$uid/owners/$index.$extension')
             .putFile(imageFile);
       }
     }

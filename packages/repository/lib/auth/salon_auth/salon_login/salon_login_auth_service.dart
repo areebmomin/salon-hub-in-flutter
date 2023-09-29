@@ -1,14 +1,15 @@
 part of 'salon_login_repository.dart';
 
 class FirebaseSalonLoginAuthService implements SalonLoginAuthService {
+  final _auth = FirebaseAuth.instance;
+
   @override
   Future<void> loginWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw LogInWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
@@ -19,7 +20,7 @@ class FirebaseSalonLoginAuthService implements SalonLoginAuthService {
   @override
   Future<void> logOut() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await _auth.signOut();
     } catch (_) {
       throw LogOutFailure();
     }
@@ -28,7 +29,7 @@ class FirebaseSalonLoginAuthService implements SalonLoginAuthService {
   @override
   Future<void> sendPasswordResetEmail({required String email}) async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
       rethrow;
     }
