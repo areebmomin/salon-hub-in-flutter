@@ -1,3 +1,5 @@
+import 'package:repository/user/user_profile_page/models/booking_history.dart';
+import 'package:repository/user/user_profile_page/models/user_profile.dart';
 import 'package:repository/user/user_profile_page/user_profile_auth_service.dart';
 import 'package:repository/user/user_profile_page/user_profile_database_service.dart';
 import 'package:repository/user/user_profile_page/user_profile_storage_service.dart';
@@ -14,8 +16,22 @@ class FirebaseUserProfilePageRepository implements UserProfilePageRepository {
   Future<void> logout() {
     return _authService.logout();
   }
+
+  @override
+  Future<UserProfile> getUserProfile() {
+    return _databaseService.fetchUserProfile();
+  }
+
+  @override
+  Future<List<BookingHistory>> getUserBookingHistory() {
+    return _databaseService.getBookingHistoryList();
+  }
 }
 
 abstract class UserProfilePageRepository {
   Future<void> logout();
+
+  Future<UserProfile> getUserProfile();
+
+  Future<List<BookingHistory>> getUserBookingHistory();
 }

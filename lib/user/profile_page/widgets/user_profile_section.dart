@@ -7,124 +7,137 @@ class UserProfileSection extends StatelessWidget {
   Widget build(BuildContext context) {
     late var cubit = context.read<UserProfilePageCubit>();
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 210,
-            child: Stack(
-              clipBehavior: Clip.none,
+    return BlocBuilder<UserProfilePageCubit, UserProfilePageState>(
+      buildWhen: (previousState, state) {
+        return state is LoadUserProfile;
+      },
+      builder: (context, state) {
+        if (state is LoadUserProfile) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Image.asset(
-                    Assets.userProfileBanner,
-                    height: 155,
-                    fit: BoxFit.fill,
+                SizedBox(
+                  height: 210,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(5.0),
+                        child: Image.asset(
+                          Assets.userProfileBanner,
+                          height: 155,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              _getProfileImageOrIcon(context, null),
+                              Flexible(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 61, left: 16, right: 2),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        state.userProfile.name,
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        overflow: TextOverflow.fade,
+                                        style: TextStyleConstants.profileName,
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        state.userProfile.phoneNumber,
+                                        style: TextStyleConstants
+                                            .profileSmallLight,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        _getProfileImageOrIcon(context, null),
-                        const Flexible(
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(top: 61, left: 16, right: 2),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Steve Smith',
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  style: TextStyleConstants.profileName,
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  '+91 8149311487',
-                                  style: TextStyleConstants.profileSmallLight,
-                                ),
-                              ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, bottom: 24),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            cubit.gotoUserProfilePage();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(0, 56),
+                            backgroundColor: AppColors.headingTextColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 24, bottom: 24),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      cubit.gotoUserProfilePage();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(0, 56),
-                      backgroundColor: AppColors.headingTextColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.edit),
-                        SizedBox(width: 8),
-                        Text(
-                          Strings.editProfile,
-                          style: TextStyleConstants.logoutButton,
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.edit),
+                              SizedBox(width: 8),
+                              Text(
+                                Strings.editProfile,
+                                style: TextStyleConstants.logoutButton,
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    cubit.logout();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(0, 56),
-                    backgroundColor: AppColors.primaryButtonBackground,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.logout),
-                      SizedBox(width: 8),
-                      Text(
-                        Strings.logout,
-                        style: TextStyleConstants.logoutButton,
+                      ),
+                      const SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: () {
+                          cubit.logout();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(0, 56),
+                          backgroundColor: AppColors.primaryButtonBackground,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.logout),
+                            SizedBox(width: 8),
+                            Text(
+                              Strings.logout,
+                              style: TextStyleConstants.logoutButton,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:salon_hub/user/profile_page/cubit/user_profile_page_cubit.dart';
 import '../../utils/index.dart';
 import 'package:repository/user/user_profile_page/user_profile_page_repository.dart';
@@ -16,30 +17,46 @@ class ProfilePage extends StatelessWidget {
     return RepositoryProvider<UserProfilePageRepository>(
       create: (context) => FirebaseUserProfilePageRepository(),
       child: BlocProvider(
-        create: (context) =>
-            UserProfilePageCubit(
-                RepositoryProvider.of<UserProfilePageRepository>(context)),
+        create: (context) => UserProfilePageCubit(
+            RepositoryProvider.of<UserProfilePageRepository>(context)),
         child: BlocListener<UserProfilePageCubit, UserProfilePageState>(
           listener: (context, state) {
-            if(state is GotoLoginPage) {
+            if (state is GotoLoginPage) {
               // Navigate to Login page
               Navigator.pushReplacementNamed(context, Routes.root);
-            } else if(state is GotoEditProfilePage) {
+            } else if (state is GotoEditProfilePage) {
               Navigator.pushNamed(context, Routes.editUserProfile);
+            } else if (state is ShowToast) {
+              Fluttertoast.showToast(
+                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
             }
           },
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: _appBar,
-            body: const SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    UserProfileSection(),
-                    BookingHistorySection(),
-                  ],
-                ),
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  const SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        UserProfileSection(),
+                        BookingHistorySection(),
+                      ],
+                    ),
+                  ),
+                  BlocBuilder<UserProfilePageCubit, UserProfilePageState>(
+                    builder: (context, state) {
+                      if (state is Initial) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  )
+                ],
               ),
             ),
           ),

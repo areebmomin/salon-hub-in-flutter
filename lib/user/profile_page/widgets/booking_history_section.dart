@@ -7,32 +7,44 @@ class BookingHistorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     late var cubit = context.read<UserProfilePageCubit>();
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 24),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text(
-            Strings.bookingHistory,
-            style: TextStyleConstants.bookingHistoryHeading,
-          ),
-          const SizedBox(height: 16),
-          ListView.builder(
-            itemCount: 5,
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemBuilder: (context, index) {
-              return BookingHistoryListItem(
-                index: index,
-                isLastItem: index == 4,
-                isInitiallyExpanded: index == 0,
-              );
-            },
-          ),
-        ],
-      ),
+    return BlocBuilder<UserProfilePageCubit, UserProfilePageState>(
+      buildWhen: (previousState, state) {
+        return state is LoadBookingHistory;
+      },
+      builder: (context, state) {
+        if (state is LoadBookingHistory) {
+          return Padding(
+            padding:
+                const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  Strings.bookingHistory,
+                  style: TextStyleConstants.bookingHistoryHeading,
+                ),
+                const SizedBox(height: 16),
+                ListView.builder(
+                  itemCount: 5,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return BookingHistoryListItem(
+                      index: index,
+                      isLastItem: index == 4,
+                      isInitiallyExpanded: index == 0,
+                    );
+                  },
+                ),
+              ],
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }

@@ -79,8 +79,8 @@ class AttendeeDetailsListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: BlocBuilder<SalonRegistrationCubit,
-                    SalonRegistrationState>(
+                child:
+                    BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
                   buildWhen: (previousState, state) {
                     return state is AttendeePhotoSelected &&
                         state.index == index;

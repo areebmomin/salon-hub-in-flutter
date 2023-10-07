@@ -1,3 +1,5 @@
 class FirebaseUserProfileStorageService implements UserProfileStorageService {}
 
-abstract class UserProfileStorageService {}
+abstract class UserProfileStorageService {
+
+}
