@@ -12,7 +12,7 @@ class Initial extends UserRegistrationState {
 class ShowToast extends UserRegistrationState {
   final String message;
 
-  const ShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, identityHashCode(this)];

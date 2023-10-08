@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                         return const SizedBox.shrink();
                       }
                     },
-                  )
+                  ),
                 ],
               ),
             ),

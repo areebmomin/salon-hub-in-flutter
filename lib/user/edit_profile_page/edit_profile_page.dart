@@ -38,22 +38,48 @@ class EditProfilePage extends StatelessWidget {
           },
           child: Scaffold(
             body: SafeArea(
-              child: ScrollConfiguration(
-                behavior: NoOverscrollBehaviour(),
-                child: const SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CloseButton(),
-                      EditProfileHeading(),
-                      UserPhotoUpload(),
-                      NameTextField(),
-                      EmailTextField(),
-                      AddressTextField(),
-                      SaveButton(),
-                    ],
+              child: Stack(
+                children: [
+                  BlocBuilder<UserEditProfilePageCubit,
+                      UserEditProfilePageState>(
+                    buildWhen: (previousState, state) {
+                      return state is LoadProfileData;
+                    },
+                    builder: (context, state) {
+                      if (state is LoadProfileData) {
+                        return ScrollConfiguration(
+                          behavior: NoOverscrollBehaviour(),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const CloseButton(),
+                                const EditProfileHeading(),
+                                const UserPhotoUpload(),
+                                NameTextField(),
+                                EmailTextField(),
+                                AddressTextField(),
+                                const SaveButton(),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
                   ),
-                ),
+                  BlocBuilder<UserEditProfilePageCubit,
+                      UserEditProfilePageState>(
+                    builder: (context, state) {
+                      if (state is Initial) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
           ),

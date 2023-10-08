@@ -27,7 +27,7 @@ class Failure extends SalonLoginState {
 class ShowToast extends SalonLoginState {
   final String message;
 
-  const ShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, identityHashCode(this)];

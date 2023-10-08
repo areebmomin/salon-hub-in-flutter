@@ -12,18 +12,29 @@ class Initial extends UserEditProfilePageState {
 class ShowToast extends UserEditProfilePageState {
   final String message;
 
-  const ShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, identityHashCode(this)];
 }
 
 class LoadProfileData extends UserEditProfilePageState {
-  final UserProfile userProfile;
-  final String url;
-
-  const LoadProfileData(this.userProfile, this.url);
+  const LoadProfileData();
 
   @override
-  List<Object> get props => [userProfile, url];
+  List<Object> get props => [];
+}
+
+class PhotoSelected extends UserEditProfilePageState {
+  final File profilePicture;
+
+  const PhotoSelected({required this.profilePicture});
+
+  @override
+  List<Object> get props => [profilePicture];
+}
+
+class Loading extends UserEditProfilePageState {
+  @override
+  List<Object> get props => [];
 }

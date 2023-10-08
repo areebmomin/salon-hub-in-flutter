@@ -41,7 +41,7 @@ class GotoEditProfilePage extends UserProfilePageState {
 class ShowToast extends UserProfilePageState {
   final String message;
 
-  const ShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, identityHashCode(this)];

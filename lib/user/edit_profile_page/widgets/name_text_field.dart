@@ -1,11 +1,17 @@
 part of '../edit_profile_page.dart';
 
 class NameTextField extends StatelessWidget {
-  const NameTextField({super.key});
+  NameTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<UserRegistrationCubit>();
+    late var cubit = context.read<UserEditProfilePageCubit>();
+
+    if(cubit.state is LoadProfileData) {
+      _controller.text = cubit.userProfile.name;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,6 +34,7 @@ class NameTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
+            controller: _controller,
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
@@ -45,7 +52,7 @@ class NameTextField extends StatelessWidget {
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.name,
             onChanged: (name) {
-              //cubit.data.name = name.trim();
+              cubit.userProfile.name = name.trim();
             },
             textInputAction: TextInputAction.next,
           ),

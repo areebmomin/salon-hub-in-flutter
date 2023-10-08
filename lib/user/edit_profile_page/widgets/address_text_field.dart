@@ -1,11 +1,17 @@
 part of '../edit_profile_page.dart';
 
 class AddressTextField extends StatelessWidget {
-  const AddressTextField({super.key});
+  AddressTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<UserRegistrationCubit>();
+    late var cubit = context.read<UserEditProfilePageCubit>();
+
+    if (cubit.state is LoadProfileData) {
+      _controller.text = cubit.userProfile.address;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,6 +34,7 @@ class AddressTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
+            controller: _controller,
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
@@ -45,7 +52,7 @@ class AddressTextField extends StatelessWidget {
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.streetAddress,
             onChanged: (address) {
-              //cubit.data.address = address.trim();
+              cubit.userProfile.address = address.trim();
             },
           ),
         ),

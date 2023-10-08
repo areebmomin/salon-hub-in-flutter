@@ -1,32 +1,31 @@
 class UserProfile {
-  final String _name;
-  final String _phoneNumber;
-  final String _email;
-  final String _address;
+  String name;
+  String phoneNumber;
+  String email;
+  String address;
 
   UserProfile([
-    this._name = '',
-    this._phoneNumber = '',
-    this._email = '',
-    this._address = '',
+    this.name = '',
+    this.phoneNumber = '',
+    this.email = '',
+    this.address = '',
   ]);
 
+  void copy(UserProfile userProfile) {
+    name = userProfile.name;
+    phoneNumber = userProfile.phoneNumber;
+    email = userProfile.email;
+    address = userProfile.address;
+  }
+
   UserProfile.fromDocumentSnapshot(Map<String, dynamic> doc)
-      : _name = doc['name'] ?? '',
-        _phoneNumber = doc['phone_number'] ?? '',
-        _email = doc['email'] ?? '',
-        _address = doc['address'] ?? '';
-
-  String get name => _name;
-
-  String get phoneNumber => _phoneNumber;
-
-  String get email => _email;
-
-  String get address => _address;
+      : name = doc['name'] ?? '',
+        phoneNumber = doc['phone_number'] ?? '',
+        email = doc['email'] ?? '',
+        address = doc['address'] ?? '';
 
   @override
   String toString() {
-    return 'Name: $_name, Phone Number: $_phoneNumber, Email: $_email, Address: $_address';
+    return 'Name: $name, Phone Number: $phoneNumber, Email: $email, Address: $address';
   }
 }

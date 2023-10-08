@@ -12,7 +12,7 @@ class Initial extends UserLoginState {
 class ShowToast extends UserLoginState {
   final String message;
 
-  const ShowToast({required this.message});
+  ShowToast({required this.message});
 
   @override
   List<Object> get props => [message, identityHashCode(this)];

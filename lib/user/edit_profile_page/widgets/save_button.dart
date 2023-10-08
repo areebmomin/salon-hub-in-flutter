@@ -5,13 +5,13 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<UserRegistrationCubit>();
+    late var cubit = context.read<UserEditProfilePageCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 21, right: 21, top: 24, bottom: 23),
       child: ElevatedButton(
         onPressed: () {
-          //cubit.onRegisterButtonCLicked();
+          cubit.onSaveButtonClicked();
         },
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 70),
@@ -20,23 +20,18 @@ class SaveButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        // Temporarily adding Text widget
-        child: const Text(
-          Strings.saveUpperCase,
-          style: TextStyleConstants.button,
+        child: BlocBuilder<UserEditProfilePageCubit, UserEditProfilePageState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              return const CircularProgressIndicator(color: Colors.white);
+            } else {
+              return const Text(
+                Strings.saveUpperCase,
+                style: TextStyleConstants.button,
+              );
+            }
+          },
         ),
-        // child: BlocBuilder<UserRegistrationCubit, UserRegistrationState>(
-        //   builder: (context, state) {
-        //     if (state is Loading) {
-        //       return const CircularProgressIndicator(color: Colors.white);
-        //     } else {
-        //       return const Text(
-        //         Strings.registerNowUpperCase,
-        //         style: TextStyleConstants.button,
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }
