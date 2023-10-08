@@ -10,14 +10,12 @@ class Initial extends UserRegistrationState {
 }
 
 class ShowToast extends UserRegistrationState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  ShowToast({required this.message});
+  const ShowToast({required this.message});
 
   @override
-  List<Object> get props => [message, _timeStamp];
+  List<Object> get props => [message, identityHashCode(this)];
 }
 
 class Loading extends UserRegistrationState {

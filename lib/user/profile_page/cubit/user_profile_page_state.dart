@@ -35,16 +35,14 @@ class GotoLoginPage extends UserProfilePageState {
 
 class GotoEditProfilePage extends UserProfilePageState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => [identityHashCode(this)];
 }
 
 class ShowToast extends UserProfilePageState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  ShowToast({required this.message});
+  const ShowToast({required this.message});
 
   @override
-  List<Object> get props => [message, _timeStamp];
+  List<Object> get props => [message, identityHashCode(this)];
 }

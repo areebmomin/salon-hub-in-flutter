@@ -10,14 +10,12 @@ class Initial extends SalonRegistrationState {
 }
 
 class ShowToast extends SalonRegistrationState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
   final String message;
 
-  ShowToast({required this.message});
+  const ShowToast({required this.message});
 
   @override
-  List<Object> get props => [message, _timeStamp];
+  List<Object> get props => [message, identityHashCode(this)];
 }
 
 class Loading extends SalonRegistrationState {
@@ -81,25 +79,16 @@ class GotoSalonHomePage extends SalonRegistrationState {
 }
 
 class ServicesUpdated extends SalonRegistrationState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
-
   @override
-  List<Object> get props => [_timeStamp];
+  List<Object> get props => [identityHashCode(this)];
 }
 
 class OwnerDetailsListUpdated extends SalonRegistrationState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
-
   @override
-  List<Object> get props => [_timeStamp];
+  List<Object> get props => [identityHashCode(this)];
 }
 
 class AttendeeDetailsListUpdated extends SalonRegistrationState {
-  /// placeholder to distinguish from previous [UserLoginShowToast] state
-  final int _timeStamp = DateTime.now().millisecondsSinceEpoch;
-
   @override
-  List<Object> get props => [_timeStamp];
+  List<Object> get props => [identityHashCode(this)];
 }
