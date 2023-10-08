@@ -8,8 +8,8 @@ part 'user_login_auth_service.dart';
 
 class FirebaseUserLoginRepository implements UserLoginRepository {
   late final _loginState = StreamController<VerifyPhoneNumberState>();
-  late final UserLoginAuthService _authService =
-      FirebaseUserLoginAuthService();
+  late final _UserLoginAuthService _authService =
+      _FirebaseUserLoginAuthService();
 
   @override
   get status => _loginState.stream;

@@ -1,23 +1,27 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:repository/auth/salon_auth/salon_registration/salon_registration_database_service.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'models/salon_registration_data.dart';
 import 'salon_registration_states.dart';
-import 'salon_registration_storage_service.dart';
 
 part 'signup_with_login_password_exception.dart';
 
 part 'salon_registration_auth_service.dart';
 
+part 'salon_registration_database_service.dart';
+
+part 'salon_registration_storage_service.dart';
+
 class FirebaseSalonRegistrationRepository
     implements SalonRegistrationRepository {
-  late final SalonRegistrationAuthService _authService =
-      FirebaseSalonRegistrationAuthService();
-  late final SalonRegistrationDatabaseService _databaseService =
-      FirebaseSalonRegistrationDatabaseService();
-  late final SalonRegistrationStorageService _storageService =
-      FirebaseSalonRegistrationStorageService();
+  late final _SalonRegistrationAuthService _authService =
+      _FirebaseSalonRegistrationAuthService();
+  late final _SalonRegistrationDatabaseService _databaseService =
+      _FirebaseSalonRegistrationDatabaseService();
+  late final _SalonRegistrationStorageService _storageService =
+      _FirebaseSalonRegistrationStorageService();
 
   @override
   Stream<SalonRegistrationRepositoryState> registerSalon(

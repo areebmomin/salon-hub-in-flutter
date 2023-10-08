@@ -1,6 +1,6 @@
 part of 'user_login_repository.dart';
 
-class FirebaseUserLoginAuthService implements UserLoginAuthService {
+class _FirebaseUserLoginAuthService implements _UserLoginAuthService {
   final _auth = FirebaseAuth.instance;
   String? _verificationCode;
 
@@ -71,7 +71,7 @@ class FirebaseUserLoginAuthService implements UserLoginAuthService {
   }
 }
 
-abstract class UserLoginAuthService {
+abstract class _UserLoginAuthService {
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
     void Function(String uid)? onVerificationCompleted,

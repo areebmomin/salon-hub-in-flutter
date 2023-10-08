@@ -1,8 +1,7 @@
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
+part of 'user_registration_repository.dart';
 
-class FirebaseUserRegistrationStorageService
-    implements UserRegistrationStorageService {
+class _FirebaseUserRegistrationStorageService
+    implements _UserRegistrationStorageService {
   final _storage = FirebaseStorage.instance;
 
   @override
@@ -11,6 +10,6 @@ class FirebaseUserRegistrationStorageService
   }
 }
 
-abstract class UserRegistrationStorageService {
+abstract class _UserRegistrationStorageService {
   Future<void> uploadUserProfilePicture(File imageFile, String uid);
 }

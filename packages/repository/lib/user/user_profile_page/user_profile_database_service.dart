@@ -1,11 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:repository/user/user_profile_page/models/booking_history.dart';
-import 'package:repository/utils/exceptions/database_exception.dart';
-import 'models/user_profile.dart';
+part of 'user_profile_repository.dart';
 
-class FirebaseUserProfileDatabaseService implements UserProfileDatabaseService {
+class _FirebaseUserProfileDatabaseService implements _UserProfileDatabaseService {
   final _db = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
@@ -31,7 +26,7 @@ class FirebaseUserProfileDatabaseService implements UserProfileDatabaseService {
   }
 }
 
-abstract class UserProfileDatabaseService {
+abstract class _UserProfileDatabaseService {
   Future<UserProfile> fetchUserProfile();
 
   Future<List<BookingHistory>> getBookingHistoryList();

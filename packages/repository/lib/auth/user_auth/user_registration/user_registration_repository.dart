@@ -1,15 +1,18 @@
 import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:repository/auth/user_auth/user_registration/user_registration_database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:repository/auth/user_auth/user_registration/user_registration_repository_states.dart';
-import 'package:repository/auth/user_auth/user_registration/user_registration_storage_service.dart';
 import 'models/user_registration_data.dart';
 
+part 'user_registration_database_service.dart';
+
+part 'user_registration_storage_service.dart';
+
 class FirebaseUserRegistrationRepository implements UserRegistrationRepository {
-  late final UserRegistrationDatabaseService _databaseService =
-      FireStoreUserRegistrationDatabaseService();
-  late final UserRegistrationStorageService _storageService =
-      FirebaseUserRegistrationStorageService();
+  late final _UserRegistrationDatabaseService _databaseService =
+      _FireStoreUserRegistrationDatabaseService();
+  late final _UserRegistrationStorageService _storageService =
+      _FirebaseUserRegistrationStorageService();
 
   @override
   Stream<UserRegistrationRepositoryState> addNewUserDataAndPhoto(

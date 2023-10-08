@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'models/salon_registration_data.dart';
+part of 'salon_registration_repository.dart';
 
-class FirebaseSalonRegistrationDatabaseService implements
-    SalonRegistrationDatabaseService {
+class _FirebaseSalonRegistrationDatabaseService implements
+    _SalonRegistrationDatabaseService {
   final _db = FirebaseFirestore.instance;
 
   @override
@@ -11,6 +10,6 @@ class FirebaseSalonRegistrationDatabaseService implements
   }
 }
 
-abstract class SalonRegistrationDatabaseService {
+abstract class _SalonRegistrationDatabaseService {
   Future<void> addNewSalonData(SalonRegistrationData data, String uid);
 }

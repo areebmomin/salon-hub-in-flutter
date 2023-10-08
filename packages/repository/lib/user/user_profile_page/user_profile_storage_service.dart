@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+part of 'user_profile_repository.dart';
 
-class FirebaseUserProfileStorageService implements UserProfileStorageService {
+class _FirebaseUserProfileStorageService implements _UserProfileStorageService {
   final _storage = FirebaseStorage.instance.ref();
   final _auth = FirebaseAuth.instance;
 
@@ -11,6 +10,6 @@ class FirebaseUserProfileStorageService implements UserProfileStorageService {
   }
 }
 
-abstract class UserProfileStorageService {
+abstract class _UserProfileStorageService {
   Future<String> getUserProfilePictureUrl();
 }

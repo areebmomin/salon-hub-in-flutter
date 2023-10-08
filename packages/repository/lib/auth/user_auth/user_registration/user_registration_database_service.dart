@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'models/user_registration_data.dart';
+part of 'user_registration_repository.dart';
 
-class FireStoreUserRegistrationDatabaseService
-    implements UserRegistrationDatabaseService {
+class _FireStoreUserRegistrationDatabaseService
+    implements _UserRegistrationDatabaseService {
   final _db = FirebaseFirestore.instance;
 
   @override
@@ -11,6 +10,6 @@ class FireStoreUserRegistrationDatabaseService
   }
 }
 
-abstract class UserRegistrationDatabaseService {
+abstract class _UserRegistrationDatabaseService {
   Future<void> addNewUserData(UserRegistrationData data, String uid);
 }

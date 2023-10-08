@@ -1,8 +1,7 @@
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
+part of 'salon_registration_repository.dart';
 
-class FirebaseSalonRegistrationStorageService
-    implements SalonRegistrationStorageService {
+class _FirebaseSalonRegistrationStorageService
+    implements _SalonRegistrationStorageService {
   final _storage = FirebaseStorage.instance;
 
   @override
@@ -50,7 +49,7 @@ class FirebaseSalonRegistrationStorageService
   }
 }
 
-abstract class SalonRegistrationStorageService {
+abstract class _SalonRegistrationStorageService {
   Future<void> uploadSalonProfilePicture(File imageFile, String uid);
 
   Future<void> uploadOwnersProfilePicture(

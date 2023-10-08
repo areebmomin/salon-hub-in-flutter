@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+part of 'user_profile_repository.dart';
 
-class FirebaseUserProfileAuthService implements UserProfileAuthService {
+class _FirebaseUserProfileAuthService implements _UserProfileAuthService {
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -9,6 +9,6 @@ class FirebaseUserProfileAuthService implements UserProfileAuthService {
   }
 }
 
-abstract class UserProfileAuthService {
+abstract class _UserProfileAuthService {
   Future<void> logout();
 }

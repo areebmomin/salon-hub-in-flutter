@@ -1,7 +1,7 @@
 part of 'salon_registration_repository.dart';
 
-class FirebaseSalonRegistrationAuthService
-    implements SalonRegistrationAuthService {
+class _FirebaseSalonRegistrationAuthService
+    implements _SalonRegistrationAuthService {
 
   final _auth = FirebaseAuth.instance;
 
@@ -23,7 +23,7 @@ class FirebaseSalonRegistrationAuthService
   }
 }
 
-abstract class SalonRegistrationAuthService {
+abstract class _SalonRegistrationAuthService {
   Future<UserCredential> registerUserWithEmailAndPassword({
     required String email,
     required String password,
