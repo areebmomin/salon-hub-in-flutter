@@ -28,8 +28,12 @@ class FirebaseUserProfilePageRepository implements UserProfilePageRepository {
   }
 
   @override
-  Future<String> getProfilePictureUrl() {
-    return _storageService.getUserProfilePictureUrl();
+  Future<String> getProfilePictureUrl() async {
+    try {
+      return await _storageService.getUserProfilePictureUrl();
+    } catch (e) {
+      return '';
+    }
   }
 }
 

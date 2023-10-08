@@ -17,11 +17,18 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
 
   _fetchUserProfileData() async {
     try {
-      UserProfile userProfile = await _repository.getUserProfile();
-      String url = await _repository.getProfilePictureUrl();
+      final results = await Future.wait([
+        _repository.getUserProfile(),
+        _repository.getProfilePictureUrl(),
+      ]);
+
+      UserProfile userProfile = results[0] as UserProfile;
+      String url = results[1] as String;
       emit(LoadUserProfile(userProfile, url));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
+    } catch (e) {
+      emit(ShowToast(message: 'An error occurred: $e'));
     }
   }
 
