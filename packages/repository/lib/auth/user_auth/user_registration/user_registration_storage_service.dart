@@ -7,8 +7,7 @@ class FirebaseUserRegistrationStorageService
 
   @override
   Future<void> uploadUserProfilePicture(File imageFile, String uid) async {
-    var extension = imageFile.path.split('.').last;
-    await _storage.ref().child('users/$uid.$extension').putFile(imageFile);
+    await _storage.ref().child('users/$uid').putFile(imageFile);
   }
 }
 

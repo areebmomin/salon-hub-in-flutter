@@ -38,7 +38,7 @@ class UserProfileSection extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              _getProfileImageOrIcon(context, null),
+                              _getProfileImageOrIcon(state),
                               Flexible(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
@@ -141,10 +141,11 @@ class UserProfileSection extends StatelessWidget {
     );
   }
 
-  Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
-    var image = imageUrl != null
-        ? Image.network(
-            imageUrl,
+  Widget _getProfileImageOrIcon(UserProfilePageState state) {
+    var image = state is LoadUserProfile && state.url.isNotEmpty
+        ? FadeInImage.assetNetwork(
+            placeholder: Assets.profilePic,
+            image: state.url,
             fit: BoxFit.fill,
             height: 80,
             width: 80,

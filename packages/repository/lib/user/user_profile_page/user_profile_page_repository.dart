@@ -26,12 +26,19 @@ class FirebaseUserProfilePageRepository implements UserProfilePageRepository {
   Future<List<BookingHistory>> getUserBookingHistory() {
     return _databaseService.getBookingHistoryList();
   }
+
+  @override
+  Future<String> getProfilePictureUrl() {
+    return _storageService.getUserProfilePictureUrl();
+  }
 }
 
 abstract class UserProfilePageRepository {
   Future<void> logout();
 
   Future<UserProfile> getUserProfile();
+
+  Future<String> getProfilePictureUrl();
 
   Future<List<BookingHistory>> getUserBookingHistory();
 }

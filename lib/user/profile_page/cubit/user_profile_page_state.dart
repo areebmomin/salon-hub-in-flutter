@@ -11,11 +11,12 @@ class Initial extends UserProfilePageState {
 
 class LoadUserProfile extends UserProfilePageState {
   final UserProfile userProfile;
+  final String url;
 
-  const LoadUserProfile(this.userProfile);
+  const LoadUserProfile(this.userProfile, this.url);
 
   @override
-  List<Object> get props => [userProfile];
+  List<Object> get props => [userProfile, url];
 }
 
 class LoadBookingHistory extends UserProfilePageState {
