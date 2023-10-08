@@ -4,7 +4,7 @@ import 'package:repository/user/user_profile_page/user_profile_auth_service.dart
 import 'package:repository/user/user_profile_page/user_profile_database_service.dart';
 import 'package:repository/user/user_profile_page/user_profile_storage_service.dart';
 
-class FirebaseUserProfilePageRepository implements UserProfilePageRepository {
+class FirebaseUserProfileRepository implements UserProfileRepository {
   late final UserProfileAuthService _authService =
       FirebaseUserProfileAuthService();
   late final UserProfileDatabaseService _databaseService =
@@ -37,7 +37,7 @@ class FirebaseUserProfilePageRepository implements UserProfilePageRepository {
   }
 }
 
-abstract class UserProfilePageRepository {
+abstract class UserProfileRepository {
   Future<void> logout();
 
   Future<UserProfile> getUserProfile();

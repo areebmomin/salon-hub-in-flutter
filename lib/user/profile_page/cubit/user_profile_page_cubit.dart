@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repository/user/user_profile_page/models/booking_history.dart';
 import 'package:repository/user/user_profile_page/models/user_profile.dart';
-import 'package:repository/user/user_profile_page/user_profile_page_repository.dart';
+import 'package:repository/user/user_profile_page/user_profile_repository.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';
 
 part 'user_profile_page_state.dart';
@@ -13,7 +13,7 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
     // _fetchBookingHistory();
   }
 
-  final UserProfilePageRepository _repository;
+  final UserProfileRepository _repository;
 
   _fetchUserProfileData() async {
     try {

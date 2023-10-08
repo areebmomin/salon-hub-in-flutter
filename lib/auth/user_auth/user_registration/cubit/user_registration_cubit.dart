@@ -38,7 +38,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     } else if (event is VerifyPhoneNumberCodeSent) {
       emit(OpenOtpPage());
     } else if (event is VerifyPhoneNumberTimeout) {
-      emit(ShowToast(message: Strings.otpTimeout));
+      emit(const ShowToast(message: Strings.otpTimeout));
     }
   }
 
@@ -46,27 +46,27 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     if (state is Loading) return;
 
     if (data.name.isEmpty) {
-      emit(ShowToast(message: Strings.enterName));
+      emit(const ShowToast(message: Strings.enterName));
       return;
     }
 
     if (!data.isPhoneNumberValid) {
-      emit(ShowToast(message: Strings.enterValidPhoneNumber));
+      emit(const ShowToast(message: Strings.enterValidPhoneNumber));
       return;
     }
 
     if (data.email.isNotEmpty && !EmailValidator.validate(data.email)) {
-      emit(ShowToast(message: Strings.enterValidEmail));
+      emit(const ShowToast(message: Strings.enterValidEmail));
       return;
     }
 
     if (data.address.isEmpty) {
-      emit(ShowToast(message: Strings.enterAddress));
+      emit(const ShowToast(message: Strings.enterAddress));
       return;
     }
 
     if (!data.isTermsAndConditionAccepted) {
-      emit(ShowToast(message: Strings.acceptTermsAndCondition));
+      emit(const ShowToast(message: Strings.acceptTermsAndCondition));
       return;
     }
 

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:salon_hub/user/profile_page/cubit/user_profile_page_cubit.dart';
 import '../../utils/index.dart';
-import 'package:repository/user/user_profile_page/user_profile_page_repository.dart';
+import 'package:repository/user/user_profile_page/user_profile_repository.dart';
 
 part 'widgets/user_profile_section.dart';
 
@@ -14,11 +14,11 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<UserProfilePageRepository>(
-      create: (context) => FirebaseUserProfilePageRepository(),
+    return RepositoryProvider<UserProfileRepository>(
+      create: (context) => FirebaseUserProfileRepository(),
       child: BlocProvider(
         create: (context) => UserProfilePageCubit(
-            RepositoryProvider.of<UserProfilePageRepository>(context)),
+            RepositoryProvider.of<UserProfileRepository>(context)),
         child: BlocListener<UserProfilePageCubit, UserProfilePageState>(
           listener: (context, state) {
             if (state is GotoLoginPage) {
