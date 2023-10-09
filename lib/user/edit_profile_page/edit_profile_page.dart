@@ -34,6 +34,8 @@ class EditProfilePage extends StatelessWidget {
             if (state is ShowToast) {
               Fluttertoast.showToast(
                   msg: state.message, toastLength: Toast.LENGTH_SHORT);
+            } else if (state is ProfileDataUpdateSuccess) {
+              Navigator.of(context).popUntil((route) => route.isFirst);
             }
           },
           child: Scaffold(

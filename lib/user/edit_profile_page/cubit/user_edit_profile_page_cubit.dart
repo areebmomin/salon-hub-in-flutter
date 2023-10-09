@@ -39,16 +39,16 @@ class UserEditProfilePageCubit extends Cubit<UserEditProfilePageState> {
     }
   }
 
-  void onSaveButtonClicked() {
+  Future<void> onSaveButtonClicked() async {
     if (state is Loading) return;
 
     if (userProfile.name.isEmpty) {
-      debugPrint(userProfile.name);
       emit(ShowToast(message: Strings.enterName));
       return;
     }
 
-    if (userProfile.email.isNotEmpty && !EmailValidator.validate(userProfile.email)) {
+    if (userProfile.email.isNotEmpty &&
+        !EmailValidator.validate(userProfile.email)) {
       emit(ShowToast(message: Strings.enterValidEmail));
       return;
     }
@@ -60,7 +60,13 @@ class UserEditProfilePageCubit extends Cubit<UserEditProfilePageState> {
 
     emit(Loading());
 
-    //_repository.verifyPhoneNumber(phoneNumber: data.phoneNumber);
+    var result =
+        await _repository.updateUserDataAndPhoto(userProfile, _imageFile);
+    if (result) {
+      emit(ProfileDataUpdateSuccess());
+    } else {
+      emit(ShowToast(message: Strings.serverError));
+    }
   }
 
   void getPhotoFromGallery() async {

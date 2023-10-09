@@ -19,8 +19,15 @@ class _FirebaseEditUserProfileDatabaseService
       },
     );
   }
+
+  @override
+  Future<void> updateUserData(UserProfile data) async {
+    await _db.collection('users').doc(_auth.currentUser?.uid).set(data.toMap());
+  }
 }
 
 abstract class _EditUserProfileDatabaseService {
   Future<UserProfile> fetchUserProfile();
+
+  Future<void> updateUserData(UserProfile data);
 }

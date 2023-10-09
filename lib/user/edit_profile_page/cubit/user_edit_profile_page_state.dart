@@ -38,3 +38,8 @@ class Loading extends UserEditProfilePageState {
   @override
   List<Object> get props => [];
 }
+
+class ProfileDataUpdateSuccess extends UserEditProfilePageState {
+  @override
+  List<Object> get props => [];
+}

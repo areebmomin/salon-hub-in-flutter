@@ -102,6 +102,7 @@ class Strings {
   static const String accept = 'Accept';
   static const String editBusinessDetails = 'Edit Business details';
   static const String playBall = 'Playball';
+  static const String serverError = 'Server error';
 
   // lists
   static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];

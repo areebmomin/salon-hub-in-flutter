@@ -9,8 +9,15 @@ class _FirebaseEditUserProfileStorageService
   Future<String> getUserProfilePictureUrl() {
     return _storage.child('users/${_auth.currentUser?.uid}').getDownloadURL();
   }
+
+  @override
+  Future<void> uploadUserProfilePicture(File imageFile) async {
+    await _storage.child('users/${_auth.currentUser?.uid}').putFile(imageFile);
+  }
 }
 
 abstract class _EditUserProfileStorageService {
   Future<String> getUserProfilePictureUrl();
+
+  Future<void> uploadUserProfilePicture(File imageFile);
 }

@@ -24,6 +24,15 @@ class UserProfile {
         email = doc['email'] ?? '',
         address = doc['address'] ?? '';
 
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'phone_number': phoneNumber,
+      'email': email,
+      'address': address,
+    };
+  }
+
   @override
   String toString() {
     return 'Name: $name, Phone Number: $phoneNumber, Email: $email, Address: $address';

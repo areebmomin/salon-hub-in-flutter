@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../user_profile_page/models/user_profile.dart';
@@ -28,10 +29,25 @@ class FirebaseEditUserProfileRepository implements EditUserProfileRepository {
       return '';
     }
   }
+
+  @override
+  Future<bool> updateUserDataAndPhoto(UserProfile data, File? imageFile) async {
+    try {
+      await _databaseService.updateUserData(data);
+      if (imageFile != null) {
+        await _storageService.uploadUserProfilePicture(imageFile);
+      }
+      return true;
+    } on FirebaseException catch (e) {
+      return false;
+    }
+  }
 }
 
 abstract class EditUserProfileRepository {
   Future<UserProfile> getUserProfile();
 
   Future<String> getProfilePictureUrl();
+
+  Future<bool> updateUserDataAndPhoto(UserProfile data, File? imageFile);
 }
