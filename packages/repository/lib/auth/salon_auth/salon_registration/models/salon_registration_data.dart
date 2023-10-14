@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../../../../user/user_home_page/models/user_home_page_salon_info.dart';
 
 part 'extension_helpers.dart';
 
@@ -69,6 +70,21 @@ class ServiceTime {
       'endTime': endTime.toMap(),
     };
   }
+
+  ServiceTime.fromDocumentSnapshot(Map<String, dynamic> doc)
+      : startTime = Time.fromDocumentSnapshot(doc['startTime']),
+        endTime = Time.fromDocumentSnapshot(doc['endTime']);
+
+  AvailabilityStatus getAvailabilityStatus(DateTime now) {
+    if (startTime.hour <= now.hour &&
+        now.hour <= endTime.hour &&
+        startTime.minute <= now.minute &&
+        now.minute <= endTime.minute) {
+      return AvailabilityStatus.open;
+    } else {
+      return AvailabilityStatus.close;
+    }
+  }
 }
 
 class Time {
@@ -101,6 +117,10 @@ class Time {
       'minute': minute,
     };
   }
+
+  Time.fromDocumentSnapshot(Map<String, dynamic> doc)
+      : hour = doc['hour'],
+        minute = doc['minute'];
 }
 
 class OwnerDetail {

@@ -6,10 +6,9 @@ class _FirebaseSalonRegistrationStorageService
 
   @override
   Future<void> uploadSalonProfilePicture(File imageFile, String uid) async {
-    var extension = imageFile.path.split('.').last;
     await _storage
         .ref()
-        .child('salons/$uid/$uid.$extension')
+        .child('salons/$uid/$uid')
         .putFile(imageFile);
   }
 
@@ -23,10 +22,9 @@ class _FirebaseSalonRegistrationStorageService
       var imageFile = entry.value;
 
       if (imageFile != null) {
-        var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child('salons/$uid/attendees/$index.$extension')
+            .child('salons/$uid/attendees/$index')
             .putFile(imageFile);
       }
     }

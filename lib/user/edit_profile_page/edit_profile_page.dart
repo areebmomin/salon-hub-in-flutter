@@ -28,7 +28,8 @@ class EditProfilePage extends StatelessWidget {
       create: (context) => FirebaseEditUserProfileRepository(),
       child: BlocProvider(
         create: (context) => UserEditProfilePageCubit(
-            RepositoryProvider.of<EditUserProfileRepository>(context)),
+          RepositoryProvider.of<EditUserProfileRepository>(context),
+        ),
         child: BlocListener<UserEditProfilePageCubit, UserEditProfilePageState>(
           listener: (context, state) {
             if (state is ShowToast) {
