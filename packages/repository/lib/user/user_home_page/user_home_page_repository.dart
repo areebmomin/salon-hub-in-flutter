@@ -25,6 +25,14 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
       salon.availabilityStatus = isServiceDay
           ? salon.serviceTime.getAvailabilityStatus(now)
           : AvailabilityStatus.close;
+
+      final profilePictureUrls = await Future.wait([
+        getSalonProfilePictureUrl(salon.salonId),
+        getSalonOwnerProfilePictureUrl(salon.salonId),
+      ]);
+
+      salon.salonProfilePictureUrl = profilePictureUrls[0];
+      salon.ownerProfilePictureUrl = profilePictureUrls[1];
     }
 
     return salonList;
@@ -39,7 +47,7 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
   @override
   Future<String> getSalonOwnerProfilePictureUrl(String salonId) async {
     try {
-      return await _storageService.getSalonOwnerProfilePictureUrl();
+      return await _storageService.getSalonOwnerProfilePictureUrl(salonId);
     } catch (e) {
       return '';
     }
@@ -48,7 +56,7 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
   @override
   Future<String> getSalonProfilePictureUrl(String salonId) async {
     try {
-      return await _storageService.getSalonProfilePictureUrl();
+      return await _storageService.getSalonProfilePictureUrl(salonId);
     } catch (e) {
       return '';
     }

@@ -37,10 +37,9 @@ class _FirebaseSalonRegistrationStorageService
       var imageFile = entry.value;
 
       if (imageFile != null) {
-        var extension = imageFile.path.split('.').last;
         await _storage
             .ref()
-            .child('salons/$uid/owners/$index.$extension')
+            .child('salons/$uid/owners/$index')
             .putFile(imageFile);
       }
     }

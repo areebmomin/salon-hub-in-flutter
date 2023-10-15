@@ -75,16 +75,11 @@ class ServiceTime {
       : startTime = Time.fromDocumentSnapshot(doc['startTime']),
         endTime = Time.fromDocumentSnapshot(doc['endTime']);
 
-  AvailabilityStatus getAvailabilityStatus(DateTime now) {
-    if (startTime.hour <= now.hour &&
-        now.hour <= endTime.hour &&
-        startTime.minute <= now.minute &&
-        now.minute <= endTime.minute) {
-      return AvailabilityStatus.open;
-    } else {
-      return AvailabilityStatus.close;
-    }
-  }
+  AvailabilityStatus getAvailabilityStatus(DateTime now) =>
+      (now.isAfter(DateTime(now.year, now.month, now.day, startTime.hour, startTime.minute)) &&
+          now.isBefore(DateTime(now.year, now.month, now.day, endTime.hour, endTime.minute)))
+          ? AvailabilityStatus.open
+          : AvailabilityStatus.close;
 }
 
 class Time {

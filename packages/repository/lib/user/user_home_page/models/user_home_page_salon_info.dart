@@ -8,6 +8,8 @@ class UserHomePageSalonInfo {
   List<bool> serviceDays;
   ServiceTime serviceTime;
   AvailabilityStatus availabilityStatus;
+  String salonProfilePictureUrl;
+  String ownerProfilePictureUrl;
 
   UserHomePageSalonInfo(
     this.salonId,
@@ -16,7 +18,19 @@ class UserHomePageSalonInfo {
     this.serviceDays,
     this.serviceTime,
     this.availabilityStatus,
+    this.salonProfilePictureUrl,
+    this.ownerProfilePictureUrl,
   );
+
+  UserHomePageSalonInfo.getDefault()
+      : salonId = 'Salon Id',
+        salonName = 'Salon Name',
+        salonAddress = 'Address',
+        serviceDays = [false, true, true, true, true, true, true],
+        serviceTime = ServiceTime(),
+        availabilityStatus = AvailabilityStatus.close,
+        salonProfilePictureUrl = '',
+        ownerProfilePictureUrl = '';
 
   UserHomePageSalonInfo.fromDocumentSnapshot(
     this.salonId,
@@ -26,11 +40,13 @@ class UserHomePageSalonInfo {
         serviceDays =
             (doc['service_days'] as List).map((e) => e as bool).toList(),
         serviceTime = ServiceTime.fromDocumentSnapshot(doc['service_times']),
-        availabilityStatus = AvailabilityStatus.close;
+        availabilityStatus = AvailabilityStatus.close,
+        salonProfilePictureUrl = '',
+        ownerProfilePictureUrl = '';
 
   @override
   String toString() {
-    return 'Salon id: $salonId, Salon Name: $salonName, Salon Address: $salonAddress, Availability Status: $availabilityStatus';
+    return 'Salon id: $salonId, Salon Name: $salonName, Salon Address: $salonAddress, Availability Status: $availabilityStatus, Salon Profile Picture: $salonProfilePictureUrl, Owner Profile Picture: $ownerProfilePictureUrl';
   }
 }
 

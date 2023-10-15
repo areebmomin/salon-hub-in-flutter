@@ -5,19 +5,31 @@ class SalonListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+    var showSalonState = cubit.state as ShowSalonList;
+
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8, bottom: 8),
-      itemCount: 5,
-      prototypeItem: const SalonListViewItem(),
+      itemCount: showSalonState.salonList.length,
+      prototypeItem: SalonListViewItem(
+        cubit,
+        UserHomePageSalonInfo.getDefault(),
+      ),
       itemBuilder: (context, index) {
-        return const SalonListViewItem();
+        return SalonListViewItem(
+          cubit,
+          showSalonState.salonList[index],
+        );
       },
     );
   }
 }
 
 class SalonListViewItem extends StatelessWidget {
-  const SalonListViewItem({super.key});
+  final UserHomePageSalonInfo _userHomePageSalonInfo;
+  final UserHomePageCubit cubit;
+
+  const SalonListViewItem(this.cubit, this._userHomePageSalonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +48,9 @@ class SalonListViewItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset(
-                Assets.appLogo,
+              Image(
+                image: _getSalonImage(
+                    _userHomePageSalonInfo.salonProfilePictureUrl),
                 height: 192,
                 fit: BoxFit.cover,
               ),
@@ -48,9 +61,10 @@ class SalonListViewItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 24,
-                      backgroundImage: AssetImage(Assets.appLogo),
+                      backgroundImage: _getOwnerImage(
+                          _userHomePageSalonInfo.ownerProfilePictureUrl),
                     ),
                     Expanded(
                       child: Padding(
@@ -59,12 +73,12 @@ class SalonListViewItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Text(
-                              Strings.businessNameHint,
+                            Text(
+                              _userHomePageSalonInfo.salonName,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.start,
                               maxLines: 2,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontFamily: Strings.firaSans,
                                 fontWeight: FontWeight.w600,
@@ -85,9 +99,10 @@ class SalonListViewItem extends StatelessWidget {
                                       size: 18,
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: ' ${Strings.businessAddressHint}',
-                                    style: TextStyle(
+                                  TextSpan(
+                                    text:
+                                        ' ${_userHomePageSalonInfo.salonAddress}',
+                                    style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                       color: AppColors.lightTextColor,
@@ -99,18 +114,23 @@ class SalonListViewItem extends StatelessWidget {
                             const SizedBox(height: 8),
                             RichText(
                               textAlign: TextAlign.center,
-                              text: const TextSpan(
+                              text: TextSpan(
                                 children: [
                                   WidgetSpan(
                                     child: Icon(
                                       Icons.circle,
-                                      color: AppColors.checkboxActive,
+                                      color: _userHomePageSalonInfo
+                                                  .availabilityStatus ==
+                                              AvailabilityStatus.open
+                                          ? AppColors.checkboxActive
+                                          : Colors.red,
                                       size: 15,
                                     ),
                                   ),
                                   TextSpan(
-                                    text: ' Open',
-                                    style: TextStyle(
+                                    text:
+                                        ' ${_userHomePageSalonInfo.availabilityStatus.name}',
+                                    style: const TextStyle(
                                       fontSize: 12,
                                       color: AppColors.inputText,
                                     ),
@@ -130,5 +150,21 @@ class SalonListViewItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  ImageProvider<Object> _getOwnerImage(String url) {
+    if (url.isNotEmpty) {
+      return NetworkImage(url);
+    } else {
+      return const AssetImage(Assets.userProfileDummy);
+    }
+  }
+
+  ImageProvider<Object> _getSalonImage(String url) {
+    if (url.isNotEmpty) {
+      return NetworkImage(url);
+    } else {
+      return const AssetImage(Assets.appLogo);
+    }
   }
 }
