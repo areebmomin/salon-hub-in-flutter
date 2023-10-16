@@ -37,6 +37,8 @@ class SalonNameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -61,7 +63,7 @@ class SalonNameTextField extends StatelessWidget {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             onChanged: (name) {
-              //cubit.data.businessName = name.trim();
+              cubit.filter.salonName = name.trim();
             },
           ),
         ),
@@ -82,6 +84,8 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
       child: TextField(
@@ -94,7 +98,7 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
           suffixIcon: DropdownButtonFormField(
             value: selectedValue,
             onChanged: (newValue) {
-              //cubit.data.type = newValue ?? '';
+              cubit.filter.salonAvailability = newValue ?? '';
               setState(() {
                 selectedValue = newValue;
               });
@@ -129,6 +133,8 @@ class NearMeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
       child: TextField(
@@ -149,7 +155,7 @@ class NearMeTextField extends StatelessWidget {
         style: TextStyleConstants.textField,
         keyboardType: TextInputType.streetAddress,
         onChanged: (location) {
-          //cubit.data.location = location.trim();
+          cubit.filter.location = location.trim();
         },
         textInputAction: TextInputAction.next,
       ),
@@ -162,6 +168,8 @@ class AddressTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
       child: TextField(
@@ -183,7 +191,7 @@ class AddressTextField extends StatelessWidget {
         keyboardType: TextInputType.streetAddress,
         maxLines: 3,
         onChanged: (address) {
-          //cubit.data.address = address.trim();
+          cubit.filter.address = address.trim();
         },
         textInputAction: TextInputAction.done,
       ),
@@ -196,12 +204,15 @@ class FilterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<UserHomePageCubit>();
+
     return Align(
       alignment: Alignment.centerRight,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 32, top: 40, right: 16),
         child: ElevatedButton(
           onPressed: () {
+            cubit.applyFilter();
             Navigator.pop(context);
           },
           style: ElevatedButton.styleFrom(

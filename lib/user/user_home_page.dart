@@ -57,7 +57,7 @@ class UserHomePage extends StatelessWidget {
                 },
               ),
             ),
-            floatingActionButton: getFilterFloatingButton(context),
+            floatingActionButton: const UserHomePageFloatingActionButton(),
           ),
         ),
       ),
