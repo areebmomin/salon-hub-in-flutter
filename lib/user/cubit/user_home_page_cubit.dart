@@ -13,13 +13,15 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
   }
 
   final UserHomePageRepository _repository;
-  final UserHomePageFilter filter = UserHomePageFilter();
+  final UserHomePageFilter filter = UserHomePageFilter(salonName: 'bea');
+  final List<UserHomePageSalonInfo> salonList = List.empty(growable: true);
 
-  _fetchAllSalonInfo() async {
+  void _fetchAllSalonInfo() async {
     try {
       emit(Loading());
-      var salonList = await _repository.getAllSalonInfo();
-      emit(ShowSalonList(salonList));
+      var salonListResponse = await _repository.getAllSalonInfo();
+      salonList.addAll(salonListResponse);
+      emit(ShowSalonList(salonListResponse));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
     } catch (e) {
@@ -27,16 +29,37 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
     }
   }
 
-  applyFilter() async {
+  Future<void> applyFilter() async {
+    await Future.delayed(Duration(seconds: 4));
     if (state is Loading) return;
-    try {
-      emit(Loading());
-      //var salonList = await _repository.getFilteredSalonInfo();
-      //emit(ShowSalonList(salonList));
-    } on DatabaseException catch (e) {
-      emit(ShowToast(message: e.message));
-    } catch (e) {
-      emit(ShowToast(message: 'An error occurred: $e'));
-    }
+    emit(Loading());
+    var salonListResult = salonList.where((salon) {
+      final filterName = filter.salonName.toLowerCase();
+      final filterLocation = filter.location.toLowerCase();
+      final filterAddress = filter.address.toLowerCase();
+
+      if (filterName.isNotEmpty &&
+          !salon.salonName.toLowerCase().contains(filterName)) {
+        return false;
+      }
+
+      if (filter.salonAvailability.isNotEmpty &&
+          salon.availabilityStatus.toString() != filter.salonAvailability) {
+        return false;
+      }
+
+      if (filterLocation.isNotEmpty &&
+          !salon.salonAddress.toLowerCase().contains(filterLocation)) {
+        return false;
+      }
+
+      if (filterAddress.isNotEmpty &&
+          !salon.salonAddress.toLowerCase().contains(filterAddress)) {
+        return false;
+      }
+
+      return true;
+    }).toList();
+    emit(ShowSalonList(salonListResult));
   }
 }

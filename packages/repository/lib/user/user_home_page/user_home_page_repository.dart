@@ -17,18 +17,12 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
 
   @override
   Future<List<UserHomePageSalonInfo>> getAllSalonInfo() async {
-    DateTime now = DateTime.now();
     var salonList = await _databaseService.fetchAllSalonInfo();
 
     for (var salon in salonList) {
-      final isServiceDay = salon.serviceDays[now.weekday % 7];
-      salon.availabilityStatus = isServiceDay
-          ? salon.serviceTime.getAvailabilityStatus(now)
-          : AvailabilityStatus.close;
-
       final profilePictureUrls = await Future.wait([
-        getSalonProfilePictureUrl(salon.salonId),
-        getSalonOwnerProfilePictureUrl(salon.salonId),
+        _getSalonProfilePictureUrl(salon.salonId),
+        _getSalonOwnerProfilePictureUrl(salon.salonId),
       ]);
 
       salon.salonProfilePictureUrl = profilePictureUrls[0];
@@ -38,25 +32,17 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
     return salonList;
   }
 
-  @override
-  Future<List<UserHomePageSalonInfo>> getFilteredSalonInfo() {
-    // TODO: implement getFilteredSalonInfo
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<String> getSalonOwnerProfilePictureUrl(String salonId) async {
+  Future<String> _getSalonProfilePictureUrl(String salonId) async {
     try {
-      return await _storageService.getSalonOwnerProfilePictureUrl(salonId);
+      return await _storageService.getSalonProfilePictureUrl(salonId);
     } catch (e) {
       return '';
     }
   }
 
-  @override
-  Future<String> getSalonProfilePictureUrl(String salonId) async {
+  Future<String> _getSalonOwnerProfilePictureUrl(String salonId) async {
     try {
-      return await _storageService.getSalonProfilePictureUrl(salonId);
+      return await _storageService.getSalonOwnerProfilePictureUrl(salonId);
     } catch (e) {
       return '';
     }
@@ -65,10 +51,4 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
 
 abstract class UserHomePageRepository {
   Future<List<UserHomePageSalonInfo>> getAllSalonInfo();
-
-  Future<List<UserHomePageSalonInfo>> getFilteredSalonInfo();
-
-  Future<String> getSalonProfilePictureUrl(String salonId);
-
-  Future<String> getSalonOwnerProfilePictureUrl(String salonId);
 }

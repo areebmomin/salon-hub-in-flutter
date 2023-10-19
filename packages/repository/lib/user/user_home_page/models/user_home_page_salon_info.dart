@@ -34,6 +34,7 @@ class UserHomePageSalonInfo {
 
   UserHomePageSalonInfo.fromDocumentSnapshot(
     this.salonId,
+    DateTime now,
     Map<String, dynamic> doc,
   )   : salonName = doc['business_name'] ?? '',
         salonAddress = doc['address'] ?? '',
@@ -42,7 +43,16 @@ class UserHomePageSalonInfo {
         serviceTime = ServiceTime.fromDocumentSnapshot(doc['service_times']),
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
-        ownerProfilePictureUrl = '';
+        ownerProfilePictureUrl = '' {
+    availabilityStatus = _calculateAvailabilityStatus(now);
+  }
+
+  AvailabilityStatus _calculateAvailabilityStatus(DateTime now) {
+    final isServiceDay = serviceDays[now.weekday % 7];
+    return isServiceDay
+        ? serviceTime.getAvailabilityStatus(now)
+        : AvailabilityStatus.close;
+  }
 
   @override
   String toString() {
