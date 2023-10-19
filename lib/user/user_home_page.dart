@@ -36,25 +36,27 @@ class UserHomePage extends StatelessWidget {
             backgroundColor: Colors.white,
             appBar: appBar(context, null),
             body: SafeArea(
-              child: BlocBuilder<UserHomePageCubit, UserHomePageState>(
-                buildWhen: (previousState, state) {
-                  return state is Loading || state is ShowSalonList;
-                },
-                builder: (context, state) {
-                  if (state is ShowSalonList) {
-                    return const Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: SalonListView(),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                },
+              child: Stack(
+                children: [
+                  const Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: SalonListView(),
+                      ),
+                    ],
+                  ),
+                  BlocBuilder<UserHomePageCubit, UserHomePageState>(
+                    builder: (context, state) {
+                      if (state is Loading) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
             floatingActionButton: const UserHomePageFloatingActionButton(),

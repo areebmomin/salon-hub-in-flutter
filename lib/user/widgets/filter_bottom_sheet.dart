@@ -5,12 +5,12 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 16, top: 24),
           child: Text(
             Strings.filterByHeading,
@@ -23,21 +23,25 @@ class FilterBottomSheet extends StatelessWidget {
           ),
         ),
         SalonNameTextField(),
-        AvailabilityDropDown(),
-        NearMeTextField(),
+        const AvailabilityDropDown(),
+        const NearMeTextField(),
         AddressTextField(),
-        FilterButton(),
+        const FilterButton(),
       ],
     );
   }
 }
 
 class SalonNameTextField extends StatelessWidget {
-  const SalonNameTextField({super.key});
+  SalonNameTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
+
+    _controller.text = cubit.filter.salonName;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,6 +49,7 @@ class SalonNameTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 24),
           child: TextField(
+            controller: _controller,
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
@@ -80,11 +85,11 @@ class AvailabilityDropDown extends StatefulWidget {
 }
 
 class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
-  String? selectedValue = Strings.salonAvailability.first;
 
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
+    String? selectedValue = Strings.salonAvailability[cubit.filter.salonAvailability];
 
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
@@ -98,7 +103,7 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
           suffixIcon: DropdownButtonFormField(
             value: selectedValue,
             onChanged: (newValue) {
-              cubit.filter.salonAvailability = newValue ?? '';
+              cubit.filter.salonAvailability = Strings.salonAvailability.indexOf(newValue ?? 'Open/Close');
               setState(() {
                 selectedValue = newValue;
               });
@@ -164,15 +169,20 @@ class NearMeTextField extends StatelessWidget {
 }
 
 class AddressTextField extends StatelessWidget {
-  const AddressTextField({super.key});
+  AddressTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
 
+    _controller.text = cubit.filter.address;
+
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
       child: TextField(
+        controller: _controller,
         decoration: const InputDecoration(
           filled: true,
           fillColor: AppColors.inputFieldBackground,

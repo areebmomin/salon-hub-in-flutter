@@ -2,13 +2,13 @@ import 'dart:ui';
 
 class UserHomePageFilter {
   String salonName;
-  String salonAvailability;
+  int salonAvailability;
   String location;
   String address;
 
   UserHomePageFilter({
     this.salonName = '',
-    this.salonAvailability = '',
+    this.salonAvailability = 0,
     this.location = '',
     this.address = '',
   });

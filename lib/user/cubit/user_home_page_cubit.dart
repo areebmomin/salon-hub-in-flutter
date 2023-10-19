@@ -4,6 +4,7 @@ import 'package:repository/user/user_home_page/models/user_home_page_filter.dart
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:repository/user/user_home_page/user_home_page_repository.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';
+import '../../utils/strings.dart';
 
 part 'user_home_page_state.dart';
 
@@ -13,7 +14,7 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
   }
 
   final UserHomePageRepository _repository;
-  final UserHomePageFilter filter = UserHomePageFilter(salonName: 'bea');
+  final UserHomePageFilter filter = UserHomePageFilter();
   final List<UserHomePageSalonInfo> salonList = List.empty(growable: true);
 
   void _fetchAllSalonInfo() async {
@@ -29,22 +30,22 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
     }
   }
 
-  Future<void> applyFilter() async {
-    await Future.delayed(Duration(seconds: 4));
+  void applyFilter() {
     if (state is Loading) return;
     emit(Loading());
     var salonListResult = salonList.where((salon) {
       final filterName = filter.salonName.toLowerCase();
       final filterLocation = filter.location.toLowerCase();
       final filterAddress = filter.address.toLowerCase();
+      final filterAvailability = filter.salonAvailability;
 
       if (filterName.isNotEmpty &&
           !salon.salonName.toLowerCase().contains(filterName)) {
         return false;
       }
 
-      if (filter.salonAvailability.isNotEmpty &&
-          salon.availabilityStatus.toString() != filter.salonAvailability) {
+      if (filterAvailability != 0 &&
+          salon.availabilityStatus.name != Strings.salonAvailability[filterAvailability].toLowerCase()) {
         return false;
       }
 

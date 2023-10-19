@@ -6,20 +6,30 @@ class SalonListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
-    var showSalonState = cubit.state as ShowSalonList;
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 8, bottom: 8),
-      itemCount: showSalonState.salonList.length,
-      prototypeItem: SalonListViewItem(
-        cubit,
-        UserHomePageSalonInfo.getDefault(),
-      ),
-      itemBuilder: (context, index) {
-        return SalonListViewItem(
-          cubit,
-          showSalonState.salonList[index],
-        );
+    return BlocBuilder<UserHomePageCubit, UserHomePageState>(
+      buildWhen: (previousState, state) {
+        return state is ShowSalonList;
+      },
+      builder: (context, state) {
+        if (state is ShowSalonList) {
+          return ListView.builder(
+            padding: const EdgeInsets.only(top: 8, bottom: 8),
+            itemCount: state.salonList.length,
+            prototypeItem: SalonListViewItem(
+              cubit,
+              UserHomePageSalonInfo.getDefault(),
+            ),
+            itemBuilder: (context, index) {
+              return SalonListViewItem(
+                cubit,
+                state.salonList[index],
+              );
+            },
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
       },
     );
   }
