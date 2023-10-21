@@ -7,6 +7,7 @@ class UserHomePageSalonInfo {
   String salonAddress;
   List<bool> serviceDays;
   ServiceTime serviceTime;
+  List<String> services;
   AvailabilityStatus availabilityStatus;
   String salonProfilePictureUrl;
   String ownerProfilePictureUrl;
@@ -17,6 +18,7 @@ class UserHomePageSalonInfo {
     this.salonAddress,
     this.serviceDays,
     this.serviceTime,
+    this.services,
     this.availabilityStatus,
     this.salonProfilePictureUrl,
     this.ownerProfilePictureUrl,
@@ -28,6 +30,7 @@ class UserHomePageSalonInfo {
         salonAddress = 'Address',
         serviceDays = [false, true, true, true, true, true, true],
         serviceTime = ServiceTime(),
+        services = List.empty(),
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
         ownerProfilePictureUrl = '';
@@ -41,6 +44,7 @@ class UserHomePageSalonInfo {
         serviceDays =
             (doc['service_days'] as List).map((e) => e as bool).toList(),
         serviceTime = ServiceTime.fromDocumentSnapshot(doc['service_times']),
+        services = (doc['services'] as List).map((e) => e as String).toList(),
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
         ownerProfilePictureUrl = '' {

@@ -65,6 +65,9 @@ class _SelectDateState extends State<SelectDate> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<BookPageCubit>();
+    cubit.bookSlot.date = _selectedDate.value.millisecondsSinceEpoch;
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
       child: Row(

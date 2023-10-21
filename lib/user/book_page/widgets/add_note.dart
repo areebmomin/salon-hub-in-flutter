@@ -5,6 +5,8 @@ class AddNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<BookPageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
       child: Row(
@@ -33,7 +35,7 @@ class AddNote extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 maxLines: 3,
                 onChanged: (note) {
-                  //cubit.data.address = address.trim();
+                  cubit.bookSlot.note = note.trim();
                 },
                 textInputAction: TextInputAction.done,
               ),

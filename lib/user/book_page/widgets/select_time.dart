@@ -33,6 +33,10 @@ class _SelectTimeState extends State<SelectTime> {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<BookPageCubit>();
+    cubit.bookSlot.startTime = startTime;
+    cubit.bookSlot.endTime = endTime;
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
       child: Row(

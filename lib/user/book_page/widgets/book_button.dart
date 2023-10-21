@@ -5,6 +5,8 @@ class BookButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<BookPageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(
         left: 21,
@@ -14,7 +16,7 @@ class BookButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         onPressed: () {
-          //cubit.loginButtonClicked();
+          cubit.bookButtonClicked();
         },
         style: ElevatedButton.styleFrom(
           fixedSize: const Size(double.infinity, 70),
