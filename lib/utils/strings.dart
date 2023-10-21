@@ -104,6 +104,8 @@ class Strings {
   static const String playBall = 'Playball';
   static const String serverError = 'Server error';
   static const String selectServices = 'Select Services';
+  static const String bookingRequestSentSuccessfully =
+      'Booking request successfully sent';
 
   // lists
   static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];

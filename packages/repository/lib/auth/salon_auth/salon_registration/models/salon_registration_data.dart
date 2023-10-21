@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import '../../../../user/user_home_page/models/user_home_page_salon_info.dart';
 
 part 'extension_helpers.dart';
@@ -76,8 +77,10 @@ class ServiceTime {
         endTime = Time.fromDocumentSnapshot(doc['endTime']);
 
   AvailabilityStatus getAvailabilityStatus(DateTime now) =>
-      (now.isAfter(DateTime(now.year, now.month, now.day, startTime.hour, startTime.minute)) &&
-          now.isBefore(DateTime(now.year, now.month, now.day, endTime.hour, endTime.minute)))
+      (now.isAfter(DateTime(now.year, now.month, now.day, startTime.hour,
+                  startTime.minute)) &&
+              now.isBefore(DateTime(
+                  now.year, now.month, now.day, endTime.hour, endTime.minute)))
           ? AvailabilityStatus.open
           : AvailabilityStatus.close;
 }
@@ -93,6 +96,10 @@ class Time {
   int get periodOffset => period == 'AM' ? 0 : 12;
 
   Time({required this.hour, required this.minute});
+
+  Time.fromTimeOfDay(TimeOfDay timeOfDay)
+      : hour = timeOfDay.hour,
+        minute = timeOfDay.minute;
 
   @override
   String toString() {

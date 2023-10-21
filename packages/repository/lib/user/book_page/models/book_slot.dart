@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repository/auth/salon_auth/salon_registration/models/salon_registration_data.dart';
 
 class BookSlot {
   String bookingId;
@@ -39,6 +40,24 @@ class BookSlot {
     this.userId,
     this.status,
   );
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'booking_id': bookingId,
+      'date': date,
+      'service_time': ServiceTime(
+              startTime: Time.fromTimeOfDay(startTime),
+              endTime: Time.fromTimeOfDay(endTime))
+          .toMap(),
+      'salon_id': salonId,
+      'salon_name': salonName,
+      'services': services,
+      'user_note': userNote,
+      'salon_note': salonNote,
+      'user_id': userId,
+      'status': status.name,
+    };
+  }
 
   @override
   String toString() {

@@ -3,7 +3,6 @@ part of 'user_home_page_repository.dart';
 class _FirebaseUserHomePageStorageService
     implements _UserHomePageStorageService {
   final _storage = FirebaseStorage.instance.ref();
-  final _auth = FirebaseAuth.instance;
 
   @override
   Future<String> getSalonOwnerProfilePictureUrl(String salonId) {

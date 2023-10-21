@@ -17,16 +17,21 @@ class BookPageCubit extends Cubit<BookPageState> {
   final UserHomePageSalonInfo salonInfo;
   BookSlot bookSlot = BookSlot.getDefault();
 
-  void bookButtonClicked() {
+  Future<void> bookButtonClicked() async {
     if (state is Loading) return;
 
-    if(bookSlot.services.isEmpty) {
+    if (bookSlot.services.isEmpty) {
       emit(ShowToast(message: Strings.selectServices));
       return;
     }
 
     emit(Loading());
 
-
+    var result = await _repository.saveBookingData(bookSlot);
+    if (result) {
+      emit(ShowToast(message: Strings.bookingRequestSentSuccessfully));
+    } else {
+      emit(ShowToast(message: Strings.serverError));
+    }
   }
 }
