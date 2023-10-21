@@ -35,7 +35,7 @@ class AddNote extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 maxLines: 3,
                 onChanged: (note) {
-                  cubit.bookSlot.note = note.trim();
+                  cubit.bookSlot.userNote = note.trim();
                 },
                 textInputAction: TextInputAction.done,
               ),

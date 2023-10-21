@@ -31,4 +31,3 @@ class ShowToast extends UserHomePageState {
   @override
   List<Object> get props => [message, identityHashCode(this)];
 }
-

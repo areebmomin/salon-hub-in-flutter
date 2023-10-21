@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:repository/user/book_page/book_page_repository.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
@@ -29,40 +30,42 @@ class BookPage extends StatelessWidget {
     return RepositoryProvider<BookPageRepository>(
       create: (context) => FirebaseBookPageRepository(),
       child: BlocProvider(
-        create: (context) =>
-            BookPageCubit(
-              RepositoryProvider.of<BookPageRepository>(context),
-            ),
+        create: (context) => BookPageCubit(
+          RepositoryProvider.of<BookPageRepository>(context),
+          _salonInfo,
+        ),
         child: BlocListener<BookPageCubit, BookPageState>(
           listener: (context, state) {
-
+            if (state is ShowToast) {
+              Fluttertoast.showToast(
+                  msg: state.message, toastLength: Toast.LENGTH_SHORT);
+            }
           },
           child: Scaffold(
             appBar: _appBar(context, _salonInfo),
             body: SafeArea(
               child: ScrollConfiguration(
                 behavior: NoOverscrollBehaviour(),
-                child: SingleChildScrollView(
+                child: const SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 16,
-                                top: 24,
-                                bottom: 24),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: 16, top: 24, bottom: 24),
                             child: Text(
                               Strings.bookSlot,
                               style: TextStyleConstants.bookSlotHeading,
                             ),
                           ),
-                          const SelectDate(),
-                          const SelectTime(),
-                          SelectServices(_salonInfo),
-                          const AddNote(),
-                          const BookButton(),
+                          SelectDate(),
+                          SelectTime(),
+                          SelectServices(),
+                          AddNote(),
+                          BookButton(),
                         ],
                       ),
                     ],

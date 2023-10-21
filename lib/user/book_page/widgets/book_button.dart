@@ -22,21 +22,17 @@ class BookButton extends StatelessWidget {
           fixedSize: const Size(double.infinity, 70),
           backgroundColor: AppColors.primaryButtonBackground,
         ),
-        // child: BlocBuilder<UserLoginCubit, UserLoginState>(
-        //   builder: (context, state) {
-        //     if (state is Loading) {
-        //       return const CircularProgressIndicator(color: Colors.white);
-        //     } else {
-        //       return Text(
-        //         cubit.isOtpSent ? Strings.verifyOtp : Strings.getOtp,
-        //         style: TextStyleConstants.button,
-        //       );
-        //     }
-        //   },
-        // ),
-        child: const Text(
-          Strings.book,
-          style: TextStyleConstants.button,
+        child: BlocBuilder<BookPageCubit, BookPageState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              return const CircularProgressIndicator(color: Colors.white);
+            } else {
+              return const Text(
+                Strings.book,
+                style: TextStyleConstants.button,
+              );
+            }
+          },
         ),
       ),
     );

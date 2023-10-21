@@ -1,9 +1,7 @@
 part of '../book_page.dart';
 
 class SelectServices extends StatefulWidget {
-  final UserHomePageSalonInfo _salonInfo;
-
-  const SelectServices(this._salonInfo, {super.key});
+  const SelectServices({super.key});
 
   @override
   State<SelectServices> createState() => _SelectServicesState();
@@ -27,7 +25,7 @@ class _SelectServicesState extends State<SelectServices> {
           Expanded(
             child: Wrap(
               alignment: WrapAlignment.center,
-              children: servicePosition(widget._salonInfo.services).toList(),
+              children: servicePosition(cubit.salonInfo.services).toList(),
             ),
           ),
         ],
