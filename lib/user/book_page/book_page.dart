@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
 
@@ -16,12 +17,13 @@ part 'widgets/add_note.dart';
 part 'widgets/book_button.dart';
 
 class BookPage extends StatelessWidget {
-  const BookPage({super.key});
+  final UserHomePageSalonInfo _userHomePageSalonInfo;
+  const BookPage(this._userHomePageSalonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context),
+      appBar: _appBar(context, _userHomePageSalonInfo),
       body: SafeArea(
         child: ScrollConfiguration(
           behavior: NoOverscrollBehaviour(),

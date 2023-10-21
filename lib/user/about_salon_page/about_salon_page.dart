@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -20,7 +21,8 @@ part 'widgets/owner_details_list.dart';
 part 'widgets/attendee_details_list.dart';
 
 class AboutSalonPage extends StatelessWidget {
-  const AboutSalonPage({super.key});
+  final UserHomePageSalonInfo _userHomePageSalonInfo;
+  const AboutSalonPage(this._userHomePageSalonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {

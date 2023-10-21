@@ -1,6 +1,6 @@
 part of '../book_page.dart';
 
-AppBar _appBar(BuildContext context) => AppBar(
+AppBar _appBar(BuildContext context, UserHomePageSalonInfo userHomePageSalonInfo) => AppBar(
       title: const Row(
         children: [
           Padding(
@@ -41,7 +41,7 @@ AppBar _appBar(BuildContext context) => AppBar(
           padding: const EdgeInsets.only(right: 16),
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, Routes.aboutSalonPage);
+              Navigator.pushNamed(context, Routes.aboutSalonPage, arguments: userHomePageSalonInfo);
             },
             child: const Icon(Icons.info_outline_rounded, size: 24),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:salon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
 import 'package:salon_hub/salon/salon_edit_profile_page/salon_edit_profile_page.dart';
 import 'package:salon_hub/salon/salon_profile_page/salon_profile_page.dart';
@@ -41,9 +42,11 @@ class AppRouters {
     } else if (name == Routes.editUserProfile) {
       page = const EditProfilePage();
     } else if (name == Routes.bookPage) {
-      page = const BookPage();
+      final salonInfo = settings.arguments as UserHomePageSalonInfo;
+      page = BookPage(salonInfo);
     } else if (name == Routes.aboutSalonPage) {
-      page = const AboutSalonPage();
+      final salonInfo = settings.arguments as UserHomePageSalonInfo;
+      page = AboutSalonPage(salonInfo);
     } else if (name == Routes.salonProfilePage) {
       page = const SalonProfilePage();
       return _rightToLeftTransitionRoute(settings, page);
