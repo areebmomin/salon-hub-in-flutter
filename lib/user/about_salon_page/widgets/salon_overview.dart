@@ -1,7 +1,9 @@
 part of '../about_salon_page.dart';
 
 class SalonOverview extends StatelessWidget {
-  const SalonOverview({super.key});
+  final UserHomePageSalonInfo _salonInfo;
+
+  const SalonOverview(this._salonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +14,17 @@ class SalonOverview extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5.0),
-            child: Image.asset(
-              Assets.userProfileBanner,
-              height: 176,
-              fit: BoxFit.fill,
-            ),
+            child: _getProfilePicture(_salonInfo.salonProfilePictureUrl),
           ),
           const SizedBox(height: 16),
-          const Text(Strings.salonName,
+          Text(_salonInfo.salonName,
               style: TextStyleConstants.salonNameHeading),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.only(left: 4),
             child: InkWell(
               onTap: () {
-                _launchUrl('8149311487');
+                _launchDialPad(_salonInfo.phoneNumber);
               },
               child: RichText(
                 overflow: TextOverflow.ellipsis,
@@ -41,9 +39,9 @@ class SalonOverview extends StatelessWidget {
                         size: 18,
                       ),
                     ),
-                    const TextSpan(
-                      text: ' +91 8149311487',
-                      style: TextStyle(
+                    TextSpan(
+                      text: ' ${_salonInfo.phoneNumber}',
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: AppColors.lightTextColor,
@@ -70,9 +68,9 @@ class SalonOverview extends StatelessWidget {
                       size: 18,
                     ),
                   ),
-                  const TextSpan(
-                    text: ' ${Strings.businessAddressHint}',
-                    style: TextStyle(
+                  TextSpan(
+                    text: ' ${_salonInfo.salonAddress}',
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.lightTextColor,
@@ -87,7 +85,13 @@ class SalonOverview extends StatelessWidget {
     );
   }
 
-  Future<void> _launchUrl(String phoneNumber) async {
+  Widget _getProfilePicture(String url) {
+    return url.isEmpty
+        ? Image.asset(Assets.userProfileBanner, height: 176, fit: BoxFit.fill)
+        : Image.network(url, height: 176, fit: BoxFit.fill);
+  }
+
+  Future<void> _launchDialPad(String phoneNumber) async {
     if (!await launchUrl(Uri.parse('tel:$phoneNumber'))) {
       Fluttertoast.showToast(
           msg: Strings.couldNotLaunch, toastLength: Toast.LENGTH_SHORT);

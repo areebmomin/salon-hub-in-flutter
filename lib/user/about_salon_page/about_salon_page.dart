@@ -21,8 +21,9 @@ part 'widgets/owner_details_list.dart';
 part 'widgets/attendee_details_list.dart';
 
 class AboutSalonPage extends StatelessWidget {
-  final UserHomePageSalonInfo _userHomePageSalonInfo;
-  const AboutSalonPage(this._userHomePageSalonInfo, {super.key});
+  final UserHomePageSalonInfo _salonInfo;
+
+  const AboutSalonPage(this._salonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +32,14 @@ class AboutSalonPage extends StatelessWidget {
       body: SafeArea(
         child: ScrollConfiguration(
           behavior: NoOverscrollBehaviour(),
-          child: const SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SalonOverview(),
+                SalonOverview(_salonInfo),
                 Dividers.lightDivider,
-                BasicsCard(),
-                AvailabilityCard(),
+                BasicsCard(_salonInfo),
+                AvailabilityCard(_salonInfo),
                 Dividers.lightDivider,
                 LocationCard(),
                 Dividers.lightDivider,

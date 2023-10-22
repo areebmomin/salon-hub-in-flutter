@@ -5,6 +5,8 @@ class UserHomePageSalonInfo {
   String salonId;
   String salonName;
   String salonAddress;
+  String phoneNumber;
+  String type;
   List<bool> serviceDays;
   ServiceTime serviceTime;
   List<String> services;
@@ -16,6 +18,8 @@ class UserHomePageSalonInfo {
     this.salonId,
     this.salonName,
     this.salonAddress,
+    this.phoneNumber,
+    this.type,
     this.serviceDays,
     this.serviceTime,
     this.services,
@@ -28,6 +32,8 @@ class UserHomePageSalonInfo {
       : salonId = 'Salon Id',
         salonName = 'Salon Name',
         salonAddress = 'Address',
+        phoneNumber = '',
+        type = '',
         serviceDays = [false, true, true, true, true, true, true],
         serviceTime = ServiceTime(),
         services = List.empty(),
@@ -41,6 +47,8 @@ class UserHomePageSalonInfo {
     Map<String, dynamic> doc,
   )   : salonName = doc['business_name'] ?? '',
         salonAddress = doc['address'] ?? '',
+        phoneNumber = doc['phone_number'] ?? '',
+        type = doc['type'] ?? '',
         serviceDays =
             (doc['service_days'] as List).map((e) => e as bool).toList(),
         serviceTime = ServiceTime.fromDocumentSnapshot(doc['service_times']),
@@ -60,7 +68,7 @@ class UserHomePageSalonInfo {
 
   @override
   String toString() {
-    return 'Salon id: $salonId, Salon Name: $salonName, Salon Address: $salonAddress, Availability Status: $availabilityStatus, Salon Profile Picture: $salonProfilePictureUrl, Owner Profile Picture: $ownerProfilePictureUrl';
+    return 'Salon id: $salonId, Salon Name: $salonName, Salon Address: $salonAddress, Phone Number: $phoneNumber, Type: $type,  Availability Status: $availabilityStatus, Salon Profile Picture: $salonProfilePictureUrl, Owner Profile Picture: $ownerProfilePictureUrl';
   }
 }
 

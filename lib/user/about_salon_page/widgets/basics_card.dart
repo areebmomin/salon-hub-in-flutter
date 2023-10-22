@@ -1,7 +1,9 @@
 part of '../about_salon_page.dart';
 
 class BasicsCard extends StatelessWidget {
-  const BasicsCard({super.key});
+  final UserHomePageSalonInfo _salonInfo;
+
+  const BasicsCard(this._salonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,16 @@ class BasicsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(Strings.basics, style: TextStyleConstants.salonInfoCardHeading),
+            const Text(Strings.basics,
+                style: TextStyleConstants.salonInfoCardHeading),
             const SizedBox(height: 24),
-            const Row(
+            Row(
               children: [
-                Text(Strings.type, style: TextStyleConstants.bookSlotSubHeading),
+                const Text(Strings.type,
+                    style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    'Male/Female',
+                    _salonInfo.type,
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -50,13 +54,8 @@ class BasicsCard extends StatelessWidget {
                   child: Wrap(
                     spacing: 4,
                     alignment: WrapAlignment.end,
-                    children: <Widget>[
-                      _buildChip('Gamer'),
-                      _buildChip('Hacker'),
-                      _buildChip('Develop'),
-                      _buildChip('Racer'),
-                      _buildChip('Traveller'),
-                    ],
+                    children:
+                        _salonInfo.services.map((e) => _buildChip(e)).toList(),
                   ),
                 ),
               ],

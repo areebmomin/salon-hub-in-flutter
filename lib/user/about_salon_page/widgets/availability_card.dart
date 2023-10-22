@@ -1,9 +1,9 @@
 part of '../about_salon_page.dart';
 
 class AvailabilityCard extends StatelessWidget {
-  const AvailabilityCard({super.key});
+  final UserHomePageSalonInfo _salonInfo;
 
-  static const serviceDaysList = [false, true, true, true, true, true, true];
+  const AvailabilityCard(this._salonInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,13 @@ class AvailabilityCard extends StatelessWidget {
             const Text(Strings.availability,
                 style: TextStyleConstants.salonInfoCardHeading),
             const SizedBox(height: 24),
-            const Row(
+            Row(
               children: [
-                Text(Strings.time,
+                const Text(Strings.time,
                     style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    '12:04 AM - 02:30 PM',
+                    '${_salonInfo.serviceTime.startTime.toString()} - ${_salonInfo.serviceTime.endTime.toString()}',
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -50,7 +50,7 @@ class AvailabilityCard extends StatelessWidget {
             const SizedBox(height: 4),
             WeekdaySelector(
               onChanged: (int day) {},
-              values: serviceDaysList,
+              values: _salonInfo.serviceDays,
               textStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
