@@ -1,7 +1,9 @@
 part of '../about_salon_page.dart';
 
 class AttendeeDetailsList extends StatefulWidget {
-  const AttendeeDetailsList({super.key});
+  final List<String> _attendeeDetailsList;
+
+  const AttendeeDetailsList(this._attendeeDetailsList, {super.key});
 
   @override
   State<AttendeeDetailsList> createState() => _AttendeeDetailsListState();
@@ -35,7 +37,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
           height: 264,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: 5,
+            itemCount: widget._attendeeDetailsList.length,
             onPageChanged: (index) => _tabController.index = index,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -65,12 +67,12 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                           ),
                         ),
                         padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Areeb Momin',
+                              widget._attendeeDetailsList[index],
                               style: TextStyleConstants.logoutButton,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -89,7 +91,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
         Center(
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: 5,
+            count: widget._attendeeDetailsList.length,
             effect: const CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.inputText,

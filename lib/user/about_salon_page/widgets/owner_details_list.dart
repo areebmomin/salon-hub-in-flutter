@@ -1,7 +1,9 @@
 part of '../about_salon_page.dart';
 
 class OwnerDetailsList extends StatefulWidget {
-  const OwnerDetailsList({super.key});
+  final List<String> _ownerDetailsList;
+
+  const OwnerDetailsList(this._ownerDetailsList, {super.key});
 
   @override
   State<OwnerDetailsList> createState() => _OwnerDetailsListState();
@@ -35,7 +37,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
           height: 264,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: 5,
+            itemCount: widget._ownerDetailsList.length,
             onPageChanged: (index) => _tabController.index = index,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -65,12 +67,12 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
                           ),
                         ),
                         padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Areeb Momin',
+                              widget._ownerDetailsList[index],
                               style: TextStyleConstants.logoutButton,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -89,7 +91,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
         Center(
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: 5,
+            count: widget._ownerDetailsList.length,
             effect: const CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.inputText,

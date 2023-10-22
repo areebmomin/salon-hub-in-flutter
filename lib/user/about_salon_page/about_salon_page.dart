@@ -41,10 +41,12 @@ class AboutSalonPage extends StatelessWidget {
                 BasicsCard(_salonInfo),
                 AvailabilityCard(_salonInfo),
                 Dividers.lightDivider,
-                LocationCard(),
+                const LocationCard(),
                 Dividers.lightDivider,
-                OwnerDetailsList(),
-                AttendeeDetailsList(),
+                if (_salonInfo.ownerDetails.isNotEmpty)
+                  OwnerDetailsList(_salonInfo.ownerDetails),
+                if (_salonInfo.attendeeDetails.isNotEmpty)
+                  AttendeeDetailsList(_salonInfo.attendeeDetails),
               ],
             ),
           ),

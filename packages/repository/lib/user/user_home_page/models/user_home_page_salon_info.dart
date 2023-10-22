@@ -13,6 +13,8 @@ class UserHomePageSalonInfo {
   AvailabilityStatus availabilityStatus;
   String salonProfilePictureUrl;
   String ownerProfilePictureUrl;
+  List<String> ownerDetails;
+  List<String> attendeeDetails;
 
   UserHomePageSalonInfo(
     this.salonId,
@@ -26,6 +28,8 @@ class UserHomePageSalonInfo {
     this.availabilityStatus,
     this.salonProfilePictureUrl,
     this.ownerProfilePictureUrl,
+    this.ownerDetails,
+    this.attendeeDetails,
   );
 
   UserHomePageSalonInfo.getDefault()
@@ -39,7 +43,9 @@ class UserHomePageSalonInfo {
         services = List.empty(),
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
-        ownerProfilePictureUrl = '';
+        ownerProfilePictureUrl = '',
+        ownerDetails = List<String>.empty(),
+        attendeeDetails = List<String>.empty();
 
   UserHomePageSalonInfo.fromDocumentSnapshot(
     this.salonId,
@@ -55,7 +61,15 @@ class UserHomePageSalonInfo {
         services = (doc['services'] as List).map((e) => e as String).toList(),
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
-        ownerProfilePictureUrl = '' {
+        ownerProfilePictureUrl = '',
+        ownerDetails = (doc['owner_details_list'] as List)
+            .map((e) => e as String)
+            .where((string) => string.isNotEmpty)
+            .toList(),
+        attendeeDetails = (doc['attendee_detail_list'] as List)
+            .map((e) => e as String)
+            .where((string) => string.isNotEmpty)
+            .toList() {
     availabilityStatus = _calculateAvailabilityStatus(now);
   }
 
