@@ -6,12 +6,21 @@ class _FirebaseUserHomePageStorageService
 
   @override
   Future<String> getSalonOwnerProfilePictureUrl(String salonId) {
-    return _storage.child('salons/$salonId/$salonId').getDownloadURL();
+    return _storage
+        .child('salons')
+        .child(salonId)
+        .child(salonId)
+        .getDownloadURL();
   }
 
   @override
   Future<String> getSalonProfilePictureUrl(String salonId) {
-    return _storage.child('salons/$salonId/owners/0').getDownloadURL();
+    return _storage
+        .child('salons')
+        .child(salonId)
+        .child('owners')
+        .child('0')
+        .getDownloadURL();
   }
 }
 

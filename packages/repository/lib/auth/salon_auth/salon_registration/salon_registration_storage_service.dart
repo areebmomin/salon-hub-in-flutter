@@ -8,7 +8,9 @@ class _FirebaseSalonRegistrationStorageService
   Future<void> uploadSalonProfilePicture(File imageFile, String uid) async {
     await _storage
         .ref()
-        .child('salons/$uid/$uid')
+        .child('salons')
+        .child(uid)
+        .child(uid)
         .putFile(imageFile);
   }
 
@@ -24,7 +26,10 @@ class _FirebaseSalonRegistrationStorageService
       if (imageFile != null) {
         await _storage
             .ref()
-            .child('salons/$uid/attendees/$index')
+            .child('salons')
+            .child(uid)
+            .child('attendees')
+            .child(index.toString())
             .putFile(imageFile);
       }
     }
@@ -39,7 +44,10 @@ class _FirebaseSalonRegistrationStorageService
       if (imageFile != null) {
         await _storage
             .ref()
-            .child('salons/$uid/owners/$index')
+            .child('salons')
+            .child(uid)
+            .child('owners')
+            .child(index.toString())
             .putFile(imageFile);
       }
     }

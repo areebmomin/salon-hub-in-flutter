@@ -6,7 +6,7 @@ class _FirebaseUserRegistrationStorageService
 
   @override
   Future<void> uploadUserProfilePicture(File imageFile, String uid) async {
-    await _storage.ref().child('users/$uid').putFile(imageFile);
+    await _storage.ref().child('users').child(uid).putFile(imageFile);
   }
 }
 
