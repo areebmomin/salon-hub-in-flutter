@@ -1,9 +1,7 @@
 part of '../about_salon_page.dart';
 
 class OwnerDetailsList extends StatefulWidget {
-  final List<String> _ownerDetailsList;
-
-  const OwnerDetailsList(this._ownerDetailsList, {super.key});
+  const OwnerDetailsList({super.key});
 
   @override
   State<OwnerDetailsList> createState() => _OwnerDetailsListState();
@@ -23,6 +21,8 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<AboutSalonPageCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -37,7 +37,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
           height: 264,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: widget._ownerDetailsList.length,
+            itemCount: cubit.salonInfo.ownerDetails.length,
             onPageChanged: (index) => _tabController.index = index,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -51,10 +51,29 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
                   ),
                   child: Column(
                     children: [
-                      Image.asset(
-                        Assets.appLogo,
-                        height: 200,
-                        fit: BoxFit.fill,
+                      BlocBuilder<AboutSalonPageCubit, AboutSalonPageState>(
+                        buildWhen: (previousState, state) {
+                          return state is LoadOwnerProfilePicture;
+                        },
+                        builder: (context, state) {
+                          var url = cubit.ownerProfilePictureUrls
+                                  .elementAtOrNull(index) ??
+                              '';
+                          if (state is LoadOwnerProfilePicture &&
+                              url.isNotEmpty) {
+                            return Image.network(
+                              url,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          } else {
+                            return Image.asset(
+                              Assets.appLogo,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          }
+                        },
                       ),
                       Container(
                         width: double.infinity,
@@ -72,7 +91,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              widget._ownerDetailsList[index],
+                              cubit.salonInfo.ownerDetails[index],
                               style: TextStyleConstants.logoutButton,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -91,7 +110,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
         Center(
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: widget._ownerDetailsList.length,
+            count: cubit.salonInfo.ownerDetails.length,
             effect: const CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.inputText,

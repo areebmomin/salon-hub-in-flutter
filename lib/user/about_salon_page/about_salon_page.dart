@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:repository/user/about_salon_page/about_salon_page_repository.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
+import 'package:salon_hub/user/about_salon_page/cubit/about_salon_page_cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -27,27 +30,39 @@ class AboutSalonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(context),
-      body: SafeArea(
-        child: ScrollConfiguration(
-          behavior: NoOverscrollBehaviour(),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SalonOverview(_salonInfo),
-                Dividers.lightDivider,
-                BasicsCard(_salonInfo),
-                AvailabilityCard(_salonInfo),
-                Dividers.lightDivider,
-                const LocationCard(),
-                Dividers.lightDivider,
-                if (_salonInfo.ownerDetails.isNotEmpty)
-                  OwnerDetailsList(_salonInfo.ownerDetails),
-                if (_salonInfo.attendeeDetails.isNotEmpty)
-                  AttendeeDetailsList(_salonInfo.attendeeDetails),
-              ],
+    return RepositoryProvider<AboutSalonPageRepository>(
+      create: (context) => FirebaseAboutSalonPageRepository(),
+      child: BlocProvider(
+        create: (context) => AboutSalonPageCubit(
+          RepositoryProvider.of<AboutSalonPageRepository>(context),
+          _salonInfo,
+        ),
+        child: BlocListener<AboutSalonPageCubit, AboutSalonPageState>(
+          listener: (context, state) {},
+          child: Scaffold(
+            appBar: _appBar(context),
+            body: SafeArea(
+              child: ScrollConfiguration(
+                behavior: NoOverscrollBehaviour(),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SalonOverview(),
+                      Dividers.lightDivider,
+                      const BasicsCard(),
+                      const AvailabilityCard(),
+                      Dividers.lightDivider,
+                      const LocationCard(),
+                      Dividers.lightDivider,
+                      if (_salonInfo.ownerDetails.isNotEmpty)
+                        const OwnerDetailsList(),
+                      if (_salonInfo.attendeeDetails.isNotEmpty)
+                        const AttendeeDetailsList(),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),

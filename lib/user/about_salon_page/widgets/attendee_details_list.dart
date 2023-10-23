@@ -1,9 +1,7 @@
 part of '../about_salon_page.dart';
 
 class AttendeeDetailsList extends StatefulWidget {
-  final List<String> _attendeeDetailsList;
-
-  const AttendeeDetailsList(this._attendeeDetailsList, {super.key});
+  const AttendeeDetailsList({super.key});
 
   @override
   State<AttendeeDetailsList> createState() => _AttendeeDetailsListState();
@@ -23,6 +21,8 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<AboutSalonPageCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -37,7 +37,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
           height: 264,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: widget._attendeeDetailsList.length,
+            itemCount: cubit.salonInfo.attendeeDetails.length,
             onPageChanged: (index) => _tabController.index = index,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -51,10 +51,29 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                   ),
                   child: Column(
                     children: [
-                      Image.asset(
-                        Assets.appLogo,
-                        height: 200,
-                        fit: BoxFit.fill,
+                      BlocBuilder<AboutSalonPageCubit, AboutSalonPageState>(
+                        buildWhen: (previousState, state) {
+                          return state is LoadAttendeeProfilePicture;
+                        },
+                        builder: (context, state) {
+                          var url = cubit.attendeeProfilePictureUrls
+                              .elementAtOrNull(index) ??
+                              '';
+                          if (state is LoadAttendeeProfilePicture &&
+                              url.isNotEmpty) {
+                            return Image.network(
+                              url,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          } else {
+                            return Image.asset(
+                              Assets.appLogo,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          }
+                        },
                       ),
                       Container(
                         width: double.infinity,
@@ -72,7 +91,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              widget._attendeeDetailsList[index],
+                              cubit.salonInfo.attendeeDetails[index],
                               style: TextStyleConstants.logoutButton,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -91,7 +110,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
         Center(
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: widget._attendeeDetailsList.length,
+            count: cubit.salonInfo.attendeeDetails.length,
             effect: const CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.inputText,

@@ -2,19 +2,19 @@ import 'dart:core';
 import '../../../auth/salon_auth/salon_registration/models/salon_registration_data.dart';
 
 class UserHomePageSalonInfo {
-  String salonId;
-  String salonName;
-  String salonAddress;
-  String phoneNumber;
-  String type;
-  List<bool> serviceDays;
-  ServiceTime serviceTime;
-  List<String> services;
+  final String salonId;
+  final String salonName;
+  final String salonAddress;
+  final String phoneNumber;
+  final String type;
+  final List<bool> serviceDays;
+  final ServiceTime serviceTime;
+  final List<String> services;
   AvailabilityStatus availabilityStatus;
   String salonProfilePictureUrl;
   String ownerProfilePictureUrl;
-  List<String> ownerDetails;
-  List<String> attendeeDetails;
+  final List<String> ownerDetails;
+  final List<String> attendeeDetails;
 
   UserHomePageSalonInfo(
     this.salonId,

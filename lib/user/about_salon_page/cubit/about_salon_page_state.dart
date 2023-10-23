@@ -8,3 +8,17 @@ class Initial extends AboutSalonPageState {
   @override
   List<Object> get props => [];
 }
+
+class LoadOwnerProfilePicture extends AboutSalonPageState {
+  const LoadOwnerProfilePicture();
+
+  @override
+  List<Object> get props => [];
+}
+
+class LoadAttendeeProfilePicture extends AboutSalonPageState {
+  const LoadAttendeeProfilePicture();
+
+  @override
+  List<Object> get props => [];
+}

@@ -1,12 +1,12 @@
 part of '../about_salon_page.dart';
 
 class BasicsCard extends StatelessWidget {
-  final UserHomePageSalonInfo _salonInfo;
-
-  const BasicsCard(this._salonInfo, {super.key});
+  const BasicsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<AboutSalonPageCubit>();
+
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
       decoration: ShapeDecoration(
@@ -37,7 +37,7 @@ class BasicsCard extends StatelessWidget {
                     style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    _salonInfo.type,
+                    cubit.salonInfo.type,
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -54,8 +54,9 @@ class BasicsCard extends StatelessWidget {
                   child: Wrap(
                     spacing: 4,
                     alignment: WrapAlignment.end,
-                    children:
-                        _salonInfo.services.map((e) => _buildChip(e)).toList(),
+                    children: cubit.salonInfo.services
+                        .map((e) => _buildChip(e))
+                        .toList(),
                   ),
                 ),
               ],
