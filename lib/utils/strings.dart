@@ -106,6 +106,7 @@ class Strings {
   static const String selectServices = 'Select Services';
   static const String bookingRequestSentSuccessfully =
       'Booking request successfully sent';
+  static const String salonResponse = 'Salon Response';
 
   // lists
   static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];

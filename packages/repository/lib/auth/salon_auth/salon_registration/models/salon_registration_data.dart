@@ -67,14 +67,14 @@ class ServiceTime {
 
   Map<String, dynamic> toMap() {
     return {
-      'startTime': startTime.toMap(),
-      'endTime': endTime.toMap(),
+      'start_time': startTime.toMap(),
+      'end_time': endTime.toMap(),
     };
   }
 
   ServiceTime.fromDocumentSnapshot(Map<String, dynamic> doc)
-      : startTime = Time.fromDocumentSnapshot(doc['startTime']),
-        endTime = Time.fromDocumentSnapshot(doc['endTime']);
+      : startTime = Time.fromDocumentSnapshot(doc['start_time']),
+        endTime = Time.fromDocumentSnapshot(doc['end_time']);
 
   AvailabilityStatus getAvailabilityStatus(DateTime now) =>
       (now.isAfter(DateTime(now.year, now.month, now.day, startTime.hour,
@@ -83,6 +83,11 @@ class ServiceTime {
                   now.year, now.month, now.day, endTime.hour, endTime.minute)))
           ? AvailabilityStatus.open
           : AvailabilityStatus.close;
+
+  @override
+  String toString() {
+    return 'ServiceTime{startTime: $startTime, endTime: $endTime}';
+  }
 }
 
 class Time {

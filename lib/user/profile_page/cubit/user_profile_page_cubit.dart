@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repository/user/user_profile_page/models/booking_history.dart';
 import 'package:repository/user/user_profile_page/models/user_profile.dart';
@@ -10,12 +11,12 @@ part 'user_profile_page_state.dart';
 class UserProfilePageCubit extends Cubit<UserProfilePageState> {
   UserProfilePageCubit(this._repository) : super(Initial()) {
     _fetchUserProfileData();
-    // _fetchBookingHistory();
+    _fetchBookingHistory();
   }
 
   final UserProfileRepository _repository;
 
-  _fetchUserProfileData() async {
+  void _fetchUserProfileData() async {
     try {
       final results = await Future.wait([
         _repository.getUserProfile(),
@@ -32,13 +33,15 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
     }
   }
 
-  _fetchBookingHistory() async {
+  void _fetchBookingHistory() async {
     try {
       List<BookingHistory> bookingHistoryList =
           await _repository.getUserBookingHistory();
       emit(LoadBookingHistory(bookingHistoryList));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
+    } catch (e) {
+      emit(ShowToast(message: 'An error occurred: $e'));
     }
   }
 

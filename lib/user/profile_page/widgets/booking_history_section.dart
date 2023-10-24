@@ -26,14 +26,14 @@ class BookingHistorySection extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 ListView.builder(
-                  itemCount: 5,
+                  itemCount: state.bookingHistoryList.length,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   itemBuilder: (context, index) {
                     return BookingHistoryListItem(
-                      index: index,
-                      isLastItem: index == 4,
+                      bookingHistory: state.bookingHistoryList[index],
+                      isLastItem: index == state.bookingHistoryList.length - 1,
                       isInitiallyExpanded: index == 0,
                     );
                   },
@@ -50,13 +50,13 @@ class BookingHistorySection extends StatelessWidget {
 }
 
 class BookingHistoryListItem extends StatefulWidget {
-  final int index;
+  final BookingHistory bookingHistory;
   final bool isLastItem;
   final bool isInitiallyExpanded;
 
   const BookingHistoryListItem({
     super.key,
-    required this.index,
+    required this.bookingHistory,
     required this.isLastItem,
     required this.isInitiallyExpanded,
   });
@@ -78,15 +78,15 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
   Widget build(BuildContext context) {
     return ExpansionTile(
       leading: Image.asset(Assets.profilePic, width: 40, height: 40),
-      title: const Text(
-        'Salon Name',
+      title: Text(
+        widget.bookingHistory.salonName,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyleConstants.bookingHistorySalonHeading,
       ),
       tilePadding: const EdgeInsets.only(left: 12),
-      subtitle: const Text(
-        'Status',
+      subtitle: Text(
+        widget.bookingHistory.bookingStatus.name,
         style: TextStyleConstants.bookingHistoryStatus,
       ),
       maintainState: true,
@@ -121,12 +121,15 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                getTextListItem('Date', '12-04-23'),
-                getTextListItem('Time', '12:04 - 04:25'),
-                getTextListItem('Service', 'Hair Cut, Hair Color'),
+                getTextListItem(Strings.date,
+                    DateFormat('dd-MM-yyyy').format(widget.bookingHistory.date)),
+                getTextListItem(Strings.time,
+                    '${widget.bookingHistory.serviceTime.startTime.toString()} - ${widget.bookingHistory.serviceTime.endTime.toString()}'),
+                getTextListItem(Strings.services,
+                    widget.bookingHistory.services.join(', ')),
+                getTextListItem(Strings.note, widget.bookingHistory.userNote),
                 getTextListItem(
-                    'Note', 'I may do Message also can you do that'),
-                getTextListItem('Salon Response', 'Yes, definitely'),
+                    Strings.salonResponse, widget.bookingHistory.salonNote),
               ],
             ),
           ),
