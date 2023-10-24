@@ -5,6 +5,8 @@ class SalonOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SalonProfilePageCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
       child: Column(
@@ -12,14 +14,11 @@ class SalonOverview extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5.0),
-            child: Image.asset(
-              Assets.userProfileBanner,
-              height: 176,
-              fit: BoxFit.fill,
-            ),
+            child: _getProfilePicture(
+                cubit.salonProfileInfo.salonProfilePictureUrl),
           ),
           const SizedBox(height: 16),
-          const Text(Strings.salonName,
+          Text(cubit.salonProfileInfo.salonName,
               style: TextStyleConstants.salonNameHeading),
           const SizedBox(height: 8),
           Padding(
@@ -37,9 +36,9 @@ class SalonOverview extends StatelessWidget {
                       size: 18,
                     ),
                   ),
-                  const TextSpan(
-                    text: ' +91 8149311487',
-                    style: TextStyle(
+                  TextSpan(
+                    text: ' ${cubit.salonProfileInfo.phoneNumber}',
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.lightTextColor,
@@ -65,9 +64,9 @@ class SalonOverview extends StatelessWidget {
                       size: 18,
                     ),
                   ),
-                  const TextSpan(
-                    text: ' ${Strings.businessAddressHint}',
-                    style: TextStyle(
+                  TextSpan(
+                    text: ' ${cubit.salonProfileInfo.salonAddress}',
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: AppColors.lightTextColor,
@@ -85,7 +84,7 @@ class SalonOverview extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.salonEditProfilePage);
+                      cubit.gotoSalonEditProfilePage();
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(0, 56),
@@ -111,7 +110,7 @@ class SalonOverview extends StatelessWidget {
                 const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () {
-                    //cubit.saveDetailsButtonClicked();
+                    cubit.logout();
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(0, 56),
@@ -139,5 +138,11 @@ class SalonOverview extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _getProfilePicture(String url) {
+    return url.isEmpty
+        ? Image.asset(Assets.userProfileBanner, height: 176, fit: BoxFit.fill)
+        : Image.network(url, height: 176, fit: BoxFit.fill);
   }
 }

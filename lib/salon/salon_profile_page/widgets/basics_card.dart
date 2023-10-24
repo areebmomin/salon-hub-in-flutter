@@ -5,6 +5,8 @@ class BasicsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SalonProfilePageCubit>();
+
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
       decoration: ShapeDecoration(
@@ -26,14 +28,16 @@ class BasicsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(Strings.basics, style: TextStyleConstants.salonInfoCardHeading),
+            const Text(Strings.basics,
+                style: TextStyleConstants.salonInfoCardHeading),
             const SizedBox(height: 24),
-            const Row(
+            Row(
               children: [
-                Text(Strings.type, style: TextStyleConstants.bookSlotSubHeading),
+                const Text(Strings.type,
+                    style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    'Male/Female',
+                    cubit.salonProfileInfo.type,
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -50,13 +54,9 @@ class BasicsCard extends StatelessWidget {
                   child: Wrap(
                     spacing: 4,
                     alignment: WrapAlignment.end,
-                    children: <Widget>[
-                      _buildChip('Gamer'),
-                      _buildChip('Hacker'),
-                      _buildChip('Develop'),
-                      _buildChip('Racer'),
-                      _buildChip('Traveller'),
-                    ],
+                    children: cubit.salonProfileInfo.services
+                        .map((e) => _buildChip(e))
+                        .toList(),
                   ),
                 ),
               ],

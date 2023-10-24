@@ -80,7 +80,7 @@ class UserProfileSection extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            cubit.gotoUserProfilePage();
+                            cubit.gotoSalonEditProfilePage();
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(0, 56),

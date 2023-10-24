@@ -21,6 +21,8 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SalonProfilePageCubit>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -35,7 +37,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
           height: 264,
           child: PageView.builder(
             controller: _pageController,
-            itemCount: 5,
+            itemCount: cubit.salonProfileInfo.attendeeDetails.length,
             onPageChanged: (index) => _tabController.index = index,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
@@ -49,10 +51,30 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                   ),
                   child: Column(
                     children: [
-                      Image.asset(
-                        Assets.appLogo,
-                        height: 200,
-                        fit: BoxFit.fill,
+                      BlocBuilder<SalonProfilePageCubit, SalonProfilePageState>(
+                        buildWhen: (previousState, state) {
+                          return state is LoadAttendeeProfilePicture;
+                        },
+                        builder: (context, state) {
+                          var url = cubit
+                                  .salonProfileInfo.attendeeProfilePictureUrls
+                                  .elementAtOrNull(index) ??
+                              '';
+                          if (state is LoadAttendeeProfilePicture &&
+                              url.isNotEmpty) {
+                            return Image.network(
+                              url,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          } else {
+                            return Image.asset(
+                              Assets.appLogo,
+                              height: 200,
+                              fit: BoxFit.fill,
+                            );
+                          }
+                        },
                       ),
                       Container(
                         width: double.infinity,
@@ -65,12 +87,12 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                           ),
                         ),
                         padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Areeb Momin',
+                              cubit.salonProfileInfo.attendeeDetails[index],
                               style: TextStyleConstants.logoutButton,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -89,7 +111,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
         Center(
           child: SmoothPageIndicator(
             controller: _pageController,
-            count: 5,
+            count: cubit.salonProfileInfo.attendeeDetails.length,
             effect: const CustomizableEffect(
               dotDecoration: DotDecoration(
                 color: AppColors.inputText,

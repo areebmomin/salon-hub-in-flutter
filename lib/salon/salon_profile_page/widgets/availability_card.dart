@@ -3,10 +3,10 @@ part of '../salon_profile_page.dart';
 class AvailabilityCard extends StatelessWidget {
   const AvailabilityCard({super.key});
 
-  static const serviceDaysList = [false, true, true, true, true, true, true];
-
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<SalonProfilePageCubit>();
+
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16),
       decoration: ShapeDecoration(
@@ -31,13 +31,13 @@ class AvailabilityCard extends StatelessWidget {
             const Text(Strings.availability,
                 style: TextStyleConstants.salonInfoCardHeading),
             const SizedBox(height: 24),
-            const Row(
+            Row(
               children: [
-                Text(Strings.time,
+                const Text(Strings.time,
                     style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    '12:04 AM - 02:30 PM',
+                    '${cubit.salonProfileInfo.serviceTime.startTime.toString()} - ${cubit.salonProfileInfo.serviceTime.endTime.toString()}',
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -50,7 +50,7 @@ class AvailabilityCard extends StatelessWidget {
             const SizedBox(height: 4),
             WeekdaySelector(
               onChanged: (int day) {},
-              values: serviceDaysList,
+              values: cubit.salonProfileInfo.serviceDays,
               textStyle: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
