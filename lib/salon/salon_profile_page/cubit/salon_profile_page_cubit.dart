@@ -59,6 +59,6 @@ class SalonProfilePageCubit extends Cubit<SalonProfilePageState> {
   }
 
   void gotoSalonEditProfilePage() {
-    emit(GotoEditProfilePage());
+    emit(GotoEditProfilePage(salonProfileInfo));
   }
 }

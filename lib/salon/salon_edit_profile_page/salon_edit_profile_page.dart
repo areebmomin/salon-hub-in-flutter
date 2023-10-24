@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:repository/auth/salon_auth/salon_registration/models/salon_registration_data.dart';
-import 'package:time_range_picker/time_range_picker.dart';
+import 'package:repository/salon/salon_profile_page/models/salon_profile_info.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
 
@@ -34,7 +34,9 @@ part 'widgets/services_text_field.dart';
 part 'widgets/phone_number_text_field.dart';
 
 class SalonEditProfilePage extends StatelessWidget {
-  const SalonEditProfilePage({super.key});
+  final SalonProfileInfo salonProfileInfo;
+
+  const SalonEditProfilePage(this.salonProfileInfo, {super.key});
 
   @override
   Widget build(BuildContext context) {

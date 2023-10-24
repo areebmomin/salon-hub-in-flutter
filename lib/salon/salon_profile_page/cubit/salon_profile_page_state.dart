@@ -22,8 +22,12 @@ class GotoLoginPage extends SalonProfilePageState {
 }
 
 class GotoEditProfilePage extends SalonProfilePageState {
+  final SalonProfileInfo salonProfileInfo;
+
+  const GotoEditProfilePage(this.salonProfileInfo);
+
   @override
-  List<Object> get props => [identityHashCode(this)];
+  List<Object> get props => [salonProfileInfo, identityHashCode(this)];
 }
 
 class ShowToast extends SalonProfilePageState {

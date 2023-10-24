@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repository/salon/salon_profile_page/models/salon_profile_info.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:salon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
 import 'package:salon_hub/salon/salon_edit_profile_page/salon_edit_profile_page.dart';
@@ -51,7 +52,8 @@ class AppRouters {
       page = const SalonProfilePage();
       return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.salonEditProfilePage) {
-      page = const SalonEditProfilePage();
+      final salonInfo = settings.arguments as SalonProfileInfo;
+      page = SalonEditProfilePage(salonInfo);
     } else {
       page = Scaffold(body: Center(child: Text('No route defined for $name')));
     }

@@ -35,7 +35,8 @@ class SalonProfilePage extends StatelessWidget {
               // Navigate to Login page
               Navigator.pushReplacementNamed(context, Routes.root);
             } else if (state is GotoEditProfilePage) {
-              Navigator.pushNamed(context, Routes.salonEditProfilePage);
+              Navigator.pushNamed(context, Routes.salonEditProfilePage,
+                  arguments: state.salonProfileInfo);
             } else if (state is ShowToast) {
               Fluttertoast.showToast(
                   msg: state.message, toastLength: Toast.LENGTH_SHORT);
