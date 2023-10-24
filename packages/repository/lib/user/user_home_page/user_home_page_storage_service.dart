@@ -9,7 +9,8 @@ class _FirebaseUserHomePageStorageService
     return _storage
         .child('salons')
         .child(salonId)
-        .child(salonId)
+        .child('owners')
+        .child('0')
         .getDownloadURL();
   }
 
@@ -18,8 +19,7 @@ class _FirebaseUserHomePageStorageService
     return _storage
         .child('salons')
         .child(salonId)
-        .child('owners')
-        .child('0')
+        .child(salonId)
         .getDownloadURL();
   }
 }
