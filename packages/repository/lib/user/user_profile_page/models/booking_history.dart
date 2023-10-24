@@ -4,9 +4,10 @@ import '../../book_page/models/book_slot.dart';
 
 class BookingHistory {
   final String bookingId;
+  final String salonId;
   final String salonName;
   final BookingStatus bookingStatus;
-  final String salonProfilePictureUrl;
+  String salonProfilePictureUrl;
   final DateTime date;
   final ServiceTime serviceTime;
   final List<String> services;
@@ -15,6 +16,7 @@ class BookingHistory {
 
   BookingHistory.fromDocumentSnapshot(Map<String, dynamic> doc)
       : bookingId = doc['booking_id'] ?? '',
+        salonId = doc['salon_id'] ?? '',
         salonName = doc['salon_name'] ?? '',
         bookingStatus = enumFromString(
             BookingStatus.values, doc['status'] ?? '',
@@ -29,6 +31,6 @@ class BookingHistory {
 
   @override
   String toString() {
-    return 'BookingHistory{bookingId: $bookingId, salonName: $salonName, bookingStatus: $bookingStatus, salonProfilePictureUrl: $salonProfilePictureUrl, date: $date, serviceTime: $serviceTime, services: $services, userNote: $userNote, salonNote: $salonNote}';
+    return 'BookingHistory{bookingId: $bookingId, salonId: $salonId, salonName: $salonName, bookingStatus: $bookingStatus, salonProfilePictureUrl: $salonProfilePictureUrl, date: $date, serviceTime: $serviceTime, services: $services, userNote: $userNote, salonNote: $salonNote}';
   }
 }

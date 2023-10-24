@@ -77,7 +77,8 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      leading: Image.asset(Assets.profilePic, width: 40, height: 40),
+      leading:
+          _getProfileImageOrIcon(widget.bookingHistory.salonProfilePictureUrl),
       title: Text(
         widget.bookingHistory.salonName,
         maxLines: 2,
@@ -121,8 +122,10 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                getTextListItem(Strings.date,
-                    DateFormat('dd-MM-yyyy').format(widget.bookingHistory.date)),
+                getTextListItem(
+                    Strings.date,
+                    DateFormat('dd-MM-yyyy')
+                        .format(widget.bookingHistory.date)),
                 getTextListItem(Strings.time,
                     '${widget.bookingHistory.serviceTime.startTime.toString()} - ${widget.bookingHistory.serviceTime.endTime.toString()}'),
                 getTextListItem(Strings.services,
@@ -135,6 +138,31 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _getProfileImageOrIcon(String url) {
+    var image = url.isNotEmpty
+        ? FadeInImage.assetNetwork(
+            placeholder: Assets.profilePic,
+            image: url,
+            fit: BoxFit.fill,
+            height: 40,
+            width: 40,
+          )
+        : Image.asset(
+            Assets.profilePic,
+            fit: BoxFit.fill,
+            height: 40,
+            width: 40,
+          );
+
+    return CircleAvatar(
+      radius: 20,
+      backgroundColor: Colors.white,
+      child: ClipOval(
+        child: image,
+      ),
     );
   }
 

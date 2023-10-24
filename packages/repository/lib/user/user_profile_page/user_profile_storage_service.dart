@@ -11,8 +11,19 @@ class _FirebaseUserProfileStorageService implements _UserProfileStorageService {
         .child(_auth.currentUser?.uid ?? '')
         .getDownloadURL();
   }
+
+  @override
+  Future<String> getSalonProfilePictureUrl(String salonId) {
+    return _storage
+        .child('salons')
+        .child(salonId)
+        .child(salonId)
+        .getDownloadURL();
+  }
 }
 
 abstract class _UserProfileStorageService {
   Future<String> getUserProfilePictureUrl();
+
+  Future<String> getSalonProfilePictureUrl(String salonId);
 }

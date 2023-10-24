@@ -31,14 +31,34 @@ class FirebaseUserProfileRepository implements UserProfileRepository {
   }
 
   @override
-  Future<List<BookingHistory>> getUserBookingHistory() {
-    return _databaseService.getBookingHistoryList();
+  Future<List<BookingHistory>> getUserBookingHistory() async {
+    var bookingHistoryList = await _databaseService.getBookingHistoryList();
+
+    final futures = <Future<String>>[];
+    for (var salon in bookingHistoryList) {
+      futures.add(getSalonProfilePictureUrl(salon.salonId));
+    }
+    final urls = await Future.wait(futures);
+    bookingHistoryList.asMap().forEach((key, value) {
+      value.salonProfilePictureUrl = urls[key];
+    });
+
+    return bookingHistoryList;
   }
 
   @override
   Future<String> getProfilePictureUrl() async {
     try {
       return await _storageService.getUserProfilePictureUrl();
+    } catch (e) {
+      return '';
+    }
+  }
+
+  @override
+  Future<String> getSalonProfilePictureUrl(String salonId) async {
+    try {
+      return await _storageService.getSalonProfilePictureUrl(salonId);
     } catch (e) {
       return '';
     }
@@ -51,6 +71,8 @@ abstract class UserProfileRepository {
   Future<UserProfile> getUserProfile();
 
   Future<String> getProfilePictureUrl();
+
+  Future<String> getSalonProfilePictureUrl(String salonId);
 
   Future<List<BookingHistory>> getUserBookingHistory();
 }
