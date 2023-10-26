@@ -60,8 +60,7 @@ class _OwnerDetailsListState extends State<OwnerDetailsList>
                                   .salonProfileInfo.ownerProfilePictureUrls
                                   .elementAtOrNull(index) ??
                               '';
-                          if (state is LoadOwnerProfilePicture &&
-                              url.isNotEmpty) {
+                          if (url.isNotEmpty) {
                             return Image.network(
                               url,
                               height: 200,

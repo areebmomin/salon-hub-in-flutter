@@ -60,8 +60,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                                   .salonProfileInfo.attendeeProfilePictureUrls
                                   .elementAtOrNull(index) ??
                               '';
-                          if (state is LoadAttendeeProfilePicture &&
-                              url.isNotEmpty) {
+                          if (url.isNotEmpty) {
                             return Image.network(
                               url,
                               height: 200,
