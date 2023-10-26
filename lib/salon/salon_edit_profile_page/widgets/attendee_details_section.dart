@@ -5,7 +5,7 @@ class AttendeeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
@@ -23,25 +23,25 @@ class AttendeeDetails extends StatelessWidget {
               ),
             ),
           ),
-          // BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
-          //   buildWhen: (previousState, state) {
-          //     return state is AttendeeDetailsListUpdated;
-          //   },
-          //   builder: (context, state) {
-          //     return ListView.builder(
-          //       physics: const NeverScrollableScrollPhysics(),
-          //       shrinkWrap: true,
-          //       prototypeItem: AttendeeDetailsListItem(cubit, 0),
-          //       itemCount: cubit.data.attendeeDetailList.length,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return AttendeeDetailsListItem(cubit, index);
-          //       },
-          //     );
-          //   },
-          // ),
+          BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+            buildWhen: (previousState, state) {
+              return state is AttendeeDetailsListUpdated;
+            },
+            builder: (context, state) {
+              return ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                prototypeItem: AttendeeDetailsListItem(cubit, 0),
+                itemCount: cubit.salonInfo.attendeeDetailList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return AttendeeDetailsListItem(cubit, index);
+                },
+              );
+            },
+          ),
           TextButton(
             onPressed: () {
-              //cubit.addNewAttendee();
+              cubit.addNewAttendee();
             },
             style: TextButton.styleFrom(
               backgroundColor: AppColors.inputFieldBackground,
@@ -59,13 +59,17 @@ class AttendeeDetails extends StatelessWidget {
 }
 
 class AttendeeDetailsListItem extends StatelessWidget {
-  //final SalonRegistrationCubit cubit;
-  //final int index;
+  final SalonEditProfilePageCubit cubit;
+  final int index;
 
-  //const AttendeeDetailsListItem(this.cubit, this.index, {super.key});
+  AttendeeDetailsListItem(this.cubit, this.index, {super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _controller.text = cubit.salonInfo.attendeeDetailList[index].name;
+    var url = cubit.salonInfo.attendeeProfilePictureUrls.elementAtOrNull(index);
     return Padding(
       padding: const EdgeInsets.only(
         left: 20,
@@ -77,28 +81,28 @@ class AttendeeDetailsListItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(8),
-              //   child: BlocBuilder<SalonRegistrationCubit,
-              //       SalonRegistrationState>(
-              //     buildWhen: (previousState, state) {
-              //       return state is AttendeePhotoSelected &&
-              //           state.index == index;
-              //     },
-              //     builder: (context, state) {
-              //       return CircleAvatar(
-              //         backgroundImage: _getBackgroundImage(state),
-              //         radius: 40,
-              //       );
-              //     },
-              //   ),
-              // ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: BlocBuilder<SalonEditProfilePageCubit,
+                    SalonEditProfilePageState>(
+                  buildWhen: (previousState, state) {
+                    return state is AttendeePhotoSelected &&
+                        state.index == index;
+                  },
+                  builder: (context, state) {
+                    return CircleAvatar(
+                      backgroundImage: _getBackgroundImage(state, url),
+                      radius: 40,
+                    );
+                  },
+                ),
+              ),
               Positioned(
                 top: 70,
                 left: 67,
                 child: GestureDetector(
                   onTap: () {
-                    //cubit.setAttendeePhoto(index);
+                    cubit.setAttendeePhoto(index);
                   },
                   child: const Icon(
                     Icons.add_a_photo,
@@ -114,15 +118,16 @@ class AttendeeDetailsListItem extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 TextField(
+                  controller: _controller,
                   decoration: const InputDecoration(
                     hintStyle: TextStyleConstants.textFieldHint,
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    //cubit.data.attendeeDetailList[index].name = name;
+                    cubit.salonInfo.attendeeDetailList[index].name = name;
                   },
                 ),
-                //if (index > 0) _getCloseButton(cubit, index),
+                if (index > 0) _getCloseButton(cubit, index),
               ],
             ),
           ),
@@ -131,28 +136,33 @@ class AttendeeDetailsListItem extends StatelessWidget {
     );
   }
 
-  // ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
-  //   return state is AttendeePhotoSelected
-  //       ? FileImage(state.profilePicture) as ImageProvider<Object>?
-  //       : const AssetImage(Assets.userProfileDummy);
-  // }
-  //
-  // Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
-  //   return SizedBox(
-  //     height: 108,
-  //     child: Align(
-  //       alignment: Alignment.topRight,
-  //       child: GestureDetector(
-  //         onTap: () {
-  //           cubit.removeAttendee(index);
-  //         },
-  //         child: Icon(
-  //           Icons.close_rounded,
-  //           size: 22,
-  //           color: Colors.grey.shade600,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  ImageProvider<Object>? _getBackgroundImage(SalonEditProfilePageState state,
+      String? url,) {
+    if (state is AttendeePhotoSelected) {
+      return FileImage(state.profilePicture);
+    } else if (url != null && url.isNotEmpty) {
+      return NetworkImage(url);
+    } else {
+      return const AssetImage(Assets.userProfileDummy);
+    }
+  }
+
+  Widget _getCloseButton(SalonEditProfilePageCubit cubit, int index) {
+    return SizedBox(
+      height: 108,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: GestureDetector(
+          onTap: () {
+            cubit.removeAttendee(index);
+          },
+          child: Icon(
+            Icons.close_rounded,
+            size: 22,
+            color: Colors.grey.shade600,
+          ),
+        ),
+      ),
+    );
+  }
 }

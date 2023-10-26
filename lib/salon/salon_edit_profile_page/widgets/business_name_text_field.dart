@@ -1,11 +1,15 @@
 part of '../salon_edit_profile_page.dart';
 
 class BusinessNameTextField extends StatelessWidget {
-  const BusinessNameTextField({super.key});
+  BusinessNameTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
+
+    _controller.text = cubit.salonInfo.salonName;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,6 +32,7 @@ class BusinessNameTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
+            controller: _controller,
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
@@ -46,7 +51,7 @@ class BusinessNameTextField extends StatelessWidget {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             onChanged: (name) {
-              //cubit.data.businessName = name.trim();
+              cubit.salonInfo.salonName = name.trim();
             },
           ),
         ),

@@ -5,24 +5,24 @@ class SalonPhotoUpload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          // BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
-          //   buildWhen: (previousState, state) {
-          //     return state is PhotoSelected;
-          //   },
-          //   builder: (context, state) {
-          //     return CircleAvatar(
-          //       backgroundImage: _getBackgroundImage(state),
-          //       radius: 65,
-          //     );
-          //   },
-          // ),
+          BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+            buildWhen: (previousState, state) {
+              return state is PhotoSelected;
+            },
+            builder: (context, state) {
+              return CircleAvatar(
+                backgroundImage: _getBackgroundImage(cubit, state),
+                radius: 65,
+              );
+            },
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 19),
@@ -42,7 +42,7 @@ class SalonPhotoUpload extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      //cubit.setSalonPhoto();
+                      cubit.setSalonPhoto();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
@@ -70,9 +70,16 @@ class SalonPhotoUpload extends StatelessWidget {
     );
   }
 
-  // ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
-  //   return state is PhotoSelected
-  //       ? FileImage(state.profilePicture) as ImageProvider<Object>?
-  //       : const AssetImage(Assets.userProfileDummy);
-  // }
+  ImageProvider<Object>? _getBackgroundImage(
+      SalonEditProfilePageCubit cubit,
+      SalonEditProfilePageState state,
+      ) {
+    if (state is PhotoSelected) {
+      return FileImage(state.profilePicture);
+    } else if (cubit.salonInfo.salonProfilePictureUrl.isNotEmpty) {
+      return NetworkImage(cubit.salonInfo.salonProfilePictureUrl);
+    } else {
+      return const AssetImage(Assets.userProfileDummy);
+    }
+  }
 }

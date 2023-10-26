@@ -12,7 +12,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,34 +54,34 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
             keyboardType: TextInputType.streetAddress,
             onChanged: (service) {
               if (service.contains(',')) {
-                //cubit.addService(service);
+                cubit.addService(service);
                 _controller.clear();
               }
             },
             textInputAction: TextInputAction.next,
           ),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 19, right: 20, top: 4),
-        //   child: BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
-        //     buildWhen: (previousState, state) {
-        //       return state is ServicesUpdated;
-        //     },
-        //     builder: (context, state) {
-        //       return Wrap(
-        //         spacing: 8.0,
-        //         children: cubit.data.services.map((chip) {
-        //           return Chip(
-        //             label: Text(chip),
-        //             onDeleted: () {
-        //               cubit.removeService(chip);
-        //             },
-        //           );
-        //         }).toList(),
-        //       );
-        //     },
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.only(left: 19, right: 20, top: 4),
+          child: BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+            buildWhen: (previousState, state) {
+              return state is ServicesUpdated;
+            },
+            builder: (context, state) {
+              return Wrap(
+                spacing: 8.0,
+                children: cubit.salonInfo.services.map((chip) {
+                  return Chip(
+                    label: Text(chip),
+                    onDeleted: () {
+                      cubit.removeService(chip);
+                    },
+                  );
+                }).toList(),
+              );
+            },
+          ),
+        ),
       ],
     );
   }

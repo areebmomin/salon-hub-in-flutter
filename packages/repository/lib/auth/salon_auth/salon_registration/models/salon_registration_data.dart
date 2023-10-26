@@ -135,6 +135,11 @@ class OwnerDetail {
   File? profilePicture;
 
   OwnerDetail({this.name = '', this.profilePicture});
+
+  @override
+  String toString() {
+    return 'OwnerDetail{name: $name, profilePicture: $profilePicture}';
+  }
 }
 
 class AttendeeDetail {
@@ -142,4 +147,9 @@ class AttendeeDetail {
   File? profilePicture;
 
   AttendeeDetail({this.name = '', this.profilePicture});
+
+  @override
+  String toString() {
+    return 'AttendeeDetail{name: $name, profilePicture: $profilePicture}';
+  }
 }

@@ -33,40 +33,32 @@ class FirebaseSalonRegistrationRepository
         password: data.password,
       );
 
+      final futures = <Future<void>>[];
+
       // add salon data to database
       var uid = credential.user?.uid ?? '';
-      await _databaseService.addNewSalonData(data, uid);
+      futures.add(_databaseService.addNewSalonData(data, uid));
 
       // upload salon photo to storage
       if (data.profilePicture != null) {
-        await _storageService.uploadSalonProfilePicture(
-            data.profilePicture!, uid);
+        futures.add(_storageService.uploadSalonProfilePicture(
+            data.profilePicture!, uid));
       }
 
       // upload owner photos to storage
-      await _storageService.uploadOwnersProfilePicture(
-          data.ownerDetailsList.extractProfilePictures(), uid);
+      futures.add(_storageService.uploadOwnersProfilePicture(
+          data.ownerDetailsList.extractProfilePictures(), uid));
 
       // upload attendee photos to storage
-      await _storageService.uploadAttendeesProfilePicture(
-          data.attendeeDetailList.extractProfilePictures(), uid);
+      futures.add(_storageService.uploadAttendeesProfilePicture(
+          data.attendeeDetailList.extractProfilePictures(), uid));
+
+      await Future.wait(futures);
 
       yield Success();
     } on FirebaseException catch (e) {
       yield Failure(e.message ?? 'Server error');
     }
-  }
-}
-
-extension on List<OwnerDetail> {
-  List<File?> extractProfilePictures() {
-    return map((ownerDetail) => ownerDetail.profilePicture).toList();
-  }
-}
-
-extension on List<AttendeeDetail> {
-  List<File?> extractProfilePictures() {
-    return map((attendeeDetail) => attendeeDetail.profilePicture).toList();
   }
 }
 

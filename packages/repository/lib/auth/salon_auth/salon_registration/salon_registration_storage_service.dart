@@ -2,12 +2,11 @@ part of 'salon_registration_repository.dart';
 
 class _FirebaseSalonRegistrationStorageService
     implements _SalonRegistrationStorageService {
-  final _storage = FirebaseStorage.instance;
+  final _storage = FirebaseStorage.instance.ref();
 
   @override
   Future<void> uploadSalonProfilePicture(File imageFile, String uid) async {
     await _storage
-        .ref()
         .child('salons')
         .child(uid)
         .child(uid)
@@ -25,7 +24,6 @@ class _FirebaseSalonRegistrationStorageService
 
       if (imageFile != null) {
         await _storage
-            .ref()
             .child('salons')
             .child(uid)
             .child('attendees')
@@ -43,7 +41,6 @@ class _FirebaseSalonRegistrationStorageService
 
       if (imageFile != null) {
         await _storage
-            .ref()
             .child('salons')
             .child(uid)
             .child('owners')

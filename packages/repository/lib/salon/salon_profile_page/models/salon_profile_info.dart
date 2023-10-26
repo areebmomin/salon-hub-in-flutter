@@ -1,4 +1,5 @@
 import '../../../auth/salon_auth/salon_registration/models/salon_registration_data.dart';
+import '../../salon_edit_profile_page/models/edit_profile_page_salon_info.dart';
 
 class SalonProfileInfo {
   final String salonName;
@@ -48,6 +49,24 @@ class SalonProfileInfo {
             .map((e) => e as String)
             .where((string) => string.isNotEmpty)
             .toList();
+
+  EditProfilePageSalonInfo convertToEditProfileModel() {
+    return EditProfilePageSalonInfo(
+      salonName,
+      salonAddress,
+      phoneNumber,
+      type,
+      serviceDays,
+      serviceTime,
+      services,
+      salonProfilePictureUrl,
+      ownerProfilePictureUrls,
+      attendeeProfilePictureUrls,
+      ownerDetails.map((e) => OwnerDetail(name: e)).toList(),
+      attendeeDetails.map((e) => AttendeeDetail(name: e)).toList(),
+      null,
+    );
+  }
 
   @override
   String toString() {

@@ -12,10 +12,10 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
 
   @override
   Widget build(BuildContext context) {
-    // late var serviceTime =
-    //     context.read<SalonRegistrationCubit>().data.serviceTime;
+    late var serviceTime =
+        context.read<SalonEditProfilePageCubit>().salonInfo.serviceTime;
 
-    //_updateTextFieldText(serviceTime);
+    _updateTextFieldText(serviceTime);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,15 +48,15 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
             textInputAction: TextInputAction.next,
             readOnly: true,
             onTap: () async {
-              // TimeRange? result = await _openTimeRangePicker(serviceTime);
-              // if (result != null) {
-              //   // get start and end time data
-              //   serviceTime.startTime = result.startTime.toTime();
-              //   serviceTime.endTime = result.endTime.toTime();
-              //
-              //   // set data in text field
-              //   _updateTextFieldText(serviceTime);
-              //}
+              TimeRange? result = await _openTimeRangePicker(serviceTime);
+              if (result != null) {
+                // get start and end time data
+                serviceTime.startTime = result.startTime.toTime();
+                serviceTime.endTime = result.endTime.toTime();
+
+                // set data in text field
+                _updateTextFieldText(serviceTime);
+              }
             },
           ),
         ),
@@ -64,50 +64,50 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
     );
   }
 
-  // Future<TimeRange?> _openTimeRangePicker(ServiceTime serviceTime) async {
-  //   return await showTimeRangePicker(
-  //     context: context,
-  //     start: _timeToTimeOfDay(serviceTime.startTime),
-  //     end: _timeToTimeOfDay(serviceTime.endTime),
-  //     interval: const Duration(minutes: 30),
-  //     use24HourFormat: false,
-  //     disabledTime: TimeRange(
-  //       startTime: const TimeOfDay(hour: 22, minute: 0),
-  //       endTime: const TimeOfDay(hour: 6, minute: 0),
-  //     ),
-  //     disabledColor: Colors.white,
-  //     strokeWidth: 8,
-  //     strokeColor: Colors.green.shade500.withOpacity(0.8),
-  //     ticks: 8,
-  //     ticksLength: 32,
-  //     ticksColor: Colors.grey,
-  //     labels: Strings.clockHours.asMap().entries.map((e) {
-  //       return ClockLabel.fromIndex(idx: e.key, length: 8, text: e.value);
-  //     }).toList(),
-  //     labelOffset: 36,
-  //     rotateLabels: false,
-  //     padding: 64,
-  //     labelStyle: TextStyle(
-  //       fontWeight: FontWeight.w400,
-  //       fontSize: 12,
-  //       color: Colors.grey.shade700,
-  //     ),
-  //     timeTextStyle: const TextStyle(
-  //       fontWeight: FontWeight.w700,
-  //       fontSize: 20,
-  //       color: Colors.white,
-  //     ),
-  //     activeTimeTextStyle: const TextStyle(
-  //       fontWeight: FontWeight.w700,
-  //       fontSize: 28,
-  //       color: Colors.white,
-  //     ),
-  //     fromText: Strings.open,
-  //     toText: Strings.close,
-  //     handlerColor: Colors.green.shade600,
-  //     selectedColor: Colors.green.shade400,
-  //   );
-  //}
+  Future<TimeRange?> _openTimeRangePicker(ServiceTime serviceTime) async {
+    return await showTimeRangePicker(
+      context: context,
+      start: _timeToTimeOfDay(serviceTime.startTime),
+      end: _timeToTimeOfDay(serviceTime.endTime),
+      interval: const Duration(minutes: 30),
+      use24HourFormat: false,
+      disabledTime: TimeRange(
+        startTime: const TimeOfDay(hour: 22, minute: 0),
+        endTime: const TimeOfDay(hour: 6, minute: 0),
+      ),
+      disabledColor: Colors.white,
+      strokeWidth: 8,
+      strokeColor: Colors.green.shade500.withOpacity(0.8),
+      ticks: 8,
+      ticksLength: 32,
+      ticksColor: Colors.grey,
+      labels: Strings.clockHours.asMap().entries.map((e) {
+        return ClockLabel.fromIndex(idx: e.key, length: 8, text: e.value);
+      }).toList(),
+      labelOffset: 36,
+      rotateLabels: false,
+      padding: 64,
+      labelStyle: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
+        color: Colors.grey.shade700,
+      ),
+      timeTextStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 20,
+        color: Colors.white,
+      ),
+      activeTimeTextStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 28,
+        color: Colors.white,
+      ),
+      fromText: Strings.open,
+      toText: Strings.close,
+      handlerColor: Colors.green.shade600,
+      selectedColor: Colors.green.shade400,
+    );
+  }
 
   void _updateTextFieldText(ServiceTime serviceTime) {
     _controller.text =

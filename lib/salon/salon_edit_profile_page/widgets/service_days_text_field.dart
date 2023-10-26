@@ -10,8 +10,8 @@ class ServiceDaysTextField extends StatefulWidget {
 class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
   @override
   Widget build(BuildContext context) {
-    // late var serviceDaysList =
-    //     context.read<SalonRegistrationCubit>().data.serviceDays;
+    late var serviceDaysList =
+        context.read<SalonEditProfilePageCubit>().salonInfo.serviceDays;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -35,11 +35,10 @@ class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
                 // perform validation, a DB write, an HTTP call or anything
                 // else before you actually flip the value,
                 // it's up to your app's needs.
-                //serviceDaysList[index] = !serviceDaysList[index];
+                serviceDaysList[index] = !serviceDaysList[index];
               });
             },
-            //values: serviceDaysList,
-            values: const [false, false, false, false, false, false, false,],
+            values: serviceDaysList,
             textStyle: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 14,

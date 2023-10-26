@@ -1,11 +1,15 @@
 part of '../salon_edit_profile_page.dart';
 
 class AddressTextField extends StatelessWidget {
-  const AddressTextField({super.key});
+  AddressTextField({super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
+
+    _controller.text = cubit.salonInfo.salonAddress;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,6 +32,7 @@ class AddressTextField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
           child: TextField(
+            controller: _controller,
             decoration: const InputDecoration(
               filled: true,
               fillColor: AppColors.inputFieldBackground,
@@ -46,7 +51,7 @@ class AddressTextField extends StatelessWidget {
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
             onChanged: (address) {
-              //cubit.data.address = address.trim();
+              cubit.salonInfo.salonAddress = address.trim();
             },
             textInputAction: TextInputAction.next,
           ),

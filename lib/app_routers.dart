@@ -53,7 +53,7 @@ class AppRouters {
       return _rightToLeftTransitionRoute(settings, page);
     } else if (name == Routes.salonEditProfilePage) {
       final salonInfo = settings.arguments as SalonProfileInfo;
-      page = SalonEditProfilePage(salonInfo);
+      page = SalonEditProfilePage(salonInfo.convertToEditProfileModel());
     } else {
       page = Scaffold(body: Center(child: Text('No route defined for $name')));
     }

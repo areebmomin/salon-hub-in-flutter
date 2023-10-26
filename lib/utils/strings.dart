@@ -107,6 +107,7 @@ class Strings {
   static const String bookingRequestSentSuccessfully =
       'Booking request successfully sent';
   static const String salonResponse = 'Salon Response';
+  static const String dataUpdatedSuccessfully = 'Data updated successfully';
 
   // lists
   static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];

@@ -5,7 +5,7 @@ class OwnerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
 
     return Column(
       children: [
@@ -25,25 +25,25 @@ class OwnerDetails extends StatelessWidget {
             ),
           ),
         ),
-        // BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
-        //   buildWhen: (previousState, state) {
-        //     return state is OwnerDetailsListUpdated;
-        //   },
-        //   builder: (context, state) {
-        //     return ListView.builder(
-        //       physics: const NeverScrollableScrollPhysics(),
-        //       shrinkWrap: true,
-        //       prototypeItem: OwnerDetailsListItem(cubit, 0),
-        //       itemCount: cubit.data.ownerDetailsList.length,
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return OwnerDetailsListItem(cubit, index);
-        //       },
-        //     );
-        //   },
-        // ),
+        BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+          buildWhen: (previousState, state) {
+            return state is OwnerDetailsListUpdated;
+          },
+          builder: (context, state) {
+            return ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              prototypeItem: OwnerDetailsListItem(cubit, 0),
+              itemCount: cubit.salonInfo.ownerDetailsList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return OwnerDetailsListItem(cubit, index);
+              },
+            );
+          },
+        ),
         TextButton(
           onPressed: () {
-            //cubit.addNewOwner();
+            cubit.addNewOwner();
           },
           style: TextButton.styleFrom(
             backgroundColor: AppColors.inputFieldBackground,
@@ -60,13 +60,17 @@ class OwnerDetails extends StatelessWidget {
 }
 
 class OwnerDetailsListItem extends StatelessWidget {
-  //final SalonRegistrationCubit cubit;
-  //final int index;
+  final SalonEditProfilePageCubit cubit;
+  final int index;
 
-  //const OwnerDetailsListItem(this.cubit, this.index, {super.key});
+  OwnerDetailsListItem(this.cubit, this.index, {super.key});
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    _controller.text = cubit.salonInfo.ownerDetailsList[index].name;
+    var url = cubit.salonInfo.ownerProfilePictureUrls.elementAtOrNull(index);
     return Padding(
       padding: const EdgeInsets.only(
         left: 20,
@@ -78,27 +82,27 @@ class OwnerDetailsListItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(8),
-              //   child: BlocBuilder<SalonRegistrationCubit,
-              //       SalonRegistrationState>(
-              //     buildWhen: (previousState, state) {
-              //       return state is OwnerPhotoSelected && state.index == index;
-              //     },
-              //     builder: (context, state) {
-              //       return CircleAvatar(
-              //         backgroundImage: _getBackgroundImage(state),
-              //         radius: 40,
-              //       );
-              //     },
-              //   ),
-              // ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: BlocBuilder<SalonEditProfilePageCubit,
+                    SalonEditProfilePageState>(
+                  buildWhen: (previousState, state) {
+                    return state is OwnerPhotoSelected && state.index == index;
+                  },
+                  builder: (context, state) {
+                    return CircleAvatar(
+                      backgroundImage: _getBackgroundImage(state, url),
+                      radius: 40,
+                    );
+                  },
+                ),
+              ),
               Positioned(
                 top: 70,
                 left: 67,
                 child: GestureDetector(
                   onTap: () {
-                    //cubit.setOwnerPhoto(index);
+                    cubit.setOwnerPhoto(index);
                   },
                   child: const Icon(
                     Icons.add_a_photo,
@@ -114,15 +118,16 @@ class OwnerDetailsListItem extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 TextField(
+                  controller: _controller,
                   decoration: const InputDecoration(
                     hintStyle: TextStyleConstants.textFieldHint,
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    //cubit.data.ownerDetailsList[index].name = name;
+                    cubit.salonInfo.ownerDetailsList[index].name = name;
                   },
                 ),
-                //if (index > 0) _getCloseButton(cubit, index),
+                if (index > 0) _getCloseButton(cubit, index),
               ],
             ),
           ),
@@ -131,28 +136,33 @@ class OwnerDetailsListItem extends StatelessWidget {
     );
   }
 
-  // Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
-  //   return SizedBox(
-  //     height: 108,
-  //     child: Align(
-  //       alignment: Alignment.topRight,
-  //       child: GestureDetector(
-  //         onTap: () {
-  //           cubit.removeOwner(index);
-  //         },
-  //         child: Icon(
-  //           Icons.close_rounded,
-  //           size: 22,
-  //           color: Colors.grey.shade600,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-  //
-  // ImageProvider<Object>? _getBackgroundImage(SalonRegistrationState state) {
-  //   return state is OwnerPhotoSelected
-  //       ? FileImage(state.profilePicture) as ImageProvider<Object>?
-  //       : const AssetImage(Assets.userProfileDummy);
-  // }
+  Widget _getCloseButton(SalonEditProfilePageCubit cubit, int index) {
+    return SizedBox(
+      height: 108,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: GestureDetector(
+          onTap: () {
+            cubit.removeOwner(index);
+          },
+          child: Icon(
+            Icons.close_rounded,
+            size: 22,
+            color: Colors.grey.shade600,
+          ),
+        ),
+      ),
+    );
+  }
+
+  ImageProvider<Object>? _getBackgroundImage(SalonEditProfilePageState state,
+      String? url,) {
+    if (state is OwnerPhotoSelected) {
+      return FileImage(state.profilePicture);
+    } else if (url != null && url.isNotEmpty) {
+      return NetworkImage(url);
+    } else {
+      return const AssetImage(Assets.userProfileDummy);
+    }
+  }
 }

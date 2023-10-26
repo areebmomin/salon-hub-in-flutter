@@ -5,7 +5,7 @@ class BusinessLocationTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //late var cubit = context.read<SalonRegistrationCubit>();
+    late var cubit = context.read<SalonEditProfilePageCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -8,8 +8,7 @@ class SalonTypeTextField extends StatefulWidget {
 }
 
 class _SalonTypeTextFieldState extends State<SalonTypeTextField> {
-  //late var cubit = context.read<SalonRegistrationCubit>();
-  String? selectedValue = Strings.salonTypes.first;
+  late var cubit = context.read<SalonEditProfilePageCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +40,10 @@ class _SalonTypeTextFieldState extends State<SalonTypeTextField> {
               enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
               focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
               suffixIcon: DropdownButtonFormField(
-                value: selectedValue,
+                value: cubit.salonInfo.type,
                 onChanged: (newValue) {
-                  //cubit.data.type = newValue ?? '';
                   setState(() {
-                    selectedValue = newValue;
+                    cubit.salonInfo.type = newValue ?? '';
                   });
                 },
                 items: Strings.salonTypes
