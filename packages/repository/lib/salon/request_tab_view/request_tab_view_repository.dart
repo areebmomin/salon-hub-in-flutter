@@ -31,6 +31,24 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
     return bookingRequestList;
   }
 
+  @override
+  Future<void> acceptBooking(BookingData bookingData) async {
+    await Future.wait([
+      _databaseService.removeBookingFromRequest(bookingData.bookingId),
+      _databaseService.addBookingToSchedule(bookingData),
+      _databaseService.updateBookingHistory(bookingData),
+    ]);
+  }
+
+  @override
+  Future<void> declineBooking(BookingData bookingData) async {
+    await Future.wait([
+      _databaseService.removeBookingFromRequest(bookingData.bookingId),
+      _databaseService.addBookingToDecline(bookingData),
+      _databaseService.updateBookingHistory(bookingData),
+    ]);
+  }
+
   Future<String> _getSalonProfilePictureUrl(String userId) async {
     try {
       return await _storageService.getUserProfilePictureUrl(userId);
@@ -42,4 +60,8 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
 
 abstract class RequestTabViewRepository {
   Future<List<BookingData>> getBookingRequests();
+
+  Future<void> acceptBooking(BookingData bookingData);
+
+  Future<void> declineBooking(BookingData bookingData);
 }

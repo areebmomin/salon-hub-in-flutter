@@ -1,9 +1,10 @@
 part of '../request_tab_view.dart';
 
 class RequestList extends StatelessWidget {
+  final int index;
   final BookingData bookingData;
 
-  const RequestList(this.bookingData, {super.key});
+  const RequestList(this.index, this.bookingData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -138,8 +139,9 @@ class RequestList extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _declineDialogBuilder(
-                            context, cubit.declineButtonClicked);
+                        _declineDialogBuilder(context, (salonNote) {
+                          cubit.declineButtonClicked(index, salonNote);
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
@@ -163,8 +165,9 @@ class RequestList extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _acceptDialogBuilder(
-                            context, cubit.acceptButtonClicked);
+                        _acceptDialogBuilder(context, (salonNote) {
+                          cubit.acceptButtonClicked(index, salonNote);
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),

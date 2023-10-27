@@ -41,7 +41,7 @@ class RequestTabView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 16),
                     itemCount: state.bookingList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return RequestList(state.bookingList[index]);
+                      return RequestList(index, state.bookingList[index]);
                       //return DeclinedRequestList();
                     },
                   ),

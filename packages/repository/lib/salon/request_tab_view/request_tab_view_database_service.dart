@@ -21,8 +21,56 @@ class _FirebaseRequestTabViewDatabaseService
       },
     );
   }
+
+  @override
+  Future<void> addBookingToDecline(BookingData bookingData) async {
+    await _db
+        .collection('booking')
+        .doc(uid)
+        .collection('declined')
+        .doc(bookingData.bookingId)
+        .set(bookingData.toBookingMap());
+  }
+
+  @override
+  Future<void> addBookingToSchedule(BookingData bookingData) async {
+    await _db
+        .collection('booking')
+        .doc(uid)
+        .collection('schedule')
+        .doc(bookingData.bookingId)
+        .set(bookingData.toBookingMap());
+  }
+
+  @override
+  Future<void> removeBookingFromRequest(String bookingId) async {
+    _db
+        .collection('booking')
+        .doc(uid)
+        .collection('requests')
+        .doc(bookingId)
+        .delete();
+  }
+
+  @override
+  Future<void> updateBookingHistory(BookingData bookingData) async {
+    await _db
+        .collection('booking_history')
+        .doc(bookingData.userId)
+        .collection('bookings')
+        .doc(bookingData.bookingId)
+        .update(bookingData.toUpdateStatusMap());
+  }
 }
 
 abstract class _RequestTabViewDatabaseService {
   Future<List<BookingData>> fetchAllBookingRequest();
+
+  Future<void> removeBookingFromRequest(String bookingId);
+
+  Future<void> addBookingToSchedule(BookingData bookingData);
+
+  Future<void> addBookingToDecline(BookingData bookingData);
+
+  Future<void> updateBookingHistory(BookingData bookingData);
 }

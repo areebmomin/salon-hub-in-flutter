@@ -55,6 +55,21 @@ class BookingData {
     };
   }
 
+  Map<String, dynamic> toBookingMap() {
+    return <String, dynamic>{
+      'booking_id': bookingId,
+      'date': date,
+      'service_time': serviceTime.toMap(),
+      'services': services,
+      'user_note': userNote,
+      'salon_note': salonNote,
+      'user_id': userId,
+      'status': status.name,
+      'user_name': userName,
+      'user_phone_number': userPhoneNumber,
+    };
+  }
+
   BookingData.fromDocumentSnapshot(Map<String, dynamic> doc)
       : bookingId = doc['booking_id'] ?? '',
         date = doc['date'] ?? '',
