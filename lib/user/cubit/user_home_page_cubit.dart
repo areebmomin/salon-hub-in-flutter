@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_filter.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
 import 'package:repository/user/user_home_page/user_home_page_repository.dart';
+import 'package:repository/user/user_profile_page/models/user_profile.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';
 import '../../utils/strings.dart';
 
@@ -16,11 +17,17 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
   final UserHomePageRepository _repository;
   final UserHomePageFilter filter = UserHomePageFilter();
   final List<UserHomePageSalonInfo> salonList = List.empty(growable: true);
+  final UserProfile userProfile = UserProfile();
 
   void _fetchAllSalonInfo() async {
     try {
       emit(Loading());
-      var salonListResponse = await _repository.getAllSalonInfo();
+      final results = await Future.wait([
+        _repository.getUserProfile(),
+        _repository.getAllSalonInfo(),
+      ]);
+      userProfile.copy(results[0] as UserProfile);
+      var salonListResponse = results[1] as List<UserHomePageSalonInfo>;
       salonList.addAll(salonListResponse);
       emit(ShowSalonList(salonListResponse));
     } on DatabaseException catch (e) {
@@ -45,7 +52,8 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
       }
 
       if (filterAvailability != 0 &&
-          salon.availabilityStatus.name != Strings.salonAvailability[filterAvailability].toLowerCase()) {
+          salon.availabilityStatus.name !=
+              Strings.salonAvailability[filterAvailability].toLowerCase()) {
         return false;
       }
 

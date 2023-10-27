@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import '../../utils/exceptions/database_exception.dart';
+import '../user_profile_page/models/user_profile.dart';
 import 'models/user_home_page_salon_info.dart';
 
 part 'user_home_page_database_service.dart';
@@ -32,6 +33,11 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
     return salonList;
   }
 
+  @override
+  Future<UserProfile> getUserProfile() {
+    return _databaseService.fetchUserProfile();
+  }
+
   Future<String> _getSalonProfilePictureUrl(String salonId) async {
     try {
       return await _storageService.getSalonProfilePictureUrl(salonId);
@@ -51,4 +57,5 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
 
 abstract class UserHomePageRepository {
   Future<List<UserHomePageSalonInfo>> getAllSalonInfo();
+  Future<UserProfile> getUserProfile();
 }

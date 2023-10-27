@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:repository/user/book_page/book_page_repository.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
+import 'package:repository/user/user_profile_page/models/user_profile.dart';
 import 'package:salon_hub/user/book_page/cubit/book_page_cubit.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
@@ -22,8 +23,9 @@ part 'widgets/book_button.dart';
 
 class BookPage extends StatelessWidget {
   final UserHomePageSalonInfo _salonInfo;
+  final UserProfile _userProfile;
 
-  const BookPage(this._salonInfo, {super.key});
+  const BookPage(this._salonInfo, this._userProfile, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class BookPage extends StatelessWidget {
         create: (context) => BookPageCubit(
           RepositoryProvider.of<BookPageRepository>(context),
           _salonInfo,
+          _userProfile,
         ),
         child: BlocListener<BookPageCubit, BookPageState>(
           listener: (context, state) {

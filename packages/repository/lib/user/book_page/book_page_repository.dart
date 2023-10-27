@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import '../user_profile_page/models/user_profile.dart';
 import 'models/book_slot.dart';
 
 part 'book_page_database_service.dart';
@@ -11,11 +12,13 @@ class FirebaseBookPageRepository implements BookPageRepository {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<bool> saveBookingData(BookSlot bookSlot) async {
+  Future<bool> saveBookingData(BookSlot bookSlot, UserProfile userProfile) async {
     try {
       // add remaining data to BookSlot
       bookSlot.bookingId = DateTime.now().microsecondsSinceEpoch.toString();
       bookSlot.userId = _auth.currentUser?.uid ?? '';
+      bookSlot.userName = userProfile.name;
+      bookSlot.userPhoneNumber = userProfile.phoneNumber;
 
       // save BookSlot data for salon and user
       await Future.wait([
@@ -32,5 +35,5 @@ class FirebaseBookPageRepository implements BookPageRepository {
 }
 
 abstract class BookPageRepository {
-  Future<bool> saveBookingData(BookSlot bookSlot);
+  Future<bool> saveBookingData(BookSlot bookSlot, UserProfile userProfile);
 }

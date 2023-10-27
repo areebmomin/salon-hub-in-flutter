@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repository/user/user_profile_page/models/booking_history.dart';
 import 'package:repository/user/user_profile_page/models/user_profile.dart';

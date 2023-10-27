@@ -3,6 +3,7 @@ part of 'user_home_page_repository.dart';
 class _FirebaseUserHomePageDatabaseService
     implements _UserHomePageDatabaseService {
   final _db = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
 
   @override
   Future<List<UserHomePageSalonInfo>> fetchAllSalonInfo() {
@@ -25,8 +26,24 @@ class _FirebaseUserHomePageDatabaseService
       },
     );
   }
+
+  @override
+  Future<UserProfile> fetchUserProfile() {
+    final docRef = _db.collection('users').doc(_auth.currentUser?.uid);
+    return docRef.get().then(
+          (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return UserProfile.fromDocumentSnapshot(data);
+      },
+      onError: (e) {
+        debugPrint('Error getting document: $e');
+        throw DatabaseException('Unable to load profile data');
+      },
+    );
+  }
 }
 
 abstract class _UserHomePageDatabaseService {
   Future<List<UserHomePageSalonInfo>> fetchAllSalonInfo();
+  Future<UserProfile> fetchUserProfile();
 }

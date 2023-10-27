@@ -1,10 +1,14 @@
 part of '../request_tab_view.dart';
 
 class RequestList extends StatelessWidget {
-  const RequestList({super.key});
+  final BookingData bookingData;
+
+  const RequestList(this.bookingData, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    late var cubit = context.read<RequestTabCubit>();
+
     return Container(
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       decoration: ShapeDecoration(
@@ -25,29 +29,29 @@ class RequestList extends StatelessWidget {
           children: [
             Row(
               children: [
-                _getProfileImageOrIcon(context, null),
+                _getProfileImageOrIcon(bookingData.userProfilePictureUrl),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'User name',
+                      Text(
+                        bookingData.userName,
                         style: TextStyleConstants.userNameScheduleCard,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       InkWell(
                         onTap: () {
-                          _launchUrl('8149311487');
+                          _launchUrl(bookingData.userPhoneNumber);
                         },
                         child: RichText(
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.start,
                           maxLines: 1,
-                          text: const TextSpan(
+                          text: TextSpan(
                             children: [
-                              WidgetSpan(
+                              const WidgetSpan(
                                 child: Icon(
                                   Icons.phone,
                                   size: 16,
@@ -55,8 +59,9 @@ class RequestList extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: ' +91 8149311487',
-                                style: TextStyleConstants.phoneNumberScheduleCard,
+                                text: ' ${bookingData.userPhoneNumber}',
+                                style:
+                                    TextStyleConstants.phoneNumberScheduleCard,
                               ),
                             ],
                           ),
@@ -76,53 +81,50 @@ class RequestList extends StatelessWidget {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: <Widget>[
-                _buildChip('Gamer'),
-                _buildChip('Hacker'),
-                _buildChip('Develop'),
-                _buildChip('Racer'),
-                _buildChip('Traveller'),
-              ],
+              children: bookingData.services.map((e) => _buildChip(e)).toList(),
             ),
             const SizedBox(height: 16),
-            const Row(
+            Row(
               children: [
-                Text(
+                const Text(
                   Strings.dateColon,
                   style: TextStyleConstants.subHeadingScheduleCard,
                 ),
-                SizedBox(width: 4),
+                const SizedBox(width: 8),
                 Text(
-                  'data',
+                  bookingData.formattedDate,
                   style: TextStyleConstants.valueTextScheduleCard,
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            const Row(
+            Row(
               children: [
-                Text(
+                const Text(
                   Strings.timeColon,
                   style: TextStyleConstants.subHeadingScheduleCard,
                 ),
-                SizedBox(width: 4),
+                const SizedBox(width: 8),
                 Text(
-                  'data',
+                  '${bookingData.serviceTime.startTime.toString()} - ${bookingData.serviceTime.endTime.toString()}',
                   style: TextStyleConstants.valueTextScheduleCard,
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            const Row(
+            Row(
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
+                const Text(
                   Strings.noteColon,
                   style: TextStyleConstants.subHeadingScheduleCard,
                 ),
-                SizedBox(width: 4),
-                Text(
-                  'data',
-                  style: TextStyleConstants.valueTextScheduleCard,
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    bookingData.userNote,
+                    style: TextStyleConstants.valueTextScheduleCard,
+                  ),
                 ),
               ],
             ),
@@ -136,7 +138,8 @@ class RequestList extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _declineDialogBuilder(context);
+                        _declineDialogBuilder(
+                            context, cubit.declineButtonClicked);
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
@@ -160,7 +163,8 @@ class RequestList extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        _acceptDialogBuilder(context);
+                        _acceptDialogBuilder(
+                            context, cubit.acceptButtonClicked);
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(0, 40),
@@ -190,10 +194,11 @@ class RequestList extends StatelessWidget {
     );
   }
 
-  Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
-    var image = imageUrl != null
-        ? Image.network(imageUrl, fit: BoxFit.fill)
-        : Image.asset(Assets.profilePic, fit: BoxFit.fill);
+  Widget _getProfileImageOrIcon(String imageUrl) {
+    var image = imageUrl.isNotEmpty
+        ? Image.network(imageUrl, fit: BoxFit.fill, height: 48, width: 48)
+        : Image.asset(Assets.profilePic,
+            fit: BoxFit.fill, height: 48, width: 48);
 
     return CircleAvatar(
       radius: 24,
@@ -223,7 +228,9 @@ class RequestList extends StatelessWidget {
     }
   }
 
-  Future<void> _declineDialogBuilder(BuildContext context) {
+  Future<void> _declineDialogBuilder(
+      BuildContext context, Function(String) onDeclineClicked) {
+    String salonNote = '';
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -250,6 +257,9 @@ class RequestList extends StatelessWidget {
                       child: TextField(
                         onSubmitted: (reply) {},
                         keyboardType: TextInputType.text,
+                        onChanged: (note) {
+                          salonNote = note;
+                        },
                       ),
                     ),
                   ],
@@ -259,6 +269,7 @@ class RequestList extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 4, top: 2),
                   child: ElevatedButton(
                     onPressed: () {
+                      onDeclineClicked(salonNote);
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
@@ -275,7 +286,9 @@ class RequestList extends StatelessWidget {
     );
   }
 
-  Future<void> _acceptDialogBuilder(BuildContext context) {
+  Future<void> _acceptDialogBuilder(
+      BuildContext context, Function(String) onAcceptClicked) {
+    String salonNote = '';
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -299,8 +312,10 @@ class RequestList extends StatelessWidget {
                     SizedBox(
                       height: 32,
                       child: TextField(
-                        onSubmitted: (reply) {},
                         keyboardType: TextInputType.text,
+                        onChanged: (note) {
+                          salonNote = note;
+                        },
                       ),
                     ),
                   ],
@@ -310,6 +325,7 @@ class RequestList extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 4, top: 2),
                   child: ElevatedButton(
                     onPressed: () {
+                      onAcceptClicked(salonNote);
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(

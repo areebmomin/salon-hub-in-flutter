@@ -13,6 +13,8 @@ class BookSlot {
   String salonNote;
   String userId;
   BookingStatus status;
+  String userName;
+  String userPhoneNumber;
 
   BookSlot.getDefault()
       : bookingId = '',
@@ -25,7 +27,9 @@ class BookSlot {
         userNote = '',
         salonNote = '',
         userId = '',
-        status = BookingStatus.pending;
+        status = BookingStatus.pending,
+        userName = '',
+        userPhoneNumber = '';
 
   BookSlot(
     this.bookingId,
@@ -39,9 +43,11 @@ class BookSlot {
     this.salonNote,
     this.userId,
     this.status,
+    this.userName,
+    this.userPhoneNumber,
   );
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toBookingHistoryMap() {
     return <String, dynamic>{
       'booking_id': bookingId,
       'date': date,
@@ -56,6 +62,24 @@ class BookSlot {
       'salon_note': salonNote,
       'user_id': userId,
       'status': status.name,
+    };
+  }
+
+  Map<String, dynamic> toBookingRequestMap() {
+    return <String, dynamic>{
+      'booking_id': bookingId,
+      'date': date,
+      'service_time': ServiceTime(
+              startTime: Time.fromTimeOfDay(startTime),
+              endTime: Time.fromTimeOfDay(endTime))
+          .toMap(),
+      'services': services,
+      'user_note': userNote,
+      'salon_note': salonNote,
+      'user_id': userId,
+      'status': status.name,
+      'user_name': userName,
+      'user_phone_number': userPhoneNumber,
     };
   }
 

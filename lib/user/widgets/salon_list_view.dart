@@ -45,7 +45,8 @@ class SalonListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.bookPage, arguments: _userHomePageSalonInfo);
+        Navigator.pushNamed(context, Routes.bookPage,
+            arguments: [_userHomePageSalonInfo, cubit.userProfile]);
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),

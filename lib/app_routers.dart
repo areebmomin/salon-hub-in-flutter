@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:repository/salon/salon_profile_page/models/salon_profile_info.dart';
 import 'package:repository/user/user_home_page/models/user_home_page_salon_info.dart';
+import 'package:repository/user/user_profile_page/models/user_profile.dart';
 import 'package:salon_hub/auth/user_auth/user_registration/user_registration_flow.dart';
 import 'package:salon_hub/salon/salon_edit_profile_page/salon_edit_profile_page.dart';
 import 'package:salon_hub/salon/salon_profile_page/salon_profile_page.dart';
@@ -43,8 +44,10 @@ class AppRouters {
     } else if (name == Routes.editUserProfile) {
       page = const EditProfilePage();
     } else if (name == Routes.bookPage) {
-      final salonInfo = settings.arguments as UserHomePageSalonInfo;
-      page = BookPage(salonInfo);
+      List<dynamic> args = settings.arguments as List<dynamic>;
+      final salonInfo = args[0] as UserHomePageSalonInfo;
+      final userProfile = args[1] as UserProfile;
+      page = BookPage(salonInfo, userProfile);
     } else if (name == Routes.aboutSalonPage) {
       final salonInfo = settings.arguments as UserHomePageSalonInfo;
       page = AboutSalonPage(salonInfo);

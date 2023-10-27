@@ -10,7 +10,7 @@ class _FirebaseBookPageDatabaseService implements _BookPageDatabaseService {
         .doc(bookSlot.salonId)
         .collection('requests')
         .doc(bookSlot.bookingId)
-        .set(bookSlot.toMap());
+        .set(bookSlot.toBookingRequestMap());
   }
 
   @override
@@ -20,7 +20,7 @@ class _FirebaseBookPageDatabaseService implements _BookPageDatabaseService {
         .doc(bookSlot.userId)
         .collection('bookings')
         .doc(bookSlot.bookingId)
-        .set(bookSlot.toMap());
+        .set(bookSlot.toBookingHistoryMap());
   }
 }
 
