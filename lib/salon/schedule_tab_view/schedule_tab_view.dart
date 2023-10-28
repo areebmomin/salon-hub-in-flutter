@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:repository/salon/request_tab_view/models/booking_data.dart';
 import 'package:repository/salon/schedule_tab_view/schedule_tab_view_repository.dart';
 import 'package:salon_hub/salon/schedule_tab_view/cubit/schedule_tab_cubit.dart';
 import 'package:salon_hub/utils/index.dart';
@@ -37,12 +38,12 @@ class ScheduleTabView extends StatelessWidget {
               if (state is ShowScheduledBookingList) {
                 return Container(
                   color: AppColors.primaryBackground,
-                  child: const Column(
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SelectDate(),
-                      Expanded(child: ScheduleList()),
+                      const SelectDate(),
+                      Expanded(child: ScheduleList(state.bookingList)),
                     ],
                   ),
                 );

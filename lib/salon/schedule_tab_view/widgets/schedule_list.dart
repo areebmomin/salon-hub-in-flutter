@@ -1,13 +1,15 @@
 part of '../schedule_tab_view.dart';
 
 class ScheduleList extends StatelessWidget {
-  const ScheduleList({super.key});
+  final List<BookingData> bookingList;
+
+  const ScheduleList(this.bookingList, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8),
-      itemCount: 5,
+      itemCount: bookingList.length,
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Container(
@@ -33,29 +35,31 @@ class ScheduleList extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        _getProfileImageOrIcon(context, null),
+                        _getProfileImageOrIcon(
+                            context, bookingList[index].userProfilePictureUrl),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'User name',
+                              Text(
+                                bookingList[index].userName,
                                 style: TextStyleConstants.userNameScheduleCard,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               InkWell(
                                 onTap: () {
-                                  _launchUrl('8149311487');
+                                  _launchUrl(
+                                      bookingList[index].userPhoneNumber);
                                 },
                                 child: RichText(
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   maxLines: 1,
-                                  text: const TextSpan(
+                                  text: TextSpan(
                                     children: [
-                                      WidgetSpan(
+                                      const WidgetSpan(
                                         child: Icon(
                                           Icons.phone,
                                           size: 16,
@@ -63,8 +67,10 @@ class ScheduleList extends StatelessWidget {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: ' +91 8149311487',
-                                        style: TextStyleConstants.phoneNumberScheduleCard,
+                                        text:
+                                            ' ${bookingList[index].userPhoneNumber}',
+                                        style: TextStyleConstants
+                                            .phoneNumberScheduleCard,
                                       ),
                                     ],
                                   ),
@@ -84,24 +90,21 @@ class ScheduleList extends StatelessWidget {
                     Wrap(
                       spacing: 10,
                       runSpacing: 10,
-                      children: <Widget>[
-                        _buildChip('Gamer'),
-                        _buildChip('Hacker'),
-                        _buildChip('Develop'),
-                        _buildChip('Racer'),
-                        _buildChip('Traveller'),
-                      ],
+                      children: bookingList[index]
+                          .services
+                          .map((e) => _buildChip(e))
+                          .toList(),
                     ),
                     const SizedBox(height: 16),
-                    const Row(
+                    Row(
                       children: [
-                        Text(
+                        const Text(
                           Strings.timeColon,
                           style: TextStyleConstants.subHeadingScheduleCard,
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(
-                          'data',
+                          '${bookingList[index].serviceTime.startTime.toString()} - ${bookingList[index].serviceTime.endTime.toString()}',
                           style: TextStyleConstants.valueTextScheduleCard,
                         ),
                       ],
@@ -121,7 +124,7 @@ class ScheduleList extends StatelessWidget {
                     switch (item) {
                       case ScheduleOption.notes:
                         {
-                          _notesDialogBuilder(context);
+                          _notesDialogBuilder(context, bookingList[index]);
                         }
                     }
                   },
@@ -141,10 +144,11 @@ class ScheduleList extends StatelessWidget {
     );
   }
 
-  Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
-    var image = imageUrl != null
-        ? Image.network(imageUrl, fit: BoxFit.fill)
-        : Image.asset(Assets.profilePic, fit: BoxFit.fill);
+  Widget _getProfileImageOrIcon(BuildContext context, String imageUrl) {
+    var image = imageUrl.isNotEmpty
+        ? Image.network(imageUrl, fit: BoxFit.fill, height: 48, width: 48)
+        : Image.asset(Assets.profilePic,
+            fit: BoxFit.fill, height: 48, width: 48);
 
     return CircleAvatar(
       radius: 24,
@@ -174,7 +178,8 @@ class ScheduleList extends StatelessWidget {
     }
   }
 
-  Future<void> _notesDialogBuilder(BuildContext context) {
+  Future<void> _notesDialogBuilder(
+      BuildContext context, BookingData bookingData) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -187,25 +192,25 @@ class ScheduleList extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Column(
+                Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       Strings.noteColon,
                       style: TextStyleConstants.subHeadingScheduleCard,
                     ),
                     Text(
-                      'data',
+                      bookingData.userNote,
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       Strings.yourReplyColon,
                       style: TextStyleConstants.subHeadingScheduleCard,
                     ),
                     Text(
-                      'data',
+                      bookingData.salonNote,
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
                   ],
