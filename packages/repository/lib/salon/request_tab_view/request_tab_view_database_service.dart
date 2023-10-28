@@ -25,7 +25,7 @@ class _FirebaseRequestTabViewDatabaseService
   @override
   Future<List<BookingData>> fetchAllDeclinedBookings() {
     return _db.collection('booking').doc(uid).collection('declined').get().then(
-          (querySnapshot) {
+      (querySnapshot) {
         List<BookingData> bookingList = [];
         for (var docSnapshot in querySnapshot.docs) {
           bookingList.add(BookingData.fromDocumentSnapshot(docSnapshot.data()));
@@ -55,6 +55,8 @@ class _FirebaseRequestTabViewDatabaseService
         .collection('booking')
         .doc(uid)
         .collection('schedule')
+        .doc(bookingData.formattedDate)
+        .collection(bookingData.formattedDate)
         .doc(bookingData.bookingId)
         .set(bookingData.toBookingMap());
   }
