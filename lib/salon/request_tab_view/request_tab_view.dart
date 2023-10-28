@@ -42,7 +42,7 @@ class RequestTabView extends StatelessWidget {
                     itemCount: state.bookingList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return RequestList(index, state.bookingList[index]);
-                      //return DeclinedRequestList();
+                      //return DeclinedRequestList(state.bookingList[index]);
                     },
                   ),
                 );

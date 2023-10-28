@@ -1,7 +1,9 @@
 part of '../request_tab_view.dart';
 
 class DeclinedRequestList extends StatelessWidget {
-  const DeclinedRequestList({super.key});
+  final BookingData bookingData;
+
+  const DeclinedRequestList(this.bookingData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,29 +30,30 @@ class DeclinedRequestList extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    _getProfileImageOrIcon(context, null),
+                    _getProfileImageOrIcon(
+                        context, bookingData.userProfilePictureUrl),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'User name',
+                          Text(
+                            bookingData.userName,
                             style: TextStyleConstants.userNameScheduleCard,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           InkWell(
                             onTap: () {
-                              _launchUrl('8149311487');
+                              _launchUrl(bookingData.userPhoneNumber);
                             },
                             child: RichText(
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.start,
                               maxLines: 1,
-                              text: const TextSpan(
+                              text: TextSpan(
                                 children: [
-                                  WidgetSpan(
+                                  const WidgetSpan(
                                     child: Icon(
                                       Icons.phone,
                                       size: 16,
@@ -58,8 +61,9 @@ class DeclinedRequestList extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: ' +91 8149311487',
-                                    style: TextStyleConstants.phoneNumberScheduleCard,
+                                    text: ' ${bookingData.userPhoneNumber}',
+                                    style: TextStyleConstants
+                                        .phoneNumberScheduleCard,
                                   ),
                                 ],
                               ),
@@ -79,24 +83,19 @@ class DeclinedRequestList extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
-                  children: <Widget>[
-                    _buildChip('Gamer'),
-                    _buildChip('Hacker'),
-                    _buildChip('Develop'),
-                    _buildChip('Racer'),
-                    _buildChip('Traveller'),
-                  ],
+                  children:
+                      bookingData.services.map((e) => _buildChip(e)).toList(),
                 ),
                 const SizedBox(height: 16),
-                const Row(
+                Row(
                   children: [
-                    Text(
+                    const Text(
                       Strings.timeColon,
                       style: TextStyleConstants.subHeadingScheduleCard,
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     Text(
-                      'data',
+                      '${bookingData.serviceTime.startTime.toString()} - ${bookingData.serviceTime.endTime.toString()}',
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
                   ],
@@ -116,12 +115,12 @@ class DeclinedRequestList extends StatelessWidget {
                 switch (item) {
                   case ScheduleOption.notes:
                     {
-                      _notesDialogBuilder(context);
+                      _notesDialogBuilder(context, bookingData);
                     }
                 }
               },
               itemBuilder: (BuildContext context) =>
-              <PopupMenuEntry<ScheduleOption>>[
+                  <PopupMenuEntry<ScheduleOption>>[
                 const PopupMenuItem<ScheduleOption>(
                   value: ScheduleOption.notes,
                   child: Text(Strings.notes),
@@ -134,10 +133,11 @@ class DeclinedRequestList extends StatelessWidget {
     );
   }
 
-  Widget _getProfileImageOrIcon(BuildContext context, String? imageUrl) {
-    var image = imageUrl != null
-        ? Image.network(imageUrl, fit: BoxFit.fill)
-        : Image.asset(Assets.profilePic, fit: BoxFit.fill);
+  Widget _getProfileImageOrIcon(BuildContext context, String imageUrl) {
+    var image = imageUrl.isNotEmpty
+        ? Image.network(imageUrl, fit: BoxFit.fill, height: 48, width: 48)
+        : Image.asset(Assets.profilePic,
+            fit: BoxFit.fill, height: 48, width: 48);
 
     return CircleAvatar(
       radius: 24,
@@ -167,38 +167,39 @@ class DeclinedRequestList extends StatelessWidget {
     }
   }
 
-  Future<void> _notesDialogBuilder(BuildContext context) {
+  Future<void> _notesDialogBuilder(
+      BuildContext context, BookingData bookingData) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return Dialog(
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: Padding(
             padding: const EdgeInsets.only(left: 8, right: 8, top: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Column(
+                Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       Strings.noteColon,
                       style: TextStyleConstants.subHeadingScheduleCard,
                     ),
                     Text(
-                      'data',
+                      bookingData.userNote,
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       Strings.yourReplyColon,
                       style: TextStyleConstants.subHeadingScheduleCard,
                     ),
                     Text(
-                      'data',
+                      bookingData.salonNote,
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
                   ],
