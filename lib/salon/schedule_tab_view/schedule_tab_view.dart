@@ -30,29 +30,31 @@ class ScheduleTabView extends StatelessWidget {
                   msg: state.message, toastLength: Toast.LENGTH_SHORT);
             }
           },
-          child: BlocBuilder<ScheduleTabCubit, ScheduleTabState>(
-            buildWhen: (previousState, state) {
-              return state is ShowScheduledBookingList || state is Loading;
-            },
-            builder: (context, state) {
-              if (state is ShowScheduledBookingList) {
-                return Container(
-                  color: AppColors.primaryBackground,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SelectDate(),
-                      Expanded(child: ScheduleList(state.bookingList)),
-                    ],
-                  ),
-                );
-              } else if (state is Loading) {
-                return const Center(child: CircularProgressIndicator());
-              } else {
-                return const SizedBox.shrink();
-              }
-            },
+          child: Container(
+            color: AppColors.primaryBackground,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SelectDate(),
+                BlocBuilder<ScheduleTabCubit, ScheduleTabState>(
+                  buildWhen: (previousState, state) {
+                    return state is ShowScheduledBookingList ||
+                        state is Loading;
+                  },
+                  builder: (context, state) {
+                    if (state is ShowScheduledBookingList) {
+                      return Expanded(child: ScheduleList(state.bookingList));
+                    } else if (state is Loading) {
+                      return const Expanded(
+                          child: Center(child: CircularProgressIndicator()));
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

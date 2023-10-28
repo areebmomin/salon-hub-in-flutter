@@ -62,6 +62,10 @@ class _SelectDateState extends State<SelectDate> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
+    var formattedDate =
+        DateFormat('dd MMM yyyy').format(_selectedDate.value.toLocal());
+    context.read<ScheduleTabCubit>().fetchScheduledBookings(formattedDate);
+
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 8),
       child: Row(
@@ -73,16 +77,11 @@ class _SelectDateState extends State<SelectDate> with RestorationMixin {
           Expanded(
             child: Center(
               child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.white
-                ),
+                style: OutlinedButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () {
                   _restorableDatePickerRouteFuture.present();
                 },
-                child: Text(
-                  DateFormat('dd MMM yyyy')
-                      .format(_selectedDate.value.toLocal()),
-                ),
+                child: Text(formattedDate),
               ),
             ),
           ),

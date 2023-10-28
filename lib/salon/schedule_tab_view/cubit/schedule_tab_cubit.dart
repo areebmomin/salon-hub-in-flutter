@@ -8,14 +8,12 @@ import 'package:repository/utils/exceptions/database_exception.dart';
 part 'schedule_tab_state.dart';
 
 class ScheduleTabCubit extends Cubit<ScheduleTabState> {
-  ScheduleTabCubit(this._repository) : super(Initial()) {
-    var todayDateFormatted = DateFormat('dd MMM yyyy').format(DateTime.now());
-    fetchScheduledBookings(todayDateFormatted);
-  }
+  ScheduleTabCubit(this._repository) : super(Initial());
 
   final ScheduleTabViewRepository _repository;
 
   Future<void> fetchScheduledBookings(String formattedDate) async {
+    if (state is Loading) return;
     try {
       emit(Loading());
       var scheduledList = await _repository.getScheduledBookings(formattedDate);
