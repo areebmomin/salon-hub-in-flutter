@@ -12,6 +12,7 @@ part 'request_tab_state.dart';
 class RequestTabCubit extends Cubit<RequestTabState> {
   RequestTabCubit(this._repository) : super(Initial()) {
     _fetchAllBookingRequests();
+    _fetchAllDeclinedBookings();
   }
 
   final RequestTabViewRepository _repository;
@@ -23,6 +24,18 @@ class RequestTabCubit extends Cubit<RequestTabState> {
       var requestList = await _repository.getBookingRequests();
       bookingRequestList.addAll(requestList);
       emit(ShowBookingRequestList(requestList));
+    } on DatabaseException catch (e) {
+      emit(ShowToast(message: e.message));
+    } catch (e) {
+      emit(ShowToast(message: 'An error occurred: $e'));
+    }
+  }
+
+  Future<void> _fetchAllDeclinedBookings() async {
+    try {
+      emit(Loading());
+      var requestList = await _repository.getDeclinedBookings();
+      emit(ShowDeclinedBookingList(requestList));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
     } catch (e) {

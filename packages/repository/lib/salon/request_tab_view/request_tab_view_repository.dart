@@ -21,7 +21,23 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
 
     final futures = <Future<String>>[];
     for (var booking in bookingRequestList) {
-      futures.add(_getSalonProfilePictureUrl(booking.userId));
+      futures.add(_getUserProfilePictureUrl(booking.userId));
+    }
+    final urls = await Future.wait(futures);
+    bookingRequestList.asMap().forEach((key, value) {
+      value.userProfilePictureUrl = urls[key];
+    });
+
+    return bookingRequestList;
+  }
+
+  @override
+  Future<List<BookingData>> getDeclinedBookings() async {
+    var bookingRequestList = await _databaseService.fetchAllDeclinedBookings();
+
+    final futures = <Future<String>>[];
+    for (var booking in bookingRequestList) {
+      futures.add(_getUserProfilePictureUrl(booking.userId));
     }
     final urls = await Future.wait(futures);
     bookingRequestList.asMap().forEach((key, value) {
@@ -49,7 +65,7 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
     ]);
   }
 
-  Future<String> _getSalonProfilePictureUrl(String userId) async {
+  Future<String> _getUserProfilePictureUrl(String userId) async {
     try {
       return await _storageService.getUserProfilePictureUrl(userId);
     } catch (e) {
@@ -60,6 +76,8 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
 
 abstract class RequestTabViewRepository {
   Future<List<BookingData>> getBookingRequests();
+
+  Future<List<BookingData>> getDeclinedBookings();
 
   Future<void> acceptBooking(BookingData bookingData);
 

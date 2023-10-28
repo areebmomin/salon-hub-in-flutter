@@ -23,6 +23,23 @@ class _FirebaseRequestTabViewDatabaseService
   }
 
   @override
+  Future<List<BookingData>> fetchAllDeclinedBookings() {
+    return _db.collection('booking').doc(uid).collection('declined').get().then(
+          (querySnapshot) {
+        List<BookingData> bookingList = [];
+        for (var docSnapshot in querySnapshot.docs) {
+          bookingList.add(BookingData.fromDocumentSnapshot(docSnapshot.data()));
+        }
+        return bookingList;
+      },
+      onError: (e) {
+        debugPrint('Error getting collection: $e');
+        throw DatabaseException('Unable to load salon data');
+      },
+    );
+  }
+
+  @override
   Future<void> addBookingToDecline(BookingData bookingData) async {
     await _db
         .collection('booking')
@@ -65,6 +82,8 @@ class _FirebaseRequestTabViewDatabaseService
 
 abstract class _RequestTabViewDatabaseService {
   Future<List<BookingData>> fetchAllBookingRequest();
+
+  Future<List<BookingData>> fetchAllDeclinedBookings();
 
   Future<void> removeBookingFromRequest(String bookingId);
 

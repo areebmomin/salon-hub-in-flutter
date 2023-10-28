@@ -5,11 +5,11 @@ class _FirebaseRequestTabViewStorageService
   final _storage = FirebaseStorage.instance.ref();
 
   @override
-  Future<String> getUserProfilePictureUrl(String salonId) {
-    return _storage.child('users').child(salonId).getDownloadURL();
+  Future<String> getUserProfilePictureUrl(String userId) {
+    return _storage.child('users').child(userId).getDownloadURL();
   }
 }
 
 abstract class _RequestTabViewStorageService {
-  Future<String> getUserProfilePictureUrl(String salonId);
+  Future<String> getUserProfilePictureUrl(String userId);
 }

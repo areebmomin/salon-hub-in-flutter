@@ -23,6 +23,15 @@ class ShowBookingRequestList extends RequestTabState {
   List<Object> get props => [bookingList];
 }
 
+class ShowDeclinedBookingList extends RequestTabState {
+  final List<BookingData> bookingList;
+
+  const ShowDeclinedBookingList(this.bookingList);
+
+  @override
+  List<Object> get props => [bookingList];
+}
+
 class ShowToast extends RequestTabState {
   final String message;
 
