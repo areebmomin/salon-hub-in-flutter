@@ -12,30 +12,23 @@ part 'request_tab_state.dart';
 class RequestTabCubit extends Cubit<RequestTabState> {
   RequestTabCubit(this._repository) : super(Initial()) {
     _fetchAllBookingRequests();
-    _fetchAllDeclinedBookings();
   }
 
   final RequestTabViewRepository _repository;
   final List<BookingData> bookingRequestList = List.empty(growable: true);
+  final List<BookingData> declinedBookingList = List.empty(growable: true);
 
   Future<void> _fetchAllBookingRequests() async {
     try {
       emit(Loading());
-      var requestList = await _repository.getBookingRequests();
-      bookingRequestList.addAll(requestList);
-      emit(ShowBookingRequestList(requestList));
-    } on DatabaseException catch (e) {
-      emit(ShowToast(message: e.message));
-    } catch (e) {
-      emit(ShowToast(message: 'An error occurred: $e'));
-    }
-  }
+      var result = await Future.wait([
+        _repository.getBookingRequests(),
+        _repository.getDeclinedBookings(),
+      ]);
+      bookingRequestList.addAll(result[0]);
+      declinedBookingList.addAll(result[1]);
 
-  Future<void> _fetchAllDeclinedBookings() async {
-    try {
-      emit(Loading());
-      var requestList = await _repository.getDeclinedBookings();
-      emit(ShowDeclinedBookingList(requestList));
+      emit(ShowBookingList(bookingRequestList, declinedBookingList));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
     } catch (e) {
@@ -52,7 +45,7 @@ class RequestTabCubit extends Cubit<RequestTabState> {
 
     bookingRequestList.removeAt(index);
 
-    emit(ShowBookingRequestList(bookingRequestList));
+    emit(ShowBookingList(bookingRequestList, declinedBookingList));
     emit(ShowToast(message: Strings.bookingDeclined));
   }
 
@@ -65,7 +58,7 @@ class RequestTabCubit extends Cubit<RequestTabState> {
 
     bookingRequestList.removeAt(index);
 
-    emit(ShowBookingRequestList(bookingRequestList));
+    emit(ShowBookingList(bookingRequestList, declinedBookingList));
     emit(ShowToast(message: Strings.bookingAccepted));
   }
 }

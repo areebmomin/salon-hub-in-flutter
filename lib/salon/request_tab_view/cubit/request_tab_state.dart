@@ -14,22 +14,14 @@ class Loading extends RequestTabState {
   List<Object> get props => [];
 }
 
-class ShowBookingRequestList extends RequestTabState {
-  final List<BookingData> bookingList;
+class ShowBookingList extends RequestTabState {
+  final List<BookingData> requestList;
+  final List<BookingData> declinedList;
 
-  const ShowBookingRequestList(this.bookingList);
-
-  @override
-  List<Object> get props => [bookingList];
-}
-
-class ShowDeclinedBookingList extends RequestTabState {
-  final List<BookingData> bookingList;
-
-  const ShowDeclinedBookingList(this.bookingList);
+  const ShowBookingList(this.requestList, this.declinedList);
 
   @override
-  List<Object> get props => [bookingList];
+  List<Object> get props => [requestList, declinedList];
 }
 
 class ShowToast extends RequestTabState {

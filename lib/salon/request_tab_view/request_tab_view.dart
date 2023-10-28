@@ -31,18 +31,42 @@ class RequestTabView extends StatelessWidget {
           },
           child: BlocBuilder<RequestTabCubit, RequestTabState>(
             buildWhen: (previousState, state) {
-              return state is ShowBookingRequestList || state is Loading;
+              return state is ShowBookingList || state is Loading;
             },
             builder: (context, state) {
-              if (state is ShowBookingRequestList) {
+              if (state is ShowBookingList) {
+                var listSize =
+                    state.requestList.length + state.declinedList.length;
                 return Container(
                   color: AppColors.primaryBackground,
                   child: ListView.builder(
                     padding: const EdgeInsets.only(top: 16),
-                    itemCount: state.bookingList.length,
+                    itemCount: listSize,
                     itemBuilder: (BuildContext context, int index) {
-                      return RequestList(index, state.bookingList[index]);
-                      //return DeclinedRequestList(state.bookingList[index]);
+                      if (index < state.requestList.length) {
+                        return RequestList(index, state.requestList[index]);
+                      } else {
+                        var declinedIndex = index - state.requestList.length;
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (declinedIndex == 0)
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                  left: 16,
+                                  bottom: 16,
+                                  top: 16,
+                                ),
+                                child: Text(
+                                  Strings.declined,
+                                  style: TextStyleConstants.textField,
+                                ),
+                              ),
+                            DeclinedRequestList(
+                                state.declinedList[declinedIndex]),
+                          ],
+                        );
+                      }
                     },
                   ),
                 );

@@ -110,6 +110,7 @@ class Strings {
   static const String dataUpdatedSuccessfully = 'Data updated successfully';
   static const String bookingAccepted = 'Booking Accepted';
   static const String bookingDeclined = 'Booking Declined';
+  static const String declined = 'Declined';
 
   // lists
   static const List<String> salonTypes = <String>['Male', 'Female', 'Unisex'];
