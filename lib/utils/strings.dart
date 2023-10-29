@@ -34,7 +34,6 @@ class Strings {
   static const String businessNameHint = 'Beauty Salon Shop';
   static const String businessAddressHint =
       'Shop no. 2, Dr Anandrao Nair Road, Opp Reserve Bank Of India, Mumbai, 400008';
-  static const String location = 'Location';
   static const String services = 'Services';
   static const String type = 'Type';
   static const String serviceDays = 'Service day\'s';

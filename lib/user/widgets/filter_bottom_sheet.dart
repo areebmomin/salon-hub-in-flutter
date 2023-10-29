@@ -24,7 +24,6 @@ class FilterBottomSheet extends StatelessWidget {
         ),
         SalonNameTextField(),
         const AvailabilityDropDown(),
-        const NearMeTextField(),
         AddressTextField(),
         const FilterButton(),
       ],
@@ -127,41 +126,6 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
             horizontal: 16,
           ),
         ),
-        textInputAction: TextInputAction.next,
-      ),
-    );
-  }
-}
-
-class NearMeTextField extends StatelessWidget {
-  const NearMeTextField({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    late var cubit = context.read<UserHomePageCubit>();
-
-    return Padding(
-      padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
-      child: TextField(
-        decoration: const InputDecoration(
-          filled: true,
-          fillColor: AppColors.inputFieldBackground,
-          border: TextFieldConstants.curvedUnderlineInputBorder,
-          enabledBorder: TextFieldConstants.curvedUnderlineInputBorder,
-          focusedBorder: TextFieldConstants.curvedUnderlineInputBorder,
-          hintText: Strings.location,
-          hintStyle: TextStyleConstants.textFieldHint,
-          suffixIcon: Icon(Icons.add_location_alt),
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 20,
-            horizontal: 16,
-          ),
-        ),
-        style: TextStyleConstants.textField,
-        keyboardType: TextInputType.streetAddress,
-        onChanged: (location) {
-          cubit.filter.location = location.trim();
-        },
         textInputAction: TextInputAction.next,
       ),
     );

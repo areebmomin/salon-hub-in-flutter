@@ -17,8 +17,6 @@ part 'widgets/basics_card.dart';
 
 part 'widgets/availability_card.dart';
 
-part 'widgets/location_card.dart';
-
 part 'widgets/owner_details_list.dart';
 
 part 'widgets/attendee_details_list.dart';
@@ -52,8 +50,6 @@ class AboutSalonPage extends StatelessWidget {
                       Dividers.lightDivider,
                       const BasicsCard(),
                       const AvailabilityCard(),
-                      Dividers.lightDivider,
-                      const LocationCard(),
                       Dividers.lightDivider,
                       if (_salonInfo.ownerDetails.isNotEmpty)
                         const OwnerDetailsList(),

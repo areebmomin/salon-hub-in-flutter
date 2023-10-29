@@ -42,7 +42,6 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
     emit(Loading());
     var salonListResult = salonList.where((salon) {
       final filterName = filter.salonName.toLowerCase();
-      final filterLocation = filter.location.toLowerCase();
       final filterAddress = filter.address.toLowerCase();
       final filterAvailability = filter.salonAvailability;
 
@@ -54,11 +53,6 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
       if (filterAvailability != 0 &&
           salon.availabilityStatus.name !=
               Strings.salonAvailability[filterAvailability].toLowerCase()) {
-        return false;
-      }
-
-      if (filterLocation.isNotEmpty &&
-          !salon.salonAddress.toLowerCase().contains(filterLocation)) {
         return false;
       }
 

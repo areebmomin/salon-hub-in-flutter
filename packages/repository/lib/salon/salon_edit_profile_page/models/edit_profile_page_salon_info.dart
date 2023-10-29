@@ -37,7 +37,6 @@ class EditProfilePageSalonInfo {
       'business_name': salonName,
       'phone_number': phoneNumber,
       'address': salonAddress,
-      'location': '',
       'services': services,
       'type': type,
       'service_days': serviceDays,

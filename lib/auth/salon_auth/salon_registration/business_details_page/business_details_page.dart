@@ -13,8 +13,6 @@ part 'widgets/attendee_details_section.dart';
 
 part 'widgets/business_details_heading.dart';
 
-part 'widgets/business_location_text_field.dart';
-
 part 'widgets/business_name_text_field.dart';
 
 part 'widgets/close_button.dart';
@@ -57,7 +55,6 @@ class BusinessDetailsPage extends StatelessWidget {
                   BusinessNameTextField(),
                   RegisterPhoneNumberTextField(),
                   AddressTextField(),
-                  BusinessLocationTextField(),
                   ServicesTextField(),
                   SalonTypeTextField(),
                   ServiceDaysTextField(),
