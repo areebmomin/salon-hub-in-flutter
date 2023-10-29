@@ -12,10 +12,7 @@ class PhoneNumberTextField extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(left: 19, top: 21),
-          child: Text(
-            Strings.mobileNo,
-            style: TextStyleConstants.textField,
-          ),
+          child: Text(Strings.mobileNo, style: TextStyleConstants.textField),
         ),
         Padding(
           padding: const EdgeInsets.only(

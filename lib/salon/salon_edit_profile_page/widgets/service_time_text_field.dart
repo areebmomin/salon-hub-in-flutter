@@ -14,7 +14,6 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   Widget build(BuildContext context) {
     late var serviceTime =
         context.read<SalonEditProfilePageCubit>().salonInfo.serviceTime;
-
     _updateTextFieldText(serviceTime);
 
     return Column(
@@ -110,8 +109,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   }
 
   void _updateTextFieldText(ServiceTime serviceTime) {
-    _controller.text =
-        '${serviceTime.startTime.toString()} - ${serviceTime.endTime.toString()}';
+    _controller.text = serviceTime.toString();
   }
 
   TimeOfDay _timeToTimeOfDay(Time time) =>
@@ -120,9 +118,6 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
 
 extension on TimeOfDay {
   Time toTime() {
-    return Time(
-      hour: hour,
-      minute: minute,
-    );
+    return Time(hour: hour, minute: minute);
   }
 }

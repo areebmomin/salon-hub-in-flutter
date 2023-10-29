@@ -26,27 +26,39 @@ class VerifyBusinessPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: ScrollConfiguration(
-            behavior: NoOverscrollBehaviour(),
-            child: const Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                CloseButton(),
-                VerifyBusinessHeading(),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      RegisterEmailTextField(),
-                      PasswordTextField(),
-                      RegisterNowButton(),
-                    ],
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const CloseButton(),
+              const VerifyBusinessHeading(),
+              Expanded(
+                child: ScrollConfiguration(
+                  behavior: NoOverscrollBehaviour(),
+                  child: LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                    return SingleChildScrollView(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
+                        child: const IntrinsicHeight(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              RegisterEmailTextField(),
+                              PasswordTextField(),
+                              RegisterNowButton(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

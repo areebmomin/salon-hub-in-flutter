@@ -22,13 +22,17 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
   void _fetchAllSalonInfo() async {
     try {
       emit(Loading());
+
       final results = await Future.wait([
         _repository.getUserProfile(),
         _repository.getAllSalonInfo(),
       ]);
+
       userProfile.copy(results[0] as UserProfile);
+
       var salonListResponse = results[1] as List<UserHomePageSalonInfo>;
       salonList.addAll(salonListResponse);
+
       emit(ShowSalonList(salonListResponse));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
@@ -39,7 +43,9 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
 
   void applyFilter() {
     if (state is Loading) return;
+
     emit(Loading());
+
     var salonListResult = salonList.where((salon) {
       final filterName = filter.salonName.toLowerCase();
       final filterAddress = filter.address.toLowerCase();
@@ -63,6 +69,7 @@ class UserHomePageCubit extends Cubit<UserHomePageState> {
 
       return true;
     }).toList();
+
     emit(ShowSalonList(salonListResult));
   }
 }

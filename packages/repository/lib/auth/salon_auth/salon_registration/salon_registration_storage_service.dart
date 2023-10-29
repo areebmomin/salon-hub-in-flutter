@@ -6,11 +6,7 @@ class _FirebaseSalonRegistrationStorageService
 
   @override
   Future<void> uploadSalonProfilePicture(File imageFile, String uid) async {
-    await _storage
-        .child('salons')
-        .child(uid)
-        .child(uid)
-        .putFile(imageFile);
+    await _storage.child('salons').child(uid).child(uid).putFile(imageFile);
   }
 
   @override

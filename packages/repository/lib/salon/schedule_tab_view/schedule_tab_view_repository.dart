@@ -17,7 +17,8 @@ class FirebaseScheduleTabViewRepository implements ScheduleTabViewRepository {
 
   @override
   Future<List<BookingData>> getScheduledBookings(String formattedDate) async {
-    var scheduledBookingList = await _databaseService.fetchScheduledBooking(formattedDate);
+    var scheduledBookingList =
+        await _databaseService.fetchScheduledBooking(formattedDate);
 
     final futures = <Future<String>>[];
     for (var booking in scheduledBookingList) {

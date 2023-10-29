@@ -8,7 +8,6 @@ class BusinessNameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<SalonEditProfilePageCubit>();
-
     _controller.text = cubit.salonInfo.salonName;
 
     return Column(

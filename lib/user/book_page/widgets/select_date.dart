@@ -82,8 +82,10 @@ class _SelectDateState extends State<SelectDate> with RestorationMixin {
                 onPressed: () {
                   _restorableDatePickerRouteFuture.present();
                 },
-                child: Text(DateFormat('dd MMM yyyy')
-                    .format(_selectedDate.value.toLocal())),
+                child: Text(
+                  DateFormat('dd MMM yyyy')
+                      .format(_selectedDate.value.toLocal()),
+                ),
               ),
             ),
           ),

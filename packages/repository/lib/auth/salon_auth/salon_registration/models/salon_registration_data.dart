@@ -86,7 +86,7 @@ class ServiceTime {
 
   @override
   String toString() {
-    return 'ServiceTime{startTime: $startTime, endTime: $endTime}';
+    return '$startTime - $endTime';
   }
 }
 

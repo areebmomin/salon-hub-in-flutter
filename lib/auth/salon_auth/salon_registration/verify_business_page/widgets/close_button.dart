@@ -14,10 +14,7 @@ class CloseButton extends StatelessWidget {
         onTap: () {
           cubit.verifyPageCloseButtonClicked();
         },
-        child: const Icon(
-          Icons.close,
-          size: 40,
-        ),
+        child: const Icon(Icons.close, size: 40),
       ),
     );
   }

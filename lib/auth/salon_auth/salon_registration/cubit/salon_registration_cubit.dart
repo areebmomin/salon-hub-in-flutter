@@ -11,9 +11,9 @@ import '../../../../utils/index.dart';
 part 'salon_registration_state.dart';
 
 class SalonRegistrationCubit extends Cubit<SalonRegistrationState> {
-  SalonRegistrationCubit(this.salonRegistrationRepository) : super(Initial());
+  SalonRegistrationCubit(this._salonRegistrationRepository) : super(Initial());
 
-  final SalonRegistrationRepository salonRegistrationRepository;
+  final SalonRegistrationRepository _salonRegistrationRepository;
   final data = SalonRegistrationData();
   var isPhoneNumberValid = false;
 
@@ -74,7 +74,7 @@ class SalonRegistrationCubit extends Cubit<SalonRegistrationState> {
 
     emit(Loading());
 
-    salonRegistrationRepository.registerSalon(data: data).listen((event) {
+    _salonRegistrationRepository.registerSalon(data: data).listen((event) {
       if (event is Success) {
         emit(GotoSalonHomePage());
       } else if (event is Failure) {

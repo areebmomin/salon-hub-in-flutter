@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:repository/auth/salon_auth/salon_registration/models/salon_registration_data.dart';
 import 'package:repository/salon/salon_edit_profile_page/models/edit_profile_page_salon_info.dart';
 import 'package:repository/salon/salon_edit_profile_page/salon_edit_profile_page_repository.dart';
-
 import '../../../utils/strings.dart';
 
 part 'salon_edit_profile_page_state.dart';
@@ -59,7 +58,6 @@ class SalonEditProfilePageCubit extends Cubit<SalonEditProfilePageState> {
     await _repository.updateSalonData(salonInfo);
 
     emit(ShowToast(message: Strings.dataUpdatedSuccessfully));
-
     emit(ProfileDataUpdateSuccess());
   }
 

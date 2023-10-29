@@ -107,7 +107,7 @@ class RequestList extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '${bookingData.serviceTime.startTime.toString()} - ${bookingData.serviceTime.endTime.toString()}',
+                  bookingData.serviceTime.toString(),
                   style: TextStyleConstants.valueTextScheduleCard,
                 ),
               ],
@@ -232,8 +232,11 @@ class RequestList extends StatelessWidget {
   }
 
   Future<void> _declineDialogBuilder(
-      BuildContext context, Function(String) onDeclineClicked) {
+    BuildContext context,
+    Function(String) onDeclineClicked,
+  ) {
     String salonNote = '';
+
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -290,8 +293,11 @@ class RequestList extends StatelessWidget {
   }
 
   Future<void> _acceptDialogBuilder(
-      BuildContext context, Function(String) onAcceptClicked) {
+    BuildContext context,
+    Function(String) onAcceptClicked,
+  ) {
     String salonNote = '';
+
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

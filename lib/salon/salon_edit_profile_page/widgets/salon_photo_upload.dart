@@ -37,9 +37,7 @@ class SalonPhotoUpload extends StatelessWidget {
                     softWrap: false,
                     style: TextStyleConstants.uploadHeading,
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
+                  const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {
                       cubit.setSalonPhoto();
@@ -71,9 +69,9 @@ class SalonPhotoUpload extends StatelessWidget {
   }
 
   ImageProvider<Object>? _getBackgroundImage(
-      SalonEditProfilePageCubit cubit,
-      SalonEditProfilePageState state,
-      ) {
+    SalonEditProfilePageCubit cubit,
+    SalonEditProfilePageState state,
+  ) {
     if (state is PhotoSelected) {
       return FileImage(state.profilePicture);
     } else if (cubit.salonInfo.salonProfilePictureUrl.isNotEmpty) {

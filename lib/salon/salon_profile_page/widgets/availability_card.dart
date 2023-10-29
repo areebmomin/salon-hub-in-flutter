@@ -37,7 +37,7 @@ class AvailabilityCard extends StatelessWidget {
                     style: TextStyleConstants.bookSlotSubHeading),
                 Expanded(
                   child: Text(
-                    '${cubit.salonProfileInfo.serviceTime.startTime.toString()} - ${cubit.salonProfileInfo.serviceTime.endTime.toString()}',
+                    cubit.salonProfileInfo.serviceTime.toString(),
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),

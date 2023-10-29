@@ -28,16 +28,20 @@ class AvailabilityCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(Strings.availability,
-                style: TextStyleConstants.salonInfoCardHeading),
+            const Text(
+              Strings.availability,
+              style: TextStyleConstants.salonInfoCardHeading,
+            ),
             const SizedBox(height: 24),
             Row(
               children: [
-                const Text(Strings.time,
-                    style: TextStyleConstants.bookSlotSubHeading),
+                const Text(
+                  Strings.time,
+                  style: TextStyleConstants.bookSlotSubHeading,
+                ),
                 Expanded(
                   child: Text(
-                    '${cubit.salonInfo.serviceTime.startTime.toString()} - ${cubit.salonInfo.serviceTime.endTime.toString()}',
+                    cubit.salonInfo.serviceTime.toString(),
                     style: TextStyleConstants.bookingHistoryListValue,
                     textAlign: TextAlign.end,
                   ),
@@ -45,8 +49,10 @@ class AvailabilityCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            const Text(Strings.days,
-                style: TextStyleConstants.bookSlotSubHeading),
+            const Text(
+              Strings.days,
+              style: TextStyleConstants.bookSlotSubHeading,
+            ),
             const SizedBox(height: 4),
             WeekdaySelector(
               onChanged: (int day) {},

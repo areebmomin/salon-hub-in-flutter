@@ -1,7 +1,7 @@
 part of 'salon_registration_repository.dart';
 
-class _FirebaseSalonRegistrationDatabaseService implements
-    _SalonRegistrationDatabaseService {
+class _FirebaseSalonRegistrationDatabaseService
+    implements _SalonRegistrationDatabaseService {
   final _db = FirebaseFirestore.instance;
 
   @override

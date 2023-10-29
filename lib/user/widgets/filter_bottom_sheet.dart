@@ -39,7 +39,6 @@ class SalonNameTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
-
     _controller.text = cubit.filter.salonName;
 
     return Column(
@@ -84,11 +83,11 @@ class AvailabilityDropDown extends StatefulWidget {
 }
 
 class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
-
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
-    String? selectedValue = Strings.salonAvailability[cubit.filter.salonAvailability];
+    String? selectedValue =
+        Strings.salonAvailability[cubit.filter.salonAvailability];
 
     return Padding(
       padding: const EdgeInsets.only(left: 19, right: 20, top: 16),
@@ -102,7 +101,8 @@ class _AvailabilityDropDownState extends State<AvailabilityDropDown> {
           suffixIcon: DropdownButtonFormField(
             value: selectedValue,
             onChanged: (newValue) {
-              cubit.filter.salonAvailability = Strings.salonAvailability.indexOf(newValue ?? 'Open/Close');
+              cubit.filter.salonAvailability =
+                  Strings.salonAvailability.indexOf(newValue ?? 'Open/Close');
               setState(() {
                 selectedValue = newValue;
               });
@@ -140,7 +140,6 @@ class AddressTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var cubit = context.read<UserHomePageCubit>();
-
     _controller.text = cubit.filter.address;
 
     return Padding(

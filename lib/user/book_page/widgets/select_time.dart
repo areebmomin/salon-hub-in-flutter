@@ -41,8 +41,10 @@ class _SelectTimeState extends State<SelectTime> {
       padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
       child: Row(
         children: [
-          const Text(Strings.time,
-              style: TextStyleConstants.bookSlotSubHeading),
+          const Text(
+            Strings.time,
+            style: TextStyleConstants.bookSlotSubHeading,
+          ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

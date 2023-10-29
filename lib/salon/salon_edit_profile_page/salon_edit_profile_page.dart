@@ -58,7 +58,7 @@ class SalonEditProfilePage extends StatelessWidget {
                 msg: state.message,
                 toastLength: Toast.LENGTH_SHORT,
               );
-            }  else if (state is ProfileDataUpdateSuccess) {
+            } else if (state is ProfileDataUpdateSuccess) {
               Navigator.of(context).popUntil((route) => route.isFirst);
             }
           },

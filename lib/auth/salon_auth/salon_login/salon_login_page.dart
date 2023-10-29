@@ -27,7 +27,6 @@ class SalonLoginWidget extends StatelessWidget {
           Fluttertoast.showToast(
               msg: state.message, toastLength: Toast.LENGTH_SHORT);
         } else if (state is Success) {
-          // Navigate to Home page
           Navigator.pushReplacementNamed(context, Routes.salonHomePage);
         }
       },

@@ -28,13 +28,17 @@ class BasicsCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(Strings.basics,
-                style: TextStyleConstants.salonInfoCardHeading),
+            const Text(
+              Strings.basics,
+              style: TextStyleConstants.salonInfoCardHeading,
+            ),
             const SizedBox(height: 24),
             Row(
               children: [
-                const Text(Strings.type,
-                    style: TextStyleConstants.bookSlotSubHeading),
+                const Text(
+                  Strings.type,
+                  style: TextStyleConstants.bookSlotSubHeading,
+                ),
                 Expanded(
                   child: Text(
                     cubit.salonInfo.type,
@@ -47,8 +51,10 @@ class BasicsCard extends StatelessWidget {
             const SizedBox(height: 16),
             Row(
               children: [
-                const Text(Strings.services,
-                    style: TextStyleConstants.bookSlotSubHeading),
+                const Text(
+                  Strings.services,
+                  style: TextStyleConstants.bookSlotSubHeading,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Wrap(

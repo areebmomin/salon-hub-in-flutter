@@ -14,10 +14,7 @@ class OtpTextField extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.only(left: 19, top: 8),
-          child: Text(
-            Strings.otp,
-            style: TextStyleConstants.textField,
-          ),
+          child: Text(Strings.otp, style: TextStyleConstants.textField),
         ),
         Padding(
           padding: const EdgeInsets.only(

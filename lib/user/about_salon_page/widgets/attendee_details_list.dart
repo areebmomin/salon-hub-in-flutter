@@ -57,7 +57,7 @@ class _AttendeeDetailsListState extends State<AttendeeDetailsList>
                         },
                         builder: (context, state) {
                           var url = cubit.attendeeProfilePictureUrls
-                              .elementAtOrNull(index) ??
+                                  .elementAtOrNull(index) ??
                               '';
                           if (state is LoadAttendeeProfilePicture &&
                               url.isNotEmpty) {

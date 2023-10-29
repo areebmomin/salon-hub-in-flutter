@@ -42,7 +42,10 @@ class UserProfileSection extends StatelessWidget {
                               Flexible(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      top: 61, left: 16, right: 2),
+                                    top: 61,
+                                    left: 16,
+                                    right: 2,
+                                  ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
@@ -162,9 +165,7 @@ class UserProfileSection extends StatelessWidget {
       backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(4),
-        child: ClipOval(
-          child: image,
-        ),
+        child: ClipOval(child: image),
       ),
     );
   }

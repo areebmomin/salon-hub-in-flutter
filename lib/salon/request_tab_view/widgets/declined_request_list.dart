@@ -95,7 +95,7 @@ class DeclinedRequestList extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '${bookingData.serviceTime.startTime.toString()} - ${bookingData.serviceTime.endTime.toString()}',
+                      bookingData.serviceTime.toString(),
                       style: TextStyleConstants.valueTextScheduleCard,
                     ),
                   ],
@@ -168,7 +168,9 @@ class DeclinedRequestList extends StatelessWidget {
   }
 
   Future<void> _notesDialogBuilder(
-      BuildContext context, BookingData bookingData) {
+    BuildContext context,
+    BookingData bookingData,
+  ) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

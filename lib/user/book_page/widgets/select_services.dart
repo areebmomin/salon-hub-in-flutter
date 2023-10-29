@@ -19,8 +19,10 @@ class _SelectServicesState extends State<SelectServices> {
       padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
       child: Row(
         children: [
-          const Text(Strings.services,
-              style: TextStyleConstants.bookSlotSubHeading),
+          const Text(
+            Strings.services,
+            style: TextStyleConstants.bookSlotSubHeading,
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Wrap(

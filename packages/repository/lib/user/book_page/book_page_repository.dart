@@ -12,7 +12,10 @@ class FirebaseBookPageRepository implements BookPageRepository {
   final _auth = FirebaseAuth.instance;
 
   @override
-  Future<bool> saveBookingData(BookSlot bookSlot, UserProfile userProfile) async {
+  Future<bool> saveBookingData(
+    BookSlot bookSlot,
+    UserProfile userProfile,
+  ) async {
     try {
       // add remaining data to BookSlot
       bookSlot.bookingId = DateTime.now().microsecondsSinceEpoch.toString();

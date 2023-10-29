@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:repository/salon/request_tab_view/models/booking_data.dart';
 import 'package:repository/salon/schedule_tab_view/schedule_tab_view_repository.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';

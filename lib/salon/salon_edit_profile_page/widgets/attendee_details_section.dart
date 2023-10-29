@@ -47,10 +47,7 @@ class AttendeeDetails extends StatelessWidget {
               backgroundColor: AppColors.inputFieldBackground,
               fixedSize: const Size(42, 46),
             ),
-            child: const Icon(
-              Icons.add_rounded,
-              size: 32,
-            ),
+            child: const Icon(Icons.add_rounded, size: 32),
           ),
         ],
       ),
@@ -70,13 +67,9 @@ class AttendeeDetailsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     _controller.text = cubit.salonInfo.attendeeDetailList[index].name;
     var url = cubit.salonInfo.attendeeProfilePictureUrls.elementAtOrNull(index);
+
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 12,
-        bottom: 12,
-      ),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
       child: Row(
         children: [
           Stack(
@@ -104,10 +97,7 @@ class AttendeeDetailsListItem extends StatelessWidget {
                   onTap: () {
                     cubit.setAttendeePhoto(index);
                   },
-                  child: const Icon(
-                    Icons.add_a_photo,
-                    size: 24,
-                  ),
+                  child: const Icon(Icons.add_a_photo, size: 24),
                 ),
               ),
             ],
@@ -136,8 +126,10 @@ class AttendeeDetailsListItem extends StatelessWidget {
     );
   }
 
-  ImageProvider<Object>? _getBackgroundImage(SalonEditProfilePageState state,
-      String? url,) {
+  ImageProvider<Object>? _getBackgroundImage(
+    SalonEditProfilePageState state,
+    String? url,
+  ) {
     if (state is AttendeePhotoSelected) {
       return FileImage(state.profilePicture);
     } else if (url != null && url.isNotEmpty) {

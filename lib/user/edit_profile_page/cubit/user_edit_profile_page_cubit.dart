@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:repository/user/edit_user_profile_page/edit_user_profile_repository.dart';
 import 'package:repository/user/user_profile_page/models/user_profile.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';
-
 import '../../../utils/index.dart';
 
 part 'user_edit_profile_page_state.dart';
@@ -30,6 +29,7 @@ class UserEditProfilePageCubit extends Cubit<UserEditProfilePageState> {
 
       userProfile.copy(results[0] as UserProfile);
       url = results[1] as String;
+
       emit(const LoadProfileData());
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));

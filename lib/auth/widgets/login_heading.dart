@@ -7,10 +7,7 @@ class LoginHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.only(left: 16, top: 24),
-      child: Text(
-        Strings.login,
-        style: TextStyleConstants.pageHeading,
-      ),
+      child: Text(Strings.login, style: TextStyleConstants.pageHeading),
     );
   }
 }

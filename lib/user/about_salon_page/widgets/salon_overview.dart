@@ -17,8 +17,10 @@ class SalonOverview extends StatelessWidget {
             child: _getProfilePicture(cubit.salonInfo.salonProfilePictureUrl),
           ),
           const SizedBox(height: 16),
-          Text(cubit.salonInfo.salonName,
-              style: TextStyleConstants.salonNameHeading),
+          Text(
+            cubit.salonInfo.salonName,
+            style: TextStyleConstants.salonNameHeading,
+          ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.only(left: 4),

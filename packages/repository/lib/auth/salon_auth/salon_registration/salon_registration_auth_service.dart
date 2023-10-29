@@ -2,7 +2,6 @@ part of 'salon_registration_repository.dart';
 
 class _FirebaseSalonRegistrationAuthService
     implements _SalonRegistrationAuthService {
-
   final _auth = FirebaseAuth.instance;
 
   @override

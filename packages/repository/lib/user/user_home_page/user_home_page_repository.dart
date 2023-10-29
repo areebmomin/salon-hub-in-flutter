@@ -57,5 +57,6 @@ class FirebaseUserHomePageRepository implements UserHomePageRepository {
 
 abstract class UserHomePageRepository {
   Future<List<UserHomePageSalonInfo>> getAllSalonInfo();
+
   Future<UserProfile> getUserProfile();
 }

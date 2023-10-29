@@ -104,7 +104,7 @@ class ScheduleList extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '${bookingList[index].serviceTime.startTime.toString()} - ${bookingList[index].serviceTime.endTime.toString()}',
+                          bookingList[index].serviceTime.toString(),
                           style: TextStyleConstants.valueTextScheduleCard,
                         ),
                       ],

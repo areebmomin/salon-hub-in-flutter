@@ -5,8 +5,6 @@ class BookingHistorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<UserProfilePageCubit>();
-
     return BlocBuilder<UserProfilePageCubit, UserProfilePageState>(
       buildWhen: (previousState, state) {
         return state is LoadBookingHistory;
@@ -14,8 +12,12 @@ class BookingHistorySection extends StatelessWidget {
       builder: (context, state) {
         if (state is LoadBookingHistory) {
           return Padding(
-            padding:
-                const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 24),
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 16,
+              bottom: 24,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -77,8 +79,9 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      leading:
-          _getProfileImageOrIcon(widget.bookingHistory.salonProfilePictureUrl),
+      leading: _getProfileImageOrIcon(
+        widget.bookingHistory.salonProfilePictureUrl,
+      ),
       title: Text(
         widget.bookingHistory.salonName,
         maxLines: 2,
@@ -123,16 +126,22 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 getTextListItem(
-                    Strings.date,
-                    DateFormat('dd-MM-yyyy')
-                        .format(widget.bookingHistory.date)),
-                getTextListItem(Strings.time,
-                    '${widget.bookingHistory.serviceTime.startTime.toString()} - ${widget.bookingHistory.serviceTime.endTime.toString()}'),
-                getTextListItem(Strings.services,
-                    widget.bookingHistory.services.join(', ')),
+                  Strings.date,
+                  DateFormat('dd-MM-yyyy').format(widget.bookingHistory.date),
+                ),
+                getTextListItem(
+                  Strings.time,
+                  widget.bookingHistory.serviceTime.toString(),
+                ),
+                getTextListItem(
+                  Strings.services,
+                  widget.bookingHistory.services.join(', '),
+                ),
                 getTextListItem(Strings.note, widget.bookingHistory.userNote),
                 getTextListItem(
-                    Strings.salonResponse, widget.bookingHistory.salonNote),
+                  Strings.salonResponse,
+                  widget.bookingHistory.salonNote,
+                ),
               ],
             ),
           ),
@@ -160,9 +169,7 @@ class _BookingHistoryListItemState extends State<BookingHistoryListItem> {
     return CircleAvatar(
       radius: 20,
       backgroundColor: Colors.white,
-      child: ClipOval(
-        child: image,
-      ),
+      child: ClipOval(child: image),
     );
   }
 

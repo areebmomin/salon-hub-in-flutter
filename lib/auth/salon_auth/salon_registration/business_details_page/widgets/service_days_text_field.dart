@@ -18,10 +18,7 @@ class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
       children: [
         const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
-          child: Text(
-            Strings.serviceDays,
-            style: TextStyleConstants.textField,
-          ),
+          child: Text(Strings.serviceDays, style: TextStyleConstants.textField),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),

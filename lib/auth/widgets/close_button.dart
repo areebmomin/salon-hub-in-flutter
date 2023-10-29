@@ -16,10 +16,7 @@ class CloseButton extends StatelessWidget {
             SystemNavigator.pop();
           }
         },
-        child: const Icon(
-          Icons.close,
-          size: 40,
-        ),
+        child: const Icon(Icons.close, size: 40),
       ),
     );
   }

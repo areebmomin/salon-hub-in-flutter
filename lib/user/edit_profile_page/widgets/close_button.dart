@@ -5,7 +5,6 @@ class CloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.only(left: 21, top: 32),
@@ -13,10 +12,7 @@ class CloseButton extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pop();
         },
-        child: const Icon(
-          Icons.close,
-          size: 40,
-        ),
+        child: const Icon(Icons.close, size: 40),
       ),
     );
   }

@@ -24,6 +24,7 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
 
       UserProfile userProfile = results[0] as UserProfile;
       String url = results[1] as String;
+
       emit(LoadUserProfile(userProfile, url));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));
@@ -36,6 +37,7 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
     try {
       List<BookingHistory> bookingHistoryList =
           await _repository.getUserBookingHistory();
+
       emit(LoadBookingHistory(bookingHistoryList));
     } on DatabaseException catch (e) {
       emit(ShowToast(message: e.message));

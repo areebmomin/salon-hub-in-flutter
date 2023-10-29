@@ -9,7 +9,7 @@ class NameTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     late var cubit = context.read<UserEditProfilePageCubit>();
 
-    if(cubit.state is LoadProfileData) {
+    if (cubit.state is LoadProfileData) {
       _controller.text = cubit.userProfile.name;
     }
 

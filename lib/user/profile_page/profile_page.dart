@@ -20,7 +20,8 @@ class ProfilePage extends StatelessWidget {
       create: (context) => FirebaseUserProfileRepository(),
       child: BlocProvider(
         create: (context) => UserProfilePageCubit(
-            RepositoryProvider.of<UserProfileRepository>(context)),
+          RepositoryProvider.of<UserProfileRepository>(context),
+        ),
         child: BlocListener<UserProfilePageCubit, UserProfilePageState>(
           listener: (context, state) {
             if (state is GotoLoginPage) {

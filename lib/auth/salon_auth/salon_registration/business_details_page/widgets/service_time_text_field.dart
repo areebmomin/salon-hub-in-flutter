@@ -14,7 +14,6 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   Widget build(BuildContext context) {
     late var serviceTime =
         context.read<SalonRegistrationCubit>().data.serviceTime;
-
     _updateTextFieldText(serviceTime);
 
     return Column(
@@ -22,10 +21,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
       children: [
         const Padding(
           padding: EdgeInsets.only(top: 20, left: 19),
-          child: Text(
-            Strings.serviceTime,
-            style: TextStyleConstants.textField,
-          ),
+          child: Text(Strings.serviceTime, style: TextStyleConstants.textField),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 9),
@@ -110,8 +106,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   }
 
   void _updateTextFieldText(ServiceTime serviceTime) {
-    _controller.text =
-        '${serviceTime.startTime.toString()} - ${serviceTime.endTime.toString()}';
+    _controller.text = serviceTime.toString();
   }
 
   TimeOfDay _timeToTimeOfDay(Time time) =>

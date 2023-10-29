@@ -49,10 +49,7 @@ class OwnerDetails extends StatelessWidget {
             backgroundColor: AppColors.inputFieldBackground,
             fixedSize: const Size(42, 46),
           ),
-          child: const Icon(
-            Icons.add_rounded,
-            size: 32,
-          ),
+          child: const Icon(Icons.add_rounded, size: 32),
         ),
       ],
     );
@@ -68,12 +65,7 @@ class OwnerDetailsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 12,
-        bottom: 12,
-      ),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
       child: Row(
         children: [
           Stack(
@@ -100,10 +92,7 @@ class OwnerDetailsListItem extends StatelessWidget {
                   onTap: () {
                     cubit.setOwnerPhoto(index);
                   },
-                  child: const Icon(
-                    Icons.add_a_photo,
-                    size: 24,
-                  ),
+                  child: const Icon(Icons.add_a_photo, size: 24),
                 ),
               ),
             ],

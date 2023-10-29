@@ -45,8 +45,11 @@ class SalonListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.bookPage,
-            arguments: [_userHomePageSalonInfo, cubit.userProfile]);
+        Navigator.pushNamed(
+          context,
+          Routes.bookPage,
+          arguments: [_userHomePageSalonInfo, cubit.userProfile],
+        );
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
@@ -67,7 +70,11 @@ class SalonListViewItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 16, top: 16, bottom: 16, right: 8),
+                  left: 16,
+                  top: 16,
+                  bottom: 16,
+                  right: 8,
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +82,8 @@ class SalonListViewItem extends StatelessWidget {
                     CircleAvatar(
                       radius: 24,
                       backgroundImage: _getOwnerImage(
-                          _userHomePageSalonInfo.ownerProfilePictureUrl),
+                        _userHomePageSalonInfo.ownerProfilePictureUrl,
+                      ),
                     ),
                     Expanded(
                       child: Padding(

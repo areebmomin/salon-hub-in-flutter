@@ -31,7 +31,7 @@ class _FirebaseUserHomePageDatabaseService
   Future<UserProfile> fetchUserProfile() {
     final docRef = _db.collection('users').doc(_auth.currentUser?.uid);
     return docRef.get().then(
-          (DocumentSnapshot doc) {
+      (DocumentSnapshot doc) {
         final data = doc.data() as Map<String, dynamic>;
         return UserProfile.fromDocumentSnapshot(data);
       },
@@ -45,5 +45,6 @@ class _FirebaseUserHomePageDatabaseService
 
 abstract class _UserHomePageDatabaseService {
   Future<List<UserHomePageSalonInfo>> fetchAllSalonInfo();
+
   Future<UserProfile> fetchUserProfile();
 }
