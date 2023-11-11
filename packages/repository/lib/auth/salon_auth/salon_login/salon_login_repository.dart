@@ -20,11 +20,6 @@ class FirebaseSalonLoginRepository implements SalonLoginRepository {
   }
 
   @override
-  Future<void> logOut() async {
-    await _authService.logOut();
-  }
-
-  @override
   Future<void> sendPasswordResetEmail({required String email}) async {
     await _authService.sendPasswordResetEmail(email: email);
   }
@@ -39,6 +34,4 @@ abstract class SalonLoginRepository {
   Future<void> sendPasswordResetEmail({
     required String email,
   });
-
-  Future<void> logOut();
 }
