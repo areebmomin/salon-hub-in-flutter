@@ -5,7 +5,7 @@ class AttendeeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonEditProfilePageCubit>();
+    late var bloc = context.read<SalonEditProfilePageBloc>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
@@ -23,7 +23,7 @@ class AttendeeDetails extends StatelessWidget {
               ),
             ),
           ),
-          BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+          BlocBuilder<SalonEditProfilePageBloc, SalonEditProfilePageState>(
             buildWhen: (previousState, state) {
               return state is AttendeeDetailsListUpdated;
             },
@@ -31,17 +31,17 @@ class AttendeeDetails extends StatelessWidget {
               return ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                prototypeItem: AttendeeDetailsListItem(cubit, 0),
-                itemCount: cubit.salonInfo.attendeeDetailList.length,
+                prototypeItem: AttendeeDetailsListItem(bloc, 0),
+                itemCount: bloc.salonInfo.attendeeDetailList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return AttendeeDetailsListItem(cubit, index);
+                  return AttendeeDetailsListItem(bloc, index);
                 },
               );
             },
           ),
           TextButton(
             onPressed: () {
-              cubit.addNewAttendee();
+              bloc.add(const AddAttendee());
             },
             style: TextButton.styleFrom(
               backgroundColor: AppColors.inputFieldBackground,
@@ -56,17 +56,17 @@ class AttendeeDetails extends StatelessWidget {
 }
 
 class AttendeeDetailsListItem extends StatelessWidget {
-  final SalonEditProfilePageCubit cubit;
+  final SalonEditProfilePageBloc bloc;
   final int index;
 
-  AttendeeDetailsListItem(this.cubit, this.index, {super.key});
+  AttendeeDetailsListItem(this.bloc, this.index, {super.key});
 
   final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    _controller.text = cubit.salonInfo.attendeeDetailList[index].name;
-    var url = cubit.salonInfo.attendeeProfilePictureUrls.elementAtOrNull(index);
+    _controller.text = bloc.salonInfo.attendeeDetailList[index].name;
+    var url = bloc.salonInfo.attendeeProfilePictureUrls.elementAtOrNull(index);
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 12, bottom: 12),
@@ -76,7 +76,7 @@ class AttendeeDetailsListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: BlocBuilder<SalonEditProfilePageCubit,
+                child: BlocBuilder<SalonEditProfilePageBloc,
                     SalonEditProfilePageState>(
                   buildWhen: (previousState, state) {
                     return state is AttendeePhotoSelected &&
@@ -95,7 +95,7 @@ class AttendeeDetailsListItem extends StatelessWidget {
                 left: 67,
                 child: GestureDetector(
                   onTap: () {
-                    cubit.setAttendeePhoto(index);
+                    bloc.add(SetAttendeePhoto(index));
                   },
                   child: const Icon(Icons.add_a_photo, size: 24),
                 ),
@@ -114,10 +114,10 @@ class AttendeeDetailsListItem extends StatelessWidget {
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    cubit.salonInfo.attendeeDetailList[index].name = name;
+                    bloc.salonInfo.attendeeDetailList[index].name = name;
                   },
                 ),
-                if (index > 0) _getCloseButton(cubit, index),
+                if (index > 0) _getCloseButton(bloc, index),
               ],
             ),
           ),
@@ -139,14 +139,14 @@ class AttendeeDetailsListItem extends StatelessWidget {
     }
   }
 
-  Widget _getCloseButton(SalonEditProfilePageCubit cubit, int index) {
+  Widget _getCloseButton(SalonEditProfilePageBloc cubit, int index) {
     return SizedBox(
       height: 108,
       child: Align(
         alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () {
-            cubit.removeAttendee(index);
+            bloc.add(RemoveAttendee(index));
           },
           child: Icon(
             Icons.close_rounded,

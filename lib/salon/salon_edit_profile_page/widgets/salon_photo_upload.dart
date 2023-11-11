@@ -5,20 +5,20 @@ class SalonPhotoUpload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonEditProfilePageCubit>();
+    late var bloc = context.read<SalonEditProfilePageBloc>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          BlocBuilder<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+          BlocBuilder<SalonEditProfilePageBloc, SalonEditProfilePageState>(
             buildWhen: (previousState, state) {
               return state is PhotoSelected;
             },
             builder: (context, state) {
               return CircleAvatar(
-                backgroundImage: _getBackgroundImage(cubit, state),
+                backgroundImage: _getBackgroundImage(bloc, state),
                 radius: 65,
               );
             },
@@ -40,7 +40,7 @@ class SalonPhotoUpload extends StatelessWidget {
                   const SizedBox(height: 16),
                   TextButton(
                     onPressed: () {
-                      cubit.setSalonPhoto();
+                      bloc.add(const SetSalonPhoto());
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,
@@ -69,13 +69,13 @@ class SalonPhotoUpload extends StatelessWidget {
   }
 
   ImageProvider<Object>? _getBackgroundImage(
-    SalonEditProfilePageCubit cubit,
+    SalonEditProfilePageBloc bloc,
     SalonEditProfilePageState state,
   ) {
     if (state is PhotoSelected) {
       return FileImage(state.profilePicture);
-    } else if (cubit.salonInfo.salonProfilePictureUrl.isNotEmpty) {
-      return NetworkImage(cubit.salonInfo.salonProfilePictureUrl);
+    } else if (bloc.salonInfo.salonProfilePictureUrl.isNotEmpty) {
+      return NetworkImage(bloc.salonInfo.salonProfilePictureUrl);
     } else {
       return const AssetImage(Assets.userProfileDummy);
     }

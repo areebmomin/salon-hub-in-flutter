@@ -8,7 +8,7 @@ import 'package:repository/salon/salon_edit_profile_page/salon_edit_profile_page
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../utils/index.dart';
-import 'cubit/salon_edit_profile_page_cubit.dart';
+import 'bloc/salon_edit_profile_page_bloc.dart';
 
 part 'widgets/address_text_field.dart';
 
@@ -46,12 +46,12 @@ class SalonEditProfilePage extends StatelessWidget {
     return RepositoryProvider<SalonEditProfilePageRepository>(
       create: (context) => FirebaseSalonEditProfilePageRepository(),
       child: BlocProvider(
-        create: (context) => SalonEditProfilePageCubit(
+        create: (context) => SalonEditProfilePageBloc(
           RepositoryProvider.of<SalonEditProfilePageRepository>(context),
           _salonInfo,
         ),
         child:
-            BlocListener<SalonEditProfilePageCubit, SalonEditProfilePageState>(
+            BlocListener<SalonEditProfilePageBloc, SalonEditProfilePageState>(
           listener: (context, state) {
             if (state is ShowToast) {
               Fluttertoast.showToast(

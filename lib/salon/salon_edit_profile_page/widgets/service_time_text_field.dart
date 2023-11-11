@@ -13,7 +13,7 @@ class _ServiceTimeTextFieldState extends State<ServiceTimeTextField> {
   @override
   Widget build(BuildContext context) {
     late var serviceTime =
-        context.read<SalonEditProfilePageCubit>().salonInfo.serviceTime;
+        context.read<SalonEditProfilePageBloc>().salonInfo.serviceTime;
     _updateTextFieldText(serviceTime);
 
     return Column(

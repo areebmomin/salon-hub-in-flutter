@@ -7,8 +7,8 @@ class BusinessNameTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonEditProfilePageCubit>();
-    _controller.text = cubit.salonInfo.salonName;
+    late var bloc = context.read<SalonEditProfilePageBloc>();
+    _controller.text = bloc.salonInfo.salonName;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -50,7 +50,7 @@ class BusinessNameTextField extends StatelessWidget {
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
             onChanged: (name) {
-              cubit.salonInfo.salonName = name.trim();
+              bloc.salonInfo.salonName = name.trim();
             },
           ),
         ),

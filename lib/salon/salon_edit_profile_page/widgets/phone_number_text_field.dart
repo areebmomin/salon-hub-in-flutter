@@ -5,7 +5,7 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonEditProfilePageCubit>();
+    late var bloc = context.read<SalonEditProfilePageBloc>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,10 +29,10 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              cubit.salonInfo.phoneNumber = number.phoneNumber ?? '';
+              bloc.salonInfo.phoneNumber = number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              cubit.isPhoneNumberValid = isValid;
+              bloc.isPhoneNumberValid = isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -40,7 +40,7 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
               setSelectorButtonAsPrefixIcon: true,
             ),
             initialValue: PhoneNumber(
-                phoneNumber: cubit.salonInfo.phoneNumber, isoCode: 'IN'),
+                phoneNumber: bloc.salonInfo.phoneNumber, isoCode: 'IN'),
             textStyle: TextStyleConstants.textField,
             selectorTextStyle: TextStyleConstants.textField,
             inputDecoration: const InputDecoration(
