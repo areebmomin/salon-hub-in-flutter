@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:repository/auth/salon_auth/salon_registration/salon_registration_repository.dart';
 import 'package:salon_hub/auth/salon_auth/salon_registration/verify_business_page/verify_business_page.dart';
 import '../../../utils/index.dart';
+import 'bloc/salon_registration_bloc.dart';
 import 'business_details_page/business_details_page.dart';
-import 'cubit/salon_registration_cubit.dart';
 
 class SalonRegistrationFlow extends StatefulWidget {
   static SalonRegistrationFlowState of(BuildContext context) {
@@ -54,9 +54,9 @@ class SalonRegistrationFlowState extends State<SalonRegistrationFlow> {
     return RepositoryProvider<SalonRegistrationRepository>(
       create: (context) => FirebaseSalonRegistrationRepository(),
       child: BlocProvider(
-        create: (context) => SalonRegistrationCubit(
+        create: (context) => SalonRegistrationBloc(
             RepositoryProvider.of<SalonRegistrationRepository>(context)),
-        child: BlocListener<SalonRegistrationCubit, SalonRegistrationState>(
+        child: BlocListener<SalonRegistrationBloc, SalonRegistrationState>(
           listener: (context, state) {
             if (state is ShowToast) {
               Fluttertoast.showToast(

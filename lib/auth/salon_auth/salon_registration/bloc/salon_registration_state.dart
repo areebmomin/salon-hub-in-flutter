@@ -1,4 +1,4 @@
-part of 'salon_registration_cubit.dart';
+part of 'salon_registration_bloc.dart';
 
 abstract class SalonRegistrationState extends Equatable {
   const SalonRegistrationState();

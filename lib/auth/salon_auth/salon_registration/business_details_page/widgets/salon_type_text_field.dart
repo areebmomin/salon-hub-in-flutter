@@ -8,7 +8,7 @@ class SalonTypeTextField extends StatefulWidget {
 }
 
 class _SalonTypeTextFieldState extends State<SalonTypeTextField> {
-  late var cubit = context.read<SalonRegistrationCubit>();
+  late var bloc = context.read<SalonRegistrationBloc>();
   String? selectedValue = Strings.salonTypes.first;
 
   @override
@@ -43,7 +43,7 @@ class _SalonTypeTextFieldState extends State<SalonTypeTextField> {
               suffixIcon: DropdownButtonFormField(
                 value: selectedValue,
                 onChanged: (newValue) {
-                  cubit.data.type = newValue ?? '';
+                  bloc.data.type = newValue ?? '';
                   setState(() {
                     selectedValue = newValue;
                   });

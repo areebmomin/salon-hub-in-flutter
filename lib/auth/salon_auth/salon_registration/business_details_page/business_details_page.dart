@@ -5,7 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 import '../../../../utils/index.dart';
-import '../cubit/salon_registration_cubit.dart';
+import '../bloc/salon_registration_bloc.dart';
 
 part 'widgets/address_text_field.dart';
 
@@ -39,7 +39,7 @@ class BusinessDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SalonRegistrationCubit>(context),
+      value: BlocProvider.of<SalonRegistrationBloc>(context),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

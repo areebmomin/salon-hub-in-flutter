@@ -11,7 +11,7 @@ class _ServiceDaysTextFieldState extends State<ServiceDaysTextField> {
   @override
   Widget build(BuildContext context) {
     late var serviceDaysList =
-        context.read<SalonRegistrationCubit>().data.serviceDays;
+        context.read<SalonRegistrationBloc>().data.serviceDays;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

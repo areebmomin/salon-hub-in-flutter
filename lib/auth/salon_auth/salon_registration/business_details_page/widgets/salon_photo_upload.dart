@@ -5,14 +5,14 @@ class SalonPhotoUpload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 17),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
+          BlocBuilder<SalonRegistrationBloc, SalonRegistrationState>(
             buildWhen: (previousState, state) {
               return state is PhotoSelected;
             },
@@ -42,7 +42,7 @@ class SalonPhotoUpload extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      cubit.setSalonPhoto();
+                      bloc.add(const SetSalonPhoto());
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: AppColors.inputFieldBackground,

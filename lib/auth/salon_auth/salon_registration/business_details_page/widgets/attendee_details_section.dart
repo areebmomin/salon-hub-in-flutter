@@ -5,7 +5,7 @@ class AttendeeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 24),
@@ -23,7 +23,7 @@ class AttendeeDetails extends StatelessWidget {
               ),
             ),
           ),
-          BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
+          BlocBuilder<SalonRegistrationBloc, SalonRegistrationState>(
             buildWhen: (previousState, state) {
               return state is AttendeeDetailsListUpdated;
             },
@@ -31,17 +31,17 @@ class AttendeeDetails extends StatelessWidget {
               return ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                prototypeItem: AttendeeDetailsListItem(cubit, 0),
-                itemCount: cubit.data.attendeeDetailList.length,
+                prototypeItem: AttendeeDetailsListItem(bloc, 0),
+                itemCount: bloc.data.attendeeDetailList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return AttendeeDetailsListItem(cubit, index);
+                  return AttendeeDetailsListItem(bloc, index);
                 },
               );
             },
           ),
           TextButton(
             onPressed: () {
-              cubit.addNewAttendee();
+              bloc.add(const AddAttendee());
             },
             style: TextButton.styleFrom(
               backgroundColor: AppColors.inputFieldBackground,
@@ -59,10 +59,10 @@ class AttendeeDetails extends StatelessWidget {
 }
 
 class AttendeeDetailsListItem extends StatelessWidget {
-  final SalonRegistrationCubit cubit;
+  final SalonRegistrationBloc bloc;
   final int index;
 
-  const AttendeeDetailsListItem(this.cubit, this.index, {super.key});
+  const AttendeeDetailsListItem(this.bloc, this.index, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class AttendeeDetailsListItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8),
                 child:
-                    BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
+                    BlocBuilder<SalonRegistrationBloc, SalonRegistrationState>(
                   buildWhen: (previousState, state) {
                     return state is AttendeePhotoSelected &&
                         state.index == index;
@@ -93,7 +93,7 @@ class AttendeeDetailsListItem extends StatelessWidget {
                 left: 67,
                 child: GestureDetector(
                   onTap: () {
-                    cubit.setAttendeePhoto(index);
+                    bloc.add(SetAttendeePhoto(index));
                   },
                   child: const Icon(Icons.add_a_photo, size: 24),
                 ),
@@ -111,10 +111,10 @@ class AttendeeDetailsListItem extends StatelessWidget {
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    cubit.data.attendeeDetailList[index].name = name;
+                    bloc.data.attendeeDetailList[index].name = name;
                   },
                 ),
-                if (index > 0) _getCloseButton(cubit, index),
+                if (index > 0) _getCloseButton(bloc, index),
               ],
             ),
           ),
@@ -129,14 +129,14 @@ class AttendeeDetailsListItem extends StatelessWidget {
         : const AssetImage(Assets.userProfileDummy);
   }
 
-  Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
+  Widget _getCloseButton(SalonRegistrationBloc bloc, int index) {
     return SizedBox(
       height: 108,
       child: Align(
         alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () {
-            cubit.removeAttendee(index);
+            bloc.add(RemoveAttendee(index));
           },
           child: Icon(
             Icons.close_rounded,

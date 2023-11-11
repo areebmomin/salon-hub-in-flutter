@@ -4,7 +4,6 @@ import 'package:repository/salon/request_tab_view/models/booking_data.dart';
 import 'package:repository/salon/request_tab_view/request_tab_view_repository.dart';
 import 'package:repository/user/book_page/models/book_slot.dart';
 import 'package:repository/utils/exceptions/database_exception.dart';
-
 import '../../../utils/strings.dart';
 
 part 'request_tab_state.dart';

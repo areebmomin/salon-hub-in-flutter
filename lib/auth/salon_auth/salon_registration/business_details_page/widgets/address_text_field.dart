@@ -5,7 +5,7 @@ class AddressTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +46,7 @@ class AddressTextField extends StatelessWidget {
             keyboardType: TextInputType.streetAddress,
             maxLines: 3,
             onChanged: (address) {
-              cubit.data.address = address.trim();
+              bloc.data.address = address.trim();
             },
             textInputAction: TextInputAction.next,
           ),

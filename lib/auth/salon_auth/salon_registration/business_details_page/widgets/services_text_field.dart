@@ -12,7 +12,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +54,7 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
             keyboardType: TextInputType.streetAddress,
             onChanged: (service) {
               if (service.contains(',')) {
-                cubit.addService(service);
+                bloc.add(AddService(service));
                 _controller.clear();
               }
             },
@@ -63,18 +63,18 @@ class _ServicesTextFieldState extends State<ServicesTextField> {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 19, right: 20, top: 4),
-          child: BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
+          child: BlocBuilder<SalonRegistrationBloc, SalonRegistrationState>(
             buildWhen: (previousState, state) {
               return state is ServicesUpdated;
             },
             builder: (context, state) {
               return Wrap(
                 spacing: 8.0,
-                children: cubit.data.services.map((chip) {
+                children: bloc.data.services.map((service) {
                   return Chip(
-                    label: Text(chip),
+                    label: Text(service),
                     onDeleted: () {
-                      cubit.removeService(chip);
+                      bloc.add(RemoveService(service));
                     },
                   );
                 }).toList(),

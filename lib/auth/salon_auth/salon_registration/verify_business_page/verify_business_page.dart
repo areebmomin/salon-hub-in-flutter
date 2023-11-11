@@ -4,7 +4,7 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 import '../../../../utils/index.dart';
-import '../cubit/salon_registration_cubit.dart';
+import '../bloc/salon_registration_bloc.dart';
 
 part 'widgets/close_button.dart';
 
@@ -22,7 +22,7 @@ class VerifyBusinessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: BlocProvider.of<SalonRegistrationCubit>(context),
+      value: BlocProvider.of<SalonRegistrationBloc>(context),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

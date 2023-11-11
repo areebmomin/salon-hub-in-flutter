@@ -5,7 +5,7 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,10 +29,10 @@ class RegisterPhoneNumberTextField extends StatelessWidget {
           padding: const EdgeInsets.only(left: 19, right: 19, top: 9),
           child: InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              cubit.data.phoneNumber = number.phoneNumber ?? '';
+              bloc.data.phoneNumber = number.phoneNumber ?? '';
             },
             onInputValidated: (isValid) {
-              cubit.isPhoneNumberValid = isValid;
+              bloc.isPhoneNumberValid = isValid;
             },
             selectorConfig: const SelectorConfig(
               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,

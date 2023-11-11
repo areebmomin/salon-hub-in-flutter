@@ -5,7 +5,7 @@ class OwnerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Column(
       children: [
@@ -25,7 +25,7 @@ class OwnerDetails extends StatelessWidget {
             ),
           ),
         ),
-        BlocBuilder<SalonRegistrationCubit, SalonRegistrationState>(
+        BlocBuilder<SalonRegistrationBloc, SalonRegistrationState>(
           buildWhen: (previousState, state) {
             return state is OwnerDetailsListUpdated;
           },
@@ -33,17 +33,17 @@ class OwnerDetails extends StatelessWidget {
             return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              prototypeItem: OwnerDetailsListItem(cubit, 0),
-              itemCount: cubit.data.ownerDetailsList.length,
+              prototypeItem: OwnerDetailsListItem(bloc, 0),
+              itemCount: bloc.data.ownerDetailsList.length,
               itemBuilder: (BuildContext context, int index) {
-                return OwnerDetailsListItem(cubit, index);
+                return OwnerDetailsListItem(bloc, index);
               },
             );
           },
         ),
         TextButton(
           onPressed: () {
-            cubit.addNewOwner();
+            bloc.add(const AddOwner());
           },
           style: TextButton.styleFrom(
             backgroundColor: AppColors.inputFieldBackground,
@@ -57,10 +57,10 @@ class OwnerDetails extends StatelessWidget {
 }
 
 class OwnerDetailsListItem extends StatelessWidget {
-  final SalonRegistrationCubit cubit;
+  final SalonRegistrationBloc bloc;
   final int index;
 
-  const OwnerDetailsListItem(this.cubit, this.index, {super.key});
+  const OwnerDetailsListItem(this.bloc, this.index, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class OwnerDetailsListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: BlocBuilder<SalonRegistrationCubit,
+                child: BlocBuilder<SalonRegistrationBloc,
                     SalonRegistrationState>(
                   buildWhen: (previousState, state) {
                     return state is OwnerPhotoSelected && state.index == index;
@@ -90,7 +90,7 @@ class OwnerDetailsListItem extends StatelessWidget {
                 left: 67,
                 child: GestureDetector(
                   onTap: () {
-                    cubit.setOwnerPhoto(index);
+                    bloc.add(SetOwnerPhoto(index));
                   },
                   child: const Icon(Icons.add_a_photo, size: 24),
                 ),
@@ -108,10 +108,10 @@ class OwnerDetailsListItem extends StatelessWidget {
                     hintText: Strings.name,
                   ),
                   onChanged: (name) {
-                    cubit.data.ownerDetailsList[index].name = name;
+                    bloc.data.ownerDetailsList[index].name = name;
                   },
                 ),
-                if (index > 0) _getCloseButton(cubit, index),
+                if (index > 0) _getCloseButton(bloc, index),
               ],
             ),
           ),
@@ -120,14 +120,14 @@ class OwnerDetailsListItem extends StatelessWidget {
     );
   }
 
-  Widget _getCloseButton(SalonRegistrationCubit cubit, int index) {
+  Widget _getCloseButton(SalonRegistrationBloc bloc, int index) {
     return SizedBox(
       height: 108,
       child: Align(
         alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () {
-            cubit.removeOwner(index);
+            bloc.add(RemoveOwner(index));
           },
           child: Icon(
             Icons.close_rounded,

@@ -5,7 +5,7 @@ class RegisterEmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late var cubit = context.read<SalonRegistrationCubit>();
+    late var bloc = context.read<SalonRegistrationBloc>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -45,7 +45,7 @@ class RegisterEmailTextField extends StatelessWidget {
             style: TextStyleConstants.textField,
             keyboardType: TextInputType.emailAddress,
             onChanged: (email) {
-              cubit.data.email = email.trim();
+              bloc.data.email = email.trim();
             },
             textInputAction: TextInputAction.next,
           ),

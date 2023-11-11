@@ -20,7 +20,7 @@ class UserEditProfilePageCubit extends Cubit<UserEditProfilePageState> {
   String url = '';
   File? _imageFile;
 
-  _fetchUserProfileData() async {
+  void _fetchUserProfileData() async {
     try {
       final results = await Future.wait([
         _repository.getUserProfile(),
