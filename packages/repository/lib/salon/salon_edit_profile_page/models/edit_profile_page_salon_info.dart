@@ -32,6 +32,23 @@ class EditProfilePageSalonInfo {
     this.profilePicture,
   );
 
+  EditProfilePageSalonInfo.getDefault()
+      : salonName = '',
+        salonAddress = '',
+        phoneNumber = '',
+        type = '',
+        serviceDays = [false, true, true, true, true, true, true],
+        serviceTime = ServiceTime(
+            startTime: Time(hour: 9, minute: 0),
+            endTime: Time(hour: 5, minute: 0)),
+        services = List.empty(),
+        salonProfilePictureUrl = '',
+        ownerProfilePictureUrls = [],
+        attendeeProfilePictureUrls = [],
+        ownerDetailsList = [],
+        attendeeDetailList = [],
+        profilePicture = null;
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'business_name': salonName,

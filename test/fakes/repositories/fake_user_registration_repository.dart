@@ -3,7 +3,7 @@ import 'package:repository/auth/user_auth/user_registration/models/user_registra
 import 'package:repository/auth/user_auth/user_registration/user_registration_repository.dart';
 import 'package:repository/auth/user_auth/user_registration/user_registration_repository_states.dart';
 
-class FakeUserRepositoryRepository implements UserRegistrationRepository {
+class FakeUserRegistrationRepository implements UserRegistrationRepository {
   var returnSuccess = true;
 
   @override
