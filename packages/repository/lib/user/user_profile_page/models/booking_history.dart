@@ -14,6 +14,20 @@ class BookingHistory {
   final String userNote;
   final String salonNote;
 
+  BookingHistory.getDefault()
+      : bookingId = '',
+        salonId = '',
+        salonName = '',
+        bookingStatus = BookingStatus.pending,
+        salonProfilePictureUrl = '',
+        date = DateTime.now(),
+        serviceTime = ServiceTime(
+            startTime: Time(hour: 9, minute: 0),
+            endTime: Time(hour: 5, minute: 0)),
+        services = List.empty(),
+        userNote = '',
+        salonNote = '';
+
   BookingHistory.fromDocumentSnapshot(Map<String, dynamic> doc)
       : bookingId = doc['booking_id'] ?? '',
         salonId = doc['salon_id'] ?? '',

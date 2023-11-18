@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:salon_hub/auth/salon_auth/salon_login/cubit/salon_login_cubit.dart';
 import 'package:salon_hub/utils/strings.dart';
-import '../../../fakes/repositories/salon_login_repository.dart';
+import '../../../fakes/repositories/fake_salon_login_repository.dart';
 
 void main() {
   group('SalonLoginCubit', () {
