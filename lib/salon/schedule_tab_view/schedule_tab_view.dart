@@ -17,11 +17,11 @@ class ScheduleTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<ScheduleTabViewRepository>(
-      create: (context) => FirebaseScheduleTabViewRepository(),
+    return RepositoryProvider<ScheduleTabRepository>(
+      create: (context) => FirebaseScheduleTabRepository(),
       child: BlocProvider(
         create: (context) => ScheduleTabCubit(
-          RepositoryProvider.of<ScheduleTabViewRepository>(context),
+          RepositoryProvider.of<ScheduleTabRepository>(context),
         ),
         child: BlocListener<ScheduleTabCubit, ScheduleTabState>(
           listener: (context, state) {

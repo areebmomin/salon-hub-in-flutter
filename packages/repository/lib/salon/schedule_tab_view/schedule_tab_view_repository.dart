@@ -9,11 +9,11 @@ part 'schedule_tab_view_database_service.dart';
 
 part 'schedule_tab_view_storage_service.dart';
 
-class FirebaseScheduleTabViewRepository implements ScheduleTabViewRepository {
-  late final _ScheduleTabViewDatabaseService _databaseService =
-      _FirebaseScheduleTabViewDatabaseService();
-  late final _ScheduleTabViewStorageService _storageService =
-      _FirebaseScheduleTabViewStorageService();
+class FirebaseScheduleTabRepository implements ScheduleTabRepository {
+  late final _ScheduleTabDatabaseService _databaseService =
+      _FirebaseScheduleTabDatabaseService();
+  late final _ScheduleTabStorageService _storageService =
+      _FirebaseScheduleTabStorageService();
 
   @override
   Future<List<BookingData>> getScheduledBookings(String formattedDate) async {
@@ -41,6 +41,6 @@ class FirebaseScheduleTabViewRepository implements ScheduleTabViewRepository {
   }
 }
 
-abstract class ScheduleTabViewRepository {
+abstract class ScheduleTabRepository {
   Future<List<BookingData>> getScheduledBookings(String formattedDate);
 }

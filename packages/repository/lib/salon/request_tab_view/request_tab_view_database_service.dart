@@ -1,7 +1,7 @@
 part of 'request_tab_view_repository.dart';
 
-class _FirebaseRequestTabViewDatabaseService
-    implements _RequestTabViewDatabaseService {
+class _FirebaseRequestTabDatabaseService
+    implements _RequestTabDatabaseService {
   final _db = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser?.uid;
 
@@ -82,7 +82,7 @@ class _FirebaseRequestTabViewDatabaseService
   }
 }
 
-abstract class _RequestTabViewDatabaseService {
+abstract class _RequestTabDatabaseService {
   Future<List<BookingData>> fetchAllBookingRequest();
 
   Future<List<BookingData>> fetchAllDeclinedBookings();

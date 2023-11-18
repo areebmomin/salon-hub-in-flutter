@@ -16,11 +16,11 @@ class RequestTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<RequestTabViewRepository>(
-      create: (context) => FirebaseRequestTabViewRepository(),
+    return RepositoryProvider<RequestTabRepository>(
+      create: (context) => FirebaseRequestTabRepository(),
       child: BlocProvider(
         create: (context) => RequestTabCubit(
-          RepositoryProvider.of<RequestTabViewRepository>(context),
+          RepositoryProvider.of<RequestTabRepository>(context),
         ),
         child: BlocListener<RequestTabCubit, RequestTabState>(
           listener: (context, state) {

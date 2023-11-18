@@ -1,7 +1,7 @@
 part of 'request_tab_view_repository.dart';
 
-class _FirebaseRequestTabViewStorageService
-    implements _RequestTabViewStorageService {
+class _FirebaseRequestTabStorageService
+    implements _RequestTabStorageService {
   final _storage = FirebaseStorage.instance.ref();
 
   @override
@@ -10,6 +10,6 @@ class _FirebaseRequestTabViewStorageService
   }
 }
 
-abstract class _RequestTabViewStorageService {
+abstract class _RequestTabStorageService {
   Future<String> getUserProfilePictureUrl(String userId);
 }

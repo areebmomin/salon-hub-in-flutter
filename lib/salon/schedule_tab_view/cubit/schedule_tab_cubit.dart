@@ -9,7 +9,7 @@ part 'schedule_tab_state.dart';
 class ScheduleTabCubit extends Cubit<ScheduleTabState> {
   ScheduleTabCubit(this._repository) : super(Initial());
 
-  final ScheduleTabViewRepository _repository;
+  final ScheduleTabRepository _repository;
 
   Future<void> fetchScheduledBookings(String formattedDate) async {
     if (state is Loading) return;

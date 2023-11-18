@@ -1,7 +1,7 @@
 part of 'schedule_tab_view_repository.dart';
 
-class _FirebaseScheduleTabViewDatabaseService
-    implements _ScheduleTabViewDatabaseService {
+class _FirebaseScheduleTabDatabaseService
+    implements _ScheduleTabDatabaseService {
   final _db = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser?.uid;
 
@@ -30,6 +30,6 @@ class _FirebaseScheduleTabViewDatabaseService
   }
 }
 
-abstract class _ScheduleTabViewDatabaseService {
+abstract class _ScheduleTabDatabaseService {
   Future<List<BookingData>> fetchScheduledBooking(String formattedDate);
 }

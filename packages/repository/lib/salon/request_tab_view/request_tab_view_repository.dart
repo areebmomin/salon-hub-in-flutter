@@ -9,11 +9,11 @@ part 'request_tab_view_database_service.dart';
 
 part 'request_tab_view_storage_service.dart';
 
-class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
-  late final _RequestTabViewDatabaseService _databaseService =
-      _FirebaseRequestTabViewDatabaseService();
-  late final _RequestTabViewStorageService _storageService =
-      _FirebaseRequestTabViewStorageService();
+class FirebaseRequestTabRepository implements RequestTabRepository {
+  late final _RequestTabDatabaseService _databaseService =
+      _FirebaseRequestTabDatabaseService();
+  late final _RequestTabStorageService _storageService =
+      _FirebaseRequestTabStorageService();
 
   @override
   Future<List<BookingData>> getBookingRequests() async {
@@ -74,7 +74,7 @@ class FirebaseRequestTabViewRepository implements RequestTabViewRepository {
   }
 }
 
-abstract class RequestTabViewRepository {
+abstract class RequestTabRepository {
   Future<List<BookingData>> getBookingRequests();
 
   Future<List<BookingData>> getDeclinedBookings();

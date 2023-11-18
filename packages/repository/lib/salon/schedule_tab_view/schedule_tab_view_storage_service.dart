@@ -1,7 +1,7 @@
 part of 'schedule_tab_view_repository.dart';
 
-class _FirebaseScheduleTabViewStorageService
-    implements _ScheduleTabViewStorageService {
+class _FirebaseScheduleTabStorageService
+    implements _ScheduleTabStorageService {
   final _storage = FirebaseStorage.instance.ref();
 
   @override
@@ -10,6 +10,6 @@ class _FirebaseScheduleTabViewStorageService
   }
 }
 
-abstract class _ScheduleTabViewStorageService {
+abstract class _ScheduleTabStorageService {
   Future<String> getUserProfilePictureUrl(String userId);
 }

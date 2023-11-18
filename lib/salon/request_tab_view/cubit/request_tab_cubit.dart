@@ -13,7 +13,7 @@ class RequestTabCubit extends Cubit<RequestTabState> {
     _fetchAllBookingRequests();
   }
 
-  final RequestTabViewRepository _repository;
+  final RequestTabRepository _repository;
   final List<BookingData> bookingRequestList = List.empty(growable: true);
   final List<BookingData> declinedBookingList = List.empty(growable: true);
 
