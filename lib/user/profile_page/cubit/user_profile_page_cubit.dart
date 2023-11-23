@@ -51,7 +51,7 @@ class UserProfilePageCubit extends Cubit<UserProfilePageState> {
     emit(GotoLoginPage());
   }
 
-  void gotoSalonEditProfilePage() {
+  void gotoUserEditProfilePage() {
     emit(GotoEditProfilePage());
   }
 }

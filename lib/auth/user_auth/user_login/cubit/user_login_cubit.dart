@@ -7,7 +7,7 @@ part 'user_login_state.dart';
 
 class UserLoginCubit extends Cubit<UserLoginState> {
   UserLoginCubit(this._userLoginRepository) : super(Initial()) {
-    _userLoginRepository.status.listen(loginStatusListener);
+    _userLoginRepository.status.listen(_loginStatusListener);
   }
 
   final UserLoginRepository _userLoginRepository;
@@ -25,7 +25,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
   set isPhoneNumberValid(bool isPhoneNumberValid) =>
       _isPhoneNumberValid = isPhoneNumberValid;
 
-  void loginStatusListener(VerifyPhoneNumberState event) {
+  void _loginStatusListener(VerifyPhoneNumberState event) {
     if (event is VerifyPhoneNumberCompleted) {
       emit(Success());
     } else if (event is VerifyPhoneNumberFailed) {

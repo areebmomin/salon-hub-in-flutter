@@ -23,7 +23,7 @@ class BookSlot {
         endTime = TimeOfDay.now(),
         salonId = '',
         salonName = '',
-        services = List.empty(),
+        services = List.empty(growable: true),
         userNote = '',
         salonNote = '',
         userId = '',

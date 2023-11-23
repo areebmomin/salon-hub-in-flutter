@@ -44,8 +44,8 @@ class UserHomePageSalonInfo {
         availabilityStatus = AvailabilityStatus.close,
         salonProfilePictureUrl = '',
         ownerProfilePictureUrl = '',
-        ownerDetails = List<String>.empty(),
-        attendeeDetails = List<String>.empty();
+        ownerDetails = List<String>.empty(growable: true),
+        attendeeDetails = List<String>.empty(growable: true);
 
   UserHomePageSalonInfo.fromDocumentSnapshot(
     this.salonId,
