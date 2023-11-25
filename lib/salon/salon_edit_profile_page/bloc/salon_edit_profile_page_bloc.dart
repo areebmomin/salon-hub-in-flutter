@@ -8,10 +8,13 @@ import 'package:repository/salon/salon_edit_profile_page/salon_edit_profile_page
 import '../../../utils/strings.dart';
 
 part 'salon_edit_profile_page_event.dart';
+
 part 'salon_edit_profile_page_state.dart';
 
-class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEditProfilePageState> {
-  SalonEditProfilePageBloc(this._repository, this.salonInfo) : super(Initial()) {
+class SalonEditProfilePageBloc
+    extends Bloc<SalonEditProfilePageEvent, SalonEditProfilePageState> {
+  SalonEditProfilePageBloc(this._repository, this.salonInfo)
+      : super(Initial()) {
     on<SetSalonPhoto>(_setSalonPhoto);
     on<SaveDetailsButtonClicked>(_saveDetailsButtonClicked);
     on<AddService>(_addService);
@@ -29,9 +32,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   bool isPhoneNumberValid = true;
 
   void _setSalonPhoto(
-      SetSalonPhoto event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) async {
+    SetSalonPhoto event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) async {
     var pickedFile = await _getPhotoFromGallery();
     if (pickedFile != null) {
       salonInfo.profilePicture = File(pickedFile.path);
@@ -40,9 +43,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   Future<void> _saveDetailsButtonClicked(
-      SaveDetailsButtonClicked event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) async {
+    SaveDetailsButtonClicked event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) async {
     if (state is Loading) return;
 
     if (salonInfo.salonName.isEmpty) {
@@ -82,9 +85,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
       ImagePicker().pickImage(source: ImageSource.gallery);
 
   void _addService(
-      AddService event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    AddService event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     String text = event.service.substring(0, event.service.length - 1).trim();
     if (text.isNotEmpty) {
       salonInfo.services.add(text);
@@ -93,17 +96,17 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _removeService(
-      RemoveService event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    RemoveService event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     salonInfo.services.remove(event.service);
     emit(ServicesUpdated());
   }
 
   void _addNewOwner(
-      AddOwner event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    AddOwner event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     if (salonInfo.ownerDetailsList.length == 10) {
       emit(ShowToast(message: Strings.notMoreThan10Owners));
       return;
@@ -114,9 +117,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _removeOwner(
-      RemoveOwner event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    RemoveOwner event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     salonInfo.ownerDetailsList.removeAt(event.index);
     if (event.index < salonInfo.ownerProfilePictureUrls.length) {
       salonInfo.ownerProfilePictureUrls.removeAt(event.index);
@@ -125,9 +128,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _addNewAttendee(
-      AddAttendee event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    AddAttendee event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     if (salonInfo.attendeeDetailList.length == 20) {
       emit(ShowToast(message: Strings.notMoreThan20Attendee));
       return;
@@ -138,9 +141,9 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _removeAttendee(
-      RemoveAttendee event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) {
+    RemoveAttendee event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) {
     salonInfo.attendeeDetailList.removeAt(event.index);
     if (event.index < salonInfo.attendeeProfilePictureUrls.length) {
       salonInfo.attendeeProfilePictureUrls.removeAt(event.index);
@@ -149,12 +152,13 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _setOwnerPhoto(
-      SetOwnerPhoto event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) async {
+    SetOwnerPhoto event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) async {
     var pickedFile = await _getPhotoFromGallery();
     if (pickedFile != null) {
-      salonInfo.ownerDetailsList[event.index].profilePicture = File(pickedFile.path);
+      salonInfo.ownerDetailsList[event.index].profilePicture =
+          File(pickedFile.path);
       emit(OwnerPhotoSelected(
         index: event.index,
         profilePicture: salonInfo.ownerDetailsList[event.index].profilePicture!,
@@ -163,16 +167,17 @@ class SalonEditProfilePageBloc extends Bloc<SalonEditProfilePageEvent, SalonEdit
   }
 
   void _setAttendeePhoto(
-      SetAttendeePhoto event,
-      Emitter<SalonEditProfilePageState> emit,
-      ) async {
+    SetAttendeePhoto event,
+    Emitter<SalonEditProfilePageState> emit,
+  ) async {
     var pickedFile = await _getPhotoFromGallery();
     if (pickedFile != null) {
       salonInfo.attendeeDetailList[event.index].profilePicture =
           File(pickedFile.path);
       emit(AttendeePhotoSelected(
         index: event.index,
-        profilePicture: salonInfo.attendeeDetailList[event.index].profilePicture!,
+        profilePicture:
+            salonInfo.attendeeDetailList[event.index].profilePicture!,
       ));
     }
   }

@@ -16,7 +16,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     this._userLoginRepository,
     this._userRegistrationRepository,
   ) : super(Initial()) {
-    _userLoginRepository.status.listen(loginStatusListener);
+    _userLoginRepository.status.listen(_loginStatusListener);
   }
 
   final UserLoginRepository _userLoginRepository;
@@ -30,7 +30,7 @@ class UserRegistrationCubit extends Cubit<UserRegistrationState> {
     emit(TermsAndCondition(isChecked: status));
   }
 
-  void loginStatusListener(VerifyPhoneNumberState event) {
+  void _loginStatusListener(VerifyPhoneNumberState event) {
     if (event is VerifyPhoneNumberCompleted) {
       _addDataAndUploadPhoto(event.uid);
     } else if (event is VerifyPhoneNumberFailed) {
