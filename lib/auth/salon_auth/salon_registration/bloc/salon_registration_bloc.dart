@@ -86,10 +86,10 @@ class SalonRegistrationBloc
     emit(ServicesUpdated());
   }
 
-  void _registerNowButtonClicked(
+  Future<void> _registerNowButtonClicked(
     RegisterNowButtonClicked event,
     Emitter<SalonRegistrationState> emit,
-  ) {
+  ) async {
     if (state is Loading) return;
 
     if (!EmailValidator.validate(data.email)) {
@@ -104,7 +104,7 @@ class SalonRegistrationBloc
 
     emit(Loading());
 
-    _salonRegistrationRepository.registerSalon(data: data).listen((event) {
+    await _salonRegistrationRepository.registerSalon(data: data).forEach((event) {
       if (event is Success) {
         emit(GotoSalonHomePage());
       } else if (event is Failure) {
