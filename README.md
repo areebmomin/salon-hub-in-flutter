@@ -1,16 +1,34 @@
-# salon_hub
+# SalonHub
 
-FLutter project that shows all the salon in a city.
+## Concept:
+- SalonHub is a personal care booking platform where salons list their services and customers can book them for a future time slot.
 
-## Getting Started
+## Tech:
+- SalonHub is a cross-platform application built using [Flutter](https://flutter.dev/) and optimized for [Android](https://developer.android.com/) and [iOS](https://developer.apple.com/ios/).
+- As an architecture [BLOC (Business Logic Component)](https://bloclibrary.dev/#/) is used for UI and logic separation.
+- [Firebase](https://firebase.google.com/) is used for authentication and for storing data and images.
+- For verification of each case in BLOC/Cubit, it is safeguarded with [Unit Test](https://github.com/areebmomin/Salon-Hub-in-Flutter/tree/main/test).
 
-This project is a starting point for a Flutter application.
+## Screenshots:
 
-A few resources to get you started if this is your first Flutter project:
+> **_Note:_**  Please find complete screenshots in [Screenshots](https://github.com/areebmomin/Salon-Hub-in-Flutter/tree/main/screenshots) folder.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![alt text](https://github.com/areebmomin/Salon-Hub-in-Flutter/blob/main/screenshots/customer_1.jpg)
+
+<br>
+
+![alt text](https://github.com/areebmomin/Salon-Hub-in-Flutter/blob/main/screenshots/customer_2.jpg)
+
+<br>
+
+![alt text](https://github.com/areebmomin/Salon-Hub-in-Flutter/blob/main/screenshots/customer_5.jpg)
+
+<br>
+
+![alt text](https://github.com/areebmomin/Salon-Hub-in-Flutter/blob/main/screenshots/salon_4.jpg)
+
+<br>
+
+![alt text](https://github.com/areebmomin/Salon-Hub-in-Flutter/blob/main/screenshots/salon_6.jpg)
